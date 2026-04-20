@@ -1,0 +1,148 @@
+import Navabar from './components/Navabar'
+import Sidebar from './components/Sidebar'
+import hero from '../assets/aboutStory/hero.png'
+import whatWeDoImage from '../assets/aboutStory/what-we-do.jpg'
+import WhoWeAreImage from '../assets/aboutStory/who-we-are.jpg'
+import WhyChooseUsImage from '../assets/aboutStory/why-choose-us.jpg'
+import { Link } from 'react-router-dom'
+
+function AboutStory() {
+    return (
+        <div className="min-h-screen bg-white text-slate-900">
+            <div className="h-[2px] w-full bg-[#6a9fba]" />
+            <Navabar />
+
+            <main className="w-full px-4 pb-6 md:px-5 lg:px-0 lg:pr-6">
+                <section className="mb-10 flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
+                    <Sidebar />
+
+                    <div className="flex-1">
+                        <div className="relative flex flex-col gap-[10px] md:flex-row">
+                            <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[450px]">
+                                <img
+                                    src={hero}
+                                    alt="The Genotek Story"
+                                    className="h-full w-full object-cover"
+                                />
+
+                                <div
+                                    className="absolute bottom-[24px] left-0 z-[4] w-[min(92%,320px)] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[38px] sm:w-[min(88%,420px)] sm:px-8 sm:py-3 md:bottom-[64px] md:w-auto md:px-15"
+                                    style={{
+                                        clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)',
+                                    }}
+                                >
+                                    <p className="text-[22px] leading-[1.05] font-normal sm:text-[28px] md:text-[35px]">
+                                        The Genotek
+                                    </p>
+                                    <p className="mt-1 text-right text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
+                                        Story.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.6] text-black sm:text-[18px] md:pb-10 md:text-[20px] md:leading-[1.45]">
+                            <p>
+                                At Genotek Biochem Private Limited, we believe that true progress in science comes from balancing scale with sensitivity. Guided by our mantra, "Big enough to deliver, small enough to care". We bring together capability and compassion in everything we do.
+                            </p>
+                        </div>
+
+                        <div className="px-1 pb-10 pt-4 sm:pb-12 md:pb-14 md:pt-10">
+                            <div className="grid items-start gap-6 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10">
+                                <div 
+                                    className="overflow-hidden"
+                                    style={{
+                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                    }}
+                                >
+                                    <img
+                                        src={WhoWeAreImage}
+                                        alt="Who we are"
+                                        className="h-[220px] w-full object-cover sm:h-[280px] md:h-[315px]"
+                                    />
+                                </div>
+
+                                <div className="pr-0 lg:pr-8 xl:pr-20">
+                                    <h2 className="text-[28px] font-semibold leading-none text-[#5a92b6] sm:text-[32px] md:text-[35px]">
+                                        Who we are
+                                    </h2>
+                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:mt-6 sm:text-[18px] md:mt-8 md:text-[20px] md:text-justify">
+                                        We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness, flexibility, and personal attention of a close-knit team.
+                                    </p>
+                                    <Link to="/about/team">
+                                        <p className="mt-4 inline-block text-[18px] font-semibold text-[#5a92b6] underline underline-offset-4 sm:text-[20px] md:text-[23px]" >
+                                            Our Team
+                                        </p>
+                                    </Link>
+                                    
+                                </div>
+                            </div>
+
+                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-16 md:w-[90%]">
+                                <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
+                            </div>
+
+                            <div className="mt-8 grid items-start gap-6 md:mt-10 md:gap-8 lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-10 lg:pr-8 xl:grid-cols-[minmax(0,1fr)_520px] xl:pr-20">
+                                <div className="pt-2 text-left md:pt-4 lg:pl-6 lg:text-right xl:pl-16">
+                                    <h2 className="text-[28px] font-semibold leading-none text-[#5a92b6] sm:text-[32px] md:text-[35px]">
+                                        What we do
+                                    </h2>
+                                    <p className="mx-auto mt-4 max-w-[980px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:mt-6 sm:text-[18px] md:mt-8 md:text-[20px] md:text-justify">
+                                        We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness, flexibility, and personal attention that define our way of working.
+                                    </p>
+                                </div>
+
+                                <div
+                                    className="overflow-hidden bg-[#e6edf3]"
+                                    style={{
+                                        clipPath: 'polygon(0 0, 100% 0, 100% 100%, 14% 100%, 0 72%)',
+                                    }}
+                                >
+                                    <img
+                                        src={whatWeDoImage}
+                                        alt="What we do"
+                                        className="h-[220px] w-full object-cover sm:h-[280px] md:h-[330px]"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-16 md:w-[90%]">
+                                <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
+                            </div>
+
+                            <div className="mt-8 grid items-start gap-6 md:mt-10 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10">
+                                <div 
+                                    className="overflow-hidden"
+                                    style={{
+                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                    }}
+                                >
+                                    <img
+                                        src={WhyChooseUsImage}
+                                        alt="why choose use"
+                                        className="h-[220px] w-full object-cover sm:h-[280px] md:h-[315px]"
+                                    />
+                                </div>
+
+                                <div className="pr-0 lg:pr-8 xl:pr-20">
+                                    <h2 className="text-[28px] font-semibold leading-none text-[#5a92b6] sm:text-[32px] md:text-[35px]">
+                                        Why Choose Us?
+                                    </h2>
+                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:mt-6 sm:text-[18px] md:mt-8 md:text-[20px] md:text-justify">
+                                        We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness flexibility and personal attention of a close-knit team.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    )
+}
+
+export default AboutStory

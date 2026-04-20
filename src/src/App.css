@@ -1,0 +1,11 @@
+.curved-box {
+  clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%, 8% 50%);
+}
+
+.overlay-tag {
+  clip-path: polygon(0 0, 100% 0, 92% 100%, 0 100%);
+}
+
+.page-content {
+  margin-top: 90px;   /* header height */
+}

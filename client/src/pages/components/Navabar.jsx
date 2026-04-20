@@ -1,0 +1,222 @@
+import { useEffect, useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { FiMenu, FiPhoneCall, FiSearch, FiX } from 'react-icons/fi'
+import { FaPhoneAlt } from "react-icons/fa";
+import logo from '../../assets/logo.jpeg'
+import { Link, NavLink, useLocation } from 'react-router-dom';
+import { aboutSubmenuItems, navItems } from './navConfig'
+import { FiChevronDown } from 'react-icons/fi'
+
+function Navabar() {
+    const location = useLocation()
+    const [menuOpen, setMenuOpen] = useState(false)
+    const [searchOpen, setSearchOpen] = useState(false)
+    const [aboutOpen, setAboutOpen] = useState(location.pathname.startsWith('/about'))
+
+    useEffect(() => {
+        setMenuOpen(false)
+        setSearchOpen(false)
+        setAboutOpen(location.pathname.startsWith('/about'))
+    }, [location.pathname])
+
+    return (
+        <header className="bg-white">
+            <div className="w-full border-t-[3px] border-[#6d9eb7] pt-[2px]">
+                <div className="h-[2px] w-full bg-[#6d9eb7]" />
+            </div>
+
+            <div className="flex w-full items-center justify-between gap-4 px-4 pb-4 pt-4 md:px-5 lg:justify-center lg:pr-7 lg:pb-7 lg:pt-8 xl:pr-8">
+                <Link to="/">
+                    <div className="shrink-0">
+                        <img
+                            src={logo}
+                            alt="Genotek Biochem"
+                            className="h-auto w-[230px] object-contain md:w-[280px] lg:w-[450px]"
+                        />
+                    </div>
+                </Link>
+
+                <div className="hidden flex-1 items-center lg:flex">
+                    <div className="flex h-[50px] w-full max-w-[700px] items-center rounded-[8px] border-3 border-[#70A0D2] bg-white px-4 focus-within:border-[#0f4b8a] transition-all duration-200">
+                        
+                        <FiSearch className="mr-4 text-[30px] text-[#0f4b8a]" />
+
+                        <input
+                            type="text"
+                            placeholder="Please Enter Cat No., CAS No., Product Name"
+                            className="w-full border-none bg-transparent text-[16px] font-normal tracking-[0.1px] text-[#7e8590] outline-none placeholder:text-[#bab7b1]"
+                        />
+                        
+                    </div>
+                </div>
+
+                <div className="hidden items-center gap-2 text-[12px] font-normal tracking-[0.1px] text-[#747b86] md:flex">
+                    <FaPhoneAlt  className="text-[31px] text-[#6a9ab1]" />
+                    <div className="text-[15px]">
+                        <span>+91 22 2577 6007</span>
+                        <span className="text-[#b8b8b8]"> | </span>
+                        <span>91377 24227</span>
+                    </div>
+                     
+                </div>
+
+                <div className="flex items-center gap-2 lg:hidden">
+                    <button
+                        type="button"
+                        aria-label="Open search"
+                        onClick={() => setSearchOpen(true)}
+                        className="flex h-11 w-11 items-center justify-center rounded-full border border-[#70A0D2] text-[#0f4b8a] transition-colors duration-200 hover:bg-[#eef5fb]"
+                    >
+                        <FiSearch className="text-[22px]" />
+                    </button>
+                    <button
+                        type="button"
+                        aria-label="Open menu"
+                        onClick={() => setMenuOpen(true)}
+                        className="flex h-11 w-11 items-center justify-center rounded-full border border-[#70A0D2] text-[#0f4b8a] transition-colors duration-200 hover:bg-[#eef5fb]"
+                    >
+                        <FiMenu className="text-[24px]" />
+                    </button>
+                </div>
+            </div>
+
+            <AnimatePresence>
+                {searchOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 bg-[rgba(10,27,43,0.45)] p-4 lg:hidden"
+                    >
+                        <motion.div
+                            initial={{ y: -18, opacity: 0 }}
+                            animate={{ y: 0, opacity: 1 }}
+                            exit={{ y: -18, opacity: 0 }}
+                            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
+                            className="mx-auto mt-6 max-w-xl rounded-[20px] bg-white p-4 shadow-[0_20px_60px_rgba(16,44,68,0.22)]"
+                        >
+                            <div className="mb-3 flex items-center justify-between">
+                                <p className="text-[18px] font-semibold text-[#214f86]">Search</p>
+                                <button
+                                    type="button"
+                                    aria-label="Close search"
+                                    onClick={() => setSearchOpen(false)}
+                                    className="flex h-10 w-10 items-center justify-center rounded-full text-[#214f86] transition-colors duration-200 hover:bg-[#eef5fb]"
+                                >
+                                    <FiX className="text-[22px]" />
+                                </button>
+                            </div>
+                            <div className="flex h-[52px] items-center rounded-[12px] border-2 border-[#70A0D2] bg-white px-4">
+                                <FiSearch className="mr-3 text-[24px] text-[#0f4b8a]" />
+                                <input
+                                    type="text"
+                                    autoFocus
+                                    placeholder="Please Enter Cat No., CAS No., Product Name"
+                                    className="w-full border-none bg-transparent text-[15px] text-[#7e8590] outline-none placeholder:text-[#bab7b1]"
+                                />
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            <AnimatePresence>
+                {menuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 bg-[rgba(10,27,43,0.45)] lg:hidden"
+                    >
+                        <motion.div
+                            initial={{ x: '100%' }}
+                            animate={{ x: 0 }}
+                            exit={{ x: '100%' }}
+                            transition={{ duration: 0.26, ease: [0.22, 1, 0.36, 1] }}
+                            className="ml-auto flex h-full w-[88%] max-w-[360px] flex-col overflow-y-auto bg-white px-5 pb-6 pt-5 shadow-[-16px_0_40px_rgba(17,48,74,0.18)]"
+                        >
+                            <div className="mb-6 flex w-full">
+                                <button
+                                    type="button"
+                                    aria-label="Close menu"
+                                    onClick={() => setMenuOpen(false)}
+                                    className="flex ml-auto h-10 w-10 justify-center rounded-full text-[#214f86] transition-colors duration-200 hover:bg-[#eef5fb]"
+                                >
+                                    <FiX className="text-[22px]" />
+                                </button>
+                            </div>
+
+                            <div className="mb-6 rounded-[16px] bg-[#f3f8fb] p-4 text-[#5a768f]">
+                                <div className="flex items-start gap-3">
+                                    <FaPhoneAlt className="mt-1 text-[20px] text-[#6a9ab1]" />
+                                    <div className="space-y-1 text-[14px]">
+                                        <p>+91 22 2577 6007</p>
+                                        <p>91377 24227</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="flex flex-col gap-3">
+                                {navItems.map((item) => (
+                                    item.label === 'About us' ? (
+                                        <div key={item.label} className="overflow-hidden rounded-[18px] border border-[#d6e4ed] bg-white">
+                                            <button
+                                                type="button"
+                                                onClick={() => setAboutOpen((open) => !open)}
+                                                className="flex w-full items-center justify-between px-4 py-4 text-left text-[18px] font-medium text-[#214f86]"
+                                            >
+                                                <span>About us</span>
+                                                <FiChevronDown className={`text-[20px] transition-transform duration-300 ${aboutOpen ? 'rotate-180' : ''}`} />
+                                            </button>
+                                            <AnimatePresence initial={false}>
+                                                {aboutOpen && (
+                                                    <motion.div
+                                                        initial={{ height: 0, opacity: 0 }}
+                                                        animate={{ height: 'auto', opacity: 1 }}
+                                                        exit={{ height: 0, opacity: 0 }}
+                                                        transition={{ duration: 0.22 }}
+                                                        className="overflow-hidden border-t border-[#d6e4ed] bg-[#f7fbfd]"
+                                                    >
+                                                        {aboutSubmenuItems.map((submenuItem) => (
+                                                            <NavLink
+                                                                key={submenuItem.href}
+                                                                to={submenuItem.href}
+                                                                className={({ isActive }) =>
+                                                                    `block px-5 py-3 text-[15px] transition-colors duration-200 ${
+                                                                        isActive ? 'bg-[#e7f1f7] text-[#214f86]' : 'text-[#48657c] hover:bg-[#edf5fa]'
+                                                                    }`
+                                                                }
+                                                            >
+                                                                {submenuItem.label}
+                                                            </NavLink>
+                                                        ))}
+                                                    </motion.div>
+                                                )}
+                                            </AnimatePresence>
+                                        </div>
+                                    ) : (
+                                        <NavLink
+                                            key={item.label}
+                                            to={item.href}
+                                            className={({ isActive }) =>
+                                                `rounded-[18px] border px-4 py-4 text-[18px] font-medium transition-colors duration-200 ${
+                                                    isActive
+                                                        ? 'border-[#8db0c8] bg-[#e7f1f7] text-[#214f86]'
+                                                        : 'border-[#d6e4ed] bg-white text-[#214f86] hover:bg-[#f3f8fb]'
+                                                }`
+                                            }
+                                        >
+                                            {item.label}
+                                        </NavLink>
+                                    )
+                                ))}
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </header>
+    )
+}
+
+export default Navabar
