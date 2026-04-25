@@ -21,18 +21,49 @@ function Navabar() {
 
     return (
         <header className="bg-white">
-            <div className="w-full border-t-[3px] border-[#6d9eb7] pt-[2px]">
+            <div className="w-full border-t-[6px] border-[#6d9eb7] pt-[2px]">
                 <div className="h-[2px] w-full bg-[#6d9eb7]" />
             </div>
 
-            <div className="flex w-full items-center justify-between gap-4 px-4 pb-4 pt-4 md:px-5 lg:justify-center lg:pr-7 lg:pb-7 lg:pt-8 xl:pr-8">
+            <div className="flex w-full items-center justify-between gap-4 px-4 pb-4 pt-4 md:px-5 lg:justify-center lg:pr-7 lg:pb-3 lg:pt-8 xl:pr-8">
                 <Link to="/">
-                    <div className="shrink-0">
+                    <div className="relative shrink-0">
                         <img
                             src={logo}
                             alt="Genotek Biochem"
-                            className="h-auto w-[230px] object-contain md:w-[280px] lg:w-[450px]"
+                            className="h-auto w-[260px] object-contain md:w-[330px] lg:w-[520px]"
                         />
+
+                        <svg
+                            className="pointer-events-none absolute inset-0 h-full w-full"
+                            viewBox="0 0 1969 594"
+                            preserveAspectRatio="xMidYMid meet"
+                            aria-hidden="true"
+                        >
+                            <defs>
+                                <filter id="logo-circle-glow" x="-300%" y="-300%" width="700%" height="700%">
+                                    <feGaussianBlur stdDeviation="16" result="softGlow" />
+                                    <feGaussianBlur stdDeviation="7" result="tightGlow" />
+                                    <feMerge>
+                                        <feMergeNode in="softGlow" />
+                                        <feMergeNode in="tightGlow" />
+                                        <feMergeNode in="SourceGraphic" />
+                                    </feMerge>
+                                </filter>
+                            </defs>
+
+                            <circle
+                                r="14"
+                                fill="#ffffff"
+                                filter="url(#logo-circle-glow)"
+                            >
+                                <animateMotion
+                                    dur="4s"
+                                    repeatCount="indefinite"
+                                    path="M 340 140 C 193 180 165 420 350 480 C 375 494 363 504 357 510 C 474 398 420 228 375 185"
+                                />
+                            </circle>
+                        </svg>
                     </div>
                 </Link>
 
