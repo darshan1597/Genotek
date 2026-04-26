@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { FiMail, FiMapPin, FiSend } from 'react-icons/fi'
 import Navabar from './components/Navabar'
 import Sidebar from './components/Sidebar'
 import slide1 from '../assets/hero/slide1.png'
@@ -79,6 +80,16 @@ const slideVariants = {
             ease: [0.4, 0, 0.2, 1],
         },
     },
+    loopClose: {
+        opacity: 0,
+        scale: 0.94,
+        filter: 'blur(14px)',
+        clipPath: 'ellipse(0% 0% at 50% 50%)',
+        transition: {
+            duration: 1,
+            ease: [0.4, 0, 0.2, 1],
+        },
+    },
 }
 
 const captionVariants = {
@@ -129,6 +140,10 @@ const firstSlideBlueVariants = {
     enter: {
         opacity: 1,
         clipPath: 'inset(0 50% 0 50%)',
+        transition: {
+            duration: 1.35,
+            ease: [0.16, 1, 0.3, 1],
+        },
     },
     center: {
         clipPath: 'inset(0 0% 0 0%)',
@@ -142,54 +157,6 @@ const firstSlideBlueVariants = {
         clipPath: 'inset(0 10% 0 10%)',
         opacity: 0,
         transition: { duration: 0.4 },
-    },
-}
-
-const firstSlideLeftBraceVariants = {
-    enter: {
-        x: 0,
-        y: 0,
-        opacity: 1,
-    },
-    center: {
-        x: -800,
-        y: -50,
-        opacity: 1,
-        transition: {
-            duration: 1.6,
-            delay: 0.4,
-            ease: [0.16, 1, 0.3, 1],
-        },
-    },
-    hidden: {
-        opacity: 0,
-        transition: {
-            duration: 0.2,
-        },
-    },
-}
-
-const firstSlideRightBraceVariants = {
-    enter: {
-        x: 0,
-        y: 0,
-        opacity: 1,
-    },
-    center: {
-        x: 800,
-        y: 50,
-        opacity: 1,
-        transition: {
-            duration: 1.6,
-            delay: 0.4,
-            ease: [0.16, 1, 0.3, 1],
-        },
-    },
-    hidden: {
-        opacity: 0,
-        transition: {
-            duration: 0.2,
-        },
     },
 }
 
@@ -256,12 +223,78 @@ function TypewriterText({ text, delay = 0, speed = 36 }) {
 function Home() {
     const [activeSlide, setActiveSlide] = useState(0)
     const [specialPhase, setSpecialPhase] = useState('opening')
+    const [imagePhase, setImagePhase] = useState('center')
+    const [isMobile, setIsMobile] = useState(false)
 
     const currentSlide = slides[activeSlide]
     const isSpecialSlide = currentSlide.variant === 'special'
+    const braceDistance = isMobile ? 450 : 800
+    const firstSlideLeftBraceVariants = {
+        enter: {
+            x: 0,
+            y: 0,
+            opacity: 1,
+        },
+        center: {
+            x: -braceDistance,
+            y: isMobile ? -18 : -50,
+            opacity: 1,
+            transition: {
+                duration: 1.6,
+                delay: 0.4,
+                ease: [0.16, 1, 0.3, 1],
+            },
+        },
+        hidden: {
+            opacity: 0,
+            transition: {
+                duration: 0.2,
+            },
+        },
+    }
+    const firstSlideRightBraceVariants = {
+        enter: {
+            x: 0,
+            y: 0,
+            opacity: 1,
+        },
+        center: {
+            x: braceDistance,
+            y: isMobile ? 18 : 50,
+            opacity: 1,
+            transition: {
+                duration: 1.6,
+                delay: 0.4,
+                ease: [0.16, 1, 0.3, 1],
+            },
+        },
+        hidden: {
+            opacity: 0,
+            transition: {
+                duration: 0.2,
+            },
+        },
+    }
+    const bluePath = isMobile
+        ? "M -200 160 L 900 160 C 940 196 970 262 970 330 C 970 386 950 452 930 480 L -200 480 C -260 454 -300 398 -305 338 C -310 272 -270 196 -230 166 C -215 162 -205 160 -200 160 Z"
+        : "M -560 160 L 1260 160 C 1310 196 1350 262 1350 330 C 1350 386 1325 452 1300 480 L -560 480 C -620 454 -660 398 -665 338 C -670 272 -630 196 -590 166 C -575 162 -565 160 -560 160 Z"
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768)
+        }
+
+        handleResize()
+        window.addEventListener('resize', handleResize)
+
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
 
     useEffect(() => {
         const timers = []
+        const isLastSlide = activeSlide === slides.length - 1
+
+        setImagePhase('center')
 
         if (slides[activeSlide].variant === 'special') {
             setSpecialPhase('opening')
@@ -280,8 +313,16 @@ function Home() {
 
             timers.push(
                 window.setTimeout(() => {
+                    if (isLastSlide) {
+                        setImagePhase('loopClose')
+                    }
+                }, 8800)
+            )
+
+            timers.push(
+                window.setTimeout(() => {
                     setActiveSlide((current) => (current + 1) % slides.length)
-                }, 9600)
+                }, isLastSlide ? 10000 : 9600)
             )
         } else {
             setSpecialPhase('hidden')
@@ -306,13 +347,8 @@ function Home() {
                     <Sidebar />
 
                     <div className="relative z-0 flex-1">
-                        <div className="relative isolate flex flex-col gap-4 overflow-hidden md:h-[520px] md:flex-row md:gap-0">
-                            <div
-                                className="relative z-[2] h-[300px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-full md:w-[68%]"
-                                style={{
-                                    clipPath: "polygon(0 0, 100% 0, calc(100% - 83px) 50%, 100% 100%, 0 100%)",
-                                }}
-                            >
+                        <div className="relative isolate flex flex-col gap-4 overflow-hidden lg:h-[520px] lg:flex-row lg:gap-0">
+                            <div className="relative z-[2] h-[520px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[560px] md:h-[620px] lg:h-full lg:w-[68%] lg:[clip-path:polygon(0_0,100%_0,calc(100%-83px)_50%,100%_100%,0_100%)]">
                                 <AnimatePresence mode="sync">
                                     <motion.img
                                         key={currentSlide.id}
@@ -321,7 +357,7 @@ function Home() {
                                         className="absolute inset-0 h-full w-full object-cover"
                                         variants={slideVariants}
                                         initial="enter"
-                                        animate="center"
+                                        animate={imagePhase}
                                         exit="exit"
                                     />
                                 </AnimatePresence>
@@ -330,7 +366,7 @@ function Home() {
                                     {isSpecialSlide && specialPhase !== 'hidden' ? (
                                         <motion.div
                                             key={`special-slide-hero-banner-${currentSlide.id}`}
-                                            className={`absolute inset-0 z-[4] flex items-start justify-center px-3 pt-[52px] sm:pt-[72px] md:pt-[72px] ${
+                                            className={`absolute inset-0 z-[4] flex items-start justify-center px-0 pt-[52px] sm:px-3 sm:pt-[72px] md:pt-[72px] ${
                                                 specialPhase === 'closing' ? 'bg-transparent' : 'bg-white/55'
                                             }`}
                                             variants={firstSlideOverlayVariants}
@@ -338,7 +374,7 @@ function Home() {
                                             animate="center"
                                             exit="exit"
                                         >
-                                            <div className="relative h-[118px] w-[150%] max-w-none shrink-0 sm:h-[132px] md:h-[142px] md:w-[175%]">
+                                            <div className="relative h-[118px] w-[100%] max-w-none shrink-0 sm:h-[132px] sm:w-[125%] md:h-[142px] md:w-[150%] lg:w-[175%]">
                                                 <svg
                                                     viewBox="0 100 760 450"
                                                     preserveAspectRatio="xMidYMid meet"
@@ -346,7 +382,8 @@ function Home() {
                                                     aria-hidden="true"
                                                 >
                                                     <motion.path
-                                                        d="M -560 160 L 1260 160 C 1310 196 1350 262 1350 330 C 1350 386 1325 452 1300 480 L -560 480 C -620 454 -660 398 -665 338 C -670 272 -630 196 -590 166 C -575 162 -565 160 -560 160 Z"
+                                                        // d="M -560 160 L 1260 160 C 1310 196 1350 262 1350 330 C 1350 386 1325 452 1300 480 L -560 480 C -620 454 -660 398 -665 338 C -670 272 -630 196 -590 166 C -575 162 -565 160 -560 160 Z"
+                                                        d={bluePath}
                                                         fill="#2b5b91"
                                                         variants={firstSlideBlueVariants}
                                                         initial="enter"
@@ -444,16 +481,16 @@ function Home() {
                                 </AnimatePresence>
                             </div>
 
-                            <div className="relative z-[1] flex w-full shrink-0 flex-col gap-3 sm:gap-4 md:-ml-[70px] md:w-[calc(32%+70px)] md:gap-[12px]">
+                            <div className="relative z-[1] flex w-full shrink-0 flex-col gap-3 sm:gap-4 lg:-ml-[70px] lg:w-[calc(32%+70px)] lg:gap-[12px]">
                                 {[0, 1, 2].map((item) => (
                                     <div
                                         key={item}
-                                        className="h-[92px] bg-[#d7d4cb] sm:h-[110px] md:h-auto md:flex-1"
+                                        className="h-[92px] bg-[#d7d4cb] sm:h-[110px] lg:h-auto lg:flex-1"
                                     />
                                 ))}
                             </div>
 
-                            <div className="pointer-events-none absolute left-[calc(69%-95px)] top-0 z-[3] hidden h-full w-[100px] md:block">
+                            <div className="pointer-events-none absolute left-[calc(69%-95px)] top-0 z-[3] hidden h-full w-[100px] lg:block">
                                 <svg
                                     viewBox="-20 0 140 520"
                                     preserveAspectRatio="none"
@@ -466,8 +503,95 @@ function Home() {
                                     />
                                 </svg>
                             </div>
-
                         </div>
+
+                        <section className="mt-12 border-t border-[#d8e5ec] pt-10">
+                            <div className="mx-auto max-w-[820px]">
+                                <div className="mb-6 text-center">
+                                    <p className="text-[14px] font-semibold uppercase tracking-[0.18em] text-[#5a92b6]">
+                                        Contact Us
+                                    </p>
+                                    <h2 className="mt-2 text-[30px] font-semibold leading-tight text-[#214f86] sm:text-[36px]">
+                                        Let&apos;s start a conversation.
+                                    </h2>
+                                    <p className="mx-auto mt-3 max-w-[620px] text-[16px] leading-[1.65] text-[#52677a]">
+                                        Share your requirement and our team will get back to you with the right support for your chemistry, process, or manufacturing needs.
+                                    </p>
+                                </div>
+
+                                <form className="grid gap-4 rounded-[8px] border border-[#d8e5ec] bg-white p-5 shadow-[0_16px_36px_rgba(33,79,134,0.08)] sm:p-6">
+                                    <div className="grid gap-4 sm:grid-cols-2">
+                                        <label className="block">
+                                            <span className="mb-1.5 block text-[14px] font-medium text-[#214f86]">Name</span>
+                                            <input
+                                                type="text"
+                                                className="h-[46px] w-full rounded-[6px] border border-[#bdd4e2] bg-white px-4 text-[15px] text-[#214f86] outline-none transition focus:border-[#5a92b6] focus:ring-2 focus:ring-[#d7e8f1]"
+                                            />
+                                        </label>
+                                        <label className="block">
+                                            <span className="mb-1.5 block text-[14px] font-medium text-[#214f86]">Email</span>
+                                            <input
+                                                type="email"
+                                                className="h-[46px] w-full rounded-[6px] border border-[#bdd4e2] bg-white px-4 text-[15px] text-[#214f86] outline-none transition focus:border-[#5a92b6] focus:ring-2 focus:ring-[#d7e8f1]"
+                                            />
+                                        </label>
+                                    </div>
+
+                                    <label className="block">
+                                        <span className="mb-1.5 block text-[14px] font-medium text-[#214f86]">Subject</span>
+                                        <input
+                                            type="text"
+                                            className="h-[46px] w-full rounded-[6px] border border-[#bdd4e2] bg-white px-4 text-[15px] text-[#214f86] outline-none transition focus:border-[#5a92b6] focus:ring-2 focus:ring-[#d7e8f1]"
+                                        />
+                                    </label>
+
+                                    <label className="block">
+                                        <span className="mb-1.5 block text-[14px] font-medium text-[#214f86]">Message</span>
+                                        <textarea
+                                            rows="5"
+                                            className="w-full resize-none rounded-[6px] border border-[#bdd4e2] bg-white px-4 py-3 text-[15px] text-[#214f86] outline-none transition focus:border-[#5a92b6] focus:ring-2 focus:ring-[#d7e8f1]"
+                                        />
+                                    </label>
+
+                                    <button
+                                        type="button"
+                                        className="mx-auto mt-1 inline-flex h-[48px] w-fit items-center gap-2 rounded-[6px] bg-[#214f86] px-6 text-[15px] font-semibold text-white transition hover:bg-[#173d69] cursor-pointer"
+                                    >
+                                        <FiSend className="text-[18px]" />
+                                        Submit Enquiry
+                                    </button>
+                                </form>
+                            </div>
+
+                            <div className="mt-8 overflow-hidden rounded-[8px] border border-[#bdd4e2] bg-[#f3f8fb] shadow-[0_16px_36px_rgba(33,79,134,0.12)]">
+                                <div className="flex flex-col gap-3 border-b border-[#d8e5ec] bg-white px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+                                    <div className="flex items-start gap-3">
+                                        <span className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-[6px] bg-[#e6f2f7] text-[#214f86]">
+                                            <FiMapPin className="text-[19px]" />
+                                        </span>
+                                        <div>
+                                            <p className="text-[16px] font-semibold text-[#214f86]">Genotek Biochem</p>
+                                            <p className="mt-1 text-[14px] text-[#607486]">Find us on the map</p>
+                                        </div>
+                                    </div>
+                                    <a
+                                        href="mailto:info@genotekbio.com"
+                                        className="inline-flex items-center gap-2 text-[14px] font-medium text-[#214f86] transition hover:text-[#5a92b6]"
+                                    >
+                                        <FiMail className="text-[17px]" />
+                                        info@genotekbio.com
+                                    </a>
+                                </div>
+
+                                <iframe
+                                    title="Genotek Biochem map"
+                                    src="https://www.google.com/maps?q=216%2C%20Vardhaman%20Complex%2C%2010%2C%20LBS%20Marg%2C%20Vikhroli%20West%2C%20Mumbai%20400083%2C%20India&output=embed"
+                                    className="h-[330px] w-full border-0 md:h-[380px]"
+                                    loading="lazy"
+                                    referrerPolicy="no-referrer-when-downgrade"
+                                />
+                            </div>
+                        </section>
                     </div>
                 </section>
             </main>
