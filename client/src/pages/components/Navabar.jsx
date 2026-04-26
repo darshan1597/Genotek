@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { FiMenu, FiPhoneCall, FiSearch, FiX } from 'react-icons/fi'
-import { FaPhoneAlt } from "react-icons/fa";
+import { FiMenu, FiSearch, FiX } from 'react-icons/fi'
 import logo from '../../assets/logo.jpeg'
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { aboutSubmenuItems, navItems } from './navConfig'
 import { FiChevronDown } from 'react-icons/fi'
+import { FaLinkedin } from "react-icons/fa";
+import { IoIosMail } from "react-icons/io";
 
 function Navabar() {
     const location = useLocation()
@@ -25,18 +26,18 @@ function Navabar() {
                 <div className="h-[2px] w-full bg-[#6d9eb7]" />
             </div>
 
-            <div className="flex w-full items-center justify-between gap-4 px-4 pb-4 pt-4 md:px-5 lg:justify-center lg:pr-7 lg:pb-3 lg:pt-8 xl:pr-8">
+            <div className="flex w-full items-center justify-between gap-4 px-4 pb-4 pt-4 md:px-8 lg:justify-between lg:pl-6 lg:pr-6 lg:pb-7 lg:pt-10 xl:pl-10 xl:pr-11">
                 <Link to="/">
                     <div className="relative shrink-0">
                         <img
                             src={logo}
                             alt="Genotek Biochem"
-                            className="h-auto w-[260px] object-contain md:w-[330px] lg:w-[520px]"
+                            className="h-auto w-[260px] object-contain md:w-[330px] lg:w-[430px]"
                         />
 
                         <svg
                             className="pointer-events-none absolute inset-0 h-full w-full"
-                            viewBox="0 0 1969 594"
+                            viewBox="0 0 1514 403"
                             preserveAspectRatio="xMidYMid meet"
                             aria-hidden="true"
                         >
@@ -53,42 +54,51 @@ function Navabar() {
                             </defs>
 
                             <circle
-                                r="14"
-                                fill="#ffffff"
+                                r="12"
+                                fill="#fff"
                                 filter="url(#logo-circle-glow)"
                             >
                                 <animateMotion
                                     dur="4s"
                                     repeatCount="indefinite"
-path="
-M 362 364 L 357 492 M 357 492 C 308 483 223 429 223 282 C 235 240 254 182 340 150 M 370 188 C 426 235 448 310 436 373 C 429 429 411 469 357 492"                                />
+                                    path="M 340 140 C 193 180 165 420 350 480 C 375 494 363 504 357 510 C 474 398 420 228 375 185"
+                                />
                             </circle>
                         </svg>
                     </div>
                 </Link>
 
-                <div className="hidden flex-1 items-center lg:flex">
-                    <div className="flex h-[50px] w-full max-w-[700px] items-center rounded-[8px] border-3 border-[#70A0D2] bg-white px-4 focus-within:border-[#0f4b8a] transition-all duration-200">
-                        
-                        <FiSearch className="mr-4 text-[30px] text-[#0f4b8a]" />
+                <div className="hidden lg:flex">
+                    <div className="flex h-[50px] w-[600px] items-center rounded-[8px] border-3 border-[#0f4b8a] bg-white px-4 transition-all duration-200">
+
+                        <FiSearch className="mr-4 text-[35px] text-[#0f4b8a]" />
 
                         <input
                             type="text"
                             placeholder="Please Enter Cat No., CAS No., Product Name"
-                            className="w-full border-none bg-transparent text-[16px] font-normal tracking-[0.1px] text-[#7e8590] outline-none placeholder:text-[#bab7b1]"
+                            className="w-full border-none bg-transparent text-[16px] font-normal tracking-[0.1px] text-[#0f4b8a] outline-none placeholder:text-[#bab7b1]"
                         />
                         
                     </div>
                 </div>
 
-                <div className="hidden items-center gap-2 text-[12px] font-normal tracking-[0.1px] text-[#747b86] md:flex">
-                    <FaPhoneAlt  className="text-[31px] text-[#6a9ab1]" />
-                    <div className="text-[15px]">
-                        <span>+91 22 2577 6007</span>
-                        <span className="text-[#b8b8b8]"> | </span>
-                        <span>91377 24227</span>
-                    </div>
-                     
+                <div className="hidden items-center gap-5 text-[15px] font-normal tracking-[0.1px] text-[#0f4b8a] md:flex">
+                    <a
+                        href="mailto:info@genotekbio.com"
+                        className="flex items-center gap-2 transition-colors duration-200 hover:text-[#6a9ab1]"
+                    >
+                        <IoIosMail className="text-[28px] text-[#0F4B8A]" />
+                        <span>info@genotekbio.com</span>
+                    </a>
+                    <a
+                        href="https://www.linkedin.com"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex items-center gap-2 transition-colors duration-200 hover:text-[#6a9ab1]"
+                    >
+                        <FaLinkedin className="text-[26px] text-[#6a9ab1]" />
+                        <span>Follow us</span>
+                    </a>
                 </div>
 
                 <div className="flex items-center gap-2 lg:hidden">
@@ -178,12 +188,23 @@ M 362 364 L 357 492 M 357 492 C 308 483 223 429 223 282 C 235 240 254 182 340 15
                             </div>
 
                             <div className="mb-6 rounded-[16px] bg-[#f3f8fb] p-4 text-[#5a768f]">
-                                <div className="flex items-start gap-3">
-                                    <FaPhoneAlt className="mt-1 text-[20px] text-[#6a9ab1]" />
-                                    <div className="space-y-1 text-[14px]">
-                                        <p>+91 22 2577 6007</p>
-                                        <p>91377 24227</p>
-                                    </div>
+                                <div className="flex flex-col gap-3 text-[14px]">
+                                    <a
+                                        href="mailto:info@genotekbio.com"
+                                        className="flex items-center gap-3 transition-colors duration-200 hover:text-[#214f86]"
+                                    >
+                                        <IoIosMail className="text-[22px] text-[#6a9ab1]" />
+                                        <span>info@genotekbio.com</span>
+                                    </a>
+                                    <a
+                                        href="https://www.linkedin.com"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="flex items-center gap-3 transition-colors duration-200 hover:text-[#214f86]"
+                                    >
+                                        <FaLinkedin className="text-[21px] text-[#6a9ab1]" />
+                                        <span>Follow us</span>
+                                    </a>
                                 </div>
                             </div>
 

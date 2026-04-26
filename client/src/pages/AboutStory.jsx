@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
 import Navabar from './components/Navabar'
 import Sidebar from './components/Sidebar'
 import hero from '../assets/aboutStory/hero.png'
@@ -7,8 +8,59 @@ import WhoWeAreImage from '../assets/aboutStory/who-we-are.jpg'
 import WhyChooseUsImage from '../assets/aboutStory/why-choose-us.jpg'
 import { Link } from 'react-router-dom'
 
+const detailVariants = {
+    hidden: {
+        opacity: 0,
+        height: 0,
+        y: -8,
+    },
+    visible: {
+        opacity: 1,
+        height: 'auto',
+        y: 0,
+        transition: {
+            duration: 0.32,
+            ease: [0.22, 1, 0.36, 1],
+        },
+    },
+    exit: {
+        opacity: 0,
+        height: 0,
+        y: -8,
+        transition: {
+            duration: 0.22,
+            ease: [0.4, 0, 0.2, 1],
+        },
+    },
+}
+
+const desktopDetailVariants = {
+    hidden: {
+        opacity: 0,
+        y: 14,
+        filter: 'blur(4px)',
+    },
+    visible: {
+        opacity: 1,
+        y: 0,
+        filter: 'blur(0px)',
+        transition: {
+            duration: 0.42,
+            ease: [0.22, 1, 0.36, 1],
+        },
+    },
+    exit: {
+        opacity: 0,
+        y: -10,
+        filter: 'blur(4px)',
+        transition: {
+            duration: 0.2,
+        },
+    },
+}
+
 function AboutStory() {
-    const [active, setActive] = useState(1) // default first open
+    const [active, setActive] = useState(null) // default first open
     return (
         <div className="min-h-screen bg-white text-slate-900">
             <div className="h-[2px] w-full bg-[#6a9fba]" />
@@ -60,26 +112,26 @@ function AboutStory() {
                                 {/* Who We Are */}
                                 <div className="text-center">
                                     <div onClick={() => setActive(active === 1 ? null : 1)} className="cursor-pointer">
-                                       <div 
-                                    className="overflow-hidden"
-                                    style={{
-                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
-                                    }}
-                                >
                                         <img
                                             src={WhoWeAreImage}
-                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto transition duration-300 
+                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto rounded-lg transition duration-300 
                                             ${active === 1 ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
                                         />
-                                        </div>
                                         <p className="mt-3 font-semibold text-[#5a92b6] text-[20px]">
                                             Who We Are
                                         </p>
                                     </div>
 
                                     {/* Mobile Text */}
-                                    {active === 1 && (
-                                        <div className="mt-4 text-left md:hidden">
+                                    <AnimatePresence initial={false}>
+                                        {active === 1 && (
+                                        <motion.div
+                                            className="mt-4 overflow-hidden text-left md:hidden"
+                                            variants={detailVariants}
+                                            initial="hidden"
+                                            animate="visible"
+                                            exit="exit"
+                                        >
                                             <h2 className="text-[22px] font-semibold text-[#5a92b6]">
                                                 Who we are
                                             </h2>
@@ -89,116 +141,138 @@ function AboutStory() {
                                             <Link to="/about/team">
                                                 <p className="mt-2 text-[#5a92b6] underline">Our Team</p>
                                             </Link>
-                                        </div>
-                                    )}
+                                        </motion.div>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
 
                                 {/* What We Do */}
                                 <div className="text-center">
                                     <div onClick={() => setActive(active === 2 ? null : 2)} className="cursor-pointer">
-                                        <div 
-                                    className="overflow-hidden"
-                                    style={{
-                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
-                                    }}
-                                    >
                                         <img
                                             src={whatWeDoImage}
-                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto transition duration-300 
+                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto rounded-lg transition duration-300 
                                             ${active === 2 ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
                                         />
-                                        </div>
                                         <p className="mt-3 font-semibold text-[#5a92b6] text-[20px]">
                                             What We Do
                                         </p>
                                     </div>
 
-                                    {active === 2 && (
-                                        <div className="mt-4 text-left md:hidden">
+                                    <AnimatePresence initial={false}>
+                                        {active === 2 && (
+                                        <motion.div
+                                            className="mt-4 overflow-hidden text-left md:hidden"
+                                            variants={detailVariants}
+                                            initial="hidden"
+                                            animate="visible"
+                                            exit="exit"
+                                        >
                                             <h2 className="text-[22px] font-semibold text-[#5a92b6]">
                                                 What we do
                                             </h2>
                                             <p className="mt-2 text-[16px] text-[#42556c]">
                                                 We provide innovative solutions with strong expertise, ensuring efficiency, flexibility, and industry excellence.
                                             </p>
-                                        </div>
-                                    )}
+                                        </motion.div>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
 
                                 {/* Why Choose Us */}
                                 <div className="text-center">
                                     <div onClick={() => setActive(active === 3 ? null : 3)} className="cursor-pointer">
-                                        <div 
-                                    className="overflow-hidden"
-                                    style={{
-                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
-                                    }}
-                                    >
                                         <img
                                             src={WhyChooseUsImage}
-                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto transition duration-300 
+                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto rounded-lg transition duration-300 
                                             ${active === 3 ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
                                         />
-                                        </div>
                                         <p className="mt-3 font-semibold text-[#5a92b6] text-[20px]">
                                             Why Choose Us
                                         </p>
                                     </div>
 
-                                    {active === 3 && (
-                                        <div className="mt-4 text-left md:hidden">
+                                    <AnimatePresence initial={false}>
+                                        {active === 3 && (
+                                        <motion.div
+                                            className="mt-4 overflow-hidden text-left md:hidden"
+                                            variants={detailVariants}
+                                            initial="hidden"
+                                            animate="visible"
+                                            exit="exit"
+                                        >
                                             <h2 className="text-[22px] font-semibold text-[#5a92b6]">
                                                 Why Choose Us
                                             </h2>
                                             <p className="mt-2 text-[16px] text-[#42556c]">
                                                 We combine large-scale capability with personal attention, ensuring reliability and customer satisfaction.
                                             </p>
-                                        </div>
-                                    )}
+                                        </motion.div>
+                                        )}
+                                    </AnimatePresence>
                                 </div>
 
                             </div>
 
                             {/* Desktop Full-Width Text */}
                             <div className="hidden md:block mt-12 max-w-[1000px] mx-auto text-center">
-
-                                {active === 1 && (
-                                    <div>
-                                        <h2 className="text-[30px] font-semibold text-[#5a92b6]">
-                                            Who we are
-                                        </h2>
-                                        <p className="mt-4 text-[18px] text-[#42556c] text-justify">
-                                            We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness, flexibility, and personal attention of a close-knit team.
-                                        </p>
-                                        <Link to="/about/team">
-                                            <p className="mt-4 inline-block text-[18px] font-semibold text-[#5a92b6] underline underline-offset-4 sm:text-[20px] md:text-[23px]" >
-                                                Our Team
+                                <AnimatePresence mode="wait">
+                                    {active === 1 && (
+                                        <motion.div
+                                            key="who-we-are-detail"
+                                            variants={desktopDetailVariants}
+                                            initial="hidden"
+                                            animate="visible"
+                                            exit="exit"
+                                        >
+                                            <h2 className="text-[30px] font-semibold text-[#5a92b6]">
+                                                Who we are
+                                            </h2>
+                                            <p className="mt-4 text-[18px] text-[#42556c] text-justify">
+                                                We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness, flexibility, and personal attention of a close-knit team.
                                             </p>
-                                        </Link>
-                                    </div>
-                                )}
+                                            <Link to="/about/team">
+                                                <p className="mt-4 inline-block text-[18px] font-semibold text-[#5a92b6] underline underline-offset-4 sm:text-[20px] md:text-[23px]" >
+                                                    Our Team
+                                                </p>
+                                            </Link>
+                                        </motion.div>
+                                    )}
 
-                                {active === 2 && (
-                                    <div>
-                                        <h2 className="text-[30px] font-semibold text-[#5a92b6]">
-                                            What we do
-                                        </h2>
-                                        <p className="mt-4 text-[18px] text-[#42556c] text-justify">
-                                            We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness, flexibility, and personal attention that define our way of working.
-                                        </p>
-                                    </div>
-                                )}
+                                    {active === 2 && (
+                                        <motion.div
+                                            key="what-we-do-detail"
+                                            variants={desktopDetailVariants}
+                                            initial="hidden"
+                                            animate="visible"
+                                            exit="exit"
+                                        >
+                                            <h2 className="text-[30px] font-semibold text-[#5a92b6]">
+                                                What we do
+                                            </h2>
+                                            <p className="mt-4 text-[18px] text-[#42556c] text-justify">
+                                                We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness, flexibility, and personal attention that define our way of working.
+                                            </p>
+                                        </motion.div>
+                                    )}
 
-                                {active === 3 && (
-                                    <div>
-                                        <h2 className="text-[30px] font-semibold text-[#5a92b6]">
-                                            Why Choose Us
-                                        </h2>
-                                        <p className="mt-4 text-[18px] text-[#42556c] text-justify">
-                                            We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness flexibility and personal attention of a close-knit team.
-                                        </p>
-                                    </div>
-                                )}
+                                    {active === 3 && (
+                                        <motion.div
+                                            key="why-choose-us-detail"
+                                            variants={desktopDetailVariants}
+                                            initial="hidden"
+                                            animate="visible"
+                                            exit="exit"
+                                        >
+                                            <h2 className="text-[30px] font-semibold text-[#5a92b6]">
+                                                Why Choose Us
+                                            </h2>
+                                            <p className="mt-4 text-[18px] text-[#42556c] text-justify">
+                                                We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness flexibility and personal attention of a close-knit team.
+                                            </p>
+                                        </motion.div>
+                                    )}
+                                </AnimatePresence>
 
                             </div>
 
