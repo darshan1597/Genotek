@@ -73,6 +73,7 @@ function AboutStory() {
                     <div className="flex-1">
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
                             <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[450px]">
+                                
                                 <img
                                     src={hero}
                                     alt="The Genotek Story"
@@ -112,11 +113,14 @@ function AboutStory() {
                                 {/* Who We Are */}
                                 <div className="text-center">
                                     <div onClick={() => setActive(active === 1 ? null : 1)} className="cursor-pointer">
+                                        <div className="overflow-hidden" style={{clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                        }}>
                                         <img
                                             src={WhoWeAreImage}
-                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto rounded-lg transition duration-300 
+                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto transition duration-300 
                                             ${active === 1 ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
                                         />
+                                        </div>
                                         <p className="mt-3 font-semibold text-[#5a92b6] text-[20px]">
                                             Who We Are
                                         </p>
@@ -149,15 +153,20 @@ function AboutStory() {
                                 {/* What We Do */}
                                 <div className="text-center">
                                     <div onClick={() => setActive(active === 2 ? null : 2)} className="cursor-pointer">
+                                        <div className="overflow-hidden" style={{clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                        }}>
                                         <img
                                             src={whatWeDoImage}
-                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto rounded-lg transition duration-300 
+                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto transition duration-300 
                                             ${active === 2 ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
                                         />
+                                        </div>
                                         <p className="mt-3 font-semibold text-[#5a92b6] text-[20px]">
                                             What We Do
                                         </p>
                                     </div>
+                                    
+
 
                                     <AnimatePresence initial={false}>
                                         {active === 2 && (
@@ -182,11 +191,15 @@ function AboutStory() {
                                 {/* Why Choose Us */}
                                 <div className="text-center">
                                     <div onClick={() => setActive(active === 3 ? null : 3)} className="cursor-pointer">
+                                        <div className="overflow-hidden" style={{clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                        }}>
                                         <img
                                             src={WhyChooseUsImage}
-                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto rounded-lg transition duration-300 
+                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto transition duration-300 
                                             ${active === 3 ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
                                         />
+                                        
+                                    </div>
                                         <p className="mt-3 font-semibold text-[#5a92b6] text-[20px]">
                                             Why Choose Us
                                         </p>
