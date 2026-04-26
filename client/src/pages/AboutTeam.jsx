@@ -4,7 +4,7 @@ import Navabar from './components/Navabar'
 import Sidebar from './components/Sidebar'
 import RushabGohilImage from '../assets/aboutTeam/rushab-gohil.jpg'
 import HiteshGandhiImage from '../assets/aboutTeam/hitesh-gandhi.jpg'
-import hero from '../assets/aboutTeam/hero.png'
+import hero from '../assets/aboutTeam/hero.jpg'
 import { Link } from 'react-router-dom'
 
 
@@ -75,6 +75,7 @@ function AboutTeam() {
                     <div className="flex-1">
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
                             <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[500px]">
+                            
                                 <img
                                     src={hero}
                                     alt="The Genotek Story"
