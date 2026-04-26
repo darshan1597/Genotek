@@ -60,11 +60,18 @@ function AboutStory() {
                                 {/* Who We Are */}
                                 <div className="text-center">
                                     <div onClick={() => setActive(active === 1 ? null : 1)} className="cursor-pointer">
+                                       <div 
+                                    className="overflow-hidden"
+                                    style={{
+                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                    }}
+                                >
                                         <img
                                             src={WhoWeAreImage}
-                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto rounded-lg transition duration-300 
+                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto transition duration-300 
                                             ${active === 1 ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
                                         />
+                                        </div>
                                         <p className="mt-3 font-semibold text-[#5a92b6] text-[20px]">
                                             Who We Are
                                         </p>
@@ -89,11 +96,18 @@ function AboutStory() {
                                 {/* What We Do */}
                                 <div className="text-center">
                                     <div onClick={() => setActive(active === 2 ? null : 2)} className="cursor-pointer">
+                                        <div 
+                                    className="overflow-hidden"
+                                    style={{
+                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                    }}
+                                    >
                                         <img
                                             src={whatWeDoImage}
-                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto rounded-lg transition duration-300 
+                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto transition duration-300 
                                             ${active === 2 ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
                                         />
+                                        </div>
                                         <p className="mt-3 font-semibold text-[#5a92b6] text-[20px]">
                                             What We Do
                                         </p>
@@ -114,11 +128,18 @@ function AboutStory() {
                                 {/* Why Choose Us */}
                                 <div className="text-center">
                                     <div onClick={() => setActive(active === 3 ? null : 3)} className="cursor-pointer">
+                                        <div 
+                                    className="overflow-hidden"
+                                    style={{
+                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                    }}
+                                    >
                                         <img
                                             src={WhyChooseUsImage}
-                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto rounded-lg transition duration-300 
+                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto transition duration-300 
                                             ${active === 3 ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
                                         />
+                                        </div>
                                         <p className="mt-3 font-semibold text-[#5a92b6] text-[20px]">
                                             Why Choose Us
                                         </p>
@@ -182,14 +203,16 @@ function AboutStory() {
                             </div>
 
                         </div>
-                    
-                    </div>
                     {/* 3 Sections - Who we are, What we do, Why choose us */}
-                            
+                    </div>     
                     </div>
+                            
                 </section>
+                
             </main>
+            
         </div>
+        
     )
 }
 
