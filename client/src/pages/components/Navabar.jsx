@@ -78,7 +78,6 @@ function Navabar() {
                             placeholder="Please Enter Cat No., CAS No., Product Name"
                             className="w-full border-none bg-transparent text-[16px] font-normal tracking-[0.1px] text-[#0f4b8a] outline-none placeholder:text-[#bab7b1]"
                         />
-                        
                     </div>
                 </div>
 
