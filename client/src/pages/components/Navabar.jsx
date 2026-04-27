@@ -61,7 +61,7 @@ function Navabar() {
                                 <animateMotion
                                     dur="4s"
                                     repeatCount="indefinite"
-                                    path="M 172 249 L 168 354 M 168 354 C 84 337 19 303 24 140 C 36 72 52 53 137 18 M 169 64 C 221 97 236 192 226 254 C 216 318 198 353 155 386"
+                                    path="M 340 140 C 193 180 165 420 350 480 C 375 494 363 504 357 510 C 474 398 420 228 375 185"
                                 />
                             </circle>
                         </svg>

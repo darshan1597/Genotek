@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Navabar from './components/Navabar'
 import Sidebar from './components/Sidebar'
-import hero from '../assets/aboutStory/hero.png'
+import hero from '../assets/aboutStory/hero.jpg'
 import whatWeDoImage from '../assets/aboutStory/what-we-do.jpg'
 import WhoWeAreImage from '../assets/aboutStory/who-we-are.jpg'
 import WhyChooseUsImage from '../assets/aboutStory/why-choose-us.jpg'
@@ -73,6 +73,7 @@ function AboutStory() {
                     <div className="flex-1">
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
                             <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[450px]">
+                                
                                 <img
                                     src={hero}
                                     alt="The Genotek Story"
@@ -111,18 +112,14 @@ function AboutStory() {
 
                                 {/* Who We Are */}
                                 <div className="text-center">
-                                    <div onClick={() => setActive(active === 1 ? null : 1)} className="group cursor-pointer">
-                                        <div
-                                            className={`relative mx-auto h-[220px] w-full max-w-[250px] overflow-hidden rounded-lg shadow-[0_8px_22px_rgba(35,79,118,0.12)] transition duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_18px_38px_rgba(35,79,118,0.22)] ${
-                                                active === 1 ? "ring-4 ring-[#5a92b6] -translate-y-2 shadow-[0_18px_38px_rgba(35,79,118,0.22)]" : ""
-                                            }`}
-                                        >
-                                            <img
-                                                src={WhoWeAreImage}
-                                                alt="Who We Are"
-                                                className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
-                                            />
-                                            <div className="absolute inset-0 bg-[#214f86]/0 transition duration-300 group-hover:bg-[#214f86]/18" />
+                                    <div onClick={() => setActive(active === 1 ? null : 1)} className="cursor-pointer">
+                                        <div className="overflow-hidden" style={{clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                        }}>
+                                        <img
+                                            src={WhoWeAreImage}
+                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto transition duration-300 
+                                            ${active === 1 ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
+                                        />
                                         </div>
                                         <p className="mt-3 font-semibold text-[#5a92b6] text-[20px]">
                                             Who We Are
@@ -155,23 +152,21 @@ function AboutStory() {
 
                                 {/* What We Do */}
                                 <div className="text-center">
-                                    <div onClick={() => setActive(active === 2 ? null : 2)} className="group cursor-pointer">
-                                        <div
-                                            className={`relative mx-auto h-[220px] w-full max-w-[250px] overflow-hidden rounded-lg shadow-[0_8px_22px_rgba(35,79,118,0.12)] transition duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_18px_38px_rgba(35,79,118,0.22)] ${
-                                                active === 2 ? "ring-4 ring-[#5a92b6] -translate-y-2 shadow-[0_18px_38px_rgba(35,79,118,0.22)]" : ""
-                                            }`}
-                                        >
-                                            <img
-                                                src={whatWeDoImage}
-                                                alt="What We Do"
-                                                className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
-                                            />
-                                            <div className="absolute inset-0 bg-[#214f86]/0 transition duration-300 group-hover:bg-[#214f86]/18" />
+                                    <div onClick={() => setActive(active === 2 ? null : 2)} className="cursor-pointer">
+                                        <div className="overflow-hidden" style={{clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                        }}>
+                                        <img
+                                            src={whatWeDoImage}
+                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto transition duration-300 
+                                            ${active === 2 ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
+                                        />
                                         </div>
                                         <p className="mt-3 font-semibold text-[#5a92b6] text-[20px]">
                                             What We Do
                                         </p>
                                     </div>
+                                    
+
 
                                     <AnimatePresence initial={false}>
                                         {active === 2 && (
@@ -195,19 +190,16 @@ function AboutStory() {
 
                                 {/* Why Choose Us */}
                                 <div className="text-center">
-                                    <div onClick={() => setActive(active === 3 ? null : 3)} className="group cursor-pointer">
-                                        <div
-                                            className={`relative mx-auto h-[220px] w-full max-w-[250px] overflow-hidden rounded-lg shadow-[0_8px_22px_rgba(35,79,118,0.12)] transition duration-300 group-hover:-translate-y-2 group-hover:shadow-[0_18px_38px_rgba(35,79,118,0.22)] ${
-                                                active === 3 ? "ring-4 ring-[#5a92b6] -translate-y-2 shadow-[0_18px_38px_rgba(35,79,118,0.22)]" : ""
-                                            }`}
-                                        >
-                                            <img
-                                                src={WhyChooseUsImage}
-                                                alt="Why Choose Us"
-                                                className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
-                                            />
-                                            <div className="absolute inset-0 bg-[#214f86]/0 transition duration-300 group-hover:bg-[#214f86]/18" />
-                                        </div>
+                                    <div onClick={() => setActive(active === 3 ? null : 3)} className="cursor-pointer">
+                                        <div className="overflow-hidden" style={{clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                        }}>
+                                        <img
+                                            src={WhyChooseUsImage}
+                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto transition duration-300 
+                                            ${active === 3 ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
+                                        />
+                                        
+                                    </div>
                                         <p className="mt-3 font-semibold text-[#5a92b6] text-[20px]">
                                             Why Choose Us
                                         </p>
@@ -298,14 +290,16 @@ function AboutStory() {
                             </div>
 
                         </div>
-                    
-                    </div>
                     {/* 3 Sections - Who we are, What we do, Why choose us */}
-                            
+                    </div>     
                     </div>
+                            
                 </section>
+                
             </main>
+            
         </div>
+        
     )
 }
 
