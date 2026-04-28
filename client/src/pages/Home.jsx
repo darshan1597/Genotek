@@ -140,33 +140,47 @@ const firstSlideOverlayVariants = {
 const firstSlideBlueVariants = {
     enter: {
         opacity: 1,
-        clipPath: 'inset(0 50% 0 50%)',
+        scaleX: 0.018,
+        scaleY: 0.08,
+    },
+    center: {
+        opacity: 1,
+        scaleX: [0.018, 1, 1],
+        scaleY: [0.08, 0.08, 1],
         transition: {
-            duration: 1.35,
+            duration: 2.25,
+            times: [0, 0.56, 1],
             ease: [0.16, 1, 0.3, 1],
         },
     },
-    center: {
-        clipPath: 'inset(0 0% 0 0%)',
+    closing: {
+        opacity: [1, 1, 0],
+        scaleX: [1, 1, 0.018],
+        scaleY: [1, 0.08, 0.08],
         transition: {
-            duration: 1.6,
-            delay: 0.4,
-            ease: [0.16, 1, 0.3, 1],
+            duration: 1.25,
+            times: [0, 0.45, 1],
+            ease: [0.4, 0, 0.2, 1],
         },
     },
     exit: {
-        clipPath: 'inset(0 10% 0 10%)',
         opacity: 0,
-        transition: { duration: 0.4 },
+        scaleX: 0.018,
+        scaleY: 0.08,
+        transition: { duration: 0.25 },
     },
 }
 
 const firstSlideTextVariants = {
     enter: {
-        opacity: 1,
+        opacity: 0,
     },
     center: {
         opacity: 1,
+        transition: {
+            duration: 0.22,
+            delay: 3.05,
+        },
     },
     exit: {
         opacity: 0,
@@ -234,15 +248,15 @@ function Home() {
         enter: {
             x: 0,
             y: 0,
-            opacity: 1,
+            opacity: 0,
         },
         center: {
             x: -braceDistance,
             y: isMobile ? -18 : -50,
             opacity: 1,
             transition: {
-                duration: 1.6,
-                delay: 0.4,
+                duration: 0.85,
+                delay: 2.35,
                 ease: [0.16, 1, 0.3, 1],
             },
         },
@@ -257,15 +271,15 @@ function Home() {
         enter: {
             x: 0,
             y: 0,
-            opacity: 1,
+            opacity: 0,
         },
         center: {
             x: braceDistance,
             y: isMobile ? 18 : 50,
             opacity: 1,
             transition: {
-                duration: 1.6,
-                delay: 0.4,
+                duration: 0.85,
+                delay: 6.05,
                 ease: [0.16, 1, 0.3, 1],
             },
         },
@@ -387,7 +401,7 @@ function Home() {
                                                         fill="#2b5b91"
                                                         variants={firstSlideBlueVariants}
                                                         initial="enter"
-                                                        animate={specialPhase === 'closing' ? 'enter' : 'center'}
+                                                        animate={specialPhase === 'closing' ? 'closing' : 'center'}
                                                         style={{
                                                             transformBox: 'view-box',
                                                             transformOrigin: 'center center',
@@ -442,13 +456,13 @@ function Home() {
                                                     animate={specialPhase === 'closing' ? 'exit' : 'center'}
                                                 >
                                                     <p className="text-[18px] font-semibold italic leading-[1.15] sm:text-[24px] md:text-[28px]">
-                                                        <TypewriterText key={`title-${currentSlide.id}`} text={currentSlide.title} delay={2050} speed={38} />
+                                                        <TypewriterText key={`title-${currentSlide.id}`} text={currentSlide.title} delay={3300} speed={38} />
                                                     </p>
                                                     <p className="mt-2 text-[12px] leading-[1.35] sm:text-[16px] md:text-[18px]">
                                                         <TypewriterText
                                                             key={`subtitle-${currentSlide.id}`}
                                                             text={currentSlide.subtitle}
-                                                            delay={3150}
+                                                            delay={4300}
                                                             speed={24}
                                                         />
                                                     </p>
