@@ -8,6 +8,7 @@ import slide2 from '../assets/hero/slide2.png'
 import slide3 from '../assets/hero/slide3.png'
 import slide4 from '../assets/hero/slide4.png'
 import slide5 from '../assets/hero/slide5.png'
+import Footer from './components/Footer'
 
 const slides = [
     {
@@ -382,7 +383,6 @@ function Home() {
                                                     aria-hidden="true"
                                                 >
                                                     <motion.path
-                                                        // d="M -560 160 L 1260 160 C 1310 196 1350 262 1350 330 C 1350 386 1325 452 1300 480 L -560 480 C -620 454 -660 398 -665 338 C -670 272 -630 196 -590 166 C -575 162 -565 160 -560 160 Z"
                                                         d={bluePath}
                                                         fill="#2b5b91"
                                                         variants={firstSlideBlueVariants}
@@ -512,7 +512,7 @@ function Home() {
                                         Contact Us
                                     </p>
                                     <h2 className="mt-2 text-[30px] font-semibold leading-tight text-[#214f86] sm:text-[36px]">
-                                        Let&apos;s start a conversation.
+                                        Let's start a conversation.
                                     </h2>
                                     <p className="mx-auto mt-3 max-w-[620px] text-[16px] leading-[1.65] text-[#52677a]">
                                         Share your requirement and our team will get back to you with the right support for your chemistry, process, or manufacturing needs.
@@ -594,6 +594,7 @@ function Home() {
                         </section>
                     </div>
                 </section>
+                <Footer />
             </main>
         </div>
     )

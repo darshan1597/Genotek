@@ -7,7 +7,7 @@ function Sidebar() {
     const isAboutRoute = location.pathname.startsWith('/about')
 
     return (
-        <aside className="relative z-[80] hidden shrink-0 self-start lg:sticky lg:top-[18px] lg:ml-6 lg:block lg:h-[calc(100vh-36px)] lg:w-[250px] lg:overflow-visible lg:pr-[8px] xl:ml-7">
+        <aside className="relative z-[80] hidden shrink-0 self-start lg:sticky lg:top-[18px] lg:ml-6 lg:block lg:h-[calc(100vh-65px)] lg:w-[250px] lg:overflow-visible lg:pr-[8px] xl:ml-7">
             <nav className="flex flex-col gap-[9px] lg:h-full lg:overflow-visible">
                 {navItems.map((item) => (
                     <div key={item.label} className="group relative z-[80]">

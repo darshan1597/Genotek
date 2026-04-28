@@ -61,7 +61,7 @@ function Navabar() {
                                 <animateMotion
                                     dur="4s"
                                     repeatCount="indefinite"
-                                    path="M 340 140 C 193 180 165 420 350 480 C 375 494 363 504 357 510 C 474 398 420 228 375 185"
+                                    path="M 172 249 L 168 354 M 168 354 C 84 337 19 303 24 140 C 36 72 52 53 137 18 M 169 64 C 221 97 236 192 226 254 C 216 318 198 353 155 386"
                                 />
                             </circle>
                         </svg>
@@ -78,6 +78,7 @@ function Navabar() {
                             placeholder="Please Enter Cat No., CAS No., Product Name"
                             className="w-full border-none bg-transparent text-[16px] font-normal tracking-[0.1px] text-[#0f4b8a] outline-none placeholder:text-[#bab7b1]"
                         />
+
                     </div>
                 </div>
 
@@ -186,27 +187,6 @@ function Navabar() {
                                 </button>
                             </div>
 
-                            <div className="mb-6 rounded-[16px] bg-[#f3f8fb] p-4 text-[#5a768f]">
-                                <div className="flex flex-col gap-3 text-[14px]">
-                                    <a
-                                        href="mailto:info@genotekbio.com"
-                                        className="flex items-center gap-3 transition-colors duration-200 hover:text-[#214f86]"
-                                    >
-                                        <IoIosMail className="text-[22px] text-[#6a9ab1]" />
-                                        <span>info@genotekbio.com</span>
-                                    </a>
-                                    <a
-                                        href="https://www.linkedin.com"
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="flex items-center gap-3 transition-colors duration-200 hover:text-[#214f86]"
-                                    >
-                                        <FaLinkedin className="text-[21px] text-[#6a9ab1]" />
-                                        <span>Follow us</span>
-                                    </a>
-                                </div>
-                            </div>
-
                             <div className="flex flex-col gap-3">
                                 {navItems.map((item) => (
                                     item.label === 'About us' ? (
@@ -261,6 +241,27 @@ function Navabar() {
                                         </NavLink>
                                     )
                                 ))}
+                            </div>
+
+                            <div className="mt-6 rounded-[16px] bg-[#f3f8fb] p-4 text-[#5a768f]">
+                                <div className="flex flex-col gap-3 text-[14px]">
+                                    <a
+                                        href="mailto:info@genotekbio.com"
+                                        className="flex items-center gap-3 transition-colors duration-200 hover:text-[#214f86]"
+                                    >
+                                        <IoIosMail className="text-[22px] text-[#6a9ab1]" />
+                                        <span>info@genotekbio.com</span>
+                                    </a>
+                                    <a
+                                        href="https://www.linkedin.com"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="flex items-center gap-3 transition-colors duration-200 hover:text-[#214f86]"
+                                    >
+                                        <FaLinkedin className="text-[21px] text-[#6a9ab1]" />
+                                        <span>Follow us</span>
+                                    </a>
+                                </div>
                             </div>
                         </motion.div>
                     </motion.div>
