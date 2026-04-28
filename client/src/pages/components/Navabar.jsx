@@ -28,50 +28,71 @@ function Navabar() {
 
             <div className="flex w-full items-center justify-between gap-4 px-4 pb-4 pt-4 md:px-8 lg:justify-between lg:pl-6 lg:pr-6 lg:pb-7 lg:pt-10 xl:pl-10 xl:pr-11">
                 <Link to="/">
-                    <div className="relative shrink-0">
-                        <img
-                            src={logo}
-                            alt="Genotek Biochem"
-                            className="h-auto w-[260px] object-contain md:w-[330px] lg:w-[430px]"
-                        />
+<div className="relative shrink-0">
+  <img
+    src={logo}
+    alt="Genotek Biochem"
+    className="h-auto w-[260px] object-contain md:w-[330px] lg:w-[430px]"
+  />
 
-                        <svg
-                            className="pointer-events-none absolute inset-0 h-full w-full"
-                            viewBox="0 0 1514 403"
-                            preserveAspectRatio="xMidYMid meet"
-                            aria-hidden="true"
-                        >
-                            <defs>
-                                <filter id="logo-circle-glow" x="-300%" y="-300%" width="700%" height="700%">
-                                    <feGaussianBlur stdDeviation="16" result="softGlow" />
-                                    <feGaussianBlur stdDeviation="7" result="tightGlow" />
-                                    <feMerge>
-                                        <feMergeNode in="softGlow" />
-                                        <feMergeNode in="tightGlow" />
-                                        <feMergeNode in="SourceGraphic" />
-                                    </feMerge>
-                                </filter>
-                            </defs>
+  <svg
+    className="pointer-events-none absolute inset-0 h-full w-full"
+    viewBox="0 0 1514 403"
+    preserveAspectRatio="xMidYMid meet"
+    aria-hidden="true"
+  >
+    <defs>
+      <filter id="logo-circle-glow" x="-300%" y="-300%" width="700%" height="700%">
+        
+        {/* Soft outer glow */}
+        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1">
+          <animate
+            attributeName="stdDeviation"
+            values="4;10;4"
+            dur="3s"
+            repeatCount="indefinite"
+          />
+        </feGaussianBlur>
 
-                            <circle
-                                r="12"
-                                fill="#fff"
-                                filter="url(#logo-circle-glow)"
-                            >
-                                <animateMotion
-                                    dur="4s"
-                                    repeatCount="indefinite"
-                                    path="M 172 249 L 168 354 M 168 354 C 84 337 19 303 24 140 C 36 72 52 53 137 18 M 169 64 C 221 97 236 192 226 254 C 216 318 198 353 155 386"
-                                />
-                            </circle>
-                        </svg>
-                    </div>
+        {/* Strong inner glow */}
+        <feGaussianBlur stdDeviation="2" result="blur2" />
+
+        <feMerge>
+          <feMergeNode in="blur1" />
+          <feMergeNode in="blur2" />
+          <feMergeNode in="SourceGraphic" />
+        </feMerge>
+      </filter>
+    </defs>
+
+    <circle
+      r="12"
+      fill="#00A75A"
+      filter="url(#logo-circle-glow)"
+    >
+      {/* Movement */}
+      <animateMotion
+        dur="6s"
+        repeatCount="indefinite"
+        path="M 168 353 M 168 354 C 77 335 19 303 24 140 C 36 72 52 53 137 18 M 169 64 C 221 97 236 192 226 254 C 216 318 198 353 155 386"
+      />
+
+      {/* Subtle brightness pulse */}
+      <animate
+        attributeName="opacity"
+        values="0.7;1;0.7"
+        dur="3s"
+        repeatCount="indefinite"
+      />
+    </circle>
+  </svg>
+</div>
                 </Link>
 
                 <div className="hidden lg:flex">
-                    <div className="flex h-[50px] w-[600px] items-center rounded-[8px] border-3 border-[#0f4b8a] bg-white px-4 transition-all duration-200">
+                    <div className="flex h-[50px] w-[600px] items-center rounded-[8px] border-3 border-[#0f4b8a] bg-white px-1 transition-all duration-200">
 
-                        <FiSearch className="mr-4 text-[35px] text-[#0f4b8a]" />
+                        <FiSearch className="mr-2 text-[35px] text-[#0f4b8a]" />
 
                         <input
                             type="text"
@@ -87,7 +108,7 @@ function Navabar() {
                         href="mailto:info@genotekbio.com"
                         className="flex items-center gap-2 transition-colors duration-200 hover:text-[#6a9ab1]"
                     >
-                        <IoIosMail className="text-[28px] text-[#0F4B8A]" />
+                        <IoIosMail className="text-[28px] text-[#6a9ab1]" />
                         <span>info@genotekbio.com</span>
                     </a>
                     <a
