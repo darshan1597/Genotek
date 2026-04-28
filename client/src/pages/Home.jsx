@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { FiMail, FiMapPin, FiSend } from 'react-icons/fi'
 import Navabar from './components/Navabar'
 import Sidebar from './components/Sidebar'
-import slide1 from '../assets/hero/slide1.png'
+import slide1 from '../assets/hero/slide1.jpg'
 import slide2 from '../assets/hero/slide2.png'
 import slide3 from '../assets/hero/slide3.png'
 import slide4 from '../assets/hero/slide4.png'
@@ -13,7 +13,7 @@ import Footer from './components/Footer'
 const slides = [
     {
         id: 'intro',
-        image: slide2,
+        image: slide1,
         variant: 'special',
         title: 'Your Trusted CRDMO Partner',
         subtitle: 'Precision Chemistry | Process Excellence | Scalable Manufacturing',
@@ -41,13 +41,13 @@ const slides = [
         image: slide4,
         variant: 'normal',
         lines: [
-            ['  Always within ', 'Reach.'],
+            ['Always within ', 'Reach.'],
             ['From Experiment to Outcome.'],
         ],
     },
     {
         id: 'outro',
-        image: slide4,
+        image: slide1,
         variant: 'special',
         title: 'Excited to Partner with You!',
         subtitle: 'Precision Chemistry | Process Excellence | Scalable Manufacturing',
@@ -78,16 +78,6 @@ const slideVariants = {
         clipPath: 'ellipse(18% 24% at 50% 50%)',
         transition: {
             duration: 0.8,
-            ease: [0.4, 0, 0.2, 1],
-        },
-    },
-    loopClose: {
-        opacity: 0,
-        scale: 0.94,
-        filter: 'blur(14px)',
-        clipPath: 'ellipse(0% 0% at 50% 50%)',
-        transition: {
-            duration: 1,
             ease: [0.4, 0, 0.2, 1],
         },
     },
@@ -140,16 +130,16 @@ const firstSlideOverlayVariants = {
 const firstSlideBlueVariants = {
     enter: {
         opacity: 1,
-        scaleX: 0.018,
-        scaleY: 0.08,
+        scaleX: 0.01,
+        scaleY: 0.057,
     },
     center: {
         opacity: 1,
-        scaleX: [0.018, 1, 1],
-        scaleY: [0.08, 0.08, 1],
+        scaleX: [0.01, 0.01, 1, 1],
+        scaleY: [0.057, 0.057, 0.057, 1],
         transition: {
-            duration: 2.25,
-            times: [0, 0.56, 1],
+            duration: 3.25,
+            times: [0, 0.18, 0.62, 1],
             ease: [0.16, 1, 0.3, 1],
         },
     },
@@ -158,15 +148,15 @@ const firstSlideBlueVariants = {
         scaleX: [1, 1, 0.018],
         scaleY: [1, 0.08, 0.08],
         transition: {
-            duration: 1.25,
+            duration: 2.1,
             times: [0, 0.45, 1],
             ease: [0.4, 0, 0.2, 1],
         },
     },
     exit: {
         opacity: 0,
-        scaleX: 0.018,
-        scaleY: 0.08,
+        scaleX: 0.01,
+        scaleY: 0.057,
         transition: { duration: 0.25 },
     },
 }
@@ -179,13 +169,13 @@ const firstSlideTextVariants = {
         opacity: 1,
         transition: {
             duration: 0.22,
-            delay: 3.05,
+            delay: 4.05,
         },
     },
     exit: {
         opacity: 0,
         transition: {
-            duration: 0.25,
+            duration: 0.75,
         },
     },
 }
@@ -244,55 +234,62 @@ function Home() {
     const currentSlide = slides[activeSlide]
     const isSpecialSlide = currentSlide.variant === 'special'
     const braceDistance = isMobile ? 450 : 800
+    const leftBraceDistance = braceDistance + (isMobile ? 35 : 130)
     const firstSlideLeftBraceVariants = {
         enter: {
-            x: 0,
-            y: 0,
+            x: -leftBraceDistance,
+            y: isMobile ? -18 : -100,
             opacity: 0,
+            clipPath: 'inset(100% 0 0 0)',
         },
         center: {
-            x: -braceDistance,
-            y: isMobile ? -18 : -50,
+            x: -leftBraceDistance,
+            y: isMobile ? -18 : -100,
             opacity: 1,
+            clipPath: 'inset(0% 0 0 0)',
             transition: {
-                duration: 0.85,
-                delay: 2.35,
+                duration: 1.1,
+                delay: 3.35,
                 ease: [0.16, 1, 0.3, 1],
             },
         },
         hidden: {
             opacity: 0,
+            clipPath: 'inset(100% 0 0 0)',
             transition: {
-                duration: 0.2,
+                duration: 0.55,
             },
         },
     }
     const firstSlideRightBraceVariants = {
         enter: {
-            x: 0,
-            y: 0,
+            x: braceDistance,
+            y: isMobile ? 18 : 50,
             opacity: 0,
+            clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
         },
         center: {
             x: braceDistance,
             y: isMobile ? 18 : 50,
             opacity: 1,
+            clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
             transition: {
-                duration: 0.85,
-                delay: 6.05,
+                duration: 1.1,
+                delay: 7.05,
                 ease: [0.16, 1, 0.3, 1],
             },
         },
         hidden: {
             opacity: 0,
+            clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
             transition: {
-                duration: 0.2,
+                duration: 0.55,
             },
         },
     }
     const bluePath = isMobile
         ? "M -200 160 L 900 160 C 940 196 970 262 970 330 C 970 386 950 452 930 480 L -200 480 C -260 454 -300 398 -305 338 C -310 272 -270 196 -230 166 C -215 162 -205 160 -200 160 Z"
-        : "M -560 160 L 1260 160 C 1310 196 1350 262 1350 330 C 1350 386 1325 452 1300 480 L -560 480 C -620 454 -660 398 -665 338 C -670 272 -630 196 -590 166 C -575 162 -565 160 -560 160 Z"
+        : "M -560 160 L 1260 160 C 1310 196 1350 262 1350 330 C 1350 386 1325 452 1300 480 L -560 480 C -610 452 -650 386 -650 330 C -650 262 -610 196 -560 160 Z"
 
     useEffect(() => {
         const handleResize = () => {
@@ -307,7 +304,6 @@ function Home() {
 
     useEffect(() => {
         const timers = []
-        const isLastSlide = activeSlide === slides.length - 1
 
         setImagePhase('center')
 
@@ -317,27 +313,19 @@ function Home() {
             timers.push(
                 window.setTimeout(() => {
                     setSpecialPhase('closing')
-                }, 6900)
+                }, 10200)
             )
 
             timers.push(
                 window.setTimeout(() => {
                     setSpecialPhase('hidden')
-                }, 8500)
-            )
-
-            timers.push(
-                window.setTimeout(() => {
-                    if (isLastSlide) {
-                        setImagePhase('loopClose')
-                    }
-                }, 8800)
+                }, 12600)
             )
 
             timers.push(
                 window.setTimeout(() => {
                     setActiveSlide((current) => (current + 1) % slides.length)
-                }, isLastSlide ? 10000 : 9600)
+                }, 13800)
             )
         } else {
             setSpecialPhase('hidden')
@@ -409,7 +397,7 @@ function Home() {
                                                     />
                                                     
                                                     <motion.path
-                                                        d="M 313 127 C 191 180 150 420 350 480 C 385 492 386 486 377 482 C 156 424 200 193 317 131 C 322 128 323 124 313 127 Z"
+                                                        d="M 494 174 C 342 288 379 445 459 527 C 463 532 472 548 451 530 C 357 438 340 277 485 170 C 509 152 514 160 494 174 Z"
                                                         fill="none"
                                                         stroke="#2b5b91"
                                                         strokeWidth="20"
@@ -417,15 +405,21 @@ function Home() {
                                                         variants={firstSlideLeftBraceVariants}
                                                         initial="enter"
                                                         animate={specialPhase === 'closing' ? 'hidden' : 'center'}
+                                                        style={{
+                                                            transformBox: 'fill-box',
+                                                        }}
                                                     />
 
                                                     <motion.path
-                                                        d="M 313 127 C 191 180 150 420 350 480 C 385 492 386 486 377 482 C 156 424 200 193 317 131 C 322 128 323 124 313 127 Z"
+                                                        d="M 494 174 C 342 288 379 445 459 527 C 463 532 472 548 451 530 C 357 438 340 277 485 170 C 509 152 514 160 494 174 Z"
                                                         fill="white"
                                                         stroke="none"
                                                         variants={firstSlideLeftBraceVariants}
                                                         initial="enter"
                                                         animate={specialPhase === 'closing' ? 'hidden' : 'center'}
+                                                        style={{
+                                                            transformBox: 'fill-box',
+                                                        }}
                                                     />
 
                                                     <motion.path
@@ -437,6 +431,9 @@ function Home() {
                                                         variants={firstSlideRightBraceVariants}
                                                         initial="enter"
                                                         animate={specialPhase === 'closing' ? 'hidden' : 'center'}
+                                                        style={{
+                                                            transformBox: 'fill-box',
+                                                        }}
                                                     />
 
                                                     <motion.path
@@ -446,6 +443,9 @@ function Home() {
                                                         variants={firstSlideRightBraceVariants}
                                                         initial="enter"
                                                         animate={specialPhase === 'closing' ? 'hidden' : 'center'}
+                                                        style={{
+                                                            transformBox: 'fill-box',
+                                                        }}
                                                     />
                                                 </svg>
 
@@ -455,14 +455,14 @@ function Home() {
                                                     initial="enter"
                                                     animate={specialPhase === 'closing' ? 'exit' : 'center'}
                                                 >
-                                                    <p className="text-[18px] font-semibold italic leading-[1.15] sm:text-[24px] md:text-[28px]">
-                                                        <TypewriterText key={`title-${currentSlide.id}`} text={currentSlide.title} delay={3300} speed={38} />
+                                                    <p className="text-[18px] font-semibold leading-[1.15] sm:text-[24px] md:text-[28px]">
+                                                        <TypewriterText key={`title-${currentSlide.id}`} text={currentSlide.title} delay={4300} speed={38} />
                                                     </p>
-                                                    <p className="mt-2 text-[12px] leading-[1.35] sm:text-[16px] md:text-[18px]">
+                                                    <p className="mt-2 px-10 text-[10px] leading-[1.35] sm:text-[12px] md:text-[16px]">
                                                         <TypewriterText
                                                             key={`subtitle-${currentSlide.id}`}
                                                             text={currentSlide.subtitle}
-                                                            delay={4300}
+                                                            delay={5300}
                                                             speed={24}
                                                         />
                                                     </p>
@@ -472,7 +472,7 @@ function Home() {
                                     ) : currentSlide.lines ? (
                                         <motion.div
                                             key={`caption-${activeSlide}`}
-                                            className="absolute bottom-[22px] left-0 z-[4] max-w-[92%] bg-[#2b4f7c] px-6 py-3 text-white shadow-lg sm:bottom-[28px] sm:px-10 md:bottom-[60px] md:left-0 md:max-w-none md:px-30"
+                                            className="absolute bottom-[22px] left-0 z-[4] max-w-[92%] bg-[#2b4f7c] px-6 py-3 pr-10 text-left text-white shadow-lg sm:bottom-[28px] sm:px-10 sm:pr-16 md:bottom-[60px] md:left-0 md:max-w-none md:px-12 md:pr-24"
                                             variants={captionVariants}
                                             initial="enter"
                                             animate="center"
@@ -484,7 +484,7 @@ function Home() {
                                             {currentSlide?.lines?.map(([prefix, highlight], index) => (
                                                 <p
                                                     key={`${prefix}-${highlight}`}
-                                                    className={`${index === 0 ? '' : 'mt-2 md:mt-3'} text-[18px] leading-[1.3] font-normal sm:text-[24px] md:text-[30px]`}
+                                                    className={`${index === 0 ? '' : 'ml-8 mt-2 sm:ml-14 md:ml-20 md:mt-3'} text-[18px] leading-[1.3] font-normal sm:text-[24px] md:text-[30px]`}
                                                 >
                                                     {prefix}
                                                     <span className="font-semibold">{highlight}</span>
