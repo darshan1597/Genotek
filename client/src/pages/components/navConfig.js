@@ -8,6 +8,6 @@ export const navItems = [
 ]
 
 export const aboutSubmenuItems = [
-  { href: '/about/story', label: 'The Genotek stroy' },
+  { href: '/about/story', label: 'The Genotek Story' },
   { href: '/about/team', label: 'The Genotek Team' },
 ]
