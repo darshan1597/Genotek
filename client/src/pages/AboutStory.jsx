@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
 import Navabar from './components/Navabar'
 import Sidebar from './components/Sidebar'
 import hero from '../assets/aboutStory/hero.jpg'
@@ -8,59 +6,7 @@ import WhoWeAreImage from '../assets/aboutStory/who-we-are.jpg'
 import WhyChooseUsImage from '../assets/aboutStory/why-choose-us.jpg'
 import { Link } from 'react-router-dom'
 
-const detailVariants = {
-    hidden: {
-        opacity: 0,
-        height: 0,
-        y: -8,
-    },
-    visible: {
-        opacity: 1,
-        height: 'auto',
-        y: 0,
-        transition: {
-            duration: 0.32,
-            ease: [0.22, 1, 0.36, 1],
-        },
-    },
-    exit: {
-        opacity: 0,
-        height: 0,
-        y: -8,
-        transition: {
-            duration: 0.22,
-            ease: [0.4, 0, 0.2, 1],
-        },
-    },
-}
-
-const desktopDetailVariants = {
-    hidden: {
-        opacity: 0,
-        y: 14,
-        filter: 'blur(4px)',
-    },
-    visible: {
-        opacity: 1,
-        y: 0,
-        filter: 'blur(0px)',
-        transition: {
-            duration: 0.42,
-            ease: [0.22, 1, 0.36, 1],
-        },
-    },
-    exit: {
-        opacity: 0,
-        y: -10,
-        filter: 'blur(4px)',
-        transition: {
-            duration: 0.2,
-        },
-    },
-}
-
 function AboutStory() {
-    const [active, setActive] = useState(null) // default first open
     return (
         <div className="min-h-screen bg-white text-slate-900">
             <div className="h-[2px] w-full bg-[#6a9fba]" />
@@ -73,7 +19,6 @@ function AboutStory() {
                     <div className="flex-1">
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
                             <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[450px]">
-                                
                                 <img
                                     src={hero}
                                     alt="The Genotek Story"
@@ -102,204 +47,101 @@ function AboutStory() {
                             </p>
                         </div>
 
-                        <div className="px-4 pb-12 pt-8">
-
-                        {/* 3 Sections - Who we are, What we do, Why choose us */}
-                        <div className="px-4 pb-12 pt-8">
-
-                            {/* Images Grid */}
-                            <div className="grid grid-cols-1 gap-6 md:grid-cols-3 md:gap-10">
-
-                                {/* Who We Are */}
-                                <div className="text-center">
-                                    <div onClick={() => setActive(active === 1 ? null : 1)} className="cursor-pointer">
-                                        <div className="overflow-hidden" style={{clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
-                                        }}>
-                                        <img
-                                            src={WhoWeAreImage}
-                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto transition duration-300 
-                                            ${active === 1 ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
-                                        />
-                                        </div>
-                                        <p className="mt-3 font-semibold text-[#5a92b6] text-[20px]">
-                                            Who We Are
-                                        </p>
-                                    </div>
-
-                                    {/* Mobile Text */}
-                                    <AnimatePresence initial={false}>
-                                        {active === 1 && (
-                                        <motion.div
-                                            className="mt-4 overflow-hidden text-left md:hidden"
-                                            variants={detailVariants}
-                                            initial="hidden"
-                                            animate="visible"
-                                            exit="exit"
-                                        >
-                                            <h2 className="text-[22px] font-semibold text-[#5a92b6]">
-                                                Who we are
-                                            </h2>
-                                            <p className="mt-2 text-[16px] text-[#42556c]">
-                                                We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries.
-                                            </p>
-                                            <Link to="/about/team">
-                                                <p className="mt-2 text-[#5a92b6] underline">Our Team</p>
-                                            </Link>
-                                        </motion.div>
-                                        )}
-                                    </AnimatePresence>
+                        <div className="px-1 pb-10 pt-4 sm:pb-12 md:pb-14 md:pt-10">
+                            <div className="grid items-start gap-6 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10">
+                                <div 
+                                    className="overflow-hidden"
+                                    style={{
+                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                    }}
+                                >
+                                    <img
+                                        src={WhoWeAreImage}
+                                        alt="Who we are"
+                                        className="h-[220px] w-full object-cover sm:h-[280px] md:h-[315px]"
+                                    />
                                 </div>
 
-                                {/* What We Do */}
-                                <div className="text-center">
-                                    <div onClick={() => setActive(active === 2 ? null : 2)} className="cursor-pointer">
-                                        <div className="overflow-hidden" style={{clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
-                                        }}>
-                                        <img
-                                            src={whatWeDoImage}
-                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto transition duration-300 
-                                            ${active === 2 ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
-                                        />
-                                        </div>
-                                        <p className="mt-3 font-semibold text-[#5a92b6] text-[20px]">
-                                            What We Do
+                                <div className="pr-0 lg:pr-8 xl:pr-20">
+                                    <h2 className="text-[28px] font-semibold leading-none text-[#5a92b6] sm:text-[32px] md:text-[35px]">
+                                        Who we are
+                                    </h2>
+                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:mt-6 sm:text-[18px] md:mt-8 md:text-[20px] md:text-justify">
+                                        We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness, flexibility, and personal attention of a close-knit team.
+                                    </p>
+                                    <Link to="/about/team">
+                                        <p className="mt-4 inline-block text-[18px] font-semibold text-[#5a92b6] underline underline-offset-4 sm:text-[20px] md:text-[23px]" >
+                                            Our Team
                                         </p>
-                                    </div>
+                                    </Link>
                                     
-
-
-                                    <AnimatePresence initial={false}>
-                                        {active === 2 && (
-                                        <motion.div
-                                            className="mt-4 overflow-hidden text-left md:hidden"
-                                            variants={detailVariants}
-                                            initial="hidden"
-                                            animate="visible"
-                                            exit="exit"
-                                        >
-                                            <h2 className="text-[22px] font-semibold text-[#5a92b6]">
-                                                What we do
-                                            </h2>
-                                            <p className="mt-2 text-[16px] text-[#42556c]">
-                                                We provide innovative solutions with strong expertise, ensuring efficiency, flexibility, and industry excellence.
-                                            </p>
-                                        </motion.div>
-                                        )}
-                                    </AnimatePresence>
                                 </div>
-
-                                {/* Why Choose Us */}
-                                <div className="text-center">
-                                    <div onClick={() => setActive(active === 3 ? null : 3)} className="cursor-pointer">
-                                        <div className="overflow-hidden" style={{clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
-                                        }}>
-                                        <img
-                                            src={WhyChooseUsImage}
-                                            className={`h-[220px] w-full max-w-[250px] object-cover mx-auto transition duration-300 
-                                            ${active === 3 ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
-                                        />
-                                        
-                                    </div>
-                                        <p className="mt-3 font-semibold text-[#5a92b6] text-[20px]">
-                                            Why Choose Us
-                                        </p>
-                                    </div>
-
-                                    <AnimatePresence initial={false}>
-                                        {active === 3 && (
-                                        <motion.div
-                                            className="mt-4 overflow-hidden text-left md:hidden"
-                                            variants={detailVariants}
-                                            initial="hidden"
-                                            animate="visible"
-                                            exit="exit"
-                                        >
-                                            <h2 className="text-[22px] font-semibold text-[#5a92b6]">
-                                                Why Choose Us
-                                            </h2>
-                                            <p className="mt-2 text-[16px] text-[#42556c]">
-                                                We combine large-scale capability with personal attention, ensuring reliability and customer satisfaction.
-                                            </p>
-                                        </motion.div>
-                                        )}
-                                    </AnimatePresence>
-                                </div>
-
                             </div>
 
-                            {/* Desktop Full-Width Text */}
-                            <div className="hidden md:block mt-12 max-w-[1000px] mx-auto text-center">
-                                <AnimatePresence mode="wait">
-                                    {active === 1 && (
-                                        <motion.div
-                                            key="who-we-are-detail"
-                                            variants={desktopDetailVariants}
-                                            initial="hidden"
-                                            animate="visible"
-                                            exit="exit"
-                                        >
-                                            <h2 className="text-[30px] font-semibold text-[#5a92b6]">
-                                                Who we are
-                                            </h2>
-                                            <p className="mt-4 text-[18px] text-[#42556c] text-justify">
-                                                We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness, flexibility, and personal attention of a close-knit team.
-                                            </p>
-                                            <Link to="/about/team">
-                                                <p className="mt-4 inline-block text-[18px] font-semibold text-[#5a92b6] underline underline-offset-4 sm:text-[20px] md:text-[23px]" >
-                                                    Our Team
-                                                </p>
-                                            </Link>
-                                        </motion.div>
-                                    )}
-
-                                    {active === 2 && (
-                                        <motion.div
-                                            key="what-we-do-detail"
-                                            variants={desktopDetailVariants}
-                                            initial="hidden"
-                                            animate="visible"
-                                            exit="exit"
-                                        >
-                                            <h2 className="text-[30px] font-semibold text-[#5a92b6]">
-                                                What we do
-                                            </h2>
-                                            <p className="mt-4 text-[18px] text-[#42556c] text-justify">
-                                                We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness, flexibility, and personal attention that define our way of working.
-                                            </p>
-                                        </motion.div>
-                                    )}
-
-                                    {active === 3 && (
-                                        <motion.div
-                                            key="why-choose-us-detail"
-                                            variants={desktopDetailVariants}
-                                            initial="hidden"
-                                            animate="visible"
-                                            exit="exit"
-                                        >
-                                            <h2 className="text-[30px] font-semibold text-[#5a92b6]">
-                                                Why Choose Us
-                                            </h2>
-                                            <p className="mt-4 text-[18px] text-[#42556c] text-justify">
-                                                We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness flexibility and personal attention of a close-knit team.
-                                            </p>
-                                        </motion.div>
-                                    )}
-                                </AnimatePresence>
-
+                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-16 md:w-[90%]">
+                                <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
                             </div>
 
+                            <div className="mt-8 grid items-start gap-6 md:mt-10 md:gap-8 lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-10 lg:pr-8 xl:grid-cols-[minmax(0,1fr)_520px] xl:pr-20">
+                                <div className="pt-2 text-left md:pt-4 lg:pl-6 lg:text-right xl:pl-16">
+                                    <h2 className="text-[28px] font-semibold leading-none text-[#5a92b6] sm:text-[32px] md:text-[35px]">
+                                        What we do
+                                    </h2>
+                                    <p className="mx-auto mt-4 max-w-[980px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:mt-6 sm:text-[18px] md:mt-8 md:text-[20px] md:text-justify">
+                                        We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness, flexibility, and personal attention that define our way of working.
+                                    </p>
+                                </div>
+
+                                <div
+                                    className="overflow-hidden bg-[#e6edf3]"
+                                    style={{
+                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                    }}
+                                >
+                                    <img
+                                        src={whatWeDoImage}
+                                        alt="What we do"
+                                        className="h-[220px] w-full object-cover sm:h-[280px] md:h-[330px]"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-16 md:w-[90%]">
+                                <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
+                            </div>
+
+                            <div className="mt-8 grid items-start gap-6 md:mt-10 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10">
+                                <div 
+                                    className="overflow-hidden"
+                                    style={{
+                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                    }}
+                                >
+                                    <img
+                                        src={WhyChooseUsImage}
+                                        alt="why choose use"
+                                        className="h-[220px] w-full object-cover sm:h-[280px] md:h-[315px]"
+                                    />
+                                </div>
+
+                                <div className="pr-0 lg:pr-8 xl:pr-20">
+                                    <h2 className="text-[28px] font-semibold leading-none text-[#5a92b6] sm:text-[32px] md:text-[35px]">
+                                        Why Choose Us?
+                                    </h2>
+                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:mt-6 sm:text-[18px] md:mt-8 md:text-[20px] md:text-justify">
+                                        We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness flexibility and personal attention of a close-knit team.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
-                    {/* 3 Sections - Who we are, What we do, Why choose us */}
-                    </div>     
                     </div>
-                            
                 </section>
-                
             </main>
-            
         </div>
-        
     )
 }
 
