@@ -42,7 +42,7 @@ function Navabar() {
                             aria-hidden="true"
                         >
                             <defs>
-                                <filter id="logo-circle-glow" x="-300%" y="-300%" width="700%" height="700%">
+                                <filter id="logo-circle-glow" x="-320%" y="-300%" width="700%" height="700%">
                                     
                                     {/* Soft outer glow */}
                                     <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur1">
@@ -69,6 +69,7 @@ function Navabar() {
                                 r="12"
                                 fill="#00A75A"
                                 filter="url(#logo-circle-glow)"
+                                transform="translate(14 0)"// if logoShift
                             >
                             {/* Movement */}
                             <animateMotion
