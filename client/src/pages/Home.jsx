@@ -57,28 +57,25 @@ const slides = [
 const slideVariants = {
     enter: {
         opacity: 0,
-        scale: 0.96,
-        filter: 'blur(14px)',
-        clipPath: 'ellipse(16% 22% at 50% 50%)',
+        scale: 1.03,
+        filter: 'blur(4px)',
     },
     center: {
         opacity: 1,
         scale: 1,
         filter: 'blur(0px)',
-        clipPath: 'ellipse(86% 92% at 50% 50%)',
         transition: {
-            duration: 1.15,
-            ease: [0.22, 1, 0.36, 1],
+            duration: 1.45,
+            ease: [0.16, 1, 0.3, 1],
         },
     },
     exit: {
         opacity: 0,
-        scale: 1.08,
-        filter: 'blur(12px)',
-        clipPath: 'ellipse(18% 24% at 50% 50%)',
+        scale: 1.01,
+        filter: 'blur(3px)',
         transition: {
-            duration: 0.8,
-            ease: [0.4, 0, 0.2, 1],
+            duration: 1.15,
+            ease: [0.45, 0, 0.2, 1],
         },
     },
 }
@@ -86,24 +83,23 @@ const slideVariants = {
 const captionVariants = {
     enter: {
         opacity: 0,
-        x: -32,
-        y: 12,
+        scaleX: 0,
     },
     center: {
         opacity: 1,
-        x: 0,
-        y: 0,
+        scaleX: 1,
         transition: {
-            duration: 0.8,
+            duration: 0.75,
             delay: 0.25,
-            ease: [0.22, 1, 0.36, 1],
+            ease: [0.16, 1, 0.3, 1],
         },
     },
     exit: {
         opacity: 0,
-        x: -24,
+        scaleX: 0,
         transition: {
-            duration: 0.3,
+            duration: 0.35,
+            ease: [0.4, 0, 0.2, 1],
         },
     },
 }
@@ -176,6 +172,29 @@ const firstSlideTextVariants = {
         opacity: 0,
         transition: {
             duration: 0.75,
+        },
+    },
+}
+
+const specialTitleVariants = {
+    enter: {
+        opacity: 0,
+        x: -80,
+    },
+    center: {
+        opacity: 1,
+        x: 0,
+        transition: {
+            duration: 0.8,
+            delay: 4.25,
+            ease: [0.22, 1, 0.36, 1],
+        },
+    },
+    exit: {
+        opacity: 0,
+        x: 28,
+        transition: {
+            duration: 0.35,
         },
     },
 }
@@ -345,19 +364,19 @@ function Home() {
             <div className="h-[2px] w-full bg-[#6a9fba]" />
             <Navabar />
 
-            <main className="w-full px-4 md:px-5 lg:px-0 lg:pr-6 xl:pr-10">
+            <main className="w-full px-4 md:px-5 lg:px-0 lg:pr-10 xl:pr-15">
                 <section className="mb-5 flex flex-col pt-3 lg:flex-row lg:items-start">
                     <Sidebar />
 
                     <div className="relative z-0 flex-1">
                         <div className="relative isolate flex flex-col gap-4 overflow-hidden lg:h-[520px] lg:flex-row lg:gap-0">
-                            <div className="relative z-[2] h-[520px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[560px] md:h-[620px] lg:h-full lg:w-[68%] lg:[clip-path:polygon(0_0,100%_0,calc(100%-83px)_50%,100%_100%,0_100%)]">
+                            <div className="relative z-[2] h-[520px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[560px] md:h-[620px] lg:h-full lg:w-[76%] lg:[clip-path:polygon(0_0,100%_0,calc(100%-83px)_50%,100%_100%,0_100%)]">
                                 <AnimatePresence mode="sync">
                                     <motion.img
                                         key={currentSlide.id}
                                         src={currentSlide.image}
                                         alt={`Genotek plant view ${activeSlide + 1}`}
-                                        className="absolute inset-0 h-full w-full object-cover"
+                                        className="absolute inset-0 h-full w-full transform-gpu object-cover will-change-[opacity,transform,filter]"
                                         variants={slideVariants}
                                         initial="enter"
                                         animate={imagePhase}
@@ -456,7 +475,15 @@ function Home() {
                                                     animate={specialPhase === 'closing' ? 'exit' : 'center'}
                                                 >
                                                     <p className="text-[18px] font-semibold leading-[1.15] sm:text-[24px] md:text-[28px]">
-                                                        <TypewriterText key={`title-${currentSlide.id}`} text={currentSlide.title} delay={4300} speed={38} />
+                                                        <motion.span
+                                                            key={`title-${currentSlide.id}`}
+                                                            className="inline-block"
+                                                            variants={specialTitleVariants}
+                                                            initial="enter"
+                                                            animate={specialPhase === 'closing' ? 'exit' : 'center'}
+                                                        >
+                                                            {currentSlide.title}
+                                                        </motion.span>
                                                     </p>
                                                     <p className="mt-2 px-10 text-[10px] leading-[1.35] sm:text-[12px] md:text-[16px]">
                                                         <TypewriterText
@@ -479,6 +506,7 @@ function Home() {
                                             exit="exit"
                                             style={{
                                                 clipPath: 'polygon(0 0, 100% 0, 100% 68%, 95% 100%, 0 100%)',
+                                                transformOrigin: 'left center',
                                             }}
                                         >
                                             {currentSlide?.lines?.map(([prefix, highlight], index) => (
@@ -495,7 +523,7 @@ function Home() {
                                 </AnimatePresence>
                             </div>
 
-                            <div className="relative z-[1] flex w-full shrink-0 flex-col gap-3 sm:gap-4 lg:-ml-[70px] lg:w-[calc(32%+70px)] lg:gap-[12px]">
+                            <div className="relative z-[1] flex w-full shrink-0 flex-col gap-3 sm:gap-4 lg:-ml-[70px] lg:w-[calc(24%+70px)] lg:gap-[12px]">
                                 {[0, 1, 2].map((item) => (
                                     <div
                                         key={item}
@@ -504,7 +532,7 @@ function Home() {
                                 ))}
                             </div>
 
-                            <div className="pointer-events-none absolute left-[calc(69%-95px)] top-0 z-[3] hidden h-full w-[100px] lg:block">
+                            <div className="pointer-events-none absolute left-[calc(77%-95px)] top-0 z-[3] hidden h-full w-[100px] lg:block">
                                 <svg
                                     viewBox="-20 0 140 520"
                                     preserveAspectRatio="none"
