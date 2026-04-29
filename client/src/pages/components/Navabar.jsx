@@ -32,7 +32,7 @@ function Navabar() {
                         <img
                             src={logo}
                             alt="Genotek Biochem"
-                            className="h-auto w-[260px] object-contain md:w-[330px] lg:w-[430px]"
+                            className="h-auto w-[260px] object-contain md:w-[330px] lg:w-[430px] ml-3"
                         />
 
                         <svg
