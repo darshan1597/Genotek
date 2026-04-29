@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { FiMail, FiMapPin, FiSend } from 'react-icons/fi'
+import { FiSend } from 'react-icons/fi'
 import Navabar from './components/Navabar'
 import Sidebar from './components/Sidebar'
 import slide1 from '../assets/hero/slide1.jpg'
@@ -131,12 +131,12 @@ const firstSlideBlueVariants = {
     enter: {
         opacity: 1,
         scaleX: 0.01,
-        scaleY: 0.057,
+        scaleY: 0.027,
     },
     center: {
         opacity: 1,
         scaleX: [0.01, 0.01, 1, 1],
-        scaleY: [0.057, 0.057, 0.057, 1],
+        scaleY: [0.027, 0.027, 0.027, 1],
         transition: {
             duration: 3.25,
             times: [0, 0.18, 0.62, 1],
@@ -146,7 +146,7 @@ const firstSlideBlueVariants = {
     closing: {
         opacity: [1, 1, 0],
         scaleX: [1, 1, 0.018],
-        scaleY: [1, 0.08, 0.08],
+        scaleY: [1, 0.027, 0.027],
         transition: {
             duration: 2.1,
             times: [0, 0.45, 1],
@@ -156,7 +156,7 @@ const firstSlideBlueVariants = {
     exit: {
         opacity: 0,
         scaleX: 0.01,
-        scaleY: 0.057,
+        scaleY: 0.027,
         transition: { duration: 0.25 },
     },
 }
@@ -234,7 +234,7 @@ function Home() {
     const currentSlide = slides[activeSlide]
     const isSpecialSlide = currentSlide.variant === 'special'
     const braceDistance = isMobile ? 450 : 800
-    const leftBraceDistance = braceDistance + (isMobile ? 35 : 130)
+    const leftBraceDistance = braceDistance + (isMobile ? 35 : 100)
     const firstSlideLeftBraceVariants = {
         enter: {
             x: -leftBraceDistance,
@@ -289,7 +289,7 @@ function Home() {
     }
     const bluePath = isMobile
         ? "M -200 160 L 900 160 C 940 196 970 262 970 330 C 970 386 950 452 930 480 L -200 480 C -260 454 -300 398 -305 338 C -310 272 -270 196 -230 166 C -215 162 -205 160 -200 160 Z"
-        : "M -560 160 L 1260 160 C 1310 196 1350 262 1350 330 C 1350 386 1325 452 1300 480 L -560 480 C -610 452 -650 386 -650 330 C -650 262 -610 196 -560 160 Z"
+        : "M -560 160 L 1260 160 C 1310 196 1350 262 1350 330 C 1350 386 1325 452 1300 480 L -560 480 C -600 441 -623 394 -623 326 C -621 254 -595 210 -560 160 Z"
 
     useEffect(() => {
         const handleResize = () => {
@@ -345,8 +345,8 @@ function Home() {
             <div className="h-[2px] w-full bg-[#6a9fba]" />
             <Navabar />
 
-            <main className="w-full px-4 pb-6 md:px-5 lg:px-0 lg:pr-6 xl:pr-10">
-                <section className="mb-10 flex flex-col pt-3 lg:flex-row lg:items-start">
+            <main className="w-full px-4 md:px-5 lg:px-0 lg:pr-6 xl:pr-10">
+                <section className="mb-5 flex flex-col pt-3 lg:flex-row lg:items-start">
                     <Sidebar />
 
                     <div className="relative z-0 flex-1">
@@ -397,7 +397,7 @@ function Home() {
                                                     />
                                                     
                                                     <motion.path
-                                                        d="M 494 174 C 342 288 379 445 459 527 C 463 532 472 548 451 530 C 357 438 340 277 485 170 C 509 152 514 160 494 174 Z"
+                                                        d="M 485 174 C 342 288 379 445 440 527 C 446 536 443 542 431 530 C 357 438 340 277 476 169 C 492 160 495 166 485 174 Z"
                                                         fill="none"
                                                         stroke="#2b5b91"
                                                         strokeWidth="20"
@@ -411,7 +411,7 @@ function Home() {
                                                     />
 
                                                     <motion.path
-                                                        d="M 494 174 C 342 288 379 445 459 527 C 463 532 472 548 451 530 C 357 438 340 277 485 170 C 509 152 514 160 494 174 Z"
+                                                        d="M 485 174 C 342 288 379 445 440 527 C 446 536 443 542 431 530 C 357 438 340 277 476 169 C 492 160 495 166 485 174 Z"
                                                         fill="white"
                                                         stroke="none"
                                                         variants={firstSlideLeftBraceVariants}
@@ -576,39 +576,10 @@ function Home() {
                                     </button>
                                 </form>
                             </div>
-
-                            <div className="mt-8 overflow-hidden rounded-[8px] border border-[#bdd4e2] bg-[#f3f8fb] shadow-[0_16px_36px_rgba(33,79,134,0.12)]">
-                                <div className="flex flex-col gap-3 border-b border-[#d8e5ec] bg-white px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
-                                    <div className="flex items-start gap-3">
-                                        <span className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-[6px] bg-[#e6f2f7] text-[#214f86]">
-                                            <FiMapPin className="text-[19px]" />
-                                        </span>
-                                        <div>
-                                            <p className="text-[16px] font-semibold text-[#214f86]">Genotek Biochem</p>
-                                            <p className="mt-1 text-[14px] text-[#607486]">Find us on the map</p>
-                                        </div>
-                                    </div>
-                                    <a
-                                        href="mailto:info@genotekbio.com"
-                                        className="inline-flex items-center gap-2 text-[14px] font-medium text-[#214f86] transition hover:text-[#5a92b6]"
-                                    >
-                                        <FiMail className="text-[17px]" />
-                                        info@genotekbio.com
-                                    </a>
-                                </div>
-
-                                <iframe
-                                    title="Genotek Biochem map"
-                                    src="https://www.google.com/maps?q=216%2C%20Vardhaman%20Complex%2C%2010%2C%20LBS%20Marg%2C%20Vikhroli%20West%2C%20Mumbai%20400083%2C%20India&output=embed"
-                                    className="h-[330px] w-full border-0 md:h-[380px]"
-                                    loading="lazy"
-                                    referrerPolicy="no-referrer-when-downgrade"
-                                />
-                            </div>
                         </section>
+                        <Footer insetForSidebar={false} />
                     </div>
                 </section>
-                <Footer />
             </main>
         </div>
     )
