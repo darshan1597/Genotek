@@ -1,7 +1,7 @@
 import Navabar from './components/Navabar'
 import Sidebar from './components/Sidebar'
-import RushabGohilImage from '../assets/aboutTeam/rushab-gohil.jpg'
-import HiteshGandhiImage from '../assets/aboutTeam/hitesh-gandhi.jpg'
+import RushabGohilImage from '../assets/aboutTeam/rushab-gohil.png'
+import HiteshGandhiImage from '../assets/aboutTeam/hitesh-gandhi.png'
 import hero from '../assets/aboutTeam/hero.png'
 
 function AboutTeam() {
@@ -50,7 +50,7 @@ function AboutTeam() {
                                     <img
                                         src={RushabGohilImage}
                                         alt="Rushal Gohil"
-                                        className="h-[220px] w-full object-cover sm:h-[280px] md:h-[315px]"
+                                        className="h-[180px] w-full object-cover sm:h-[100px] md:h-[280px]"
                                     />
                                 </div>
              
@@ -85,7 +85,7 @@ function AboutTeam() {
                                 </div>
             
                                 <div
-                                    className="overflow-hidden bg-[#e6edf3]"
+                                    className="overflow-hidden"
                                     style={{
                                         clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
                                         //left cut: 'polygon(0 0, 100% 0, 100% 100%, 14% 100%, 0 72%)',
@@ -94,7 +94,7 @@ function AboutTeam() {
                                     <img
                                         src={HiteshGandhiImage}
                                         alt="What we do"
-                                        className="h-[220px] w-full object-cover sm:h-[280px] md:h-[330px]"
+                                        className="h-[180px] w-full object-cover sm:h-[100px] md:h-[280px]"
                                     />
                                 </div>
                             </div>

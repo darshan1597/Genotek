@@ -58,7 +58,7 @@ function AboutStory() {
                                     <img
                                         src={WhoWeAreImage}
                                         alt="Who we are"
-                                        className="h-[220px] w-full object-cover sm:h-[280px] md:h-[315px]"
+                                        className="h-[180px] w-full object-cover sm:h-[100px] md:h-[280px]"
                                     />
                                 </div>
 
@@ -95,7 +95,7 @@ function AboutStory() {
                                 </div>
 
                                 <div
-                                    className="overflow-hidden bg-[#e6edf3]"
+                                    className="overflow-hidden "
                                     style={{
                                         clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
                                     }}
@@ -103,7 +103,7 @@ function AboutStory() {
                                     <img
                                         src={whatWeDoImage}
                                         alt="What we do"
-                                        className="h-[220px] w-full object-cover sm:h-[280px] md:h-[330px]"
+                                        className="h-[180px] w-10px object-cover sm:h-[100px] md:h-[280px] mr-20px"
                                     />
                                 </div>
                             </div>
@@ -123,8 +123,8 @@ function AboutStory() {
                                 >
                                     <img
                                         src={WhyChooseUsImage}
-                                        alt="why choose use"
-                                        className="h-[220px] w-full object-cover sm:h-[280px] md:h-[315px]"
+                                        alt="why choose us"
+                                        className="h-[180px] w-full object-cover sm:h-[100px] md:h-[280px]"
                                     />
                                 </div>
 
