@@ -546,7 +546,7 @@ function Home() {
                                 </svg>
                             </div>
                         </div>
-
+{/* 
                         <section className="mt-12 border-t border-[#d8e5ec] pt-10">
                             <div className="mx-auto max-w-[820px]">
                                 <div className="mb-6 text-center">
@@ -604,7 +604,7 @@ function Home() {
                                     </button>
                                 </form>
                             </div>
-                        </section>
+                        </section>  */}
                         <Footer insetForSidebar={false} />
                     </div>
                 </section>

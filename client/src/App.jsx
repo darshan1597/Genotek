@@ -5,6 +5,7 @@ import Footer from './pages/components/Footer'
 import Home from './pages/Home'
 import InfoPage from './pages/InfoPage'
 import watermark from './assets/watermark.png'
+import GetInTouch from './pages/GetInTouch'
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
             <Route path="/products" element={<InfoPage />} />
             <Route path="/industry" element={<InfoPage />} />
             <Route path="/services" element={<InfoPage />} />
-            <Route path="/contact" element={<InfoPage />} />
+            <Route path="/contact" element={<GetInTouch />} />
         </Routes>
     </>
     )

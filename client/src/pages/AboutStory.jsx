@@ -4,6 +4,7 @@ import hero from '../assets/aboutStory/hero.jpg'
 import whatWeDoImage from '../assets/aboutStory/what-we-do.jpg'
 import WhoWeAreImage from '../assets/aboutStory/who-we-are.jpg'
 import WhyChooseUsImage from '../assets/aboutStory/why-choose-us.jpg'
+import Footer from './components/Footer'
 import { Link } from 'react-router-dom'
 
 function AboutStory() {
@@ -139,6 +140,7 @@ function AboutStory() {
                             </div>
                         </div>
                     </div>
+                    
                 </section>
             </main>
         </div>
