@@ -3,16 +3,16 @@ import Navabar from './components/Navabar'
 import Sidebar from './components/Sidebar'
 import Footer from './components/Footer'
 
-function Contact() {
+function GetInTouch() {
     return (
         <div className="min-h-screen bg-white text-slate-900">
             <Navabar />
 
             <main className="w-full px-4 md:px-5 lg:px-0 lg:pr-10 xl:pr-15">
                 <section className="mb-5 flex flex-col pt-3 lg:flex-row lg:items-start">
-                    
+
                     <Sidebar />
-                    
+
                     <div className="flex-1">
                         <div className="mx-auto max-w-[820px]">
                             <div className="mb-6 text-center">
@@ -70,15 +70,14 @@ function Contact() {
                                 </button>
                             </form>
                         </div>
+
+                        <Footer insetForSidebar={false} />
                     </div>
 
                 </section>
             </main>
-
-           
-            <Footer />
         </div>
     )
 }
 
-export default Contact
+export default GetInTouch

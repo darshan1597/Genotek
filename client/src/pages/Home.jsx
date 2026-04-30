@@ -361,7 +361,6 @@ function Home() {
 
     return (
         <div className="min-h-screen bg-white text-slate-900">
-            <div className="h-[2px] w-full bg-[#6a9fba]" />
             <Navabar />
 
             <main className="w-full px-4 md:px-5 lg:px-0 lg:pr-10 xl:pr-15">
