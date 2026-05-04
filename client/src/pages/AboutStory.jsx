@@ -68,7 +68,16 @@ function AboutStory() {
                                         Who we are
                                     </h2>
                                     <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:mt-6 sm:text-[18px] md:mt-8 md:text-[20px] md:text-justify">
-                                        We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness, flexibility, and personal attention of a close-knit team.
+                                        At Genotek Biochem Private Limited, we combine scientific capability with a human touch. We balance scale, expertise, and responsiveness to serve our partners better. We are a chemistry-driven organization committed to delivering reliable, high-quality solutions while building meaningful, long-term relationships.
+                                    
+                                            <ul>
+                                                <li type="default">Science-driven company rooted in chemistry excellence</li>
+                                                <li>Strong technical expertise with scalable infrastructure</li>
+                                                <li>Agile, responsive, and client-focused approach</li>
+                                                <li>Team of passionate scientists and problem-solvers</li>
+                                                <li>Commitment to responsible, high-impact innovation</li>
+                                            </ul>                                        
+                                        Big enough to deliver, small enough to care
                                     </p>
                                     <Link to="/about/team">
                                         <p className="mt-4 inline-block text-[18px] font-semibold text-[#5a92b6] underline underline-offset-4 sm:text-[20px] md:text-[23px]" >
@@ -90,8 +99,18 @@ function AboutStory() {
                                     <h2 className="text-[28px] font-semibold leading-none text-[#5a92b6] sm:text-[32px] md:text-[35px]">
                                         What we do
                                     </h2>
-                                    <p className="mx-auto mt-4 max-w-[980px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:mt-6 sm:text-[18px] md:mt-8 md:text-[20px] md:text-justify">
-                                        We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness, flexibility, and personal attention that define our way of working.
+                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:mt-6 sm:text-[18px] md:mt-8 md:text-[20px] md:text-justify">
+                                        At Genotek Biochem Private Limited, we enable innovation from concept to commercialization. As a Research, Development, and Manufacturing partner, we provide integrated, scalable solutions across industries including pharmaceuticals, agrochemicals, and material sciences.
+                                            <ul>
+                                                <li>Custom synthesis, process development & scale-up</li>
+                                                <li>Analytical and method development capabilities</li>
+                                                <li>FTE/FFS-based research services</li>
+                                                <li>Supply of fine & specialty chemicals, catalysts, and compounds</li>
+                                                <li>Scalable solutions from milligram to multi-tonne production</li>
+                                                <li>Focus on green chemistry and sustainable processes</li>
+                                                <li>Collaborative, flexible engagement models with fast turnaround</li>
+                                            </ul>                                        
+                                        Driven by Innovation, defined by quality
                                     </p>
                                 </div>
 
@@ -113,30 +132,6 @@ function AboutStory() {
                                 <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
                                 <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
                                 <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
-                            </div>
-
-                            <div className="mt-8 grid items-start gap-6 md:mt-10 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10">
-                                <div 
-                                    className="overflow-hidden"
-                                    style={{
-                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
-                                    }}
-                                >
-                                    <img
-                                        src={WhyChooseUsImage}
-                                        alt="why choose us"
-                                        className="h-[180px] w-full object-cover sm:h-[100px] md:h-[280px]"
-                                    />
-                                </div>
-
-                                <div className="pr-0 lg:pr-8 xl:pr-20">
-                                    <h2 className="text-[28px] font-semibold leading-none text-[#5a92b6] sm:text-[32px] md:text-[35px]">
-                                        Why Choose Us?
-                                    </h2>
-                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:mt-6 sm:text-[18px] md:mt-8 md:text-[20px] md:text-justify">
-                                        We are a science-driven organization rooted in chemistry, committed to delivering reliable, high-quality solutions that support industries. Our strength lies in our ability to operate with the efficiency, infrastructure, and expertise of a large organization, while maintaining the responsiveness flexibility and personal attention of a close-knit team.
-                                    </p>
-                                </div>
                             </div>
                         </div>
                     </div>
