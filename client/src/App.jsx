@@ -1,6 +1,8 @@
 import { Route, Routes } from 'react-router-dom'
 import AboutStory from './pages/AboutStory'
 import AboutTeam from './pages/AboutTeam'
+import WhyGenotek from './pages/WhyGenotek'
+import GenotekInfra from './pages/GenotekInfra'
 import Footer from './pages/components/Footer'
 import Home from './pages/Home'
 import InfoPage from './pages/InfoPage'
@@ -20,6 +22,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about/story" element={<AboutStory />} />
             <Route path="/about/team" element={<AboutTeam />} />
+            <Route path="/about/why-genotek" element={<WhyGenotek />} />
+            <Route path="/about/infra" element={<GenotekInfra />} />
             <Route path="/products" element={<InfoPage />} />
             <Route path="/industry" element={<InfoPage />} />
             <Route path="/services" element={<InfoPage />} />

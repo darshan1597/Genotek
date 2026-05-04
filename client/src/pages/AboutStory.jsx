@@ -33,10 +33,11 @@ function AboutStory() {
                                     }}
                                 >
                                     <p className="text-[22px] leading-[1.05] font-normal sm:text-[28px] md:text-[35px]">
-                                        The Genotek
+                                    The Genotek
                                     </p>
-                                    <p className="mt-1 text-right text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                        Story.
+
+                                    <p className="mt-1 ml-[120px] text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
+                                    Story.
                                     </p>
                                 </div>
                             </div>
@@ -64,27 +65,36 @@ function AboutStory() {
                                 </div>
 
                                 <div className="pr-0 lg:pr-8 xl:pr-20">
-                                    <h2 className="text-[28px] font-semibold leading-none text-[#5a92b6] sm:text-[32px] md:text-[35px]">
-                                        Who we are
-                                    </h2>
-                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:mt-6 sm:text-[18px] md:mt-8 md:text-[20px] md:text-justify">
-                                        At Genotek Biochem Private Limited, we combine scientific capability with a human touch. We balance scale, expertise, and responsiveness to serve our partners better. We are a chemistry-driven organization committed to delivering reliable, high-quality solutions while building meaningful, long-term relationships.
-                                    
-                                            <ul>
-                                                <li type="default">Science-driven company rooted in chemistry excellence</li>
-                                                <li>Strong technical expertise with scalable infrastructure</li>
-                                                <li>Agile, responsive, and client-focused approach</li>
-                                                <li>Team of passionate scientists and problem-solvers</li>
-                                                <li>Commitment to responsible, high-impact innovation</li>
-                                            </ul>                                        
-                                        Big enough to deliver, small enough to care
+                                {/* Heading */}
+                                <h2 className="text-[30px] font-semibold text-[#5a92b6] sm:text-[34px] md:text-[38px]">
+                                    Who we are
+                                </h2>
+
+                                {/* Paragraph */}
+                                <p className="mt-4 max-w-[900px] text-[16px] leading-[1.8] text-[#42556c] sm:text-[18px] md:text-[19px] text-justify">
+                                    At Genotek Biochem Private Limited, we combine scientific capability with a human touch. We balance scale, expertise, and responsiveness to serve our partners better. We are a chemistry-driven organization committed to delivering reliable, high-quality solutions while building meaningful, long-term relationships.
+                                </p>
+
+                                {/* Bullet Points */}
+                                <ul className="mt-4 list-disc pl-6 space-y-2 text-[16px] text-[#42556c] sm:text-[18px]">
+                                    <li>Science-driven company rooted in chemistry excellence</li>
+                                    <li>Strong technical expertise with scalable infrastructure</li>
+                                    <li>Agile, responsive, and client-focused approach</li>
+                                    <li>Team of passionate scientists and problem-solvers</li>
+                                    <li>Commitment to responsible, high-impact innovation</li>
+                                </ul>
+
+                                {/* Tagline */}
+                                <p className="mt-5 italic text-[15px] text-[#42556c] sm:text-[17px]">
+                                    Big enough to deliver, small enough to care
+                                </p>
+
+                                {/* Link */}
+                                <Link to="/about/team">
+                                    <p className="mt-4 inline-block text-[18px] font-semibold text-[#5a92b6] underline underline-offset-4 sm:text-[20px] md:text-[22px]">
+                                    Our Team
                                     </p>
-                                    <Link to="/about/team">
-                                        <p className="mt-4 inline-block text-[18px] font-semibold text-[#5a92b6] underline underline-offset-4 sm:text-[20px] md:text-[23px]" >
-                                            Our Team
-                                        </p>
-                                    </Link>
-                                    
+                                </Link>
                                 </div>
                             </div>
 
@@ -94,25 +104,40 @@ function AboutStory() {
                                 <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
                             </div>
 
-                            <div className="mt-8 grid items-start gap-6 md:mt-10 md:gap-8 lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-10 lg:pr-8 xl:grid-cols-[minmax(0,1fr)_520px] xl:pr-20">
-                                <div className="pt-2 text-left md:pt-4 lg:pl-6 lg:text-right xl:pl-16">
-                                    <h2 className="text-[28px] font-semibold leading-none text-[#5a92b6] sm:text-[32px] md:text-[35px]">
-                                        What we do
+                            
+                            <div className="mt-8 grid items-start gap-8 md:mt-10 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_520px] lg:gap-12 xl:gap-16">
+
+                                {/* LEFT CONTENT */}
+                                <div className="max-w-[700px] text-left lg:pl-10 xl:pl-16">
+                                    
+                                    <h2 className="text-[28px] font-semibold text-[#5a92b6] sm:text-[32px] md:text-[36px]">
+                                    What we do
                                     </h2>
-                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:mt-6 sm:text-[18px] md:mt-8 md:text-[20px] md:text-justify">
-                                        At Genotek Biochem Private Limited, we enable innovation from concept to commercialization. As a Research, Development, and Manufacturing partner, we provide integrated, scalable solutions across industries including pharmaceuticals, agrochemicals, and material sciences.
-                                            <ul>
-                                                <li>Custom synthesis, process development & scale-up</li>
-                                                <li>Analytical and method development capabilities</li>
-                                                <li>FTE/FFS-based research services</li>
-                                                <li>Supply of fine & specialty chemicals, catalysts, and compounds</li>
-                                                <li>Scalable solutions from milligram to multi-tonne production</li>
-                                                <li>Focus on green chemistry and sustainable processes</li>
-                                                <li>Collaborative, flexible engagement models with fast turnaround</li>
-                                            </ul>                                        
-                                        Driven by Innovation, defined by quality
+
+                                    <p className="mt-4 text-[16px] leading-[1.7] text-[#42556c] sm:text-[18px] md:text-[19px] text-justify">
+                                    At Genotek Biochem Private Limited, we enable innovation from concept to commercialization. 
+                                    As a Research, Development, and Manufacturing partner, we provide integrated, scalable 
+                                    solutions across industries including pharmaceuticals, agrochemicals, and material sciences.
                                     </p>
+
+                                    <ul className="mt-5 list-disc space-y-2 pl-5 text-[16px] text-[#42556c] sm:text-[17px] md:text-[18px]">
+                                    <li>Custom synthesis, process development & scale-up</li>
+                                    <li>Analytical and method development capabilities</li>
+                                    <li>FTE/FFS-based research services</li>
+                                    <li>Supply of fine & specialty chemicals, catalysts, and compounds</li>
+                                    <li>Scalable solutions from milligram to multi-tonne production</li>
+                                    <li>Focus on green chemistry and sustainable processes</li>
+                                    <li>Collaborative, flexible engagement models with fast turnaround</li>
+                                    </ul>
+
+                                    <p className="mt-4 italic text-[15px] text-[#6b7c8f]">
+                                    Driven by Innovation, defined by quality
+                                    </p>
+
                                 </div>
+
+
+
 
                                 <div
                                     className="overflow-hidden "
@@ -126,7 +151,8 @@ function AboutStory() {
                                         className="h-[180px] w-10px object-cover sm:h-[100px] md:h-[280px] mr-20px"
                                     />
                                 </div>
-                            </div>
+                                </div>
+                        
 
                             <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-16 md:w-[90%]">
                                 <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
