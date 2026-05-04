@@ -3,6 +3,7 @@ import Sidebar from './components/Sidebar'
 import RushabGohilImage from '../assets/aboutTeam/rushab-gohil.png'
 import HiteshGandhiImage from '../assets/aboutTeam/hitesh-gandhi.png'
 import hero from '../assets/aboutTeam/hero.png'
+import Footer from './components/Footer'
 
 function AboutTeam() {
     return (
@@ -83,12 +84,11 @@ function AboutTeam() {
                                         Hitesh is a results-driven leader in the pharmaceutical and CDMO sector, recognized for shaping growth strategies and building strong global partnerships. Combining commercial acumen with industry expertise, he drives execution-focused teams to deliver customer-centric solutions. His leadership emphasizes innovation, agility, and long-term value creation, enabling organizations to scale effectively and succeed in competitive, evolving markets.
                                     </p>
                                 </div>
-            
+
                                 <div
                                     className="overflow-hidden"
                                     style={{
                                         clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
-                                        //left cut: 'polygon(0 0, 100% 0, 100% 100%, 14% 100%, 0 72%)',
                                     }}
                                 >
                                     <img
@@ -99,6 +99,7 @@ function AboutTeam() {
                                 </div>
                             </div>
                         </div>
+                        <Footer insetForSidebar={false} />
                     </div>
                 </section>
             </main>

@@ -2,6 +2,9 @@ import { Link, NavLink } from 'react-router-dom'
 import logo from '../../assets/logo.jpeg'
 import { navItems } from './navConfig'
 import { FaLocationDot } from "react-icons/fa6";
+import { FaPhoneAlt } from "react-icons/fa";
+import { IoIosMail } from "react-icons/io";
+import { FaLinkedin } from "react-icons/fa";
 
 function Footer({ insetForSidebar = true }) {
     const layoutClass = insetForSidebar
@@ -19,17 +22,38 @@ function Footer({ insetForSidebar = true }) {
                             className="h-auto w-[230px] object-contain"
                         />
                     </Link>
-                    <div className="mt-10 max-w-[430px] text-[15px] leading-[1.7] flex flex-col gap-25">
+                    <div className="mt-10 max-w-[430px] text-[15px] leading-[1.7] flex flex-col gap-3">
                         <div>
-                            <p className="font-bold text-black flex">
+                            <p className="font-bold text-[#175C84] flex">
                                 <FaLocationDot size={20} /><span className="ml-1">Corporate Office & HQ</span>
                             </p>
                             <p className="text-[14px] text-[#607486]">
                                 216, Vardhaman Complex, 10, LBS Marg, Vikhroli West, Mumbai 400083, India
                             </p>
+                            <a href="tel:+912225776007" className='flex gap-1 cursor-pointer mt-2 hover:underline'>
+                                <FaPhoneAlt size={15} className='mt-1' />
+                                <span>
+                                    +91 22 2577 6007
+                                </span>
+                            </a>
+
+                            <a href="tel:+919137724227" className='flex gap-1 cursor-pointer hover:underline'>
+                                <FaPhoneAlt size={15} className='mt-1' />
+                                <span>
+                                    +91 91 3772 4227
+                                </span>
+                            </a>
+
+                            <a href="mailto:info@genotekbio.com" className='flex gap-1 cursor-pointer hover:underline'>
+                                <IoIosMail size={19} className='mt-1' />
+                                <span>
+                                    info@genotekbio.com
+                                </span>
+                            </a>
                         </div>
+
                         <div>
-                            <p className="font-bold text-black flex">
+                            <p className="font-bold text-[#175C84] flex">
                                 <FaLocationDot size={20} /><span className="ml-1">Research & Development Centre</span>
                             </p>
                             <p className="text-[14px] text-[#607486]">
@@ -40,21 +64,21 @@ function Footer({ insetForSidebar = true }) {
                 </div>
 
                 <div>
-                    <div className="overflow-hidden rounded-[8px] flex flex-col gap-10 mt-18">
+                    <div className="overflow-hidden rounded-[8px] flex flex-col gap-7 mt-18">
                         <div className='border border-[#bdd4e2]'>
                             <iframe
                                 title="Genotek Biochem map"
-                                src="https://www.google.com/maps?q=216%2C%20Vardhaman%20Complex%2C%2010%2C%20LBS%20Marg%2C%20Vikhroli%20West%2C%20Mumbai%20400083%2C%20India&output=embed"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15236.002410320687!2d72.9055664871582!3d19.1193852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7f070f7528b%3A0x15f864cbd0060ec!2sGenotek%20Biochem!5e1!3m2!1sen!2sus!4v1777899859246!5m2!1sen!2sus"
                                 className="h-[150px] w-full border-0"
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
                             />
                         </div>
-                        
+
                         <div className='border border-[#bdd4e2]'>
                             <iframe
                                 title="Genotek Biochem map"
-                                src="https://maps.google.com/maps?q=18.501485,73.918952&z=15&output=embed"
+                                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d61169.78391285967!2d73.920251!3d18.497335!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c100117bbee9%3A0x11a723ea6939f83d!2sGenotek%20Biochem%20Research%20Centre!5e1!3m2!1sen!2sin!4v1777899961418!5m2!1sen!2sin"
                                 className="h-[150px] w-full border-0"
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
@@ -66,7 +90,7 @@ function Footer({ insetForSidebar = true }) {
                 <div>
                     <h2 className="text-[16px] font-semibold text-[#214f86] mt-18">Quick Links</h2>
                     <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 text-[15px]">
-                        {navItems.map((item) => (
+                        {navItems.filter((item) => item.label !== 'About us').map((item) => (
                             item.href ? (
                                 <NavLink
                                     key={item.label}
@@ -80,6 +104,17 @@ function Footer({ insetForSidebar = true }) {
                             )
                         ))}
                     </div>
+                    <h2 className="text-[16px] font-semibold text-[#214f86] mt-18">
+                        <a
+                            href="https://www.linkedin.com/company/genotek-biochem/"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="flex items-center gap-2 transition-colors duration-200 hover:text-[#6a9ab1]"
+                        >
+                            <FaLinkedin className="text-[26px] text-[#6a9ab1]" />
+                            <span>Follow us</span>
+                        </a>
+                    </h2>
                 </div>
             </div>
 

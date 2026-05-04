@@ -1,14 +1,24 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { FiSend } from 'react-icons/fi'
+import { Link } from 'react-router-dom'
 import Navabar from './components/Navabar'
 import Sidebar from './components/Sidebar'
-import slide1 from '../assets/hero/slide1.jpg'
-import slide2 from '../assets/hero/slide2.png'
-import slide3 from '../assets/hero/slide3.png'
+import slide1 from '../assets/hero/slide1.jpeg'
+import slide2 from '../assets/hero/slide2.jpg'
+import slide3 from '../assets/hero/slide3.jpeg'
 import slide4 from '../assets/hero/slide4.png'
 import slide5 from '../assets/hero/slide5.png'
+import heroSidebar1 from '../assets/heroSidebars/1.jpeg'
+import heroSidebar2 from '../assets/heroSidebars/2.jpeg'
+import heroSidebar3 from '../assets/heroSidebars/3.png'
 import Footer from './components/Footer'
+
+const heroSidebarItems = [
+    { image: heroSidebar1, label: 'Our Infrastructure', href: '/about/infra' },
+    { image: heroSidebar2, label: 'Our Services', href: '/services' },
+    { image: heroSidebar3, label: 'Our HPLC Columns', href: '/products' },
+]
 
 const slides = [
     {
@@ -47,35 +57,56 @@ const slides = [
     },
     {
         id: 'outro',
-        image: slide1,
+        image: slide5,
         variant: 'special',
         title: 'Excited to Partner with You!',
         subtitle: 'Precision Chemistry | Process Excellence | Scalable Manufacturing',
     },
 ]
 
+const specialSubtitleDelay = 5300
+const specialSubtitleStepDelay = 520
+const specialSubtitleCompleteDelay = specialSubtitleDelay / 1000 + specialSubtitleStepDelay / 1000 * 4
+const specialRightBraceDelay = specialSubtitleCompleteDelay + 0.65
+const firstSlideGlowDelay = specialRightBraceDelay + 1.1
+
 const slideVariants = {
     enter: {
         opacity: 0,
-        scale: 1.03,
-        filter: 'blur(4px)',
+        filter: 'brightness(1) saturate(1)',
     },
-    center: {
+    center: ({ shouldGlow }) => ({
         opacity: 1,
-        scale: 1,
-        filter: 'blur(0px)',
+        filter: shouldGlow
+            ? [
+                  'brightness(1) saturate(1)',
+                  'brightness(1.14) saturate(1.12)',
+                  'brightness(1.06) saturate(1.05)',
+              ]
+            : 'brightness(1) saturate(1)',
         transition: {
-            duration: 1.45,
-            ease: [0.16, 1, 0.3, 1],
+            opacity: {
+                duration: 1.6,
+                ease: [0.4, 0, 0.2, 1],
+            },
+            filter: shouldGlow
+                ? {
+                      duration: 1.4,
+                      delay: firstSlideGlowDelay,
+                      times: [0, 0.48, 1],
+                      ease: [0.22, 1, 0.36, 1],
+                  }
+                : {
+                      duration: 0.01,
+                  },
         },
-    },
+    }),
     exit: {
         opacity: 0,
-        scale: 1.01,
-        filter: 'blur(3px)',
+        filter: 'brightness(1) saturate(1)',
         transition: {
-            duration: 1.15,
-            ease: [0.45, 0, 0.2, 1],
+            duration: 1.6,
+            ease: [0.4, 0, 0.2, 1],
         },
     },
 }
@@ -83,20 +114,20 @@ const slideVariants = {
 const captionVariants = {
     enter: {
         opacity: 0,
-        scaleX: 0,
+        clipPath: 'polygon(0 0, 0 0, 0 68%, 0 100%, 0 100%)',
     },
     center: {
         opacity: 1,
-        scaleX: 1,
+        clipPath: 'polygon(0 0, 100% 0, 100% 68%, 95% 100%, 0 100%)',
         transition: {
-            duration: 0.75,
-            delay: 0.25,
+            duration: 0.85,
+            delay: 1.65,
             ease: [0.16, 1, 0.3, 1],
         },
     },
     exit: {
         opacity: 0,
-        scaleX: 0,
+        clipPath: 'polygon(0 0, 0 0, 0 68%, 0 100%, 0 100%)',
         transition: {
             duration: 0.35,
             ease: [0.4, 0, 0.2, 1],
@@ -199,47 +230,53 @@ const specialTitleVariants = {
     },
 }
 
-function TypewriterText({ text, delay = 0, speed = 36 }) {
-    const [displayedText, setDisplayedText] = useState('')
-    const [isTyping, setIsTyping] = useState(false)
+function SequentialPhraseText({ text, delay = 0, stepDelay = 520 }) {
+    const parts = text.split('|').map((part) => part.trim())
+    const sequence = parts.flatMap((part, index) => (index === 0 ? [part] : ['|', part]))
+    const [visibleCount, setVisibleCount] = useState(0)
 
     useEffect(() => {
-        let intervalId
+        const timers = []
+
+        setVisibleCount(0)
 
         const timeoutId = window.setTimeout(() => {
-            let currentIndex = 0
+            setVisibleCount(1)
 
-            setDisplayedText('')
-            setIsTyping(true)
-
-            intervalId = window.setInterval(() => {
-                currentIndex += 1
-                setDisplayedText(text.slice(0, currentIndex))
-
-                if (currentIndex >= text.length) {
-                    window.clearInterval(intervalId)
-                    setIsTyping(false)
-                }
-            }, speed)
+            sequence.slice(1).forEach((_, index) => {
+                timers.push(
+                    window.setTimeout(() => {
+                        setVisibleCount(index + 2)
+                    }, (index + 1) * stepDelay)
+                )
+            })
         }, delay)
 
         return () => {
             window.clearTimeout(timeoutId)
-            window.clearInterval(intervalId)
+            timers.forEach((timer) => window.clearTimeout(timer))
         }
-    }, [delay, speed, text])
+    }, [delay, sequence.length, stepDelay, text])
 
     return (
-        <span className="relative inline-block">
-            <span className="invisible">{text}</span>
-            <span className="absolute inset-0">
-                {displayedText}
-                <span
-                    className={`ml-[2px] inline-block h-[0.9em] w-[2px] translate-y-[0.12em] bg-white ${
-                        isTyping ? 'opacity-100' : 'opacity-0'
-                    }`}
-                />
-            </span>
+        <span className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+            {sequence.map((part, index) => (
+                <motion.span
+                    key={`${part}-${index}`}
+                    className="inline-block"
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{
+                        opacity: index < visibleCount ? 1 : 0,
+                        y: index < visibleCount ? 0 : 6,
+                    }}
+                    transition={{
+                        duration: 0.35,
+                        ease: [0.22, 1, 0.36, 1],
+                    }}
+                >
+                    {part}
+                </motion.span>
+            ))}
         </span>
     )
 }
@@ -252,8 +289,9 @@ function Home() {
 
     const currentSlide = slides[activeSlide]
     const isSpecialSlide = currentSlide.variant === 'special'
-    const braceDistance = isMobile ? 450 : 800
+    const braceDistance = isMobile ? 450 : 830
     const leftBraceDistance = braceDistance + (isMobile ? 35 : 100)
+    const rightBraceDistance = braceDistance + (isMobile ? 450 : 830)
     const firstSlideLeftBraceVariants = {
         enter: {
             x: -leftBraceDistance,
@@ -282,19 +320,19 @@ function Home() {
     }
     const firstSlideRightBraceVariants = {
         enter: {
-            x: braceDistance,
+            x: rightBraceDistance,
             y: isMobile ? 18 : 50,
             opacity: 0,
             clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
         },
         center: {
-            x: braceDistance,
+            x: rightBraceDistance,
             y: isMobile ? 18 : 50,
             opacity: 1,
             clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
             transition: {
                 duration: 1.1,
-                delay: 7.05,
+                delay: specialRightBraceDelay,
                 ease: [0.16, 1, 0.3, 1],
             },
         },
@@ -308,7 +346,7 @@ function Home() {
     }
     const bluePath = isMobile
         ? "M -200 160 L 900 160 C 940 196 970 262 970 330 C 970 386 950 452 930 480 L -200 480 C -260 454 -300 398 -305 338 C -310 272 -270 196 -230 166 C -215 162 -205 160 -200 160 Z"
-        : "M -560 160 L 1295 169 C 1337 199 1363 242 1357 315 C 1342 375 1307 426 1257 461 L -514 463 C -577 402 -592 377 -610 319 C -621 254 -610 209 -576 160 Z"
+        : "M -560 160 L 1257 160 C 1307 195 1342 246 1357 306 C 1363 379 1337 422 1295 452 L -514 463 C -577 402 -592 377 -610 319 C -621 254 -610 209 -576 160 Z"
 
     useEffect(() => {
         const handleResize = () => {
@@ -363,8 +401,8 @@ function Home() {
         <div className="min-h-screen bg-white text-slate-900">
             <Navabar />
 
-            <main className="w-full px-4 md:px-5 lg:px-0 lg:pr-10 xl:pr-15">
-                <section className="mb-5 flex flex-col pt-3 lg:flex-row lg:items-start">
+            <main className="w-full px-4 pb-6 md:px-5 lg:px-0 lg:pr-10 xl:pr-15">
+                <section className="mb-5 flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
                     <Sidebar />
 
                     <div className="relative z-0 flex-1">
@@ -377,6 +415,7 @@ function Home() {
                                         alt={`Genotek plant view ${activeSlide + 1}`}
                                         className="absolute inset-0 h-full w-full transform-gpu object-cover will-change-[opacity,transform,filter]"
                                         variants={slideVariants}
+                                        custom={{ shouldGlow: activeSlide === 0 }}
                                         initial="enter"
                                         animate={imagePhase}
                                         exit="exit"
@@ -441,7 +480,7 @@ function Home() {
                                                     />
 
                                                     <motion.path
-                                                        d="M 288 470 C 446 392 436 214 430 179 C 421 168 433 153 445 170 C 462 235 432 427 294 481 C 282 484 276 479 282 472 Z"
+                                                        d="M -450 166 C -347 274 -379 445 -473 500 C -486 509 -476 511 -469 508 C -361 430 -342 278 -442 161 C -450 154 -454 157 -453 161 Z"
                                                         fill="none"
                                                         stroke="#2b5b91"
                                                         strokeWidth="20"
@@ -455,7 +494,7 @@ function Home() {
                                                     />
 
                                                     <motion.path
-                                                        d="M 288 470 C 446 392 436 214 430 179 C 421 168 433 153 445 170 C 462 235 432 427 294 481 C 282 484 276 479 282 472 Z"
+                                                        d="M -450 166 C -347 274 -379 445 -473 500 C -486 509 -476 511 -469 508 C -361 430 -342 278 -442 161 C -450 154 -454 157 -453 161 Z"
                                                         fill="white"
                                                         stroke="none"
                                                         variants={firstSlideRightBraceVariants}
@@ -485,11 +524,11 @@ function Home() {
                                                         </motion.span>
                                                     </p>
                                                     <p className="mt-2 px-10 text-[10px] leading-[1.35] sm:text-[12px] md:text-[16px]">
-                                                        <TypewriterText
+                                                        <SequentialPhraseText
                                                             key={`subtitle-${currentSlide.id}`}
                                                             text={currentSlide.subtitle}
-                                                            delay={5300}
-                                                            speed={24}
+                                                            delay={specialSubtitleDelay}
+                                                            stepDelay={specialSubtitleStepDelay}
                                                         />
                                                     </p>
                                                 </motion.div>
@@ -498,20 +537,16 @@ function Home() {
                                     ) : currentSlide.lines ? (
                                         <motion.div
                                             key={`caption-${activeSlide}`}
-                                            className="absolute bottom-[22px] left-0 z-[4] max-w-[92%] bg-[#2b4f7c] px-6 py-3 pr-10 text-left text-white shadow-lg sm:bottom-[28px] sm:px-10 sm:pr-16 md:bottom-[60px] md:left-0 md:max-w-none md:px-12 md:pr-24"
+                                            className="absolute bottom-[24px] left-0 z-[4] max-w-[82%] bg-[#2b4f7c] px-5 py-2 pr-8 text-left text-white shadow-lg sm:bottom-[30px] sm:max-w-[74%] sm:px-7 sm:pr-11 md:bottom-[60px] md:left-0 md:max-w-[68%] md:px-9 md:pr-14"
                                             variants={captionVariants}
                                             initial="enter"
                                             animate="center"
                                             exit="exit"
-                                            style={{
-                                                clipPath: 'polygon(0 0, 100% 0, 100% 68%, 95% 100%, 0 100%)',
-                                                transformOrigin: 'left center',
-                                            }}
                                         >
                                             {currentSlide?.lines?.map(([prefix, highlight], index) => (
                                                 <p
                                                     key={`${prefix}-${highlight}`}
-                                                    className={`${index === 0 ? '' : 'ml-8 mt-2 sm:ml-14 md:ml-20 md:mt-3'} text-[18px] leading-[1.3] font-normal sm:text-[24px] md:text-[30px]`}
+                                                    className={`${index === 0 ? '' : 'ml-6 mt-1.5 sm:ml-10 md:ml-14 md:mt-2'} text-[16px] leading-[1.25] font-normal sm:text-[20px] md:text-[24px]`}
                                                 >
                                                     {prefix}
                                                     <span className="font-semibold">{highlight}</span>
@@ -523,11 +558,22 @@ function Home() {
                             </div>
 
                             <div className="relative z-[1] flex w-full shrink-0 flex-col gap-3 sm:gap-4 lg:-ml-[70px] lg:w-[calc(24%+70px)] lg:gap-[12px]">
-                                {[0, 1, 2].map((item) => (
-                                    <div
-                                        key={item}
-                                        className="h-[92px] bg-[#d7d4cb] sm:h-[110px] lg:h-auto lg:flex-1"
-                                    />
+                                {heroSidebarItems.map(({ image, label, href }, index) => (
+                                    <Link
+                                        key={image}
+                                        to={href}
+                                        className="group relative h-[92px] cursor-pointer overflow-hidden bg-[#d7d4cb] sm:h-[110px] lg:h-auto lg:flex-1"
+                                    >
+                                        <img
+                                            src={image}
+                                            alt={`Genotek sidebar highlight ${index + 1}`}
+                                            className="h-full w-full object-cover"
+                                        />
+                                        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 to-transparent transition-opacity duration-500 ease-out group-hover:opacity-35" />
+                                        <p className="pointer-events-none absolute inset-x-0 bottom-2 px-3 text-center text-[15px] font-bold leading-tight bg-[#122E64] text-white transition-all duration-500 ease-out group-hover:bottom-1/2 group-hover:translate-y-1/2 group-hover:text-[18px] sm:bottom-2.5 sm:text-[15px] sm:group-hover:text-[20px] lg:text-[16px] lg:group-hover:text-[22px]">
+                                            {label}
+                                        </p>
+                                    </Link>
                                 ))}
                             </div>
 
@@ -545,65 +591,6 @@ function Home() {
                                 </svg>
                             </div>
                         </div>
-{/* 
-                        <section className="mt-12 border-t border-[#d8e5ec] pt-10">
-                            <div className="mx-auto max-w-[820px]">
-                                <div className="mb-6 text-center">
-                                    <p className="text-[14px] font-semibold uppercase tracking-[0.18em] text-[#5a92b6]">
-                                        Contact Us
-                                    </p>
-                                    <h2 className="mt-2 text-[30px] font-semibold leading-tight text-[#214f86] sm:text-[36px]">
-                                        Let's start a conversation.
-                                    </h2>
-                                    <p className="mx-auto mt-3 max-w-[620px] text-[16px] leading-[1.65] text-[#52677a]">
-                                        Share your requirement and our team will get back to you with the right support for your chemistry, process, or manufacturing needs.
-                                    </p>
-                                </div>
-
-                                <form className="grid gap-4 rounded-[8px] border border-[#d8e5ec] bg-white p-5 shadow-[0_16px_36px_rgba(33,79,134,0.08)] sm:p-6">
-                                    <div className="grid gap-4 sm:grid-cols-2">
-                                        <label className="block">
-                                            <span className="mb-1.5 block text-[14px] font-medium text-[#214f86]">Name</span>
-                                            <input
-                                                type="text"
-                                                className="h-[46px] w-full rounded-[6px] border border-[#bdd4e2] bg-white px-4 text-[15px] text-[#214f86] outline-none transition focus:border-[#5a92b6] focus:ring-2 focus:ring-[#d7e8f1]"
-                                            />
-                                        </label>
-                                        <label className="block">
-                                            <span className="mb-1.5 block text-[14px] font-medium text-[#214f86]">Email</span>
-                                            <input
-                                                type="email"
-                                                className="h-[46px] w-full rounded-[6px] border border-[#bdd4e2] bg-white px-4 text-[15px] text-[#214f86] outline-none transition focus:border-[#5a92b6] focus:ring-2 focus:ring-[#d7e8f1]"
-                                            />
-                                        </label>
-                                    </div>
-
-                                    <label className="block">
-                                        <span className="mb-1.5 block text-[14px] font-medium text-[#214f86]">Subject</span>
-                                        <input
-                                            type="text"
-                                            className="h-[46px] w-full rounded-[6px] border border-[#bdd4e2] bg-white px-4 text-[15px] text-[#214f86] outline-none transition focus:border-[#5a92b6] focus:ring-2 focus:ring-[#d7e8f1]"
-                                        />
-                                    </label>
-
-                                    <label className="block">
-                                        <span className="mb-1.5 block text-[14px] font-medium text-[#214f86]">Message</span>
-                                        <textarea
-                                            rows="5"
-                                            className="w-full resize-none rounded-[6px] border border-[#bdd4e2] bg-white px-4 py-3 text-[15px] text-[#214f86] outline-none transition focus:border-[#5a92b6] focus:ring-2 focus:ring-[#d7e8f1]"
-                                        />
-                                    </label>
-
-                                    <button
-                                        type="button"
-                                        className="mx-auto mt-1 inline-flex h-[48px] w-fit items-center gap-2 rounded-[6px] bg-[#214f86] px-6 text-[15px] font-semibold text-white transition hover:bg-[#173d69] cursor-pointer"
-                                    >
-                                        <FiSend className="text-[18px]" />
-                                        Submit Enquiry
-                                    </button>
-                                </form>
-                            </div>
-                        </section>  */}
                         <Footer insetForSidebar={false} />
                     </div>
                 </section>

@@ -160,8 +160,8 @@ function AboutStory() {
                                 <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
                             </div>
                         </div>
+                        <Footer insetForSidebar={false} />
                     </div>
-                    
                 </section>
             </main>
         </div>

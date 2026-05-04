@@ -113,7 +113,7 @@ function Navabar() {
                         <span>info@genotekbio.com</span>
                     </a>
                     <a
-                        href="https://www.linkedin.com"
+                        href="https://www.linkedin.com/company/genotek-biochem/"
                         target="_blank"
                         rel="noreferrer"
                         className="flex items-center gap-2 transition-colors duration-200 hover:text-[#6a9ab1]"

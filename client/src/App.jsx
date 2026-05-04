@@ -1,4 +1,5 @@
-import { Route, Routes } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Route, Routes, useLocation } from 'react-router-dom'
 import AboutStory from './pages/AboutStory'
 import AboutTeam from './pages/AboutTeam'
 import WhyGenotek from './pages/WhyGenotek'
@@ -9,9 +10,20 @@ import InfoPage from './pages/InfoPage'
 import watermark from './assets/watermark.png'
 import GetInTouch from './pages/GetInTouch'
 
+function ScrollToTop() {
+    const { pathname } = useLocation()
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [pathname])
+
+    return null
+}
+
 function App() {
   return (
     <>
+      <ScrollToTop />
       {/* <img
         src={watermark}
         alt=""
