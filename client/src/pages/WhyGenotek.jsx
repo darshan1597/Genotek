@@ -35,7 +35,7 @@ function WhyGenotek() {
                                     </p>
 
                                     <p className="mt-1 ml-[40px] text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                        Genotek
+                                        Genotek?
                                     </p>
                                 </div>
                             </div>
