@@ -22,13 +22,13 @@ function Footer({ insetForSidebar = true }) {
                             className="h-auto w-[230px] object-contain"
                         />
                     </Link>
-                    <div className="mt-10 max-w-[430px] text-[15px] leading-[1.7] flex flex-col gap-3">
+                    <div className="mt-5 max-w-[430px] text-[15px] leading-[1.7] flex flex-col gap-6">
                         <div>
                             <p className="font-bold text-[#175C84] flex">
                                 <FaLocationDot size={20} className='text-[#01A658]' /><span className="ml-1">Corporate Office & HQ</span>
                             </p>
                             <p className="text-[14px] text-[#607486] ml-6">
-                                216, Vardhaman Complex, 10, LBS Marg, Vikhroli West, Mumbai 400083, India
+                                216, Vardhaman Complex, 10, LBS Marg, Vikhroli West, Mumbai 400 083, India
                             </p>
                             <a href="tel:+912225776007" className='flex gap-1 cursor-pointer mt-2 hover:underline'>
                                 <FaPhoneAlt size={15} className='text-[#01A658] mt-1' />
@@ -57,14 +57,14 @@ function Footer({ insetForSidebar = true }) {
                                 <FaLocationDot size={20} className='text-[#01A658]' /><span className="ml-1">Research & Development Centre</span>
                             </p>
                             <p className="text-[14px] text-[#607486] ml-6">
-                                Sub Plot 12, Plot 40, Ramtekdi Industrial Area, TPS II, Hadapsar, Pune 411013, MH, INDIA.
+                                Sub Plot 12, Plot 40, Ramtekdi Industrial Area, TPS II, Hadapsar, Pune 411 013, INDIA.
                             </p>
                         </div>
                     </div>
                 </div>
 
                 <div>
-                    <div className="overflow-hidden rounded-[8px] flex flex-col gap-7 mt-18">
+                    <div className="overflow-hidden rounded-[8px] flex flex-col gap-7 mt-22">
                         <div className='border border-[#bdd4e2]'>
                             <iframe
                                 title="Genotek Biochem map"
