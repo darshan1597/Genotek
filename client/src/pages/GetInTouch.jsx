@@ -27,28 +27,49 @@ function GetInTouch() {
                                 </p>
                             </div>
 
-                            <form className="grid gap-4 rounded-[8px] border border-[#d8e5ec] bg-white p-5 shadow-[0_16px_36px_rgba(33,79,134,0.08)] sm:p-6">
+                            <form
+                                action="https://formsubmit.co/info@genotekbio.com"
+                                method="POST"
+                                className="grid gap-4 rounded-[8px] border border-[#d8e5ec] bg-white p-5 shadow-[0_16px_36px_rgba(33,79,134,0.08)] sm:p-6"
+                            >
+                                <input type="hidden" name="_subject" value="New Genotek website enquiry" />
+                                <input type="hidden" name="_template" value="table" />
+                                <input type="hidden" name="_captcha" value="false" />
                                     <div className="grid gap-4 sm:grid-cols-2">
                                         <label className="block">
                                             <span className="mb-1.5 block text-[14px] font-medium text-[#214f86]">Name</span>
                                             <input
                                                 type="text"
+                                                name="Name"
+                                                required
                                                 className="h-[46px] w-full rounded-[6px] border border-[#bdd4e2] bg-white px-4 text-[15px] text-[#214f86] outline-none transition focus:border-[#5a92b6] focus:ring-2 focus:ring-[#d7e8f1]"
                                             />
                                         </label>
                                         <label className="block">
-                                            <span className="mb-1.5 block text-[14px] font-medium text-[#214f86]">Email</span>
+                                            <span className="mb-1.5 block text-[14px] font-medium text-[#214f86]">Organization</span>
                                             <input
-                                                type="email"
+                                                type="text"
+                                                name="Organization"
                                                 className="h-[46px] w-full rounded-[6px] border border-[#bdd4e2] bg-white px-4 text-[15px] text-[#214f86] outline-none transition focus:border-[#5a92b6] focus:ring-2 focus:ring-[#d7e8f1]"
                                             />
                                         </label>
                                     </div>
 
                                 <label className="block">
+                                    <span className="mb-1.5 block text-[14px] font-medium text-[#214f86]">Email</span>
+                                    <input
+                                         type="email"
+                                        name="Email"
+                                        required
+                                        className="h-[46px] w-full rounded-[6px] border border-[#bdd4e2] bg-white px-4 text-[15px] text-[#214f86] outline-none transition focus:border-[#5a92b6] focus:ring-2 focus:ring-[#d7e8f1]"
+                                    />
+                                </label>
+
+                                <label className="block">
                                     <span className="mb-1.5 block text-[14px] font-medium text-[#214f86]">Subject</span>
                                     <input
                                          type="text"
+                                        name="Subject"
                                         className="h-[46px] w-full rounded-[6px] border border-[#bdd4e2] bg-white px-4 text-[15px] text-[#214f86] outline-none transition focus:border-[#5a92b6] focus:ring-2 focus:ring-[#d7e8f1]"
                                     />
                                 </label>
@@ -57,16 +78,18 @@ function GetInTouch() {
                                     <span className="mb-1.5 block text-[14px] font-medium text-[#214f86]">Message</span>
                                     <textarea
                                         rows="5"
+                                        name="Message"
+                                        required
                                         className="w-full resize-none rounded-[6px] border border-[#bdd4e2] bg-white px-4 py-3 text-[15px] text-[#214f86] outline-none transition focus:border-[#5a92b6] focus:ring-2 focus:ring-[#d7e8f1]"
                                     />
                                 </label>
 
                                 <button
-                                    type="button"
+                                    type="submit"
                                     className="mx-auto mt-1 inline-flex h-[48px] w-fit items-center gap-2 rounded-[6px] bg-[#214f86] px-6 text-[15px] font-semibold text-white transition hover:bg-[#173d69] cursor-pointer"
                                 >
                                     <FiSend className="text-[18px]" />
-                                    Submit Enquiry
+                                    Submit
                                 </button>
                             </form>
                         </div>

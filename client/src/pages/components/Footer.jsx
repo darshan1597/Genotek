@@ -13,7 +13,8 @@ function Footer({ insetForSidebar = true }) {
     const locations = [
         {
             title: 'Corporate Office & HQ',
-            address: '216, Vardhaman Complex, 10, LBS Marg, Vikhroli West, Mumbai 400 083, India',
+            address: '216, Vardhaman Complex, 10, LBS Marg, Vikhroli West',
+            capital: 'Mumbai - 400 083, India',
             mapTitle: 'Genotek Biochem corporate office map',
             mapSrc:
                 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15078.930238770154!2d72.924621!3d19.119385000000005!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7f070f7528b%3A0x15f864cbd0060ec!2sGenotek%20Biochem!5e0!3m2!1sen!2sin!4v1777985610967!5m2!1sen!2sin',
@@ -36,7 +37,8 @@ function Footer({ insetForSidebar = true }) {
         },
         {
             title: 'Research & Development Centre',
-            address: 'Sub Plot 12, Plot 40, Ramtekdi Industrial Area, TPS II, Hadapsar, Pune 411 013, INDIA.',
+            address: 'Sub Plot 12, Plot 40, Ramtekdi Industrial Area, TPS II, Hadapsar',
+            capital: 'Pune - 411 013, India',
             mapTitle: 'Genotek Biochem research centre map',
             mapSrc:
                 'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d35997.17891691088!2d73.9165347770946!3d18.495553105931165!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c100117bbee9%3A0x11a723ea6939f83d!2sGenotek%20Biochem%20Research%20Centre!5e0!3m2!1sen!2sin!4v1777985817734!5m2!1sen!2sin',
@@ -68,6 +70,9 @@ function Footer({ insetForSidebar = true }) {
                                     </p>
                                     <p className="ml-6 text-[14px] text-[#607486]">
                                         {location.address}
+                                    </p>
+                                    <p className="ml-6 text-[14px] text-[#607486]">
+                                        {location.capital}
                                     </p>
                                     {location.contacts && (
                                         <div className="ml-0 mt-2 flex flex-col gap-0.5 text-[14px] text-[#42556c] sm:text-[15px]">
