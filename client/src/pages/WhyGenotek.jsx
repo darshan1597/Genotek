@@ -41,8 +41,8 @@ function WhyGenotek() {
                             </div>
                         </div>
                         {/* content goes here */}
-                        <section className="text-black  text-[20px] leading-[1.75] mt-10">
-                            <p className="mb-4">
+                        <section className="text-black  text-[20px] leading-[1.75] mt-10 max-w-[1320px] px-1 pb-8 pt-5 sm:text-[22px] md:pb-10 md:text-[24px] md:leading-[1.6]">
+                            <p className="mb-4 text-black/80">
                                 At{" "}
                                 <span className="font-semibold">
                                     Genotek Biochem Private Limited
@@ -144,7 +144,7 @@ function WhyGenotek() {
                             </ul>
 
                             <p className="mt-6 text-[25px] italic text-black/80">
-                                Always within Reach, from Experiment to Outcome
+                                Always within Reach, from Experiment to Outcome.
                             </p>
                         </section>
                         <Footer insetForSidebar={false} />
