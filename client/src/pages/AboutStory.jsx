@@ -49,7 +49,7 @@ function AboutStory() {
                             </p>
                         </div>
 
-                        <div className="px-1 pb-10 pt-4 sm:pb-12 md:pb-14 md:pt-10">
+                        <div className="px-1 ">
                             <div className="grid items-start gap-6 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10">
                                 <div 
                                     className="overflow-hidden"
@@ -76,7 +76,7 @@ function AboutStory() {
                                 </p>
 
                                 {/* Bullet Points */}
-                                <ul className="mt-4 list-disc pl-6 space-y-2 text-[16px] text-[#42556c] sm:text-[18px]">
+                                <ul className="mt-4 list-disc pl-12 space-y-2 text-[16px] text-[#42556c] sm:text-[18px]">
                                     <li>Science-driven company rooted in chemistry excellence</li>
                                     <li>Strong technical expertise with scalable infrastructure</li>
                                     <li>Agile, responsive, and client-focused approach</li>
@@ -85,7 +85,7 @@ function AboutStory() {
                                 </ul>
 
                                 {/* Tagline */}
-                                <p className="mt-5 italic text-[15px] text-[#42556c] sm:text-[17px]">
+                                <p className="mt-5 italic text-[20px] text-[#42556c] ">
                                     Big enough to deliver, small enough to care
                                 </p>
 
@@ -120,7 +120,7 @@ function AboutStory() {
                                     solutions across industries including pharmaceuticals, agrochemicals, and material sciences.
                                     </p>
 
-                                    <ul className="mt-5 list-disc space-y-2 pl-5 text-[16px] text-[#42556c] sm:text-[17px] md:text-[18px]">
+                                    <ul className="mt-5 list-disc space-y-2 pl-12 text-[16px] text-[#42556c] sm:text-[17px] md:text-[18px]">
                                     <li>Custom synthesis, process development & scale-up</li>
                                     <li>Analytical and method development capabilities</li>
                                     <li>FTE/FFS-based research services</li>
@@ -130,7 +130,7 @@ function AboutStory() {
                                     <li>Collaborative, flexible engagement models with fast turnaround</li>
                                     </ul>
 
-                                    <p className="mt-4 italic text-[15px] text-[#6b7c8f]">
+                                    <p className="mt-4 italic text-[20px] text-[#6b7c8f]">
                                     Driven by Innovation, defined by quality
                                     </p>
 
@@ -153,13 +153,7 @@ function AboutStory() {
                                 </div>
                                 </div>
                         
-
-                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-16 md:w-[90%]">
-                                <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
-                                <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
-                                <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
                             </div>
-                        </div>
                         <Footer insetForSidebar={false} />
                     </div>
                 </section>

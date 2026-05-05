@@ -34,8 +34,8 @@ function GenotekInfra() {
                                         The Genotek
                                     </p>
 
-                                    <p className="mt-1 ml-[120px] text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                        Story.
+                                    <p className="mt-1 ml-[120px] text-[20px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
+                                        Infrastructure.
                                     </p>
                                 </div>
                             </div>

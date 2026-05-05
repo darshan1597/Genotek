@@ -70,7 +70,7 @@ function Services() {
                                 evolving requirements.
                             </p>
                         </div>
-                        <div className="px-4 pb-12 pt-8">
+                        <div className="px-4  pt-8">
                             {/* 4 IMAGES */}
                             <div className="grid grid-cols-1 gap-6 md:grid-cols-4 md:gap-10">
                                 {[
