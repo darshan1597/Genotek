@@ -31,11 +31,11 @@ function WhyGenotek() {
                                     }}
                                 >
                                     <p className="text-[22px] leading-[1.05] font-normal sm:text-[28px] md:text-[35px]">
-                                        The Genotek
+                                        Why
                                     </p>
 
-                                    <p className="mt-1 ml-[120px] text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                        Story.
+                                    <p className="mt-1 ml-[40px] text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
+                                        Genotek
                                     </p>
                                 </div>
                             </div>
