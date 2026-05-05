@@ -512,7 +512,7 @@ function Home() {
                                                 </svg>
 
                                                 <motion.div
-                                                    className="absolute inset-0 flex flex-col items-center justify-center px-[18%] text-center text-white"
+                                                    className="absolute inset-0 flex flex-col pt-8 px-[18%] text-center text-white"
                                                     variants={firstSlideTextVariants}
                                                     initial="enter"
                                                     animate={specialPhase === 'closing' ? 'exit' : 'center'}
@@ -575,7 +575,7 @@ function Home() {
                                             className="h-full w-full object-cover"
                                         />
                                         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 to-transparent transition-opacity duration-500 ease-out group-hover:opacity-35" />
-                                        <p className="pointer-events-none absolute inset-x-0 bottom-2 px-3 text-center text-[15px] font-bold leading-tight bg-[#122E64] text-white transition-all duration-500 ease-out group-hover:bottom-1/2 group-hover:translate-y-1/2 group-hover:text-[18px] sm:bottom-2.5 sm:text-[15px] sm:group-hover:text-[20px] lg:text-[16px] lg:group-hover:text-[22px]">
+                                        <p className="pointer-events-none absolute inset-x-0 bottom-2 px-3 py-1.5 text-center text-[15px] font-bold leading-tight bg-[#122E64] text-white transition-all duration-500 ease-out group-hover:bottom-1/4 group-hover:translate-y-1/4 group-hover:text-[18px] sm:bottom-2.5 sm:text-[15px] sm:group-hover:text-[20px] lg:text-[16px] lg:group-hover:text-[22px]">
                                             {label}
                                         </p>
                                     </Link>

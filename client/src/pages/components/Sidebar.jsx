@@ -15,7 +15,7 @@ function Sidebar() {
                             <button
                                 type="button"
                                 aria-expanded={isAboutRoute}
-                                className={`relative flex h-[58px] w-full cursor-pointer items-center text-right text-[20px] font-normal text-white transition-colors duration-300 ${ isAboutRoute ? 'bg-[#4c7f99]' : 'bg-[#548BA6] hover:bg-[#5d90ae]' }`}
+                                className={`relative flex h-[58px] w-full cursor-pointer items-center text-right text-[20px] font-normal text-white transition-colors duration-300 ${ isAboutRoute ? 'bg-[#2B5B91]' : 'bg-[#548BA6] hover:bg-[#5d90ae]' }`}
                                 style={{
                                     clipPath: 'polygon(0 0, 100% 0, 100% 68%, 95% 100%, 0 100%)',
                                 }}
@@ -36,7 +36,7 @@ function Sidebar() {
                                 to={item.href}
                                 className={({ isActive }) =>
                                 `relative flex h-[58px] w-full cursor-pointer items-center text-right text-[20px] font-normal text-white transition-colors duration-300 ${
-                                    isActive ? 'bg-[#4c7f99]' : 'bg-[#548BA6] hover:bg-[#5d90ae]'
+                                    isActive ? 'bg-[#2B5B91]' : 'bg-[#548BA6] hover:bg-[#5d90ae]'
                                 }`
                                 }
                                 style={{

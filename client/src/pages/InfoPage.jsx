@@ -3,6 +3,7 @@ import Navabar from './components/Navabar'
 import Sidebar from './components/Sidebar'
 import { FaSyringe } from 'react-icons/fa'
 import { GiChemicalDrop, GiMolecule } from 'react-icons/gi'
+import molecule from '../assets/molecule.png'
 
 function InfoPage() {
     return (
@@ -20,7 +21,8 @@ function InfoPage() {
                                 <div className="relative flex h-[116px] w-[116px] items-center justify-center rounded-full border border-[#bdd4e2] bg-white shadow-[0_18px_42px_rgba(33,79,134,0.12)]">
                                     <GiMolecule className="absolute -right-3 top-1 text-[34px] text-[#6a9fba]" />
                                     <GiChemicalDrop className="absolute -left-2 bottom-3 text-[26px] text-[#5a92b6]" />
-                                    <FaSyringe className="-rotate-45 text-[48px] text-[#214f86]" />
+                                    {/* <FaSyringe className="-rotate-45 text-[48px] text-[#214f86]" /> */}
+                                    <img src={molecule} alt="Molecule" width={"80px"} />
                                 </div>
 
                                 <div className="mt-8 h-px w-full max-w-[520px] bg-[#a5becc]" />

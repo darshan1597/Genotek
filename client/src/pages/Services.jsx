@@ -1,11 +1,12 @@
 import { useState } from "react";
 import Navabar from "./components/Navabar";
 import Sidebar from "./components/Sidebar";
-import img1 from "../assets/services/compound-libraries.png";
-import img2 from "../assets/services/process-development.png";
-import img3 from "../assets/services/analytical-development.png";
-import img4 from "../assets/services/purification-isolation.png";
+import img1 from "../assets/services/services1.png";
+import img2 from "../assets/services/services2.png";
+import img3 from "../assets/services/services3.png";
+import img4 from "../assets/services/services4.png";
 import Footer from "./components/Footer";
+import hero from '../assets/aboutStory/hero.jpg'
 
 function Services() {
     const [active, setActive] = useState(null);
@@ -19,6 +20,30 @@ function Services() {
                     <Sidebar />
 
                     <div className="flex-1">
+                      <div className="relative flex flex-col gap-[10px] md:flex-row">
+                          <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[450px]">
+                              <img
+                                  src={hero}
+                                  alt="The Genotek Story"
+                                  className="h-full w-full object-cover"
+                              />
+                    
+                              <div
+                                  className="absolute bottom-[24px] left-0 z-[4] w-[min(92%,320px)] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[38px] sm:w-[min(88%,420px)] sm:px-8 sm:py-3 md:bottom-[64px] md:w-auto md:px-15"
+                                  style={{
+                                      clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)',
+                                  }}
+                              >
+                                  <p className="text-[22px] leading-[1.05] font-normal sm:text-[28px] md:text-[35px]">
+                                  The Genotek
+                                  </p>
+                    
+                                  <p className="mt-1 ml-[120px] text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
+                                  Services.
+                                  </p>
+                              </div>
+                          </div>
+                      </div>
                         <div className="max-w-[1320px] px-1 pb-8 pt-1text-[16px] leading-[1.7] text-black sm:text-[18px] md:pb-10 md:text-[19px]">
                             <h2 className="mb-4 text-[#5a92b6] text-[30px] font-semibold">
                                 Our Services
@@ -98,7 +123,7 @@ function Services() {
                             </div>
 
                             {/* CONTENT */}
-                            <div className="mt-12 max-w-[1000px] mx-auto text-left">
+                            <div className="mt-12 mx-auto text-left">
                                 {/* 1 */}
                                 {active === 1 && (
                                     <div>

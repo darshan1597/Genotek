@@ -25,27 +25,27 @@ function Footer({ insetForSidebar = true }) {
                     <div className="mt-10 max-w-[430px] text-[15px] leading-[1.7] flex flex-col gap-3">
                         <div>
                             <p className="font-bold text-[#175C84] flex">
-                                <FaLocationDot size={20} /><span className="ml-1">Corporate Office & HQ</span>
+                                <FaLocationDot size={20} className='text-[#01A658]' /><span className="ml-1">Corporate Office & HQ</span>
                             </p>
-                            <p className="text-[14px] text-[#607486]">
+                            <p className="text-[14px] text-[#607486] ml-6">
                                 216, Vardhaman Complex, 10, LBS Marg, Vikhroli West, Mumbai 400083, India
                             </p>
                             <a href="tel:+912225776007" className='flex gap-1 cursor-pointer mt-2 hover:underline'>
-                                <FaPhoneAlt size={15} className='mt-1' />
+                                <FaPhoneAlt size={15} className='text-[#01A658] mt-1' />
                                 <span>
                                     +91 22 2577 6007
                                 </span>
                             </a>
 
                             <a href="tel:+919137724227" className='flex gap-1 cursor-pointer hover:underline'>
-                                <FaPhoneAlt size={15} className='mt-1' />
+                                <FaPhoneAlt size={15} className='text-[#01A658] mt-1' />
                                 <span>
                                     +91 91 3772 4227
                                 </span>
                             </a>
 
                             <a href="mailto:info@genotekbio.com" className='flex gap-1 cursor-pointer hover:underline'>
-                                <IoIosMail size={19} className='mt-1' />
+                                <IoIosMail size={19} className='text-[#01A658] mt-1' />
                                 <span>
                                     info@genotekbio.com
                                 </span>
@@ -54,9 +54,9 @@ function Footer({ insetForSidebar = true }) {
 
                         <div>
                             <p className="font-bold text-[#175C84] flex">
-                                <FaLocationDot size={20} /><span className="ml-1">Research & Development Centre</span>
+                                <FaLocationDot size={20} className='text-[#01A658]' /><span className="ml-1">Research & Development Centre</span>
                             </p>
-                            <p className="text-[14px] text-[#607486]">
+                            <p className="text-[14px] text-[#607486] ml-6">
                                 Sub Plot 12, Plot 40, Ramtekdi Industrial Area, TPS II, Hadapsar, Pune 411013, MH, INDIA.
                             </p>
                         </div>
@@ -89,32 +89,36 @@ function Footer({ insetForSidebar = true }) {
                 </div>
                 <div>
                     <h2 className="text-[16px] font-semibold text-[#214f86] mt-18">Quick Links</h2>
-                    <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 text-[15px]">
-                        {navItems.filter((item) => item.label !== 'About us').map((item) => (
-                            item.href ? (
-                                <NavLink
-                                    key={item.label}
-                                    to={item.href}
-                                    className="transition-colors duration-200 hover:text-[#214f86]"
+                    <div className='flex gap-5'>
+                        <div className="mt-4 grid grid-cols-2 gap-x-6 gap-y-2 text-[15px]">
+                            {navItems.filter((item) => item.label !== 'About us').map((item) => (
+                                item.href ? (
+                                    <NavLink
+                                        key={item.label}
+                                        to={item.href}
+                                        className="transition-colors duration-200 hover:text-[#214f86]"
+                                    >
+                                        {item.label}
+                                    </NavLink>
+                                ) : (
+                                    <span key={item.label}>{item.label}</span>
+                                )
+                            ))}
+                        </div>
+                        <div className='mt-3'>
+                            <h2 className="text-[16px] font-semibold text-[#214f86]">
+                                <a
+                                    href="https://www.linkedin.com/company/genotek-biochem/"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="flex items-center gap-2 transition-colors duration-200 hover:text-[#6a9ab1]"
                                 >
-                                    {item.label}
-                                </NavLink>
-                            ) : (
-                                <span key={item.label}>{item.label}</span>
-                            )
-                        ))}
+                                    <FaLinkedin className="text-[26px] text-[#6a9ab1]" />
+                                    <span>Follow us</span>
+                                </a>
+                            </h2>
+                        </div>
                     </div>
-                    <h2 className="text-[16px] font-semibold text-[#214f86] mt-18">
-                        <a
-                            href="https://www.linkedin.com/company/genotek-biochem/"
-                            target="_blank"
-                            rel="noreferrer"
-                            className="flex items-center gap-2 transition-colors duration-200 hover:text-[#6a9ab1]"
-                        >
-                            <FaLinkedin className="text-[26px] text-[#6a9ab1]" />
-                            <span>Follow us</span>
-                        </a>
-                    </h2>
                 </div>
             </div>
 

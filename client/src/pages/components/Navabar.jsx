@@ -93,11 +93,11 @@ function Navabar() {
                 <div className="hidden min-[1117px]:flex">
                     <div className="flex h-[50px] w-[600px] items-center rounded-[8px] border-3 border-[#0f4b8a] bg-white px-1 transition-all duration-200">
 
-                        <FiSearch className="mr-2 text-[35px] text-[#0f4b8a]" />
+                        <FiSearch className="mr-2 text-[32px] text-[#0f4b8a]" />
 
                         <input
                             type="text"
-                            placeholder="Please Enter Cat No., CAS No., Product Name"
+                            // placeholder="Please Enter Cat No., CAS No., Product Name"
                             className="w-full border-none bg-transparent text-[16px] font-normal tracking-[0.1px] text-[#0f4b8a] outline-none placeholder:text-[#bab7b1]"
                         />
 
@@ -174,7 +174,7 @@ function Navabar() {
                                 <input
                                     type="text"
                                     autoFocus
-                                    placeholder="Please Enter Cat No., CAS No., Product Name"
+                                    // placeholder="Please Enter Cat No., CAS No., Product Name"
                                     className="w-full border-none bg-transparent text-[15px] text-[#7e8590] outline-none placeholder:text-[#bab7b1]"
                                 />
                             </div>
