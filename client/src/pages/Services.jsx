@@ -35,10 +35,10 @@ function Services() {
                                   }}
                               >
                                   <p className="text-[22px] leading-[1.05] font-normal sm:text-[28px] md:text-[35px]">
-                                  The Genotek
+                                  Genotek
                                   </p>
                     
-                                  <p className="mt-1 ml-[120px] text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
+                                  <p className="mt-1 ml-[50px] text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
                                   Services.
                                   </p>
                               </div>
