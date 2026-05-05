@@ -90,7 +90,7 @@ function Services() {
                                             src={item.img}
                                             alt={item.title}
                                             className={`h-[220px] w-full max-w-[250px] mx-auto transition duration-300 
-                                            ${active === item.id ? "ring-4 ring-[#5a92b6] scale-105" : ""}`}
+                                            ${active === item.id ? "scale-105" : ""}`}
                                         />
                                         </div>
                                     </div>
