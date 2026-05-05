@@ -32,11 +32,11 @@ function AboutStory() {
                                         clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)',
                                     }}
                                 >
-                                    <p className="text-[22px] leading-[1.05] font-normal sm:text-[28px] md:text-[35px]">
-                                    The Genotek
+                                    <p className="text-[20px] leading-[1.0] font-normal sm:text-[28px] md:text-[35px]">
+                                    Genotek
                                     </p>
 
-                                    <p className="mt-1 ml-[120px] text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
+                                    <p className="mt-1 ml-[60px] text-[24px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
                                     Story.
                                     </p>
                                 </div>
@@ -71,12 +71,12 @@ function AboutStory() {
                                 </h2>
 
                                 {/* Paragraph */}
-                                <p className="mt-4 max-w-[900px] text-[16px] leading-[1.8] text-[#42556c] sm:text-[18px] md:text-[19px] text-justify">
+                                <p className="mt-4 max-w-[900px] text-[16px] leading-[1.8] text-black/80 sm:text-[18px] md:text-[19px] text-justify">
                                     At Genotek Biochem Private Limited, we combine scientific capability with a human touch. We balance scale, expertise, and responsiveness to serve our partners better. We are a chemistry-driven organization committed to delivering reliable, high-quality solutions while building meaningful, long-term relationships.
                                 </p>
 
                                 {/* Bullet Points */}
-                                <ul className="mt-4 list-disc pl-12 space-y-2 text-[16px] text-[#42556c] sm:text-[18px]">
+                                <ul className="mt-4 list-disc pl-12 space-y-2 text-[16px] text-black/80 sm:text-[18px]">
                                     <li>Science-driven company rooted in chemistry excellence</li>
                                     <li>Strong technical expertise with scalable infrastructure</li>
                                     <li>Agile, responsive, and client-focused approach</li>
@@ -85,8 +85,8 @@ function AboutStory() {
                                 </ul>
 
                                 {/* Tagline */}
-                                <p className="mt-5 italic text-[20px] text-[#42556c] ">
-                                    Big enough to deliver, small enough to care
+                                <p className="mt-5 italic text-[25px] text-black/80 ">
+                                    Big enough to Deliver, Small enough to Care
                                 </p>
 
                                 {/* Link */}
@@ -103,7 +103,7 @@ function AboutStory() {
                                 </div>
                             </div>
 
-                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-16 md:w-[90%]">
+                            <div className="relative mx-auto mt-6 h-[20px] w-[92%] sm:mt-14 md:mt-8 md:w-[90%]">
                                 <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
                                 <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
                                 <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
@@ -119,13 +119,13 @@ function AboutStory() {
                                     What we do
                                     </h2>
 
-                                    <p className="mt-4 text-[16px] leading-[1.7] text-[#42556c] sm:text-[18px] md:text-[19px] text-justify">
+                                    <p className="mt-4 text-[16px] leading-[1.7] text-[#42556c] sm:text-[18px] md:text-[19px] text-justify text-black/80">
                                     At Genotek Biochem Private Limited, we enable innovation from concept to commercialization. 
                                     As a Research, Development, and Manufacturing partner, we provide integrated, scalable 
                                     solutions across industries including pharmaceuticals, agrochemicals, and material sciences.
                                     </p>
 
-                                    <ul className="mt-5 list-disc space-y-2 pl-12 text-[16px] text-[#42556c] sm:text-[17px] md:text-[18px]">
+                                    <ul className="mt-5 list-disc space-y-2 pl-12 text-[16px] text-black/80 sm:text-[17px] md:text-[18px]">
                                     <li>Custom synthesis, process development & scale-up</li>
                                     <li>Analytical and method development capabilities</li>
                                     <li>FTE/FFS-based research services</li>
@@ -135,8 +135,8 @@ function AboutStory() {
                                     <li>Collaborative, flexible engagement models with fast turnaround</li>
                                     </ul>
 
-                                    <p className="mt-4 italic text-[20px] text-[#6b7c8f]">
-                                    Driven by Innovation, defined by quality
+                                    <p className="mt-4 italic text-[25px] text-black/80">
+                                    Driven by Innovation, Defined by Quality
                                     </p>
 
                                 </div>

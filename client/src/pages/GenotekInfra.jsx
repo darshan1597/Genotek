@@ -74,7 +74,7 @@ function GenotekInfra() {
                                 </h2>
 
                                 {/* Paragraph */}
-                                <p className="mt-4 max-w-[900px] text-[16px] leading-[1.8] text-[#42556c] sm:text-[18px] md:text-[19px] text-justify">
+                                <p className="mt-4 max-w-[900px] text-[16px] leading-[1.8] text-black/80 sm:text-[18px] md:text-[19px] text-justify">
                                 Our Pune-based R&D centre features modern, modular labs equipped for safe, efficient execution of complex chemistries, enabling fast and precise research, discovery, and development.                       
                                  </p>
 
@@ -82,7 +82,7 @@ function GenotekInfra() {
                                 </div>
                             </div>
 
-                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-16 md:w-[90%]">
+                            <div className="relative mx-auto  h-[20px] w-[92%] sm:mt-14 md:mt-8 md:w-[90%]">
                                 <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
                                 <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
                                 <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
@@ -95,10 +95,10 @@ function GenotekInfra() {
                             {/* LEFT CONTENT */}
                             <div className="max-w-[700px] ml-10 text-left">
                                 <h2 className="text-[28px] font-semibold text-[#5a92b6] sm:text-[32px] md:text-[36px]">
-                                    Integrated Scale-Up Capabilities (Kilo Labs)
+                                    Integrated Scale-Up Capabilities <br />(Kilo Labs)
                                 </h2>
 
-                                <p className="mt-4 text-[16px] leading-[1.7] text-[#42556c] sm:text-[18px] md:text-[19px] text-justify">
+                                <p className="mt-4 text-[16px] leading-[1.7] text-black/80 sm:text-[18px] md:text-[19px] text-justify">
                                     Our in-house kilo labs bridge research and manufacturing, supporting seamless scale-up with pilot-scale reactors and systems for handling complex and hazardous chemistries.
                                 </p>
                             </div>
@@ -117,7 +117,7 @@ function GenotekInfra() {
                                 />
                             </div>
                             </div>
-                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-16 md:w-[90%]">
+                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-8 md:w-[90%]">
                                 <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
                                 <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
                                 <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
@@ -143,7 +143,7 @@ function GenotekInfra() {
                                 </h2>
 
                                 {/* Paragraph */}
-                                <p className="mt-4 max-w-[900px] text-[16px] leading-[1.8] text-[#42556c] sm:text-[18px] md:text-[19px] text-justify">
+                                <p className="mt-4 max-w-[900px] text-[16px] leading-[1.8] text-black/80 sm:text-[18px] md:text-[19px] text-justify">
                                 Dedicated high-pressure systems enable safe and efficient execution of demanding reactions, including hydrogenation under controlled conditions.                      
                                  </p>
 
@@ -151,7 +151,7 @@ function GenotekInfra() {
                                 </div>
                             </div>
 
-                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-16 md:w-[90%]">
+                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-8 md:w-[90%]">
                                 <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
                                 <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
                                 <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
@@ -167,7 +167,7 @@ function GenotekInfra() {
                                     Analytical Development Laboratories
                                 </h2>
 
-                                <p className="mt-4 text-[16px] leading-[1.7] text-[#42556c] sm:text-[18px] md:text-[19px] text-justify">
+                                <p className="mt-4 text-[16px] leading-[1.7] text-black/80 sm:text-[18px] md:text-[19px] text-justify">
                                     Equipped with advanced tools like HPLC, GC, and Prep HPLC, our analytical labs ensure accurate characterization, method development, and consistent product quality.
                                 </p>
                             </div>

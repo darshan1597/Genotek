@@ -31,10 +31,10 @@ function AboutTeam() {
                                     }}
                                 >
                                     <p className="text-[22px] leading-[1.05] font-normal sm:text-[28px] md:text-[35px]">
-                                        The Genotek
+                                    Genotek
                                     </p>
-                                    <p className="mt-1 text-right text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                        Team.
+                                    <p className="mt-1 ml-[60px] text-right text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
+                                         Team.
                                     </p>
                                 </div>
                             </div>
@@ -62,9 +62,8 @@ function AboutTeam() {
                                         Rushab Gohil
                                     </h2>
                                     <h4 className='mt-3 text-[16px] text-gray-500 sm:text-[18px] md:mt-4 md:text-[20px]'>Founder & CEO</h4>
-                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:text-[18px] md:text-[20px] md:text-justify">
+                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-black/80 text-left sm:text-[18px] md:text-[20px] md:text-justify">
                                         Rushabh Gohil is an emerging leader known for his strategic thinking and execution-driven approach. With a strong focus on building relationships and driving business outcomes, he brings a balanced perspective of operational discipline and growth ambition. He plays a key role in enabling customerfocused solutions, contributing to scalable success and long-term value creation in dynamic and competitive environments.
-
                                     </p>
                                     
                                 </div>
@@ -95,7 +94,7 @@ function AboutTeam() {
                                         Nisarg Gohil
                                     </h2>
                                     <h4 className='mt-3 text-[16px] text-gray-500 sm:text-[18px] md:mt-4 md:text-[20px]'>Co-founder & COO</h4>
-                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:text-[18px] md:text-[20px] md:text-justify">
+                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-black/80 text-left sm:text-[18px] md:text-[20px] md:text-justify">
                                         Nisarg Gohil is a biotechnology professional with Genotek Biochem in India, supported by a strong academic background and international exposure, including at Cornell University. Based in Mumbai, he is active in the life sciences sector and maintains a large professional network. His profile reflects a blend of scientific expertise, global perspective, and industry engagement.
 
                                     </p>
@@ -128,7 +127,7 @@ function AboutTeam() {
                                         Hitesh Gandhi
                                     </h2>
                                     <h4 className='mt-3 text-[16px] text-gray-500 sm:text-[18px] md:mt-4 md:text-[20px]'>President- Marketing & Projects</h4>
-                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:text-[18px] md:text-[20px] md:text-justify">
+                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-black/80 text-left sm:text-[18px] md:text-[20px] md:text-justify">
                                         Hitesh is a results-driven leader in the pharmaceutical and CDMO sector, recognized for shaping growth strategies and building strong global partnerships. Combining commercial acumen with industry expertise, he drives execution-focused teams to deliver customer-centric solutions. His leadership emphasizes innovation, agility, and long-term value creation, enabling organizations to scale effectively and succeed in competitive, evolving markets.
 
                                     </p>
@@ -143,7 +142,7 @@ function AboutTeam() {
                                         Hitesh Gandhi
                                     </h2>
                                     <h4 className='mt-3 text-[16px] text-gray-500 sm:text-[18px] md:mt-4 md:text-[20px]'>President - Marketing & Projects</h4>
-                                    <p className="mx-auto mt-4 max-w-[980px] text-[16px] leading-[1.7] text-[#42556c] text-left sm:text-[18px] md:text-[20px] md:text-justify">
+                                    <p className="mx-auto mt-4 max-w-[980px] text-[16px] leading-[1.7] text-black/80 text-left sm:text-[18px] md:text-[20px] md:text-justify">
                                         Hitesh is a results-driven leader in the pharmaceutical and CDMO sector, recognized for shaping growth strategies and building strong global partnerships. Combining commercial acumen with industry expertise, he drives execution-focused teams to deliver customer-centric solutions. His leadership emphasizes innovation, agility, and long-term value creation, enabling organizations to scale effectively and succeed in competitive, evolving markets.
                                     </p>
                                 </div>

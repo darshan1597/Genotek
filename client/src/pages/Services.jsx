@@ -44,12 +44,12 @@ function Services() {
                               </div>
                           </div>
                       </div>
-                        <div className="max-w-[1320px] px-1 pb-8 pt-1text-[16px] leading-[1.7] text-black sm:text-[18px] md:pb-10 md:text-[19px]">
+                        <div className="max-w-[1320px] px-1 pb-8 pt-1text-[16px] leading-[1.7]  sm:text-[18px] md:pb-10 md:text-[19px]">
                             <h2 className="mb-4 text-[#5a92b6] text-[30px] font-semibold">
                                 Our Services
                             </h2>
 
-                            <p className="mb-4">
+                            <p className="mb-4 ">
                                 At{" "}
                                 <span className="font-semibold">
                                     Genotek Biochem Private Limited
@@ -114,19 +114,19 @@ function Services() {
                                         <img
                                             src={item.img}
                                             alt={item.title}
-                                            className={`h-[220px] w-full max-w-[250px] mx-auto transition duration-300 
-                                            ${active === item.id ? "scale-105" : ""}`}
+                                            className={`h-[220px] w-full max-w-[250px] mx-auto transition duration-300 hover:opacity-80
+                                            ${active === item.id ? "scale-105 opacity-100" : active ? "opacity-40" : "opacity-100"}`}
                                         />
                                         </div>
                                     </div>
                                 ))}
                             </div>
 
-                            {/* CONTENT */}
-                            <div className="mt-12 mx-auto text-left">
+                            {/* CONTENT */} 
+                            <div className=" mt-12 mx-auto text-left">
                                 {/* 1 */}
                                 {active === 1 && (
-                                    <div>
+                                    <div className="ml-10">
                                         <h2 className="text-[28px] font-semibold text-[#5a92b6]">
                                             Compound Libraries (Custom & Scaffold-Based)
                                         </h2>
@@ -138,7 +138,7 @@ function Services() {
                                             to accelerate discovery programs across multiple
                                             industries.
                                         </p>
-                                        <ul className="mt-4 list-disc pl-6 text-[17px] text-[#42556c] space-y-1">
+                                        <ul className=" ml-10 mt-4 list-disc pl-6 text-[17px] text-[#42556c] space-y-1">
                                             <li>Custom and scaffold-based library design</li>
                                             <li>
                                                 Applications in pharmaceuticals, agrochemicals, and
@@ -156,7 +156,7 @@ function Services() {
 
                                 {/* 2 */}
                                 {active === 2 && (
-                                    <div>
+                                    <div className="ml-10">
                                         <h2 className="text-[28px] font-semibold text-[#5a92b6]">
                                             Process Development & Scale-Up
                                         </h2>
@@ -164,7 +164,7 @@ function Services() {
                                             We develop robust, scalable chemical processes that ensure
                                             smooth transition from lab to manufacturing.
                                         </p>
-                                        <ul className="mt-4 list-disc pl-6 text-[17px] text-[#42556c] space-y-1">
+                                        <ul className=" ml-10 mt-4 list-disc pl-6 text-[17px] text-[#42556c] space-y-1">
                                             <li>
                                                 Route scouting, optimization, and process validation
                                             </li>
@@ -184,7 +184,29 @@ function Services() {
 
                                 {/* 3 */}
                                 {active === 3 && (
-                                    <div>
+                                    <div className="ml-10">
+                                        <h2 className="text-[28px] font-semibold text-[#5a92b6]">
+                                            Purification & Isolation (Preparative & Chiral)
+                                        </h2>
+                                        <p className="mt-3 text-[18px] text-[#42556c]">
+                                            We provide advanced purification and separation solutions
+                                            to achieve high-purity compounds and desired
+                                            stereochemistry.
+                                        </p>
+                                        <ul className=" ml-10 mt-4 list-disc pl-6 text-[17px] text-[#42556c] space-y-1">
+                                            <li>Preparative and chiral chromatography expertise</li>
+                                            <li>
+                                                Isolation of complex molecules with high precision
+                                            </li>
+                                            <li>Support for downstream applications and scale-up</li>
+                                            <li>Reliable purity and characterization standards</li>
+                                        </ul>
+                                    </div>
+                                )}
+
+                                {/* 4 */}
+                                {active === 4 && (
+                                    <div className="ml-10">
                                         <h2 className="text-[28px] font-semibold text-[#5a92b6]">
                                             Analytical Method Development & Validation
                                         </h2>
@@ -192,7 +214,7 @@ function Services() {
                                             Our analytical capabilities ensure accuracy, consistency,
                                             and regulatory compliance across all stages.
                                         </p>
-                                        <ul className="mt-4 list-disc pl-6 text-[17px] text-[#42556c] space-y-1">
+                                        <ul className=" ml-10 mt-4 list-disc pl-6 text-[17px] text-[#42556c] space-y-1">
                                             <li>
                                                 Method development for APIs, intermediates, and
                                                 impurities
@@ -208,28 +230,6 @@ function Services() {
                                             <li>
                                                 Advanced instrumentation including HPLC, GC, and more
                                             </li>
-                                        </ul>
-                                    </div>
-                                )}
-
-                                {/* 4 */}
-                                {active === 4 && (
-                                    <div>
-                                        <h2 className="text-[28px] font-semibold text-[#5a92b6]">
-                                            Purification & Isolation (Preparative & Chiral)
-                                        </h2>
-                                        <p className="mt-3 text-[18px] text-[#42556c]">
-                                            We provide advanced purification and separation solutions
-                                            to achieve high-purity compounds and desired
-                                            stereochemistry.
-                                        </p>
-                                        <ul className="mt-4 list-disc pl-6 text-[17px] text-[#42556c] space-y-1">
-                                            <li>Preparative and chiral chromatography expertise</li>
-                                            <li>
-                                                Isolation of complex molecules with high precision
-                                            </li>
-                                            <li>Support for downstream applications and scale-up</li>
-                                            <li>Reliable purity and characterization standards</li>
                                         </ul>
                                     </div>
                                 )}

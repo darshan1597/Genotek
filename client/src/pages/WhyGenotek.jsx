@@ -57,7 +57,7 @@ function WhyGenotek() {
                                         End-to-End Capability
                                     </span>
                                     <br />
-                                    <span className="text-gray-700">
+                                    <span className="text-black/80">
                                         Integrated solutions across discovery, development, and
                                         manufacturing — from custom synthesis to full-scale
                                         production.
@@ -69,7 +69,7 @@ function WhyGenotek() {
                                         Strong Scientific Expertise
                                     </span>
                                     <br />
-                                    <span className="text-gray-700">
+                                    <span className="text-black/80">
                                         Experienced chemists solving complex challenges with
                                         practical, scalable, and innovative approaches.
                                     </span>
@@ -80,7 +80,7 @@ function WhyGenotek() {
                                         Agility & Speed
                                     </span>
                                     <br />
-                                    <span className="text-gray-700">
+                                    <span className="text-black/80">
                                         Fast turnaround times, flexible FTE/FFS models, and quick
                                         adaptation to evolving project needs.
                                     </span>
@@ -91,7 +91,7 @@ function WhyGenotek() {
                                         Reliable Quality & Compliance
                                     </span>
                                     <br />
-                                    <span className="text-gray-700">
+                                    <span className="text-black/80">
                                         Robust quality systems ensuring consistency, precision, and
                                         adherence to global standards.
                                     </span>
@@ -102,7 +102,7 @@ function WhyGenotek() {
                                         Safety, Quality & Efficiency at the Core
                                     </span>
                                     <br />
-                                    <span className="text-gray-700">
+                                    <span className="text-black/80">
                                         Infrastructure designed for safe handling of complex
                                         chemistries, including hazardous and pyrophoric materials,
                                         with strict quality control and compliance.
@@ -114,7 +114,7 @@ function WhyGenotek() {
                                         Seamless Scalability
                                     </span>
                                     <br />
-                                    <span className="text-gray-700">
+                                    <span className="text-black/80">
                                         Advanced R&D and manufacturing integration enabling smooth
                                         transition from lab to large-scale production.
                                     </span>
@@ -125,7 +125,7 @@ function WhyGenotek() {
                                         Transparent Collaboration
                                     </span>
                                     <br />
-                                    <span className="text-gray-700">
+                                    <span className="text-black/80">
                                         Dedicated project management, real-time communication, and a
                                         single point of contact for clarity and accountability.
                                     </span>
@@ -136,15 +136,15 @@ function WhyGenotek() {
                                         Sustainable Approach
                                     </span>
                                     <br />
-                                    <span className="text-gray-700">
+                                    <span className="text-black/80">
                                         Focus on green chemistry, safer processes, and
                                         environmentally responsible solutions.
                                     </span>
                                 </li>
                             </ul>
 
-                            <p className="mt-6 italic text-gray-700">
-                                Always within reach, from experiment to outcome
+                            <p className="mt-6 text-[25px] italic text-black/80">
+                                Always within Reach, from Experiment to Outcome
                             </p>
                         </section>
                         <Footer insetForSidebar={false} />
