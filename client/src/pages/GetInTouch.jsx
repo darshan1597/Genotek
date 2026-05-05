@@ -8,7 +8,7 @@ function GetInTouch() {
         <div className="min-h-screen bg-white text-slate-900">
             <Navabar />
 
-            <main className="w-full px-4 pb-6 md:px-5 lg:px-0 lg:pr-6">
+            <main className="w-full px-4 pb-6 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
                 <section className="mb-5 flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
 
                     <Sidebar />

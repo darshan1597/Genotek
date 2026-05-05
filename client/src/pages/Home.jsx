@@ -11,7 +11,7 @@ import slide4 from '../assets/hero/slide4.png'
 import slide5 from '../assets/hero/slide5.png'
 import heroSidebar1 from '../assets/heroSidebars/1.jpeg'
 import heroSidebar2 from '../assets/heroSidebars/2.jpeg'
-import heroSidebar3 from '../assets/heroSidebars/3.png'
+import heroSidebar3 from '../assets/heroSidebars/3.jpeg'
 import Footer from './components/Footer'
 
 const heroSidebarItems = [
@@ -259,7 +259,7 @@ function SequentialPhraseText({ text, delay = 0, stepDelay = 520 }) {
     }, [delay, sequence.length, stepDelay, text])
 
     return (
-        <span className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+        <span className="inline-flex items-center justify-center gap-x-1 whitespace-nowrap sm:gap-x-2">
             {sequence.map((part, index) => (
                 <motion.span
                     key={`${part}-${index}`}
@@ -285,13 +285,19 @@ function Home() {
     const [activeSlide, setActiveSlide] = useState(0)
     const [specialPhase, setSpecialPhase] = useState('opening')
     const [imagePhase, setImagePhase] = useState('center')
-    const [isMobile, setIsMobile] = useState(false)
+    const [isMobile, setIsMobile] = useState(() => {
+        if (typeof window === 'undefined') {
+            return false
+        }
+
+        return window.innerWidth < 1024
+    })
 
     const currentSlide = slides[activeSlide]
     const isSpecialSlide = currentSlide.variant === 'special'
     const braceDistance = isMobile ? 450 : 830
-    const leftBraceDistance = braceDistance + (isMobile ? 35 : 100)
-    const rightBraceDistance = braceDistance + (isMobile ? 450 : 830)
+    const leftBraceDistance = isMobile ? 600 : braceDistance + 100
+    const rightBraceDistance = isMobile ? 1350 : braceDistance + 830
     const firstSlideLeftBraceVariants = {
         enter: {
             x: -leftBraceDistance,
@@ -345,12 +351,12 @@ function Home() {
         },
     }
     const bluePath = isMobile
-        ? "M -200 160 L 900 160 C 940 196 970 262 970 330 C 970 386 950 452 930 480 L -200 480 C -260 454 -300 398 -305 338 C -310 272 -270 196 -230 166 C -215 162 -205 160 -200 160 Z"
+        ? "M -220 160 L 980 160 C 1020 196 1050 262 1050 330 C 1050 386 1030 452 1010 480 L -220 480 C -280 454 -320 398 -325 338 C -330 272 -290 196 -250 166 C -235 162 -225 160 -220 160 Z"
         : "M -560 160 L 1257 160 C 1307 195 1342 246 1357 306 C 1363 379 1337 422 1295 452 L -514 463 C -577 402 -592 377 -610 319 C -621 254 -610 209 -576 160 Z"
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 768)
+            setIsMobile(window.innerWidth < 1024)
         }
 
         handleResize()
@@ -401,13 +407,13 @@ function Home() {
         <div className="min-h-screen bg-white text-slate-900">
             <Navabar />
 
-            <main className="w-full px-4 pb-6 md:px-5 lg:px-0 lg:pr-10 xl:pr-15">
+            <main className="w-full px-4 pb-6 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
                 <section className="mb-5 flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
                     <Sidebar />
 
-                    <div className="relative z-0 flex-1">
+                    <div className="relative z-0 min-w-0 flex-1">
                         <div className="relative isolate flex flex-col gap-4 overflow-hidden lg:h-[520px] lg:flex-row lg:gap-0">
-                            <div className="relative z-[2] h-[520px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[560px] md:h-[620px] lg:h-full lg:w-[76%] lg:[clip-path:polygon(0_0,100%_0,calc(100%-83px)_50%,100%_100%,0_100%)]">
+                            <div className="relative z-[2] h-[360px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[440px] md:h-[520px] lg:h-full lg:w-[76%] lg:[clip-path:polygon(0_0,100%_0,calc(100%-83px)_50%,100%_100%,0_100%)]">
                                 <AnimatePresence mode="sync">
                                     <motion.img
                                         key={currentSlide.id}
@@ -426,7 +432,7 @@ function Home() {
                                     {isSpecialSlide && specialPhase !== 'hidden' ? (
                                         <motion.div
                                             key={`special-slide-hero-banner-${currentSlide.id}`}
-                                            className={`absolute inset-0 z-[4] flex items-start justify-center px-0 pt-[52px] sm:px-3 sm:pt-[72px] md:pt-[72px] ${
+                                            className={`absolute inset-0 z-[4] flex items-start justify-center px-0 pt-[38px] sm:px-3 sm:pt-[52px] md:pt-[64px] lg:pt-[72px] ${
                                                 specialPhase === 'closing' ? 'bg-transparent' : 'bg-white/55'
                                             }`}
                                             variants={firstSlideOverlayVariants}
@@ -434,7 +440,7 @@ function Home() {
                                             animate="center"
                                             exit="exit"
                                         >
-                                            <div className="relative h-[118px] w-[100%] max-w-none shrink-0 sm:h-[132px] sm:w-[125%] md:h-[142px] md:w-[150%] lg:w-[175%]">
+                                            <div className="relative h-[126px] w-[150%] max-w-none shrink-0 sm:h-[142px] sm:w-[155%] md:h-[168px] md:w-[185%] lg:h-[142px] lg:w-[175%]">
                                                 <svg
                                                     viewBox="0 100 760 450"
                                                     preserveAspectRatio="xMidYMid meet"
@@ -452,7 +458,6 @@ function Home() {
                                                             transformOrigin: 'center center',
                                                         }}
                                                     />
-                                                    //brace
                                                     <motion.path
                                                         d="M 450 166 C 347 274 379 445 473 500 C 486 509 476 511 469 508 C 361 430 342 278 442 161 C 450 154 454 157 453 161 Z"
                                                         fill="none"
@@ -512,7 +517,7 @@ function Home() {
                                                     initial="enter"
                                                     animate={specialPhase === 'closing' ? 'exit' : 'center'}
                                                 >
-                                                    <p className="text-[18px] font-semibold leading-[1.15] sm:text-[24px] md:text-[28px]">
+                                                    <p className="text-[16px] font-semibold leading-[1.15] sm:text-[22px] md:text-[28px]">
                                                         <motion.span
                                                             key={`title-${currentSlide.id}`}
                                                             className="inline-block"
@@ -523,7 +528,7 @@ function Home() {
                                                             {currentSlide.title}
                                                         </motion.span>
                                                     </p>
-                                                    <p className="mt-2 px-10 text-[10px] leading-[1.35] sm:text-[12px] md:text-[16px]">
+                                                    <p className="mt-2 w-full px-3 text-[7px] leading-[1.35] sm:px-8 sm:text-[11px] md:px-10 md:text-[16px]">
                                                         <SequentialPhraseText
                                                             key={`subtitle-${currentSlide.id}`}
                                                             text={currentSlide.subtitle}
@@ -557,12 +562,12 @@ function Home() {
                                 </AnimatePresence>
                             </div>
 
-                            <div className="relative z-[1] flex w-full shrink-0 flex-col gap-3 sm:gap-4 lg:-ml-[70px] lg:w-[calc(24%+70px)] lg:gap-[12px]">
+                            <div className="relative z-[1] grid w-full shrink-0 grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 lg:-ml-[70px] lg:flex lg:w-[calc(24%+70px)] lg:flex-col lg:gap-[12px]">
                                 {heroSidebarItems.map(({ image, label, href }, index) => (
                                     <Link
                                         key={image}
                                         to={href}
-                                        className="group relative h-[92px] cursor-pointer overflow-hidden bg-[#d7d4cb] sm:h-[110px] lg:h-auto lg:flex-1"
+                                        className="group relative h-[112px] cursor-pointer overflow-hidden bg-[#d7d4cb] sm:h-[132px] lg:h-auto lg:flex-1"
                                     >
                                         <img
                                             src={image}

@@ -27,12 +27,12 @@ function Navabar() {
             </div>
 
             <div className="flex w-full items-center justify-between gap-4 px-4 pb-4 pt-4 md:px-8 lg:justify-between lg:pl-6 lg:pr-10 lg:pb-7 lg:pt-10 xl:pl-10 xl:pr-15">
-                <Link to="/">
-                    <div className="relative shrink-0">
+                <Link to="/" className="ml-3 shrink-0">
+                    <div className="relative w-[260px] md:w-[330px] lg:w-[430px]">
                         <img
                             src={logo}
                             alt="Genotek Biochem"
-                            className="h-auto w-[260px] object-contain md:w-[330px] lg:w-[430px] ml-3"
+                            className="h-auto w-full object-contain"
                         />
 
                         <svg
@@ -69,13 +69,13 @@ function Navabar() {
                                 r="12"
                                 fill="#00A75A"
                                 filter="url(#logo-circle-glow)"
-                                transform="translate(14 0)"// if logoShift
+                                transform="translate(14 0)"
                             >
                             {/* Movement */}
                             <animateMotion
                                 dur="6s"
                                 repeatCount="indefinite"
-                                path="M 168 353 M 168 354 C 77 335 19 303 24 140 C 36 72 52 53 137 18 M 169 64 C 221 97 236 192 226 254 C 216 318 198 353 155 386"
+                                path="M 167.978 354.016 M 168 354 C 72.319 338.442 3.764 302.33 16.006 139.519 C 29.472 70.355 47.834 48.32 137 18 M 168.135 66.114 C 209.42 99.735 228.662 192.114 220.438 255.201 C 206.36 316.408 194.731 348.848 151.109 383.799"
                             />
 
                             {/* Subtle brightness pulse */}
@@ -90,7 +90,7 @@ function Navabar() {
                     </div>
                 </Link>
 
-                <div className="hidden lg:flex">
+                <div className="hidden min-[1117px]:flex">
                     <div className="flex h-[50px] w-[600px] items-center rounded-[8px] border-3 border-[#0f4b8a] bg-white px-1 transition-all duration-200">
 
                         <FiSearch className="mr-2 text-[35px] text-[#0f4b8a]" />
@@ -123,7 +123,7 @@ function Navabar() {
                     </a>
                 </div>
 
-                <div className="flex items-center gap-2 lg:hidden">
+                <div className="flex items-center gap-2 min-[1117px]:hidden">
                     <button
                         type="button"
                         aria-label="Open search"
@@ -149,7 +149,7 @@ function Navabar() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 bg-[rgba(10,27,43,0.45)] p-4 lg:hidden"
+                        className="fixed inset-0 z-50 bg-[rgba(10,27,43,0.45)] p-4 min-[1117px]:hidden"
                     >
                         <motion.div
                             initial={{ y: -18, opacity: 0 }}
@@ -189,7 +189,7 @@ function Navabar() {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-50 bg-[rgba(10,27,43,0.45)] lg:hidden"
+                        className="fixed inset-0 z-50 bg-[rgba(10,27,43,0.45)] min-[1117px]:hidden"
                     >
                         <motion.div
                             initial={{ x: '100%' }}

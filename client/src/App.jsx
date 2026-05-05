@@ -9,7 +9,7 @@ import Home from './pages/Home'
 import InfoPage from './pages/InfoPage'
 import watermark from './assets/watermark.png'
 import GetInTouch from './pages/GetInTouch'
-import Services from "./pages/services";
+import Services from './pages/Services'
 
 function ScrollToTop() {
     const { pathname } = useLocation()
