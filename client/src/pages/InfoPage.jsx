@@ -34,8 +34,8 @@ function InfoPage() {
                                     Stay Tuned!
                                 </h1>
                                 <p className="mt-4 max-w-[640px] text-[16px] leading-[1.7] text-[#52677a] sm:text-[18px]">
-                                    Our team is preparing detailed information on Genotek&apos;s capabilities,
-                                    technologies, and solutions.
+                                    Our team is preparing detailed information on <br /> Genotek&apos;s capabilities,
+                                    technologies and solutions.
                                 </p>
                             </div>
                         </div>

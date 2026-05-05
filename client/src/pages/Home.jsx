@@ -64,11 +64,21 @@ const slides = [
     },
 ]
 
-const specialSubtitleDelay = 5300
-const specialSubtitleStepDelay = 520
+const specialLeftBraceDelay = 3350
+const specialLeftBraceDuration = 1.8
+const specialTitleDelay = 5400
+const specialTitleDuration = 1.15
+const specialTitleTypeSpeed = 86
+const specialSubtitleDelay = 7950
+const specialSubtitleStepDelay = 900
 const specialSubtitleCompleteDelay = specialSubtitleDelay / 1000 + specialSubtitleStepDelay / 1000 * 4
-const specialRightBraceDelay = specialSubtitleCompleteDelay + 0.65
-const firstSlideGlowDelay = specialRightBraceDelay + 1.1
+const specialRightBraceDelay = specialSubtitleCompleteDelay + 1
+const specialBraceCloseDelay = 16500
+const specialBlueCloseDuration = 3000
+const specialOverlayHiddenDelay = specialBraceCloseDelay + specialBlueCloseDuration
+const specialSlideAdvanceDelay = 22000
+const normalSlideAdvanceDelay = 6500
+const firstSlideGlowDelay = specialRightBraceDelay + 1.9
 
 const slideVariants = {
     enter: {
@@ -86,8 +96,8 @@ const slideVariants = {
             : 'brightness(1) saturate(1)',
         transition: {
             opacity: {
-                duration: 1.6,
-                ease: [0.4, 0, 0.2, 1],
+                duration: 2.8,
+                ease: [0.45, 0, 0.2, 1],
             },
             filter: shouldGlow
                 ? {
@@ -105,8 +115,13 @@ const slideVariants = {
         opacity: 0,
         filter: 'brightness(1) saturate(1)',
         transition: {
-            duration: 1.6,
-            ease: [0.4, 0, 0.2, 1],
+            opacity: {
+                duration: 2.8,
+                ease: [0.45, 0, 0.2, 1],
+            },
+            filter: {
+                duration: 0.2,
+            },
         },
     },
 }
@@ -120,8 +135,8 @@ const captionVariants = {
         opacity: 1,
         clipPath: 'polygon(0 0, 100% 0, 100% 68%, 95% 100%, 0 100%)',
         transition: {
-            duration: 0.85,
-            delay: 1.65,
+            duration: 1.25,
+            delay: 2,
             ease: [0.16, 1, 0.3, 1],
         },
     },
@@ -129,7 +144,7 @@ const captionVariants = {
         opacity: 0,
         clipPath: 'polygon(0 0, 0 0, 0 68%, 0 100%, 0 100%)',
         transition: {
-            duration: 0.35,
+            duration: 0.65,
             ease: [0.4, 0, 0.2, 1],
         },
     },
@@ -175,7 +190,7 @@ const firstSlideBlueVariants = {
         scaleX: [1, 1, 0.018],
         scaleY: [1, 0.027, 0.027],
         transition: {
-            duration: 2.1,
+            duration: 3,
             times: [0, 0.45, 1],
             ease: [0.4, 0, 0.2, 1],
         },
@@ -195,14 +210,14 @@ const firstSlideTextVariants = {
     center: {
         opacity: 1,
         transition: {
-            duration: 0.22,
+            duration: 0.45,
             delay: 4.05,
         },
     },
     exit: {
         opacity: 0,
         transition: {
-            duration: 0.75,
+            duration: 1.2,
         },
     },
 }
@@ -216,8 +231,8 @@ const specialTitleVariants = {
         opacity: 1,
         x: 0,
         transition: {
-            duration: 0.8,
-            delay: 4.25,
+            duration: specialTitleDuration,
+            delay: specialTitleDelay / 1000,
             ease: [0.22, 1, 0.36, 1],
         },
     },
@@ -225,9 +240,55 @@ const specialTitleVariants = {
         opacity: 0,
         x: 28,
         transition: {
-            duration: 0.35,
+            duration: 1,
         },
     },
+}
+
+function TypewriterLine({ text, delay = 0, speed = 58 }) {
+    const [displayedText, setDisplayedText] = useState('')
+    const [isTyping, setIsTyping] = useState(false)
+
+    useEffect(() => {
+        let intervalId
+
+        setDisplayedText('')
+        setIsTyping(false)
+
+        const timeoutId = window.setTimeout(() => {
+            let currentIndex = 0
+
+            setIsTyping(true)
+            intervalId = window.setInterval(() => {
+                currentIndex += 1
+                setDisplayedText(text.slice(0, currentIndex))
+
+                if (currentIndex >= text.length) {
+                    window.clearInterval(intervalId)
+                    setIsTyping(false)
+                }
+            }, speed)
+        }, delay)
+
+        return () => {
+            window.clearTimeout(timeoutId)
+            window.clearInterval(intervalId)
+        }
+    }, [delay, speed, text])
+
+    return (
+        <span className="relative inline-block font-special-elite font-normal tracking-[0.06em]">
+            <span className="invisible">{text}</span>
+            <span className="absolute inset-0">
+                {displayedText}
+                <span
+                    className={`ml-[2px] inline-block h-[0.9em] w-[2px] translate-y-[0.12em] bg-white ${
+                        isTyping ? 'opacity-100' : 'opacity-0'
+                    }`}
+                />
+            </span>
+        </span>
+    )
 }
 
 function SequentialPhraseText({ text, delay = 0, stepDelay = 520 }) {
@@ -270,7 +331,7 @@ function SequentialPhraseText({ text, delay = 0, stepDelay = 520 }) {
                         y: index < visibleCount ? 0 : 6,
                     }}
                     transition={{
-                        duration: 0.35,
+                        duration: 0.6,
                         ease: [0.22, 1, 0.36, 1],
                     }}
                 >
@@ -301,18 +362,18 @@ function Home() {
     const firstSlideLeftBraceVariants = {
         enter: {
             x: -leftBraceDistance,
-            y: isMobile ? -18 : -100,
+            y: isMobile ? -100 : -100,
             opacity: 0,
             clipPath: 'inset(100% 0 0 0)',
         },
         center: {
             x: -leftBraceDistance,
-            y: isMobile ? -18 : -100,
+            y: isMobile ? -100 : -100,
             opacity: 1,
             clipPath: 'inset(0% 0 0 0)',
             transition: {
-                duration: 1.1,
-                delay: 3.35,
+                duration: specialLeftBraceDuration,
+                delay: specialLeftBraceDelay / 1000,
                 ease: [0.16, 1, 0.3, 1],
             },
         },
@@ -320,24 +381,24 @@ function Home() {
             opacity: 0,
             clipPath: 'inset(100% 0 0 0)',
             transition: {
-                duration: 0.55,
+                duration: 1.15,
             },
         },
     }
     const firstSlideRightBraceVariants = {
         enter: {
             x: rightBraceDistance,
-            y: isMobile ? 18 : 50,
+            y: isMobile ? 50 : 50,
             opacity: 0,
             clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
         },
         center: {
             x: rightBraceDistance,
-            y: isMobile ? 18 : 50,
+            y: isMobile ? 50 : 50,
             opacity: 1,
             clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
             transition: {
-                duration: 1.1,
+                duration: specialLeftBraceDuration,
                 delay: specialRightBraceDelay,
                 ease: [0.16, 1, 0.3, 1],
             },
@@ -346,12 +407,12 @@ function Home() {
             opacity: 0,
             clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
             transition: {
-                duration: 0.55,
+                duration: 1.15,
             },
         },
     }
     const bluePath = isMobile
-        ? "M -220 160 L 980 160 C 1020 196 1050 262 1050 330 C 1050 386 1030 452 1010 480 L -220 480 C -280 454 -320 398 -325 338 C -330 272 -290 196 -250 166 C -235 162 -225 160 -220 160 Z"
+        ? "M -160 160 L 920 160 C 955 196 980 262 980 330 C 980 386 962 452 942 480 L -160 480 C -210 454 -245 398 -250 338 C -255 272 -220 196 -185 166 C -172 162 -164 160 -160 160 Z"
         : "M -560 160 L 1257 160 C 1307 195 1342 246 1357 306 C 1363 379 1337 422 1295 452 L -514 463 C -577 402 -592 377 -610 319 C -621 254 -610 209 -576 160 Z"
 
     useEffect(() => {
@@ -376,19 +437,19 @@ function Home() {
             timers.push(
                 window.setTimeout(() => {
                     setSpecialPhase('closing')
-                }, 10200)
+                }, specialBraceCloseDelay)
             )
 
             timers.push(
                 window.setTimeout(() => {
                     setSpecialPhase('hidden')
-                }, 12600)
+                }, specialOverlayHiddenDelay)
             )
 
             timers.push(
                 window.setTimeout(() => {
                     setActiveSlide((current) => (current + 1) % slides.length)
-                }, 13800)
+                }, specialSlideAdvanceDelay)
             )
         } else {
             setSpecialPhase('hidden')
@@ -396,7 +457,7 @@ function Home() {
             timers.push(
                 window.setTimeout(() => {
                     setActiveSlide((current) => (current + 1) % slides.length)
-                }, 3900)
+                }, normalSlideAdvanceDelay)
             )
         }
 
@@ -413,7 +474,7 @@ function Home() {
 
                     <div className="relative z-0 min-w-0 flex-1">
                         <div className="relative isolate flex flex-col gap-4 overflow-hidden lg:h-[520px] lg:flex-row lg:gap-0">
-                            <div className="relative z-[2] h-[360px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[440px] md:h-[520px] lg:h-full lg:w-[76%] lg:[clip-path:polygon(0_0,100%_0,calc(100%-83px)_50%,100%_100%,0_100%)]">
+                            <div className="relative z-[2] h-[360px] w-full overflow-hidden bg-white sm:h-[440px] md:h-[520px] lg:h-full lg:w-[76%] lg:[clip-path:polygon(0_0,100%_0,calc(100%-83px)_50%,100%_100%,0_100%)]">
                                 <AnimatePresence mode="sync">
                                     <motion.img
                                         key={currentSlide.id}
@@ -432,9 +493,7 @@ function Home() {
                                     {isSpecialSlide && specialPhase !== 'hidden' ? (
                                         <motion.div
                                             key={`special-slide-hero-banner-${currentSlide.id}`}
-                                            className={`absolute inset-0 z-[4] flex items-start justify-center px-0 pt-[38px] sm:px-3 sm:pt-[52px] md:pt-[64px] lg:pt-[72px] ${
-                                                specialPhase === 'closing' ? 'bg-transparent' : 'bg-white/55'
-                                            }`}
+                                            className="absolute inset-0 z-[4] flex items-start justify-center bg-white/55 px-0 pt-[38px] sm:px-3 sm:pt-[52px] md:pt-[64px] lg:pt-[72px]"
                                             variants={firstSlideOverlayVariants}
                                             initial="enter"
                                             animate="center"
@@ -517,16 +576,25 @@ function Home() {
                                                     initial="enter"
                                                     animate={specialPhase === 'closing' ? 'exit' : 'center'}
                                                 >
-                                                    <p className="text-[16px] font-semibold leading-[1.15] sm:text-[22px] md:text-[28px]">
-                                                        <motion.span
-                                                            key={`title-${currentSlide.id}`}
-                                                            className="inline-block"
-                                                            variants={specialTitleVariants}
-                                                            initial="enter"
-                                                            animate={specialPhase === 'closing' ? 'exit' : 'center'}
-                                                        >
-                                                            {currentSlide.title}
-                                                        </motion.span>
+                                                    <p className={`font-semibold leading-[1] ${currentSlide.id === 'intro' ? 'text-[19px] sm:text-[26px] md:text-[30px]' : 'text-[16px] sm:text-[22px] md:text-[28px]'}`}>
+                                                        {currentSlide.id === 'intro' ? (
+                                                            <TypewriterLine
+                                                                key={`title-typewriter-${currentSlide.id}`}
+                                                                text={currentSlide.title}
+                                                                delay={specialTitleDelay}
+                                                                speed={specialTitleTypeSpeed}
+                                                            />
+                                                        ) : (
+                                                            <motion.span
+                                                                key={`title-${currentSlide.id}`}
+                                                                className="inline-block"
+                                                                variants={specialTitleVariants}
+                                                                initial="enter"
+                                                                animate={specialPhase === 'closing' ? 'exit' : 'center'}
+                                                            >
+                                                                {currentSlide.title}
+                                                            </motion.span>
+                                                        )}
                                                     </p>
                                                     <p className="mt-2 w-full px-3 text-[7px] leading-[1.35] sm:px-8 sm:text-[11px] md:px-10 md:text-[16px]">
                                                         <SequentialPhraseText

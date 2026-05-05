@@ -26,9 +26,9 @@ function Navabar() {
                 <div className="h-[2px] w-full bg-[#6d9eb7]" />
             </div>
 
-            <div className="flex w-full items-center justify-between gap-4 px-4 pb-4 pt-4 md:px-8 lg:justify-between lg:pl-6 lg:pr-10 lg:pb-7 lg:pt-10 xl:pl-10 xl:pr-15">
-                <Link to="/" className="ml-3 shrink-0">
-                    <div className="relative w-[260px] md:w-[330px] lg:w-[430px]">
+            <div className="flex w-full items-center justify-between gap-2 px-3 pb-4 pt-4 sm:gap-4 sm:px-4 md:px-6 min-[1117px]:gap-6 min-[1117px]:pl-6 min-[1117px]:pr-6 min-[1117px]:pb-7 min-[1117px]:pt-10 xl:pl-10 xl:pr-10">
+                <Link to="/" className="shrink-0 sm:ml-3">
+                    <div className="relative w-[clamp(178px,54vw,260px)] md:w-[330px] min-[1117px]:w-[360px] xl:w-[430px]">
                         <img
                             src={logo}
                             alt="Genotek Biochem"
@@ -90,21 +90,21 @@ function Navabar() {
                     </div>
                 </Link>
 
-                <div className="hidden min-[1117px]:flex">
-                    <div className="flex h-[50px] w-[600px] items-center rounded-[8px] border-3 border-[#0f4b8a] bg-white px-1 transition-all duration-200">
+                <div className="hidden min-w-0 flex-1 min-[1117px]:flex">
+                    <div className="flex h-[48px] w-full min-w-[260px] max-w-[560px] items-center rounded-[8px] border-3 border-[#0f4b8a] bg-white px-2 transition-all duration-200 xl:h-[50px] xl:max-w-[600px]">
 
-                        <FiSearch className="mr-2 text-[32px] text-[#0f4b8a]" />
+                        <FiSearch className="mr-2 shrink-0 text-[30px] text-[#0f4b8a] xl:text-[32px]" />
 
                         <input
                             type="text"
                             // placeholder="Please Enter Cat No., CAS No., Product Name"
-                            className="w-full border-none bg-transparent text-[16px] font-normal tracking-[0.1px] text-[#0f4b8a] outline-none placeholder:text-[#bab7b1]"
+                            className="min-w-0 w-full border-none bg-transparent text-[15px] font-normal tracking-[0.1px] text-[#0f4b8a] outline-none placeholder:text-[#bab7b1] xl:text-[16px]"
                         />
 
                     </div>
                 </div>
 
-                <div className="hidden items-center gap-5 text-[15px] font-normal tracking-[0.1px] text-[#0f4b8a] md:flex">
+                <div className="hidden shrink-0 items-center gap-4 text-[14px] font-normal tracking-[0.1px] text-[#0f4b8a] xl:flex 2xl:gap-5 2xl:text-[15px]">
                     <a
                         href="mailto:info@genotekbio.com"
                         className="flex items-center gap-2 transition-colors duration-200 hover:text-[#6a9ab1]"
@@ -123,12 +123,12 @@ function Navabar() {
                     </a>
                 </div>
 
-                <div className="flex items-center gap-2 min-[1117px]:hidden">
+                <div className="flex shrink-0 items-center gap-2 min-[1117px]:hidden">
                     <button
                         type="button"
                         aria-label="Open search"
                         onClick={() => setSearchOpen(true)}
-                        className="flex h-11 w-11 items-center justify-center rounded-full border border-[#70A0D2] text-[#0f4b8a] transition-colors duration-200 hover:bg-[#eef5fb]"
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-[#70A0D2] text-[#0f4b8a] transition-colors duration-200 hover:bg-[#eef5fb] sm:h-11 sm:w-11"
                     >
                         <FiSearch className="text-[22px]" />
                     </button>
@@ -136,7 +136,7 @@ function Navabar() {
                         type="button"
                         aria-label="Open menu"
                         onClick={() => setMenuOpen(true)}
-                        className="flex h-11 w-11 items-center justify-center rounded-full border border-[#70A0D2] text-[#0f4b8a] transition-colors duration-200 hover:bg-[#eef5fb]"
+                        className="flex h-10 w-10 items-center justify-center rounded-full border border-[#70A0D2] text-[#0f4b8a] transition-colors duration-200 hover:bg-[#eef5fb] sm:h-11 sm:w-11"
                     >
                         <FiMenu className="text-[24px]" />
                     </button>
