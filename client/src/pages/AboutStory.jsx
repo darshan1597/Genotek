@@ -94,6 +94,11 @@ function AboutStory() {
                                     <p className="mt-4 inline-block text-[18px] font-semibold text-[#5a92b6] underline underline-offset-4 sm:text-[20px] md:text-[22px]">
                                     Our Team
                                     </p>
+                                </Link> 
+                                <Link to="/about/infra">
+                                    <p className="ml-8 mt-4 inline-block text-[18px] font-semibold text-[#5a92b6] underline underline-offset-4 sm:text-[20px] md:text-[22px]">
+                                    Our Infra
+                                    </p>
                                 </Link>
                                 </div>
                             </div>

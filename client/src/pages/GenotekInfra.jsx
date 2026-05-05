@@ -1,6 +1,10 @@
 import Navabar from "./components/Navabar";
 import Sidebar from "./components/Sidebar";
 import hero from "../assets/aboutStory/hero.jpg";
+import img1 from "../assets/aboutInfra/1.jpeg";
+import img2 from "../assets/aboutInfra/2.jpg";
+import img3 from "../assets/aboutInfra/3.png";
+import img4 from "../assets/aboutInfra/4.jpg";
 import { Link } from "react-router-dom";
 import Footer from "./components/Footer";
 
@@ -31,84 +35,163 @@ function GenotekInfra() {
                                     }}
                                 >
                                     <p className="text-[22px] leading-[1.05] font-normal sm:text-[28px] md:text-[35px]">
-                                        The Genotek
+                                        Genotek
                                     </p>
 
-                                    <p className="mt-1 ml-[120px] text-[20px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                        Infrastructure.
+                                    <p className="mt-1 ml-[50px] text-[20px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
+                                        Infra.
                                     </p>
                                 </div>
                             </div>
                         </div>
                         {/* content goes here */}
-                        <section className="text-black text-[20px] leading-relaxed">
-                            <p className="mb-4 mt-5">
-                                <span className="font-semibold text-[30px] text-[#5a92b6] ">
-                                    Our Facilities
-                                </span>
-                                <br />
-                                <br />
-                                At <span className="font-semibold">Genotek Biochem</span>, our
-                                facilities are built to support the full journey of chemical
-                                innovation — from research to large-scale manufacturing. We
-                                combine advanced infrastructure with safety, precision, and
-                                flexibility at every stage. Supported by a{" "}
-                                <strong>multi-reactor manufacturing facility near Pune</strong>,
-                                we enable smooth transition from pilot to commercial-scale
-                                production with reliable quality and scalability.
+                        <div className="max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.6] text-black sm:text-[18px] md:pb-10 md:text-[20px] md:leading-[1.45]">
+                            <p>
+                        At Genotek Biochem, our facilities are built to support the full journey of chemical innovation — from research to large-scale manufacturing. We combine advanced infrastructure with safety, precision, and flexibility at every stage.Supported by a <strong>
+                        Multi-Reactor Manufacturing Facility</strong> near Pune, we enable smooth transition from pilot to commercial-scale production with reliable quality and scalability
                             </p>
+                        </div>
 
-                            <ul className="list-disc pl-12 space-y-3">
-                                <li>
-                                    <span className="font-semibold text-[#5a92b6]">
-                                        Advanced Research & Development Centre
-                                    </span>
-                                    <br />
-                                    <span className="text-gray-700">
-                                        Our Pune-based R&D centre features modern, modular labs
-                                        equipped for safe, efficient execution of complex
-                                        chemistries, enabling fast and precise research, discovery,
-                                        and development.
-                                    </span>
-                                </li>
+                        <div className="px-1 ">
+                            <div className="grid items-start gap-6 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10">
+                                <div 
+                                    className="overflow-hidden"
+                                    style={{
+                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                    }}
+                                >
+                                    <img
+                                        src={img1}
+                                        alt="img1"
+                                        className="h-[180px] ml-8 w-full object-cover sm:h-[100px] md:h-[280px]"
+                                    />
+                                </div>
 
-                                <li>
-                                    <span className="font-semibold text-[#5a92b6]">
-                                        Integrated Scale-Up Capabilities (Kilo Labs)
-                                    </span>
-                                    <br />
-                                    <span className="text-gray-700">
-                                        Our in-house kilo labs bridge research and manufacturing,
-                                        supporting seamless scale-up with pilot-scale reactors and
-                                        systems for handling complex and hazardous chemistries.
-                                    </span>
-                                </li>
+                                <div className="pr-0 lg:pr-8 xl:pr-20">
+                                {/* Heading */}
+                                <h2 className="text-[30px] font-semibold text-[#5a92b6] sm:text-[34px] md:text-[38px]">
+                                    Advanced Research & Development Centre
+                                </h2>
 
-                                <li>
-                                    <span className="font-semibold text-[#5a92b6]">
-                                        High-Pressure & Specialized Reaction Infrastructure
-                                    </span>
-                                    <br />
-                                    <span className="text-gray-700">
-                                        Dedicated high-pressure systems enable safe and efficient
-                                        execution of demanding reactions, including hydrogenation
-                                        under controlled conditions.
-                                    </span>
-                                </li>
+                                {/* Paragraph */}
+                                <p className="mt-4 max-w-[900px] text-[16px] leading-[1.8] text-[#42556c] sm:text-[18px] md:text-[19px] text-justify">
+                                Our Pune-based R&D centre features modern, modular labs equipped for safe, efficient execution of complex chemistries, enabling fast and precise research, discovery, and development.                       
+                                 </p>
 
-                                <li>
-                                    <span className="font-semibold text-[#5a92b6]">
-                                        Analytical Development Laboratories
-                                    </span>
-                                    <br />
-                                    <span className="text-gray-700">
-                                        Equipped with advanced tools like HPLC, GC, and Prep HPLC,
-                                        our analytical labs ensure accurate characterization, method
-                                        development, and consistent product quality.
-                                    </span>
-                                </li>
-                            </ul>
-                        </section>
+
+                                </div>
+                            </div>
+
+                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-16 md:w-[90%]">
+                                <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
+                            </div>
+
+                            
+                            <div className="mt-8 grid items-start  md:mt-10 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_520px] ">
+
+                
+                            {/* LEFT CONTENT */}
+                            <div className="max-w-[700px] ml-10 text-left">
+                                <h2 className="text-[28px] font-semibold text-[#5a92b6] sm:text-[32px] md:text-[36px]">
+                                    Integrated Scale-Up Capabilities (Kilo Labs)
+                                </h2>
+
+                                <p className="mt-4 text-[16px] leading-[1.7] text-[#42556c] sm:text-[18px] md:text-[19px] text-justify">
+                                    Our in-house kilo labs bridge research and manufacturing, supporting seamless scale-up with pilot-scale reactors and systems for handling complex and hazardous chemistries.
+                                </p>
+                            </div>
+
+                            {/* RIGHT IMAGE */}
+                            <div
+                                className="overflow-hidden w-[400px] shrink-0"
+                                style={{
+                                    clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)'
+                                }}
+                            >
+                                <img
+                                    src={img4}
+                                    alt="img4"
+                                    className="w-full h-[250px] object-cover object-left"
+                                />
+                            </div>
+                            </div>
+                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-16 md:w-[90%]">
+                                <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
+                            </div>
+                            <div className="grid items-start gap-6 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10 mt-8">
+                                <div 
+                                    className="overflow-hidden"
+                                    style={{
+                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
+                                    }}
+                                >
+                                    <img
+                                        src={img3}
+                                        alt="img3"
+                                        className="h-[180px] ml-8 w-full object-cover sm:h-[100px] md:h-[280px]"
+                                    />
+                                </div>
+
+                                <div className="pr-0 lg:pr-8 xl:pr-20 ">
+                                {/* Heading */}
+                                <h2 className="text-[30px] font-semibold text-[#5a92b6] sm:text-[34px] md:text-[38px]">
+                                    High-Pressure & Specialized Reaction Infrastructure
+                                </h2>
+
+                                {/* Paragraph */}
+                                <p className="mt-4 max-w-[900px] text-[16px] leading-[1.8] text-[#42556c] sm:text-[18px] md:text-[19px] text-justify">
+                                Dedicated high-pressure systems enable safe and efficient execution of demanding reactions, including hydrogenation under controlled conditions.                      
+                                 </p>
+
+
+                                </div>
+                            </div>
+
+                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-16 md:w-[90%]">
+                                <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
+                            </div>
+
+                            
+                            <div className="mt-8 grid items-start  md:mt-10 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_520px] ">
+
+                
+                            {/* LEFT CONTENT */}
+                            <div className="max-w-[700px] ml-10 text-left">
+                                <h2 className="text-[28px] font-semibold text-[#5a92b6] sm:text-[32px] md:text-[36px]">
+                                    Analytical Development Laboratories
+                                </h2>
+
+                                <p className="mt-4 text-[16px] leading-[1.7] text-[#42556c] sm:text-[18px] md:text-[19px] text-justify">
+                                    Equipped with advanced tools like HPLC, GC, and Prep HPLC, our analytical labs ensure accurate characterization, method development, and consistent product quality.
+                                </p>
+                            </div>
+
+                            {/* RIGHT IMAGE */}
+                            <div
+                                className="overflow-hidden w-[400px] shrink-0"
+                                style={{
+                                    clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)'
+                                }}
+                            >
+                                <img
+                                    src={img2}
+                                    alt="img2"
+                                    className="w-full h-[250px] object-cover object-left"
+                                />
+                            </div>
+                            </div>
+                            
+
+
+                        
+                            </div>
+                        
                         <Footer insetForSidebar={false} />
                     </div>
                 </section>
