@@ -51,7 +51,7 @@ function Sidebar() {
 
                         {item.label === 'About us' && (
                             <div className="invisible absolute left-full top-0 z-[1000] ml-[12px] w-[230px] translate-x-[-8px] opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-x-0 group-focus-within:opacity-100">
-                                <div className="relative z-[1000] border-l-[5px] border-[#01A658] bg-white px-[10px] py-[10px] shadow-[0_16px_32px_rgba(33,79,134,0.22)]">
+                                <div className="relative z-[1000] border-l-[5px] border-white bg-white px-[10px] py-[10px] shadow-[0_16px_32px_rgba(33,79,134,0.22)]">
                                     <div className="flex flex-col gap-[8px]">
                                         {aboutSubmenuItems.map((submenuItem) => (
                                             <NavLink
@@ -68,7 +68,7 @@ function Sidebar() {
                                                     clipPath: 'polygon(0 0, 100% 0, 100% 68%, 95% 100%, 0 100%)',
                                                 }}
                                             >
-                                                <span className="relative z-[1] block transition-transform duration-200 group-hover/submenu:translate-x-1">
+                                                <span className="ml-15 relative z-[1] block transition-transform duration-200 group-hover/submenu:translate-x-1">
                                                     {submenuItem.label}
                                                 </span>
                                                 <span className="absolute inset-y-0 left-0 w-[4px] bg-[#01A658]" />
