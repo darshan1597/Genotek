@@ -442,11 +442,13 @@ function Home() {
                 }, specialBraceCloseDelay)
             )
 
-            timers.push(
-                window.setTimeout(() => {
-                    setSpecialPhase('hidden')
-                }, specialOverlayHiddenDelay)
-            )
+            if (currentSpecialSlideId !== 'outro') {
+                timers.push(
+                    window.setTimeout(() => {
+                        setSpecialPhase('hidden')
+                    }, specialOverlayHiddenDelay)
+                )
+            }
 
             timers.push(
                 window.setTimeout(() => {
@@ -625,7 +627,7 @@ function Home() {
                                             {currentSlide?.lines?.map(([prefix, highlight], index) => (
                                                 <p
                                                     key={`${prefix}-${highlight}`}
-                                                    className={`${index === 0 ? '' : 'ml-6 mt-1.5 sm:ml-10 md:ml-14 md:mt-2'} text-[16px] leading-[1.25] font-normal sm:text-[20px] md:text-[24px]`}
+                                                    className={`${index === 0 ? '' : 'ml-6 mt-1.5 sm:ml-10 md:ml-14 md:mt-2'} whitespace-nowrap text-[14px] leading-[1.25] font-normal sm:text-[20px] md:text-[24px]`}
                                                 >
                                                     {prefix}
                                                     <span className="font-semibold">{highlight}</span>
@@ -653,7 +655,7 @@ function Home() {
                                             {label}
                                         </p>
                                     </Link>
-                                ))}
+                                ))} 
                             </div>
 
                             <div className="pointer-events-none absolute left-[calc(77%-95px)] top-0 z-[3] hidden h-full w-[100px] lg:block">
