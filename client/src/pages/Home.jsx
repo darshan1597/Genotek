@@ -355,18 +355,18 @@ function Home() {
     const currentSlide = slides[activeSlide]
     const isSpecialSlide = currentSlide.variant === 'special'
     const braceDistance = isMobile ? 350 : 830
-    const leftBraceDistance = isMobile ? 530 : braceDistance + 100
-    const rightBraceDistance = isMobile ? 1300 : braceDistance + 830
+    const leftBraceDistance = isMobile ? 500 : braceDistance + 100
+    const rightBraceDistance = isMobile ? 1250 : braceDistance + 830
     const firstSlideLeftBraceVariants = {
         enter: {
             x: -leftBraceDistance,
-            y: isMobile ? -100 : -100,
+            y: isMobile ? -70 : -100,
             opacity: 0,
             clipPath: 'inset(100% 0 0 0)',
         },
         center: {
             x: -leftBraceDistance,
-            y: isMobile ? -100 : -100,
+            y: isMobile ? -70 : -100,
             opacity: 1,
             clipPath: 'inset(0% 0 0 0)',
             transition: {
@@ -410,12 +410,12 @@ function Home() {
         },
     }
     const bluePath = isMobile
-        ? "M -180 160 L 920 160 C 958 195 985 246 995 306 C 1001 379 975 422 940 452 L -150 463 C -190 402 -204 377 -216 319 C -224 254 -214 209 -184 160 Z"
+        ? "M -140 160 L 860 160 C 895 195 920 246 930 306 C 936 379 912 422 880 452 L -115 463 C -150 402 -162 377 -172 319 C -180 254 -170 209 -144 160 Z"
         : "M -560 160 L 1257 160 C 1307 195 1342 246 1357 306 C 1363 379 1337 422 1295 452 L -514 463 C -577 402 -592 377 -610 319 C -621 254 -610 209 -576 160 Z"
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth < 1024)
+            setIsMobile(window.innerWidth < 630)
         }
 
         handleResize()
@@ -466,8 +466,8 @@ function Home() {
         <div className="min-h-screen bg-white text-slate-900">
             <Navabar />
 
-            <main className="w-full px-4 pb-6 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
-                <section className="mb-5 flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
+            <main className="w-full px-4 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
+                <section className="flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
                     <Sidebar />
 
                     <div className="relative z-0 min-w-0 flex-1">
@@ -574,8 +574,8 @@ function Home() {
                                                     initial="enter"
                                                     animate={specialPhase === 'closing' ? 'exit' : 'center'}
                                                 >
-                                                    <p className={`font-semibold leading-[1] ${['intro', 'outro'].includes(currentSlide.id) ? 'text-[17px] sm:text-[23px] md:text-[27px]' : 'text-[16px] sm:text-[22px] md:text-[28px]'}`}>
-                                                        {currentSlide.id === 'intro' ? (
+                                                    <p className={`font-semibold leading-[1] ${['intro', 'outro'].includes(currentSlide.id) ? 'text-[15px] sm:text-[23px] md:text-[27px]' : 'text-[16px] sm:text-[22px] md:text-[28px]'}`}>
+                                                        {['intro', 'outro'].includes(currentSlide.id) ? (
                                                             <TypewriterLine
                                                                 key={`title-typewriter-${currentSlide.id}`}
                                                                 text={currentSlide.title}
@@ -595,7 +595,7 @@ function Home() {
                                                             </motion.span>
                                                         )}
                                                     </p>
-                                                    <p className={`mt-2 w-full px-3 leading-[1.35] sm:px-8 md:px-10 ${['intro', 'outro'].includes(currentSlide.id) ? 'text-[8px] sm:text-[13px] md:text-[16px]' : 'text-[7px] sm:text-[11px] md:text-[16px]'}`}>
+                                                    <p className={`mt-2 w-full px-3 leading-[1.35] sm:px-8 md:px-10 ${['intro', 'outro'].includes(currentSlide.id) ? 'text-[8px] sm:text-[13px] md:text-[15px]' : 'text-[7px] sm:text-[11px] md:text-[16px]'}`}>
                                                         <SequentialPhraseText
                                                             key={`subtitle-${currentSlide.id}`}
                                                             text={currentSlide.subtitle}

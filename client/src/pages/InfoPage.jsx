@@ -11,8 +11,8 @@ function InfoPage() {
             <div className="h-[2px] w-full bg-[#6a9fba]" />
             <Navabar />
 
-            <main className="w-full px-4 pb-6 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
-                <section className="mb-10 flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
+            <main className="w-full px-4 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
+                <section className="flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
                     <Sidebar />
 
                     <div className="flex-1">

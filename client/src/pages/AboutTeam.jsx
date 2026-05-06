@@ -11,8 +11,8 @@ function AboutTeam() {
             <div className="h-[2px] w-full bg-[#6a9fba]" />
             <Navabar />
         
-            <main className="w-full px-4 pb-6 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
-                <section className="mb-10 flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
+            <main className="w-full px-4 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
+                <section className="flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
                     <Sidebar />
              
                     <div className="flex-1">
@@ -31,11 +31,11 @@ function AboutTeam() {
                                     }}
                                 >
                                     <p className="text-[20px] leading-[1.0] font-normal sm:text-[28px] md:text-[35px]">
-                                    Genotek
+                                        Genotek
                                     </p>
 
                                     <p className="mt-1 ml-[60px] text-[24px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                    Team.
+                                        Team.
                                     </p>
                                 </div>
                             </div>
@@ -97,9 +97,7 @@ function AboutTeam() {
                                     <h4 className='mt-3 text-[16px] text-gray-500 sm:text-[18px] md:mt-4 md:text-[20px]'>Co-founder & COO</h4>
                                     <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-black/80 text-left sm:text-[18px] md:text-[20px] md:text-justify">
                                         Nisarg Gohil is a biotechnology professional with Genotek Biochem in India, supported by a strong academic background and international exposure, including at Cornell University. Based in Mumbai, he is active in the life sciences sector and maintains a large professional network. His profile reflects a blend of scientific expertise, global perspective, and industry engagement.
-
                                     </p>
-                                    
                                 </div>
                             </div>
             
@@ -122,7 +120,7 @@ function AboutTeam() {
                                         className="h-[180px] w-full object-cover sm:h-[100px] md:h-[280px]"
                                     /> */}
                                 </div>
-             
+
                                 <div className="pr-0 lg:pr-8 xl:pr-32">
                                     <h2 className="text-[28px] font-semibold leading-none text-[#5a92b6] sm:text-[32px] md:text-[35px]">
                                         Hitesh Gandhi
@@ -130,9 +128,7 @@ function AboutTeam() {
                                     <h4 className='mt-3 text-[16px] text-gray-500 sm:text-[18px] md:mt-4 md:text-[20px]'>President- Marketing & Projects</h4>
                                     <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-black/80 text-left sm:text-[18px] md:text-[20px] md:text-justify">
                                         Hitesh is a results-driven leader in the pharmaceutical and CDMO sector, recognized for shaping growth strategies and building strong global partnerships. Combining commercial acumen with industry expertise, he drives execution-focused teams to deliver customer-centric solutions. His leadership emphasizes innovation, agility, and long-term value creation, enabling organizations to scale effectively and succeed in competitive, evolving markets.
-
                                     </p>
-                                    
                                 </div>
                             </div>
             
