@@ -64,7 +64,7 @@ function AboutTeam() {
                                     </h2>
                                     <h4 className='mt-3 text-[16px] text-gray-500 sm:text-[18px] md:mt-4 md:text-[20px]'>Founder & CEO</h4>
                                     <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-black/80 text-left sm:text-[18px] md:text-[20px] md:text-justify">
-                                        Rushabh Gohil is an emerging leader known for his strategic thinking and execution-driven approach. With a strong focus on building relationships and driving business outcomes, he brings a balanced perspective of operational discipline and growth ambition. He plays a key role in enabling customerfocused solutions, contributing to scalable success and long-term value creation in dynamic and competitive environments.
+                                        Rushabh Gohil is an emerging leader known for his strategic thinking and execution-driven approach. With a strong focus on building arelationships and driving business outcomes, he brings a balanced perspective of operational discipline and growth ambition. He plays a key role in enabling customerfocused solutions, contributing to scalable success and long-term value creation in dynamic and competitive environments.
                                     </p>
                                     
                                 </div>
