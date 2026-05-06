@@ -43,7 +43,7 @@ function AboutStory() {
                             </div>
                         </div>
 
-                        <div className="max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.6] text-black sm:text-[18px] md:pb-10 md:text-[20px] md:leading-[1.45]">
+                        <div className="max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.6] text-black/80  sm:text-[18px] md:pb-10 md:text-[20px] md:leading-[1.45]">
                             <p>
                                 At Genotek Biochem Private Limited, we believe that true progress in science comes from balancing scale with sensitivity. Guided by our mantra, "Big enough to deliver, small enough to care". We bring together capability and compassion in everything we do.
                             </p>
@@ -86,7 +86,7 @@ function AboutStory() {
 
                                 {/* Tagline */}
                                 <p className="mt-5 italic text-[25px] text-black/80 ">
-                                    Big enough to Deliver, Small enough to Care
+                                    Big enough to Deliver, Small enough to Care.
                                 </p>
 
                                 {/* Link */}
@@ -136,7 +136,7 @@ function AboutStory() {
                                     </ul>
 
                                     <p className="mt-4 italic text-[25px] text-black/80">
-                                    Driven by Innovation, Defined by Quality
+                                    Driven by Innovation, Defined by Quality.
                                     </p>
 
                                 </div>

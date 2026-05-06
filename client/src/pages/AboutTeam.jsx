@@ -30,11 +30,12 @@ function AboutTeam() {
                                         clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)',
                                     }}
                                 >
-                                    <p className="text-[22px] leading-[1.05] font-normal sm:text-[28px] md:text-[35px]">
+                                    <p className="text-[20px] leading-[1.0] font-normal sm:text-[28px] md:text-[35px]">
                                     Genotek
                                     </p>
-                                    <p className="mt-1 ml-[60px] text-right text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                         Team.
+
+                                    <p className="mt-1 ml-[60px] text-[24px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
+                                    Team.
                                     </p>
                                 </div>
                             </div>

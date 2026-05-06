@@ -45,7 +45,7 @@ function GenotekInfra() {
                             </div>
                         </div>
                         {/* content goes here */}
-                        <div className="max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.6] text-black sm:text-[18px] md:pb-10 md:text-[20px] md:leading-[1.45]">
+                        <div className="max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.6] text-black/80 sm:text-[18px] md:pb-10 md:text-[20px] md:leading-[1.45]">
                             <p>
                         At Genotek Biochem, our facilities are built to support the full journey of chemical innovation — from research to large-scale manufacturing. We combine advanced infrastructure with safety, precision, and flexibility at every stage.Supported by a <strong>
                         Multi-Reactor Manufacturing Facility</strong> near Pune, we enable smooth transition from pilot to commercial-scale production with reliable quality and scalability
@@ -84,8 +84,8 @@ function GenotekInfra() {
 
                             <div className="relative mx-auto  h-[20px] w-[92%] sm:mt-14 md:mt-8 md:w-[90%]">
                                 <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
-                                <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
-                                <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
+                                <span className="absolute right-[88px] top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute left-[14px] right-[100px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
                             </div>
 
                             
@@ -117,10 +117,10 @@ function GenotekInfra() {
                                 />
                             </div>
                             </div>
-                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-8 md:w-[90%]">
+                            <div className="relative mx-auto  h-[20px] w-[92%] sm:mt-14 md:mt-8 md:w-[90%]">
                                 <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
-                                <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
-                                <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
+                                <span className="absolute right-[88px] top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute left-[14px] right-[100px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
                             </div>
                             <div className="grid items-start gap-6 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10 mt-8">
                                 <div 
@@ -151,10 +151,10 @@ function GenotekInfra() {
                                 </div>
                             </div>
 
-                            <div className="relative mx-auto mt-10 h-[20px] w-[92%] sm:mt-14 md:mt-8 md:w-[90%]">
+                            <div className="relative mx-auto  h-[20px] w-[92%] sm:mt-14 md:mt-8 md:w-[90%]">
                                 <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
-                                <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
-                                <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
+                                <span className="absolute right-[88px] top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
+                                <span className="absolute left-[14px] right-[100px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
                             </div>
 
                             
