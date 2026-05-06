@@ -245,7 +245,7 @@ const specialTitleVariants = {
     },
 }
 
-function TypewriterLine({ text, delay = 0, speed = 58 }) {
+function TypewriterLine({ text, delay = 0, speed = 58, className = '' }) {
     const [displayedText, setDisplayedText] = useState('')
     const [isTyping, setIsTyping] = useState(false)
 
@@ -277,16 +277,14 @@ function TypewriterLine({ text, delay = 0, speed = 58 }) {
     }, [delay, speed, text])
 
     return (
-        <span className="relative inline-block font-special-elite font-normal tracking-[0.06em]">
-            <span className="invisible">{text}</span>
-            <span className="absolute inset-0">
-                {displayedText}
-                <span
-                    className={`ml-[2px] inline-block h-[0.9em] w-[2px] translate-y-[0.12em] bg-white ${
-                        isTyping ? 'opacity-100' : 'opacity-0'
-                    }`}
-                />
-            </span>
+        <span className={`relative inline-block font-special-elite font-normal tracking-[0.06em] ${className}`}>
+            <span>{displayedText}</span>
+            <span
+                className={`ml-[2px] inline-block h-[0.9em] w-[2px] translate-y-[0.12em] bg-white ${
+                    isTyping ? 'opacity-100' : 'opacity-0'
+                }`}
+            />
+            <span className="invisible">{text.slice(displayedText.length)}</span>
         </span>
     )
 }
@@ -356,9 +354,9 @@ function Home() {
 
     const currentSlide = slides[activeSlide]
     const isSpecialSlide = currentSlide.variant === 'special'
-    const braceDistance = isMobile ? 450 : 830
-    const leftBraceDistance = isMobile ? 600 : braceDistance + 100
-    const rightBraceDistance = isMobile ? 1350 : braceDistance + 830
+    const braceDistance = isMobile ? 350 : 830
+    const leftBraceDistance = isMobile ? 530 : braceDistance + 100
+    const rightBraceDistance = isMobile ? 1300 : braceDistance + 830
     const firstSlideLeftBraceVariants = {
         enter: {
             x: -leftBraceDistance,
@@ -412,7 +410,7 @@ function Home() {
         },
     }
     const bluePath = isMobile
-        ? "M -60 160 L 360 160 C 390 185 410 220 420 260 C 425 310 405 345 375 370 L -50 380 C -85 340 -95 320 -105 280 C -110 240 -100 200 -75 160 Z"
+        ? "M -180 160 L 920 160 C 958 195 985 246 995 306 C 1001 379 975 422 940 452 L -150 463 C -190 402 -204 377 -216 319 C -224 254 -214 209 -184 160 Z"
         : "M -560 160 L 1257 160 C 1307 195 1342 246 1357 306 C 1363 379 1337 422 1295 452 L -514 463 C -577 402 -592 377 -610 319 C -621 254 -610 209 -576 160 Z"
 
     useEffect(() => {
@@ -571,18 +569,19 @@ function Home() {
                                                 </svg>
 
                                                 <motion.div
-                                                    className="absolute inset-0 flex flex-col pt-8 px-[18%] text-center text-white"
+                                                    className="absolute inset-0 flex flex-col pt-10 px-[18%] text-center text-white lg:pt-8"
                                                     variants={firstSlideTextVariants}
                                                     initial="enter"
                                                     animate={specialPhase === 'closing' ? 'exit' : 'center'}
                                                 >
-                                                    <p className={`font-semibold leading-[1] ${currentSlide.id === 'intro' ? 'text-[19px] sm:text-[26px] md:text-[30px]' : 'text-[16px] sm:text-[22px] md:text-[28px]'}`}>
+                                                    <p className={`font-semibold leading-[1] ${['intro', 'outro'].includes(currentSlide.id) ? 'text-[17px] sm:text-[23px] md:text-[27px]' : 'text-[16px] sm:text-[22px] md:text-[28px]'}`}>
                                                         {currentSlide.id === 'intro' ? (
                                                             <TypewriterLine
                                                                 key={`title-typewriter-${currentSlide.id}`}
                                                                 text={currentSlide.title}
                                                                 delay={specialTitleDelay}
                                                                 speed={specialTitleTypeSpeed}
+                                                                className="-translate-y-[0.08em]"
                                                             />
                                                         ) : (
                                                             <motion.span
@@ -596,7 +595,7 @@ function Home() {
                                                             </motion.span>
                                                         )}
                                                     </p>
-                                                    <p className="mt-2 w-full px-3 text-[7px] leading-[1.35] sm:px-8 sm:text-[11px] md:px-10 md:text-[16px]">
+                                                    <p className={`mt-2 w-full px-3 leading-[1.35] sm:px-8 md:px-10 ${['intro', 'outro'].includes(currentSlide.id) ? 'text-[8px] sm:text-[13px] md:text-[16px]' : 'text-[7px] sm:text-[11px] md:text-[16px]'}`}>
                                                         <SequentialPhraseText
                                                             key={`subtitle-${currentSlide.id}`}
                                                             text={currentSlide.subtitle}
