@@ -13,8 +13,8 @@ function AboutStory() {
             <div className="h-[2px] w-full bg-[#6a9fba]" />
             <Navabar />
 
-            <main className="w-full px-4 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
-                <section className="flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
+            <main className="w-full px-4 pb-6 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
+                <section className="mb-10 flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
                     <Sidebar />
 
                     <div className="flex-1">
@@ -49,7 +49,7 @@ function AboutStory() {
                             </p>
                         </div>
 
-                        <div className="px-1 ">
+                        <div className="px-1">
                             <div className="grid items-start gap-6 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10">
                                 <div 
                                     className="overflow-hidden"
@@ -60,13 +60,13 @@ function AboutStory() {
                                     <img
                                         src={WhoWeAreImage}
                                         alt="Who we are"
-                                        className="h-[180px] w-full object-cover sm:h-[100px] md:h-[280px]"
+                                        className="h-[190px] w-full object-cover sm:h-[240px] md:h-[280px]"
                                     />
                                 </div>
 
                                 <div className="pr-0 lg:pr-8 xl:pr-20">
                                     {/* Heading */}
-                                    <h2 className="text-[30px] font-semibold text-[#5a92b6] sm:text-[34px] md:text-[38px]">
+                                    <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] sm:text-[34px] md:text-[38px]">
                                         Who we are
                                     </h2>
 
@@ -76,7 +76,7 @@ function AboutStory() {
                                     </p>
 
                                     {/* Bullet Points */}
-                                    <ul className="mt-4 list-disc pl-12 space-y-2 text-[16px] text-black/80 sm:text-[18px]">
+                                    <ul className="mt-4 list-disc space-y-2 pl-6 text-[16px] text-black/80 sm:pl-12 sm:text-[18px]">
                                         <li>Science-driven company rooted in chemistry excellence</li>
                                         <li>Strong technical expertise with scalable infrastructure</li>
                                         <li>Agile, responsive, and client-focused approach</li>
@@ -85,7 +85,7 @@ function AboutStory() {
                                     </ul>
 
                                     {/* Tagline */}
-                                    <p className="mt-5 italic text-[25px] text-black/80 ">
+                                    <p className="mt-5 text-[21px] italic leading-snug text-black/80 sm:text-[25px]">
                                         Big enough to Deliver, Small enough to Care.
                                     </p>
 
@@ -96,7 +96,7 @@ function AboutStory() {
                                         </p>
                                     </Link> 
                                     <Link to="/about/infra">
-                                        <p className="ml-8 mt-4 inline-block text-[18px] font-semibold text-[#5a92b6] underline underline-offset-4 sm:text-[20px] md:text-[22px]">
+                                        <p className="ml-5 mt-4 inline-block text-[18px] font-semibold text-[#5a92b6] underline underline-offset-4 sm:ml-8 sm:text-[20px] md:text-[22px]">
                                         Our Infra
                                         </p>
                                     </Link>
@@ -110,10 +110,10 @@ function AboutStory() {
                             </div>
 
                             
-                            <div className="mt-8 grid items-start gap-8 md:mt-10 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_520px] lg:gap-12 xl:gap-16">
+                            <div className="mt-8 grid items-start gap-8 md:mt-10 lg:grid-cols-[1fr_420px] lg:gap-12 xl:gap-16">
                                 {/* LEFT CONTENT */}
                                 <div className="max-w-[700px] text-left lg:pl-10 xl:pl-16">
-                                    <h2 className="text-[28px] font-semibold text-[#5a92b6] sm:text-[32px] md:text-[36px]">
+                                    <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] sm:text-[32px] md:text-[36px]">
                                         What we do
                                     </h2>
 
@@ -123,7 +123,7 @@ function AboutStory() {
                                         solutions across industries including pharmaceuticals, agrochemicals, and material sciences.
                                     </p>
 
-                                    <ul className="mt-5 list-disc space-y-2 pl-12 text-[16px] text-black/80 sm:text-[17px] md:text-[18px]">
+                                    <ul className="mt-5 list-disc space-y-2 pl-6 text-[16px] text-black/80 sm:pl-12 sm:text-[17px] md:text-[18px]">
                                         <li>Custom synthesis, process development & scale-up</li>
                                         <li>Analytical and method development capabilities</li>
                                         <li>FTE/FFS-based research services</li>
@@ -133,7 +133,7 @@ function AboutStory() {
                                         <li>Collaborative, flexible engagement models with fast turnaround</li>
                                     </ul>
 
-                                    <p className="mt-4 italic text-[25px] text-black/80">
+                                    <p className="mt-4 text-[21px] italic leading-snug text-black/80 sm:text-[25px]">
                                         Driven by Innovation, Defined by Quality.
                                     </p>
 
@@ -148,7 +148,7 @@ function AboutStory() {
                                     <img
                                         src={whatWeDoImage}
                                         alt="What we do"
-                                        className="h-[180px] w-10px object-cover sm:h-[100px] md:h-[280px] mr-20px"
+                                        className="h-[190px] w-full object-cover sm:h-[240px] md:h-[280px]"
                                     />
                                 </div>
                             </div>

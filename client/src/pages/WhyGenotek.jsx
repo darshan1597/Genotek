@@ -1,7 +1,6 @@
 import Navabar from "./components/Navabar";
 import Sidebar from "./components/Sidebar";
 import hero from "../assets/aboutStory/hero.jpg";
-import { Link } from "react-router-dom";
 import Footer from "./components/Footer";
 
 function WhyGenotek() {
@@ -10,8 +9,8 @@ function WhyGenotek() {
             <div className="h-[2px] w-full bg-[#6a9fba]" />
             <Navabar />
 
-            <main className="w-full px-4 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
-                <section className="flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
+            <main className="w-full px-4 pb-6 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
+                <section className="mb-10 flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
                     <Sidebar />
 
                     <div className="flex-1">
@@ -41,7 +40,7 @@ function WhyGenotek() {
                             </div>
                         </div>
                         {/* content goes here */}
-                        <section className="text-black  text-[20px] leading-[1.75] mt-10 max-w-[1320px] px-1 pb-8 pt-5 sm:text-[22px] md:pb-10 md:text-[24px] md:leading-[1.6]">
+                        <section className="mt-5 max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.7] text-black sm:text-[18px] md:mt-10 md:pb-10 md:text-[20px] md:leading-[1.6]">
                             <p className="mb-4 text-black/80">
                                 At{" "}
                                 <span className="font-semibold">
@@ -51,7 +50,7 @@ function WhyGenotek() {
                                 staying deeply connected to our clients’ needs.
                             </p>
 
-                            <ul className="list-disc pl-12 space-y-3">
+                            <ul className="list-disc space-y-3 pl-6 sm:pl-12">
                                 <li>
                                     <span className="font-semibold text-[#5a92b6]">
                                         End-to-End Capability
@@ -143,7 +142,7 @@ function WhyGenotek() {
                                 </li>
                             </ul>
 
-                            <p className="mt-6 text-[25px] italic text-black/80">
+                            <p className="mt-6 text-[21px] italic leading-snug text-black/80 sm:text-[25px]">
                                 Always within Reach, from Experiment to Outcome.
                             </p>
                         </section>

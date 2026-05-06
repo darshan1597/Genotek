@@ -47,7 +47,7 @@ function Footer({ insetForSidebar = true }) {
 
     return (
         <footer className={`clear-both mt-10 w-full border-t border-[#d6e4ed] bg-white text-[#42556c] ${layoutClass}`}>
-            <div className="grid gap-8 px-4 py-8 md:px-8 lg:grid-cols-[minmax(0,1.7fr)_minmax(240px,0.55fr)] lg:px-6 xl:px-10">
+            <div className="grid gap-8 px-4 py-8 md:px-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(240px,0.55fr)] lg:px-6 xl:px-10">
                 <div className="min-w-0">
                     <Link to="/" className="inline-flex">
                         <img
@@ -56,6 +56,9 @@ function Footer({ insetForSidebar = true }) {
                             className="h-auto w-[210px] object-contain sm:w-[230px]"
                         />
                     </Link>
+                    <p className="mt-3 text-[17px] font-bold text-[#214f86] sm:text-[18px]">
+                        Genotek Biochem Private Limited
+                    </p>
 
                     <div className="mt-6 flex flex-col gap-7 text-[15px] leading-[1.7]">
                         {locations.map((location) => (
@@ -97,7 +100,7 @@ function Footer({ insetForSidebar = true }) {
 
                 <div className="min-w-0">
                     <h2 className="text-[16px] font-semibold text-[#214f86] lg:mt-16">Quick Links</h2>
-                    <div className="mt-4 flex flex-col gap-5 sm:flex-row sm:items-start lg:flex-col">
+                    <div className="mt-4 flex flex-col sm:flex-row sm:items-start">
                         <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-[15px] sm:min-w-[210px]">
                             {navItems.filter((item) => item.label !== 'About us').map((item) => (
                                 item.href ? (

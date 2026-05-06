@@ -11,8 +11,8 @@ function AboutTeam() {
             <div className="h-[2px] w-full bg-[#6a9fba]" />
             <Navabar />
         
-            <main className="w-full px-4 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
-                <section className="flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
+            <main className="w-full px-4 pb-6 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
+                <section className="mb-10 flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
                     <Sidebar />
              
                     <div className="flex-1">
@@ -41,10 +41,10 @@ function AboutTeam() {
                             </div>
                         </div>
                         
-                        <div className="px-1  pt-8  sm:pt-12  md:pt-20">
+                        <div className="px-1 pt-8 sm:pt-12 md:pt-20">
                             {/* <div className="grid items-start gap-6 md:gap-8 lg:grid-cols-[280px_minmax(0,1fr)] lg:gap-10 xl:grid-cols-[300px_minmax(0,1fr)]"> */}
                             {/* person-1 */}
-                            <div className='ml-10'>
+                            <div className="lg:ml-10">
                                 <div 
                                     className="overflow-hidden"
                                     style={{
@@ -59,7 +59,7 @@ function AboutTeam() {
                                 </div>
              
                                 <div className="pr-0 lg:pr-8 xl:pr-32">
-                                    <h2 className="text-[28px] font-semibold leading-none text-[#5a92b6] sm:text-[32px] md:text-[35px]">
+                                    <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] sm:text-[32px] md:text-[35px]">
                                         Rushab Gohil
                                     </h2>
                                     <h4 className='mt-3 text-[16px] text-gray-500 sm:text-[18px] md:mt-4 md:text-[20px]'>Founder & CEO</h4>
@@ -70,13 +70,13 @@ function AboutTeam() {
                                 </div>
                             </div>
             
-                            <div className="relative mx-auto mt-5 h-[20px] w-[92%] sm:mt-7 md:mt-8 md:w-[90%] mb-5 sm:mb-7 md:mb-8">
+                            <div className="relative mx-auto mb-5 mt-5 h-[20px] w-[92%] sm:mb-7 sm:mt-7 md:mb-8 md:mt-8 md:w-[90%]">
                                 <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
                                 <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
                                 <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
                             </div>
                             {/* person-2*/}
-                            <div className='ml-10'>
+                            <div className="lg:ml-10">
                                 <div 
                                     className="overflow-hidden"
                                     style={{
@@ -91,7 +91,7 @@ function AboutTeam() {
                                 </div>
                                 
                                 <div className="pr-0 lg:pr-8 xl:pr-32">
-                                    <h2 className="text-[28px] font-semibold leading-none text-[#5a92b6] sm:text-[32px] md:text-[35px]">
+                                    <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] sm:text-[32px] md:text-[35px]">
                                         Nisarg Gohil
                                     </h2>
                                     <h4 className='mt-3 text-[16px] text-gray-500 sm:text-[18px] md:mt-4 md:text-[20px]'>Co-founder & COO</h4>
@@ -101,13 +101,13 @@ function AboutTeam() {
                                 </div>
                             </div>
             
-                            <div className="relative mx-auto mt-5 h-[20px] w-[92%] sm:mt-7 md:mt-8 md:w-[90%] mb-5 sm:mb-7 md:mb-8">
+                            <div className="relative mx-auto mb-5 mt-5 h-[20px] w-[92%] sm:mb-7 sm:mt-7 md:mb-8 md:mt-8 md:w-[90%]">
                                 <span className="absolute left-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
                                 <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px]" />
                                 <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc]" />
                             </div>
                             {/* person-3 */}
-                            <div className='ml-10'>
+                            <div className="lg:ml-10">
                                 <div 
                                     className="overflow-hidden"
                                     style={{
@@ -122,7 +122,7 @@ function AboutTeam() {
                                 </div>
 
                                 <div className="pr-0 lg:pr-8 xl:pr-32">
-                                    <h2 className="text-[28px] font-semibold leading-none text-[#5a92b6] sm:text-[32px] md:text-[35px]">
+                                    <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] sm:text-[32px] md:text-[35px]">
                                         Hitesh Gandhi
                                     </h2>
                                     <h4 className='mt-3 text-[16px] text-gray-500 sm:text-[18px] md:mt-4 md:text-[20px]'>President- Marketing & Projects</h4>

@@ -76,8 +76,9 @@ const specialRightBraceDelay = specialSubtitleCompleteDelay + 1
 const specialBraceCloseDelay = 16500
 const specialBlueCloseDuration = 3000
 const specialOverlayHiddenDelay = specialBraceCloseDelay + specialBlueCloseDuration
-const specialSlideAdvanceDelay = 22000
-const normalSlideAdvanceDelay = 6500
+const introSlideAdvanceDelay = specialOverlayHiddenDelay + 1000
+const outroSlideAdvanceDelay = specialOverlayHiddenDelay
+const normalSlideAdvanceDelay = 5200
 const firstSlideGlowDelay = specialRightBraceDelay + 1.9
 
 const slideVariants = {
@@ -85,8 +86,8 @@ const slideVariants = {
         opacity: 0,
         filter: 'brightness(1) saturate(1)',
     },
-    center: ({ shouldGlow }) => ({
-        opacity: 1,
+    center: ({ shouldGlow, targetOpacity = 1 }) => ({
+        opacity: targetOpacity,
         filter: shouldGlow
             ? [
                   'brightness(1) saturate(1)',
@@ -136,7 +137,7 @@ const captionVariants = {
         clipPath: 'polygon(0 0, 100% 0, 100% 68%, 95% 100%, 0 100%)',
         transition: {
             duration: 1.25,
-            delay: 2,
+            delay: 0.2,
             ease: [0.16, 1, 0.3, 1],
         },
     },
@@ -430,6 +431,9 @@ function Home() {
         setImagePhase('center')
 
         if (slides[activeSlide].variant === 'special') {
+            const currentSpecialSlideId = slides[activeSlide].id
+            const slideAdvanceDelay = currentSpecialSlideId === 'outro' ? outroSlideAdvanceDelay : introSlideAdvanceDelay
+
             setSpecialPhase('opening')
 
             timers.push(
@@ -447,7 +451,7 @@ function Home() {
             timers.push(
                 window.setTimeout(() => {
                     setActiveSlide((current) => (current + 1) % slides.length)
-                }, specialSlideAdvanceDelay)
+                }, slideAdvanceDelay)
             )
         } else {
             setSpecialPhase('hidden')
@@ -480,7 +484,10 @@ function Home() {
                                         alt={`Genotek plant view ${activeSlide + 1}`}
                                         className="absolute inset-0 h-full w-full transform-gpu object-cover will-change-[opacity,transform,filter]"
                                         variants={slideVariants}
-                                        custom={{ shouldGlow: activeSlide === 0 }}
+                                        custom={{
+                                            shouldGlow: activeSlide === 0,
+                                            targetOpacity: currentSlide.id === 'outro' ? 0.55 : 1,
+                                        }}
                                         initial="enter"
                                         animate={imagePhase}
                                         exit="exit"
@@ -642,7 +649,7 @@ function Home() {
                                             className="h-full w-full object-cover"
                                         />
                                         <div className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/60 to-transparent transition-opacity duration-500 ease-out group-hover:opacity-35" />
-                                        <p className="pointer-events-none absolute inset-x-0 bottom-2 px-3 py-1.5 text-center text-[15px] font-bold leading-tight bg-[#122E64] text-white transition-all duration-500 ease-out group-hover:bottom-1/4 group-hover:translate-y-1/4 group-hover:text-[18px] sm:bottom-2.5 sm:text-[15px] sm:group-hover:text-[20px] lg:text-[16px] lg:group-hover:text-[22px]">
+                                        <p className="pointer-events-none absolute inset-x-0 bottom-2 px-3 py-1.5 text-center text-[15px] font-bold leading-tight bg-[#2b5b91] text-white transition-all duration-500 ease-out group-hover:bottom-1/4 group-hover:translate-y-1/4 group-hover:text-[18px] sm:bottom-2.5 sm:text-[15px] sm:group-hover:text-[20px] lg:text-[16px] lg:group-hover:text-[22px]">
                                             {label}
                                         </p>
                                     </Link>
