@@ -86,7 +86,6 @@ const slideVariants = {
         opacity: 0,
         filter: 'brightness(1) saturate(1)',
     },
-
     center: ({ shouldGlow, targetOpacity = 1 }) => ({
         opacity: targetOpacity,
         filter: shouldGlow
@@ -96,13 +95,11 @@ const slideVariants = {
                   'brightness(1.06) saturate(1.05)',
               ]
             : 'brightness(1) saturate(1)',
-
         transition: {
             opacity: {
-                duration: 1.8,
-                ease: 'easeOut',
+                duration: 2.8,
+                ease: [0.45, 0, 0.2, 1],
             },
-
             filter: shouldGlow
                 ? {
                       duration: 1.4,
@@ -111,28 +108,24 @@ const slideVariants = {
                       ease: [0.22, 1, 0.36, 1],
                   }
                 : {
-                      duration: 0.3,
+                      duration: 0.01,
                   },
         },
     }),
-
     exit: {
         opacity: 0,
         filter: 'brightness(1) saturate(1)',
-
         transition: {
             opacity: {
-                duration: 0,
-                ease: 'easeInOut',
+                duration: 2.8,
+                ease: [0.45, 0, 0.2, 1],
             },
-
             filter: {
-                duration: 0.5,
-                ease: 'easeOut',
+                duration: 0.2,
             },
         },
     },
-};
+}
 
 const captionVariants = {
     enter: {

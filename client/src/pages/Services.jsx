@@ -86,9 +86,9 @@ function Services() {
                                 evolving requirements.
                             </p>
                         </div>
-                        <div className="px-4  pt-8">
+                        <div className="px-4 pt-8">
                             {/* 4 IMAGES */}
-                            <div className="grid grid-cols-2 gap-6 md:grid-cols-4 md:gap-10">
+                            <div className="mx-auto grid max-w-[820px] grid-cols-2 gap-1 md:grid-cols-4">
                                 {[
                                     { id: 1, title: "Compound Libraries", img: img1 },
                                     { id: 2, title: "Process Development", img: img2 },
@@ -97,16 +97,16 @@ function Services() {
                                 ].map((item) => (
                                     <div key={item.id} className="text-center">
                                         <div
-                                        onClick={() =>
-                                            setActive(active === item.id ? null : item.id)
-                                        }
-                                        className="flex h-[135px] cursor-pointer items-center justify-center overflow-hidden rounded-lg p-2 sm:h-[170px] sm:p-3 md:h-[180px] lg:h-[200px]"
+                                            onClick={() =>
+                                                setActive(active === item.id ? null : item.id)
+                                            }
+                                             className="flex h-[155px] cursor-pointer items-center justify-center overflow-hidden rounded-lg p-1 sm:p-2"
                                         >
                                         <img
                                             src={item.img}
                                             alt={item.title}
                                             className={`h-full w-full object-contain transition duration-300 hover:opacity-80
-                                            ${active === item.id ? "scale-[1.04] opacity-100 brightness-105" : active ? "opacity-40" : "opacity-100"}`}
+                                            ${active === item.id ? "scale-[1.04] opacity-100" : active ? "scale-100 opacity-40 hover:opacity-75" : "scale-100 opacity-100"}`}
                                         />
                                         </div>
                                     </div>

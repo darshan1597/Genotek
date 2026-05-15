@@ -10,6 +10,7 @@ import InfoPage from './pages/InfoPage'
 import watermark from './assets/watermark.png'
 import GetInTouch from './pages/GetInTouch'
 import Services from './pages/Services'
+import Industry from './pages/Industry'
 
 function ScrollToTop() {
     const { pathname } = useLocation()
@@ -38,7 +39,7 @@ function App() {
             <Route path="/about/why-genotek" element={<WhyGenotek />} />
             <Route path="/about/infra" element={<GenotekInfra />} />
             <Route path="/products" element={<InfoPage />} />
-            <Route path="/industry" element={<InfoPage />} />
+            <Route path="/industry" element={<Industry />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<GetInTouch />} />
         </Routes>
