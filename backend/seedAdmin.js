@@ -9,7 +9,7 @@ async function createAdmin() {
         await mongoose.connect(process.env.MONGODB_URL);
         console.log("MongoDB connected");
         const hashedPassword = await bcrypt.hash(
-            "SFHIE@$HFBA#YEMURS",
+            "SFHIE@$HF@BsdA#YEMefURS",
             10
         );
 

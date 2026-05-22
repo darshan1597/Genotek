@@ -83,7 +83,7 @@ function ViewCategories() {
                                 type="button"
                                 onClick={fetchCategories}
                                 disabled={loading}
-                                className="inline-flex h-11 items-center justify-center gap-2 border border-[#d7e5ee] bg-[#f8fbfd] px-4 text-[14px] font-semibold text-[#214f86] transition-colors duration-200 hover:bg-[#eef5f9] disabled:cursor-not-allowed disabled:text-[#8aa7be]"
+                                className="inline-flex h-11 items-center justify-center gap-2 border border-[#d7e5ee] bg-[#f8fbfd] px-4 text-[14px] font-semibold text-[#214f86] transition-colors duration-200 hover:bg-[#eef5f9] disabled:cursor-not-allowed disabled:text-[#8aa7be] cursor-pointer"
                             >
                                 <FiRefreshCw className={`text-[17px] ${loading ? 'animate-spin' : ''}`} />
                                 Refresh
@@ -126,10 +126,11 @@ function ViewCategories() {
                                                     <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-[#214f86] text-white">
                                                         <FiGrid className="text-[18px]" />
                                                     </span>
-                                                    <span className="truncate text-[16px] font-semibold text-[#214f86]">
+                                                    <span className="truncate uppercase text-[16px] font-semibold text-[#214f86]">
                                                         {category.name}
                                                     </span>
                                                 </div>
+                                                
                                                 <span className="text-[14px] text-[#526b80]">
                                                     {category.createdAt
                                                         ? new Date(category.createdAt).toLocaleDateString()

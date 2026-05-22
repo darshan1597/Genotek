@@ -6,6 +6,9 @@ import { useAdminAuth } from './pages/context/AdminAuthContext'
 import AddCategory from './pages/AddCategory'
 import AddProduct from './pages/AddProduct'
 import ViewCategories from './pages/ViewCategories'
+import ViewProducts from './pages/ViewProducts'
+import EditProducts from './pages/EditProducts'
+import Profile from './pages/Profile'
 
 export const serverUrl = import.meta.env.VITE_SERVER_URL
 
@@ -40,6 +43,9 @@ function App() {
             <Route path="/add-category" element={admin ? <AddCategory /> : <Navigate to="/login" replace /> } />
             <Route path="/categories" element={admin ? <ViewCategories /> : <Navigate to="/login" replace /> } />
             <Route path="/add-product" element={admin ? <AddProduct /> : <Navigate to="/login" replace /> } />
+            <Route path="/products" element={admin ? <ViewProducts /> : <Navigate to="/login" replace /> } />
+            <Route path="/edit-product/:id" element={admin ? <EditProducts /> : <Navigate to="/login" replace /> } />
+            <Route path="/profile" element={admin ? <Profile /> : <Navigate to="/login" replace /> } />
         </Routes>
     )
 }
