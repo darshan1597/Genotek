@@ -18,9 +18,10 @@ const adminSchema = new mongoose.Schema(
             type: String,
             required: true,
         },
-        isPrimaryAdmin: {
-            type: Boolean,
-            default: false,
+        role: {
+            type: String,
+            enum: ["superAdmin", "admin"],
+            default: "admin"
         },
         isActive: {
             type: Boolean,

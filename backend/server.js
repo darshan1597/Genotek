@@ -1,43 +1,29 @@
 import express from "express";
 import dotenv from "dotenv";
-import adminAuthRoutes from "./routes/adminAuth.routes.js";
-import connectDb from "./config/db.js";
-import { ensurePrimaryAdmin } from "./config/bootstrapAdmin.js";
 dotenv.config();
+import connectDb from "./config/db.js";
+import cookieParser from "cookie-parser"
+import cors from "cors"
+import adminAuthRouter from "./routes/auth.routes.js";
+import adminRouter from "./routes/admin.routes.js";
+import categoryRouter from "./routes/categories.routes.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use((req, res, next) => {
-    const allowedOrigins = (
-        process.env.CORS_ORIGIN || "http://localhost:5174,http://127.0.0.1:5174"
-    )
-        .split(",")
-        .map((origin) => origin.trim())
-    const requestOrigin = req.headers.origin
-
-    if (requestOrigin && allowedOrigins.includes(requestOrigin)) {
-        res.setHeader("Access-Control-Allow-Origin", requestOrigin)
-    }
-
-    res.setHeader("Vary", "Origin")
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization")
-    res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE, OPTIONS")
-
-    if (req.method === "OPTIONS") {
-        return res.sendStatus(204)
-    }
-
-    return next()
-})
+app.use(cors({
+    origin: "http://localhost:5173",
+    credentials: true
+}))
 
 app.use(express.json())
+app.use(cookieParser())
 
-app.get("/api/health", (req, res) => {
-    res.json({ status: "ok" })
-})
+app.use("/api/auth/admin", adminAuthRouter)
 
-app.use("/api/admin", adminAuthRoutes)
+app.use("/api/admin", adminRouter)
+
+app.use("/api/categories", categoryRouter)
 
 const startServer = async () => {
     app.listen(port, () => {
@@ -46,7 +32,6 @@ const startServer = async () => {
 
     try {
         await connectDb()
-        await ensurePrimaryAdmin()
     } catch (error) {
         console.log("Database startup failed", error.message)
     }
