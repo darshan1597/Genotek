@@ -1,9 +1,32 @@
 import Product from "../models/product.model.js";
+import Category from "../models/category.model.js";
+import Subcategory from "../models/subcategory.model.js";
 import fs from "fs";
 import path from "path";
 
 export const addProduct = async (req, res) => {
     try {
+        const parentCategory = await Category.findOne({ name: req.body.category });
+
+        if (!parentCategory) {
+            return res.status(400).json({ message: "Selected category does not exist" });
+        }
+
+        if (parentCategory.hasSubcategories && !req.body.subcategory) {
+            return res.status(400).json({ message: "Select a subcategory for this category" });
+        }
+
+        if (req.body.subcategory) {
+            const subcategory = await Subcategory.findOne({
+                name: req.body.subcategory,
+                category: req.body.category
+            });
+
+            if (!subcategory) {
+                return res.status(400).json({ message: "Selected subcategory does not belong to this category" });
+            }
+        }
+
         const uploadedImage = req.file;
 
         if (!uploadedImage) {
@@ -12,6 +35,7 @@ export const addProduct = async (req, res) => {
 
         const newProduct = new Product({
             ...req.body,
+            subcategory: req.body.subcategory || "",
             image: {
                 name: uploadedImage.filename
             }
@@ -81,7 +105,29 @@ export const updateProduct = async (req, res) => {
 
         product.name = req.body.name || product.name;
         product.category = req.body.category || product.category;
+        product.subcategory = req.body.subcategory || "";
         product.cas = req.body.cas || product.cas;
+
+        const parentCategory = await Category.findOne({ name: product.category });
+
+        if (!parentCategory) {
+            return res.status(400).json({ message: "Selected category does not exist" });
+        }
+
+        if (parentCategory.hasSubcategories && !product.subcategory) {
+            return res.status(400).json({ message: "Select a subcategory for this category" });
+        }
+
+        if (product.subcategory) {
+            const subcategory = await Subcategory.findOne({
+                name: product.subcategory,
+                category: product.category
+            });
+
+            if (!subcategory) {
+                return res.status(400).json({ message: "Selected subcategory does not belong to this category" });
+            }
+        }
 
         if (uploadedImage) {
             if (product.image?.name) {

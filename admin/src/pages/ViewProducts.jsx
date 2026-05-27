@@ -149,11 +149,11 @@ function ViewProducts() {
                         ) : products.length ? (
                             <div className="overflow-x-auto">
                                 <div className="min-w-[1040px]">
-                                    <div className="grid grid-cols-[80px_minmax(360px,1fr)_160px_150px_160px] border-b border-[#d7e5ee] bg-[#f8fbfd] px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6a9ab1]">
+                                    <div className="grid grid-cols-[80px_minmax(360px,1fr)_160px_150px_150px] border-b border-[#d7e5ee] bg-[#f8fbfd] px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6a9ab1]">
                                         <span>No.</span>
                                         <span>Product</span>
                                         <span>Category</span>
-                                        <span>CAS Number</span>
+                                        <span>CAS / Subcategory</span>
                                         <span>Actions</span>
                                     </div>
 
@@ -164,7 +164,7 @@ function ViewProducts() {
                                             return (
                                                 <div
                                                     key={product._id || product.name || index}
-                                                    className="grid grid-cols-[80px_minmax(360px,1fr)_160px_150px_160px] items-center px-5 py-5 transition-colors duration-200 hover:bg-[#f8fbfd]"
+                                                    className="grid grid-cols-[80px_minmax(360px,1fr)_160px_150px_150px] items-center px-5 py-5 transition-colors duration-200 hover:bg-[#f8fbfd]"
                                                 >
                                                     <span className="text-[14px] font-semibold text-[#6a9ab1]">
                                                         {String(index + 1).padStart(2, '0')}
@@ -198,8 +198,13 @@ function ViewProducts() {
                                                         {product.category}
                                                     </span>
 
-                                                    <span className="truncate text-[14px] text-[#526b80]">
-                                                        {product.cas}
+                                                    <span className="text-[14px] text-[#526b80]">
+                                                        <span className="block truncate">{product.cas}</span>
+                                                        {product.subcategory ? (
+                                                            <span className="mt-1 block truncate text-[13px] font-semibold text-[#6a9ab1]">
+                                                                {product.subcategory}
+                                                            </span>
+                                                        ) : null}
                                                     </span>
 
                                                     <div className="flex items-center gap-2">

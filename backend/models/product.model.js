@@ -16,6 +16,11 @@ const ProductSchema = new mongoose.Schema({
         type: String, 
         required: true 
     },
+    subcategory: {
+        type: String,
+        trim: true,
+        default: "",
+    },
     cas: {
         type: String, 
         required: true 

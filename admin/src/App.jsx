@@ -9,6 +9,7 @@ import ViewCategories from './pages/ViewCategories'
 import ViewProducts from './pages/ViewProducts'
 import EditProducts from './pages/EditProducts'
 import Profile from './pages/Profile'
+import AddSubcategory from './pages/AddSubcategory'
 
 export const serverUrl = import.meta.env.VITE_SERVER_URL
 
@@ -42,6 +43,7 @@ function App() {
             <Route path="/admin-panel" element={admin ? <AdminPanel /> : <Navigate to="/login" replace /> } />
             <Route path="/add-category" element={admin ? <AddCategory /> : <Navigate to="/login" replace /> } />
             <Route path="/categories" element={admin ? <ViewCategories /> : <Navigate to="/login" replace /> } />
+            <Route path="/add-subcategory" element={admin ? <AddSubcategory /> : <Navigate to="/login" replace /> } />
             <Route path="/add-product" element={admin ? <AddProduct /> : <Navigate to="/login" replace /> } />
             <Route path="/products" element={admin ? <ViewProducts /> : <Navigate to="/login" replace /> } />
             <Route path="/edit-product/:id" element={admin ? <EditProducts /> : <Navigate to="/login" replace /> } />

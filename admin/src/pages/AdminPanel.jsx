@@ -5,6 +5,7 @@ import {
     FiImage,
     FiBox,
     FiGrid,
+    FiLayers,
     FiList,
     FiPlusCircle,
     FiUserPlus,
@@ -39,6 +40,13 @@ const adminActions = [
         icon: FiList,
         path: '/categories',
         button: 'View'
+    },
+    {
+        title: 'Add Subcategory',
+        description: 'Create subcategories for catalog sections that need another level.',
+        icon: FiLayers,
+        path: '/add-subcategory',
+        button: 'Add'
     },
     {
         title: 'Add Product',

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { FiArrowLeft, FiCheckCircle, FiGrid, FiRefreshCw } from 'react-icons/fi'
+import { FiArrowLeft, FiCheckCircle, FiFileText, FiGrid, FiLayers, FiRefreshCw } from 'react-icons/fi'
 import Navabar from './components/Navabar'
 import Toast from './components/Toast'
 import axios from 'axios'
@@ -8,6 +8,8 @@ import { serverUrl } from '../App'
 
 function AddCategory() {
     const [category, setCategory] = useState('')
+    const [description, setDescription] = useState('')
+    const [hasSubcategories, setHasSubcategories] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [toast, setToast] = useState(null);
 
@@ -15,6 +17,7 @@ function AddCategory() {
         e.preventDefault()
         setIsSubmitting(true)
         const categoryName = category.trim()
+        const categoryDescription = description.trim()
 
         if (!categoryName) {
             setToast({ message: "Enter Category Name!", type: "error" });
@@ -22,14 +25,22 @@ function AddCategory() {
             return
         }
 
+        if (!categoryDescription) {
+            setToast({ message: "Enter Category Description!", type: "error" });
+            setIsSubmitting(false)
+            return
+        }
+
         try {
             await axios.post(
                 `${serverUrl}/api/categories/add-category`,
-                { name: categoryName },
+                { name: categoryName, description: categoryDescription, hasSubcategories },
                 { withCredentials: true }
             )
             setToast({ message: "Category Added Successfully!", type: "success" });
             setCategory("")
+            setDescription("")
+            setHasSubcategories(false)
         } catch (error) {
             setToast({
                 message: error?.response?.data?.message || "Error Adding Category!",
@@ -43,6 +54,8 @@ function AddCategory() {
 
     const handleReset = () => {
         setCategory('')
+        setDescription('')
+        setHasSubcategories(false)
     }
 
     return (
@@ -94,6 +107,42 @@ function AddCategory() {
                                         className="w-full bg-transparent text-[15px] text-[#23384d] outline-none placeholder:text-[#98aab8]"
                                         placeholder="Example: Laboratory Chemicals"
                                     />
+                                </span>
+                            </label>
+
+                            <label className="mb-5 block">
+                                <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
+                                    Description
+                                </span>
+                                <span className="flex min-h-[130px] items-start border-2 border-[#d6e4ed] bg-[#f8fbfd] px-4 py-4 transition-colors duration-200 focus-within:border-[#214f86]">
+                                    <FiFileText className="mr-3 mt-1 shrink-0 text-[20px] text-[#6a9ab1]" />
+                                    <textarea
+                                        name="description"
+                                        value={description}
+                                        onChange={(event) => {
+                                            setDescription(event.target.value)
+                                        }}
+                                        className="min-h-[96px] w-full resize-y bg-transparent text-[15px] leading-6 text-[#23384d] outline-none placeholder:text-[#98aab8]"
+                                        placeholder="Write a short description for this category"
+                                    />
+                                </span>
+                            </label>
+
+                            <label className="mb-6 flex cursor-pointer items-start gap-4 border border-[#d7e5ee] bg-[#f8fbfd] p-4">
+                                <input
+                                    type="checkbox"
+                                    checked={hasSubcategories}
+                                    onChange={(event) => setHasSubcategories(event.target.checked)}
+                                    className="mt-1 h-5 w-5 accent-[#214f86]"
+                                />
+                                <span>
+                                    <span className="flex items-center gap-2 text-[15px] font-semibold text-[#214f86]">
+                                        <FiLayers className="text-[18px] text-[#6a9ab1]" />
+                                        This category has subcategories
+                                    </span>
+                                    <span className="mt-1 block text-[13px] leading-5 text-[#526b80]">
+                                        Use this for categories like cat4 where users should see subcategories before products.
+                                    </span>
                                 </span>
                             </label>
 

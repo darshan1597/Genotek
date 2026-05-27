@@ -7,6 +7,15 @@ const categorySchema = new mongoose.Schema(
             required: true,
             trim: true,
         },
+        description: {
+            type: String,
+            required: true,
+            trim: true,
+        },
+        hasSubcategories: {
+            type: Boolean,
+            default: false,
+        },
     },
     { timestamps: true }
 )

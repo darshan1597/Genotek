@@ -20,13 +20,17 @@ function EditProducts() {
     const { id } = useParams()
     const navigate = useNavigate()
     const categoryDropdownRef = useRef(null)
+    const subcategoryDropdownRef = useRef(null)
     const productImageInputRef = useRef(null)
     const [productName, setProductName] = useState('')
     const [casNumber, setCasNumber] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('')
+    const [selectedSubcategory, setSelectedSubcategory] = useState('')
     const [categories, setCategories] = useState([])
+    const [subcategories, setSubcategories] = useState([])
     const [isLoading, setIsLoading] = useState(true)
     const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false)
+    const [isSubcategoryDropdownOpen, setIsSubcategoryDropdownOpen] = useState(false)
     const [productImage, setProductImage] = useState(null)
     const [currentImageName, setCurrentImageName] = useState('')
     const [imagePreview, setImagePreview] = useState('')
@@ -48,6 +52,7 @@ function EditProducts() {
                     setProductName(product.name || '')
                     setCasNumber(product.cas || '')
                     setSelectedCategory(product.category || '')
+                    setSelectedSubcategory(product.subcategory || '')
                     setCurrentImageName(product.image?.name || '')
                     setImagePreview(product.image?.name ? `${serverUrl}/productImages/${product.image.name}` : '')
                 }
@@ -69,12 +74,43 @@ function EditProducts() {
             if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(event.target)) {
                 setIsCategoryDropdownOpen(false)
             }
+            if (subcategoryDropdownRef.current && !subcategoryDropdownRef.current.contains(event.target)) {
+                setIsSubcategoryDropdownOpen(false)
+            }
         }
 
         document.addEventListener('mousedown', handleClickOutside)
 
         return () => document.removeEventListener('mousedown', handleClickOutside)
     }, [])
+
+    const selectedCategoryData = categories.find((category) => category.name === selectedCategory)
+
+    useEffect(() => {
+        const fetchSubcategories = async () => {
+            if (!selectedCategoryData?.hasSubcategories) {
+                setSubcategories([])
+                setSelectedSubcategory('')
+                return
+            }
+
+            try {
+                const { data } = await axios.get(
+                    `${serverUrl}/api/subcategories/fetch-subcategories?category=${encodeURIComponent(selectedCategory)}`,
+                    { withCredentials: true }
+                )
+
+                setSubcategories(Array.isArray(data) ? data : [])
+            } catch (error) {
+                setToast({
+                    message: error?.response?.data?.message || 'Unable to load subcategories.',
+                    type: 'error',
+                })
+            }
+        }
+
+        fetchSubcategories()
+    }, [selectedCategory, selectedCategoryData?.hasSubcategories])
 
     useEffect(() => {
         if (!productImage) return undefined
@@ -105,6 +141,11 @@ function EditProducts() {
             return
         }
 
+        if (selectedCategoryData?.hasSubcategories && !selectedSubcategory) {
+            setToast({ message: 'Select a subcategory.', type: 'error' })
+            return
+        }
+
         setIsSubmitting(true)
 
         try {
@@ -112,6 +153,7 @@ function EditProducts() {
             formData.append('name', name)
             formData.append('cas', cas)
             formData.append('category', selectedCategory)
+            formData.append('subcategory', selectedCategoryData?.hasSubcategories ? selectedSubcategory : '')
 
             if (productImage) {
                 formData.append('image', productImage)
@@ -270,6 +312,7 @@ function EditProducts() {
                                                     aria-selected={selectedCategory === category.name}
                                                     onClick={() => {
                                                         setSelectedCategory(category.name)
+                                                        setSelectedSubcategory('')
                                                         setIsCategoryDropdownOpen(false)
                                                     }}
                                                     className={`flex w-full items-center gap-3 border-b border-[#eef3f6] px-4 py-3 text-left text-[15px] font-semibold transition-colors duration-200 last:border-b-0 cursor-pointer ${
@@ -287,6 +330,65 @@ function EditProducts() {
                                         </div>
                                     </div>
                                 </div>
+
+                                {selectedCategoryData?.hasSubcategories ? (
+                                    <div className="mb-5 block" ref={subcategoryDropdownRef}>
+                                        <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
+                                            Subcategory
+                                        </span>
+                                        <div className="relative">
+                                            <button
+                                                type="button"
+                                                aria-haspopup="listbox"
+                                                aria-expanded={isSubcategoryDropdownOpen}
+                                                onClick={() => setIsSubcategoryDropdownOpen((current) => !current)}
+                                                className="flex h-13 w-full items-center border-2 border-[#d6e4ed] bg-[#f8fbfd] px-4 text-left transition-colors duration-200 hover:border-[#214f86]"
+                                            >
+                                                <FiTag className="mr-3 shrink-0 text-[20px] text-[#6a9ab1]" />
+                                                <span className={`min-w-0 flex-1 truncate text-[15px] ${selectedSubcategory ? 'text-[#23384d]' : 'text-[#98aab8]'}`}>
+                                                    {selectedSubcategory || 'Select subcategory'}
+                                                </span>
+                                                <FiChevronDown className={`ml-3 shrink-0 text-[20px] text-[#6a9ab1] transition-transform duration-200 ${isSubcategoryDropdownOpen ? 'rotate-180' : ''}`} />
+                                            </button>
+
+                                            <div
+                                                className={`absolute left-0 right-0 top-full z-30 mt-2 max-h-64 overflow-y-auto border border-[#d7e5ee] bg-white shadow-[0_18px_45px_rgba(33,79,134,0.16)] transition-all duration-200 ${
+                                                    isSubcategoryDropdownOpen ? 'pointer-events-auto translate-y-0 opacity-100' : 'pointer-events-none -translate-y-2 opacity-0'
+                                                }`}
+                                                role="listbox"
+                                            >
+                                                {subcategories.length ? (
+                                                    subcategories.map((subcategory) => (
+                                                        <button
+                                                            key={subcategory._id || subcategory.name}
+                                                            type="button"
+                                                            role="option"
+                                                            aria-selected={selectedSubcategory === subcategory.name}
+                                                            onClick={() => {
+                                                                setSelectedSubcategory(subcategory.name)
+                                                                setIsSubcategoryDropdownOpen(false)
+                                                            }}
+                                                            className={`flex w-full items-center gap-3 border-b border-[#eef3f6] px-4 py-3 text-left text-[15px] font-semibold transition-colors duration-200 last:border-b-0 cursor-pointer ${
+                                                                selectedSubcategory === subcategory.name
+                                                                    ? 'bg-[#eef5f9] text-[#214f86]'
+                                                                    : 'text-[#526b80] hover:bg-[#f8fbfd] hover:text-[#214f86]'
+                                                            }`}
+                                                        >
+                                                            <span className="flex h-8 w-8 shrink-0 items-center justify-center bg-[#214f86] text-white">
+                                                                <FiTag className="text-[16px]" />
+                                                            </span>
+                                                            <span className="min-w-0 truncate">{subcategory.name}</span>
+                                                        </button>
+                                                    ))
+                                                ) : (
+                                                    <div className="px-4 py-4 text-[14px] leading-6 text-[#526b80]">
+                                                        No subcategories found for this category.
+                                                    </div>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : null}
 
                                 <div className="mb-6 block">
                                     <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
@@ -372,6 +474,16 @@ function EditProducts() {
                                     <p className="mt-2 text-[15px] font-semibold text-[#526b80]">
                                         {selectedCategory || 'Category'}
                                     </p>
+                                    {selectedCategoryData?.hasSubcategories ? (
+                                        <>
+                                            <p className="mt-4 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6a9ab1]">
+                                                Subcategory
+                                            </p>
+                                            <p className="mt-2 text-[15px] font-semibold text-[#526b80]">
+                                                {selectedSubcategory || 'Subcategory'}
+                                            </p>
+                                        </>
+                                    ) : null}
                                 </div>
                             </aside>
                         </div>

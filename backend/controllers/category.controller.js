@@ -2,19 +2,21 @@ import Category from "../models/category.model.js";
 
 export const addCategory = async (req, res) => {
     try {
-        const { name } = req.body;
+        const { name, description, hasSubcategories = false } = req.body;
 
         if (!name) {
             return res.status(400).json({ message: "Category name is required" });
         }
 
-        console.log(name)
+        if (!description) {
+            return res.status(400).json({ message: "Category description is required" });
+        }
 
         let category = await Category.findOne({ name });
 
         if (category) return res.status(400).json({ message: "Category already exists" });
 
-        category = new Category({ name });
+        category = new Category({ name, description, hasSubcategories });
 
         await category.save();
 
