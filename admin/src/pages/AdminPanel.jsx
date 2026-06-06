@@ -49,6 +49,13 @@ const adminActions = [
         button: 'Add'
     },
     {
+        title: 'View Subcategories',
+        description: 'Review subcategories and their parent category mapping.',
+        icon: FiLayers,
+        path: '/subcategories',
+        button: 'View'
+    },
+    {
         title: 'Add Product',
         description: 'Add product details, category, and display information.',
         icon: FiPlusCircle,

@@ -21,8 +21,8 @@ const industries = [
 
 function Industry() {
     const [active, setActive] = useState(null);
-    const [visibleIds, setVisibleIds] = useState([1, 2, 3, 4]);
-    const [trackIds, setTrackIds] = useState([1, 2, 3, 4]);
+    const [visibleIds, setVisibleIds] = useState([1, 2, 3, 4, 5]);
+    const [trackIds, setTrackIds] = useState([1, 2, 3, 4, 5]);
     const [trackOffset, setTrackOffset] = useState("0px");
     const [isSliding, setIsSliding] = useState(false);
 
@@ -34,15 +34,13 @@ function Industry() {
     const slideRight = () => {
         if (isSliding) return;
 
-        const lastTwo = visibleIds.slice(-2);
+        const last = visibleIds[visibleIds.length - 1];
         const nextVisibleIds = [
-            lastTwo[0],
-            lastTwo[1],
-            nextId(lastTwo[1]),
-            nextId(nextId(lastTwo[1])),
+            ...visibleIds.slice(1),
+            nextId(last),
         ];
 
-        setTrackIds([...visibleIds, nextVisibleIds[2], nextVisibleIds[3]]);
+        setTrackIds([...visibleIds, nextVisibleIds[nextVisibleIds.length - 1]]);
         setTrackOffset("0px");
         setIsSliding(false);
 
@@ -58,16 +56,12 @@ function Industry() {
         if (isSliding) return;
 
         const first = visibleIds[0];
-        const second = visibleIds[1];
-        const anchor = second === prevId(first) ? second : first;
         const nextVisibleIds = [
-            prevId(anchor),
-            prevId(prevId(anchor)),
-            first,
-            second,
+            prevId(first),
+            ...visibleIds.slice(0, -1),
         ];
 
-        setTrackIds([...nextVisibleIds.slice(0, 2), ...visibleIds]);
+        setTrackIds([nextVisibleIds[0], ...visibleIds]);
         setTrackOffset(slideDistance);
         setIsSliding(false);
 
@@ -94,7 +88,7 @@ function Industry() {
             onClick={() =>
                 setActive(active === item.id ? null : item.id)
             }
-            className={`group flex h-[155px] min-w-0 shrink-0 basis-[calc((100%-var(--industry-gap))/2)] cursor-pointer items-center justify-center overflow-hidden rounded-lg p-1 text-center transition focus:outline-none hover:opacity-80 sm:p-2 md:basis-[calc((100%-(var(--industry-gap)*3))/4)]
+            className={`group flex h-[175px] min-w-0 shrink-0 basis-[calc((100%-var(--industry-gap))/2)] cursor-pointer items-center justify-center overflow-hidden rounded-lg p-1 text-center transition focus:outline-none hover:opacity-80 sm:p-2 md:basis-[calc((100%-(var(--industry-gap)*4))/5)]
             ${active === item.id ? "opacity-100" : active ? "opacity-40" : "opacity-100"}`}
         >
             <img
@@ -110,35 +104,34 @@ function Industry() {
         <div className="min-h-screen bg-white text-slate-900">
             <div className="h-[2px] w-full bg-[#6a9fba]" />
             <Navabar />
-            <main className="w-full px-4 pb-6 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
-                <section className="mb-10 flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
+            <main className="w-full px-4 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
+                <section className="flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
                     <Sidebar />
                     <div className="flex-1">
-                    <div className="relative flex flex-col gap-[10px] md:flex-row">
-                        <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[450px]">
-                            <img
-                                src={banner}
-                                alt="The Genotek Story"
-                                className="h-full w-full object-cover"
-                            />
-                    
-                            <div
-                                className="absolute bottom-[24px] left-0 z-[4] w-[min(92%,320px)] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[38px] sm:w-[min(88%,420px)] sm:px-8 sm:py-3 md:bottom-[64px] md:w-auto md:px-15"
-                                style={{
-                                    clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)',
-                                }}
-                            >
-                                <p className="text-[20px] leading-[1.0] font-normal sm:text-[28px] md:text-[35px]">
-                                    Industries
-                                    </p>
-                                    <p className="mt-1 ml-[60px] text-[24px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                    We Serve.
-                                    </p>
+                        <div className="relative flex flex-col gap-[10px] md:flex-row">
+                            <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[450px]">
+                                <img
+                                    src={banner}
+                                    alt="The Genotek Story"
+                                    className="h-full w-full object-cover"
+                                />
+                        
+                                <div
+                                    className="absolute bottom-[24px] left-0 z-[4] w-[min(92%,320px)] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[38px] sm:w-[min(88%,420px)] sm:px-8 sm:py-3 md:bottom-[64px] md:w-auto md:px-15"
+                                    style={{
+                                        clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)',
+                                    }}
+                                >
+                                    <p className="text-[20px] leading-[1.0] font-normal sm:text-[28px] md:text-[35px]">
+                                        Industries
+                                        </p>
+                                        <p className="mt-1 ml-[60px] text-[24px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
+                                        We Serve.
+                                        </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                        <div className="max-w-[1320px] px-1 pb-8 pt-1text-[16px] leading-[1.7]  sm:text-[18px] md:pb-10 md:text-[19px] ">
-                            
+                        <div className="max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.6] text-black/80  sm:text-[18px] md:pb-10 md:text-[20px] md:leading-[1.45]">
                             <p className="mb-4 text-black/80 ">
                                 At{" "}
                                 <span className="font-semibold">
@@ -174,7 +167,7 @@ function Industry() {
                                 </button>
 
                                 <div
-                                    className="max-w-[820px] flex-1 overflow-hidden [--industry-gap:0.25rem] [--industry-slide-distance:calc(100%_+_var(--industry-gap))] md:[--industry-slide-distance:calc(50%_+_(var(--industry-gap)/2))]"
+                                    className="max-w-[1020px] flex-1 overflow-hidden [--industry-gap:0.25rem] [--industry-slide-distance:calc(50%_+_(var(--industry-gap)/2))] md:[--industry-slide-distance:calc(20%_+_(var(--industry-gap)*0.8))]"
                                 >
                                     <div
                                         className={`flex gap-1 ${isSliding ? "transition-transform duration-500 ease-in-out" : ""}`}

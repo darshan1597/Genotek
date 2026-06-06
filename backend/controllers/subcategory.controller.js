@@ -3,18 +3,19 @@ import Subcategory from "../models/subcategory.model.js"
 
 export const addSubcategory = async (req, res) => {
     try {
-        const { name, description, category } = req.body
+        const { name, category } = req.body
+        const uploadedImage = req.file
 
         if (!name) {
             return res.status(400).json({ message: "Subcategory name is required" })
         }
 
-        if (!description) {
-            return res.status(400).json({ message: "Subcategory description is required" })
-        }
-
         if (!category) {
             return res.status(400).json({ message: "Parent category is required" })
+        }
+
+        if (!uploadedImage) {
+            return res.status(400).json({ message: "Subcategory image is required" })
         }
 
         const parentCategory = await Category.findOne({ name: category })
@@ -33,7 +34,13 @@ export const addSubcategory = async (req, res) => {
             return res.status(400).json({ message: "Subcategory already exists in this category" })
         }
 
-        subcategory = await Subcategory.create({ name, description, category })
+        subcategory = await Subcategory.create({
+            name,
+            category,
+            image: {
+                name: uploadedImage.filename
+            }
+        })
 
         return res.status(201).json({ message: "Subcategory added successfully", subcategory })
     } catch (error) {
@@ -44,7 +51,7 @@ export const addSubcategory = async (req, res) => {
 export const fetchSubcategories = async (req, res) => {
     try {
         const filter = req.query.category ? { category: req.query.category } : {}
-        const subcategories = await Subcategory.find(filter).sort({ name: 1 })
+        const subcategories = await Subcategory.find(filter).sort({ createdAt: 1 })
 
         return res.status(200).json(subcategories)
     } catch (error) {

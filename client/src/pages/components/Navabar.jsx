@@ -2,16 +2,22 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { FiMenu, FiSearch, FiX } from 'react-icons/fi'
 import logo from '../../assets/logo.jpeg'
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { aboutSubmenuItems, navItems } from './navConfig'
 import { FiChevronDown } from 'react-icons/fi'
 import { FaLinkedin } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
+import axios from 'axios'
+
+const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:8000'
 
 function Navabar() {
     const location = useLocation()
+    const navigate = useNavigate()
     const [menuOpen, setMenuOpen] = useState(false)
     const [searchOpen, setSearchOpen] = useState(false)
+    const [searchQuery, setSearchQuery] = useState('')
+    const [searchError, setSearchError] = useState('')
     const [aboutOpen, setAboutOpen] = useState(location.pathname.startsWith('/about'))
 
     useEffect(() => {
@@ -19,6 +25,46 @@ function Navabar() {
         setSearchOpen(false)
         setAboutOpen(location.pathname.startsWith('/about'))
     }, [location.pathname])
+
+    const handleGlobalSearch = async (event) => {
+        event.preventDefault()
+
+        const query = searchQuery.trim()
+        if (!query) return
+
+        try {
+            setSearchError('')
+            const { data } = await axios.get(`${serverUrl}/api/products/fetch-products`)
+            const products = Array.isArray(data) ? data : []
+            const normalizedQuery = query.toLowerCase()
+
+            const matchedProduct = products.find((product) => product.cas?.toLowerCase() === normalizedQuery)
+                || products.find((product) => product.name?.toLowerCase() === normalizedQuery)
+                || products.find((product) =>
+                    [product.name, product.cas].filter(Boolean).some((value) => value.toLowerCase().includes(normalizedQuery))
+                )
+
+            if (!matchedProduct?.category) {
+                setSearchError('No matching product found')
+                return
+            }
+
+            const params = new URLSearchParams({ search: query })
+            if (matchedProduct.subcategory) params.set('subcategory', matchedProduct.subcategory)
+
+            setSearchOpen(false)
+            navigate(`/products/chemical/${encodeURIComponent(matchedProduct.category)}?${params.toString()}`)
+        } catch (error) {
+            console.error('Error searching products:', error)
+            setSearchError('Search failed. Please try again.')
+        }
+    }
+
+    const handleSearchKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleGlobalSearch(event)
+        }
+    }
 
     return (
         <header className="bg-white">
@@ -90,18 +136,33 @@ function Navabar() {
                     </div>
                 </Link>
 
-                <div className="hidden min-w-0 flex-1 min-[1117px]:flex">
-                    <div className="flex h-[48px] w-full min-w-[260px] max-w-[560px] items-center rounded-[8px] border-3 border-[#0f4b8a] bg-white px-2 transition-all duration-200 xl:h-[50px] xl:max-w-[600px]">
+                <div className="relative hidden min-w-0 flex-1 min-[1117px]:flex">
+                    <form onSubmit={handleGlobalSearch} className="flex h-[48px] w-full min-w-[260px] max-w-[560px] items-center rounded-[8px] border-3 border-[#0f4b8a] bg-white px-2 transition-all duration-200 xl:h-[50px] xl:max-w-[600px]">
 
-                        <FiSearch className="mr-2 shrink-0 text-[30px] text-[#0f4b8a] xl:text-[32px]" />
+                        <button
+                            type="submit"
+                            aria-label="Search products"
+                            className="mr-2 shrink-0 text-[#0f4b8a]"
+                        >
+                            <FiSearch className="text-[30px] xl:text-[32px]" />
+                        </button>
 
                         <input
                             type="text"
+                            value={searchQuery}
+                            onChange={(event) => setSearchQuery(event.target.value)}
+                            onKeyDown={handleSearchKeyDown}
                             // placeholder="Please Enter Cat No., CAS No., Product Name"
+                            placeholder="Please Enter CAS No., Product Name"
                             className="min-w-0 w-full border-none bg-transparent text-[15px] font-normal tracking-[0.1px] text-[#0f4b8a] outline-none placeholder:text-[#bab7b1] xl:text-[16px]"
                         />
 
-                    </div>
+                    </form>
+                    {searchError ? (
+                        <p className="absolute left-0 top-[56px] text-[14px] font-medium text-red-600">
+                            {searchError}
+                        </p>
+                    ) : null}
                 </div>
 
                 <div className="hidden shrink-0 items-center gap-4 text-[14px] font-normal tracking-[0.1px] text-[#0f4b8a] xl:flex 2xl:gap-5 2xl:text-[15px]">
@@ -169,15 +230,28 @@ function Navabar() {
                                     <FiX className="text-[22px]" />
                                 </button>
                             </div>
-                            <div className="flex h-[52px] items-center rounded-[12px] border-2 border-[#70A0D2] bg-white px-4">
-                                <FiSearch className="mr-3 text-[24px] text-[#0f4b8a]" />
+                            <form onSubmit={handleGlobalSearch} className="flex h-[52px] items-center rounded-[12px] border-2 border-[#70A0D2] bg-white px-4">
+                                <button
+                                    type="submit"
+                                    aria-label="Search products"
+                                    className="mr-3 text-[#0f4b8a]"
+                                >
+                                    <FiSearch className="text-[24px]" />
+                                </button>
                                 <input
                                     type="text"
+                                    value={searchQuery}
+                                    onChange={(event) => setSearchQuery(event.target.value)}
+                                    onKeyDown={handleSearchKeyDown}
                                     autoFocus
                                     // placeholder="Please Enter Cat No., CAS No., Product Name"
+                                    placeholder="Please Enter CAS No., Product Name"
                                     className="w-full border-none bg-transparent text-[15px] text-[#7e8590] outline-none placeholder:text-[#bab7b1]"
                                 />
-                            </div>
+                            </form>
+                            {searchError ? (
+                                <p className="mt-3 text-[14px] text-red-600">{searchError}</p>
+                            ) : null}
                         </motion.div>
                     </motion.div>
                 )}

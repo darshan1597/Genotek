@@ -14,3 +14,8 @@ export const aboutSubmenuItems = [
   { href: '/about/why-genotek', label: 'Why Genotek' },
   
 ]
+
+export const productSubmenuItems = [
+  { href: '/products/chemical', label: 'Chemicals' },
+  { href: '/products/hpcl', label: 'HPLC Equipment & Consumables' },
+]

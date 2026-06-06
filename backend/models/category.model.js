@@ -1,5 +1,12 @@
 import mongoose from "mongoose"
 
+const ImageSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+}, { _id: false })
+
 const categorySchema = new mongoose.Schema(
     {
         name: {
@@ -15,6 +22,10 @@ const categorySchema = new mongoose.Schema(
         hasSubcategories: {
             type: Boolean,
             default: false,
+        },
+        image: {
+            type: ImageSchema,
+            required: true,
         },
     },
     { timestamps: true }

@@ -9,8 +9,8 @@ function WhyGenotek() {
             <div className="h-[2px] w-full bg-[#6a9fba]" />
             <Navabar />
 
-            <main className="w-full px-4 pb-6 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
-                <section className="mb-10 flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
+            <main className="w-full px-4 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
+                <section className="flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
                     <Sidebar />
 
                     <div className="flex-1">
@@ -39,8 +39,8 @@ function WhyGenotek() {
                                 </div>
                             </div>
                         </div>
-                        {/* content goes here */}
-                        <section className="mt-5 max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.7] text-black sm:text-[18px] md:mt-10 md:pb-10 md:text-[20px] md:leading-[1.6]">
+                        
+                        <section className="max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.6] text-black/80  sm:text-[18px] md:pb-10 md:text-[20px] md:leading-[1.45]">
                             <p className="mb-4 text-black/80">
                                 At{" "}
                                 <span className="font-semibold">

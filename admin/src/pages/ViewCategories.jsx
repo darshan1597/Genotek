@@ -106,10 +106,11 @@ function ViewCategories() {
                             </div>
                         ) : categories.length ? (
                             <div className="overflow-x-auto">
-                                <div className="min-w-[680px]">
-                                    <div className="grid grid-cols-[88px_minmax(240px,1fr)_180px] border-b border-[#d7e5ee] bg-[#f8fbfd] px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6a9ab1]">
+                                <div className="min-w-[900px]">
+                                    <div className="grid grid-cols-[88px_minmax(220px,0.8fr)_minmax(300px,1.2fr)_160px] border-b border-[#d7e5ee] bg-[#f8fbfd] px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6a9ab1]">
                                         <span>No.</span>
                                         <span>Category Name</span>
+                                        <span>Description</span>
                                         <span>Created</span>
                                     </div>
 
@@ -117,7 +118,7 @@ function ViewCategories() {
                                         {categories.map((category, index) => (
                                             <div
                                                 key={category._id || category.name || index}
-                                                className="grid grid-cols-[88px_minmax(240px,1fr)_180px] items-center px-5 py-4 transition-colors duration-200 hover:bg-[#f8fbfd]"
+                                                className="grid grid-cols-[88px_minmax(220px,0.8fr)_minmax(300px,1.2fr)_160px] items-center px-5 py-4 transition-colors duration-200 hover:bg-[#f8fbfd]"
                                             >
                                                 <span className="text-[14px] font-semibold text-[#6a9ab1]">
                                                     {String(index + 1).padStart(2, '0')}
@@ -130,7 +131,9 @@ function ViewCategories() {
                                                         {category.name}
                                                     </span>
                                                 </div>
-                                                
+                                                <p className="line-clamp-3 pr-6 text-[14px] leading-6 text-[#526b80]">
+                                                    {category.description || 'No description'}
+                                                </p>
                                                 <span className="text-[14px] text-[#526b80]">
                                                     {category.createdAt
                                                         ? new Date(category.createdAt).toLocaleDateString()

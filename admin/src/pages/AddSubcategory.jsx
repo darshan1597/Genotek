@@ -5,10 +5,11 @@ import {
     FiArrowLeft,
     FiCheckCircle,
     FiChevronDown,
-    FiFileText,
     FiGrid,
+    FiImage,
     FiLayers,
     FiRefreshCw,
+    FiUpload,
 } from 'react-icons/fi'
 import Navabar from './components/Navabar'
 import Toast from './components/Toast'
@@ -16,10 +17,12 @@ import { serverUrl } from '../App'
 
 function AddSubcategory() {
     const categoryDropdownRef = useRef(null)
+    const subcategoryImageInputRef = useRef(null)
     const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
     const [parentCategory, setParentCategory] = useState('')
     const [categories, setCategories] = useState([])
+    const [subcategoryImage, setSubcategoryImage] = useState(null)
+    const [imagePreview, setImagePreview] = useState('')
     const [isDropdownOpen, setIsDropdownOpen] = useState(false)
     const [isLoadingCategories, setIsLoadingCategories] = useState(true)
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -47,6 +50,18 @@ function AddSubcategory() {
     }, [])
 
     useEffect(() => {
+        if (!subcategoryImage) {
+            setImagePreview('')
+            return undefined
+        }
+
+        const previewUrl = URL.createObjectURL(subcategoryImage)
+        setImagePreview(previewUrl)
+
+        return () => URL.revokeObjectURL(previewUrl)
+    }, [subcategoryImage])
+
+    useEffect(() => {
         const handleClickOutside = (event) => {
             if (categoryDropdownRef.current && !categoryDropdownRef.current.contains(event.target)) {
                 setIsDropdownOpen(false)
@@ -61,7 +76,6 @@ function AddSubcategory() {
     const handleSubmit = async (event) => {
         event.preventDefault()
         const subcategoryName = name.trim()
-        const subcategoryDescription = description.trim()
 
         if (!parentCategory) {
             setToast({ message: 'Select parent category.', type: 'error' })
@@ -73,23 +87,34 @@ function AddSubcategory() {
             return
         }
 
-        if (!subcategoryDescription) {
-            setToast({ message: 'Enter subcategory description.', type: 'error' })
+        if (!subcategoryImage) {
+            setToast({ message: 'Upload subcategory image.', type: 'error' })
             return
         }
 
         setIsSubmitting(true)
 
         try {
+            const formData = new FormData()
+            formData.append('name', subcategoryName)
+            formData.append('category', parentCategory)
+            formData.append('image', subcategoryImage)
+
             const { data } = await axios.post(
                 `${serverUrl}/api/subcategories/add-subcategory`,
-                { name: subcategoryName, description: subcategoryDescription, category: parentCategory },
-                { withCredentials: true }
+                formData,
+                {
+                    withCredentials: true,
+                    headers: { "Content-Type": "multipart/form-data" },
+                }
             )
 
             setToast({ message: data?.message || 'Subcategory added successfully.', type: 'success' })
             setName('')
-            setDescription('')
+            setSubcategoryImage(null)
+            if (subcategoryImageInputRef.current) {
+                subcategoryImageInputRef.current.value = ''
+            }
         } catch (error) {
             setToast({
                 message: error?.response?.data?.message || 'Error adding subcategory.',
@@ -102,8 +127,29 @@ function AddSubcategory() {
 
     const handleReset = () => {
         setName('')
-        setDescription('')
         setParentCategory('')
+        setSubcategoryImage(null)
+        if (subcategoryImageInputRef.current) {
+            subcategoryImageInputRef.current.value = ''
+        }
+    }
+
+    const handleSubcategoryImageChange = (event) => {
+        const file = event.target.files?.[0]
+
+        if (!file) {
+            setSubcategoryImage(null)
+            return
+        }
+
+        if (!file.type.startsWith('image/')) {
+            setToast({ message: 'Please upload a valid image file.', type: 'error' })
+            event.target.value = ''
+            setSubcategoryImage(null)
+            return
+        }
+
+        setSubcategoryImage(file)
     }
 
     return (
@@ -130,15 +176,16 @@ function AddSubcategory() {
                         </Link>
                     </div>
 
-                    <form
-                        onSubmit={handleSubmit}
-                        className="border border-[#d7e5ee] bg-white p-6 shadow-[0_18px_45px_rgba(33,79,134,0.13)] sm:p-8"
-                    >
-                        <div className="mb-7">
-                            <h2 className="text-[24px] font-semibold text-[#214f86]">Subcategory Details</h2>
-                        </div>
+                    <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
+                        <form
+                            onSubmit={handleSubmit}
+                            className="border border-[#d7e5ee] bg-white p-6 shadow-[0_18px_45px_rgba(33,79,134,0.13)] sm:p-8"
+                        >
+                            <div className="mb-7">
+                                <h2 className="text-[24px] font-semibold text-[#214f86]">Subcategory Details</h2>
+                            </div>
 
-                        <div className="mb-5 block" ref={categoryDropdownRef}>
+                            <div className="mb-5 block" ref={categoryDropdownRef}>
                             <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
                                 Parent Category
                             </span>
@@ -188,9 +235,9 @@ function AddSubcategory() {
                                     )}
                                 </div>
                             </div>
-                        </div>
+                            </div>
 
-                        <label className="mb-5 block">
+                            <label className="mb-5 block">
                             <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
                                 Subcategory Name
                             </span>
@@ -204,42 +251,87 @@ function AddSubcategory() {
                                     placeholder="Example: Solvents"
                                 />
                             </span>
-                        </label>
+                            </label>
 
-                        <label className="mb-6 block">
-                            <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
-                                Description
-                            </span>
-                            <span className="flex min-h-[130px] items-start border-2 border-[#d6e4ed] bg-[#f8fbfd] px-4 py-4 transition-colors duration-200 focus-within:border-[#214f86]">
-                                <FiFileText className="mr-3 mt-1 shrink-0 text-[20px] text-[#6a9ab1]" />
-                                <textarea
-                                    value={description}
-                                    onChange={(event) => setDescription(event.target.value)}
-                                    className="min-h-[96px] w-full resize-y bg-transparent text-[15px] leading-6 text-[#23384d] outline-none placeholder:text-[#98aab8]"
-                                    placeholder="Write a short description for this subcategory"
+                            <div className="mb-6 block">
+                                <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
+                                    Subcategory Image
+                                </span>
+                                <button
+                                    type="button"
+                                    onClick={() => subcategoryImageInputRef.current?.click()}
+                                    className="flex min-h-[116px] w-full cursor-pointer flex-col items-center justify-center border-2 border-dashed border-[#d6e4ed] bg-[#f8fbfd] px-4 py-5 text-center transition-colors duration-200 hover:border-[#214f86] hover:bg-[#eef5f9]"
+                                >
+                                    <FiUpload className="mb-2 text-[26px] text-[#6a9ab1]" />
+                                    <span className="text-[15px] font-semibold text-[#214f86]">
+                                        {subcategoryImage ? subcategoryImage.name : 'Upload subcategory image'}
+                                    </span>
+                                    <span className="mt-1 text-[13px] text-[#526b80]">PNG, JPG, or WEBP</span>
+                                </button>
+                                <input
+                                    ref={subcategoryImageInputRef}
+                                    type="file"
+                                    name="image"
+                                    accept="image/png,image/jpeg,image/jpg,image/webp"
+                                    onChange={handleSubcategoryImageChange}
+                                    className="hidden"
                                 />
-                            </span>
-                        </label>
+                            </div>
 
-                        <div className="flex flex-col gap-3 sm:flex-row">
-                            <button
-                                type="submit"
-                                disabled={isSubmitting}
-                                className="inline-flex h-12 items-center justify-center gap-2 bg-[#214f86] px-5 text-[15px] font-semibold text-white transition-colors duration-200 hover:bg-[#173d68] disabled:cursor-not-allowed disabled:bg-[#8aa7be]"
-                            >
-                                <FiCheckCircle className="text-[18px]" />
-                                {isSubmitting ? 'Adding...' : 'Add Subcategory'}
-                            </button>
-                            <button
-                                type="button"
-                                onClick={handleReset}
-                                className="inline-flex h-12 items-center justify-center gap-2 border border-[#d7e5ee] bg-white px-5 text-[15px] font-semibold text-[#214f86] transition-colors duration-200 hover:bg-[#eef5f9]"
-                            >
-                                <FiRefreshCw className="text-[17px]" />
-                                Reset
-                            </button>
-                        </div>
-                    </form>
+                            <div className="flex flex-col gap-3 sm:flex-row">
+                                <button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="inline-flex h-12 items-center justify-center gap-2 bg-[#214f86] px-5 text-[15px] font-semibold text-white transition-colors duration-200 hover:bg-[#173d68] disabled:cursor-not-allowed disabled:bg-[#8aa7be] cursor-pointer"
+                                >
+                                    <FiCheckCircle className="text-[18px]" />
+                                    {isSubmitting ? 'Adding...' : 'Add Subcategory'}
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={handleReset}
+                                    className="inline-flex h-12 items-center justify-center gap-2 border border-[#d7e5ee] bg-white px-5 text-[15px] font-semibold text-[#214f86] transition-colors duration-200 hover:bg-[#eef5f9] cursor-pointer"
+                                >
+                                    <FiRefreshCw className="text-[17px]" />
+                                    Reset
+                                </button>
+                            </div>
+                        </form>
+
+                        <aside className="border border-[#d7e5ee] bg-white p-6 shadow-[0_12px_28px_rgba(33,79,134,0.08)]">
+                            <p className="mb-3 text-[13px] font-semibold uppercase tracking-[0.16em] text-[#6a9ab1]">
+                                Preview
+                            </p>
+                            <div className="flex aspect-[4/3] items-center justify-center border border-[#d7e5ee] bg-[#f8fbfd]">
+                                {imagePreview ? (
+                                    <img
+                                        src={imagePreview}
+                                        alt="Subcategory preview"
+                                        className="h-full w-full object-cover"
+                                    />
+                                ) : (
+                                    <div className="text-center text-[#6a9ab1]">
+                                        <FiImage className="mx-auto mb-3 text-[34px]" />
+                                        <p className="text-[14px] font-semibold">Image preview</p>
+                                    </div>
+                                )}
+                            </div>
+                            <div className="mt-5 border-t border-[#d7e5ee] pt-5">
+                                <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6a9ab1]">
+                                    Subcategory Name
+                                </p>
+                                <p className="mt-2 break-words text-[20px] font-semibold text-[#214f86]">
+                                    {name.trim() || 'Subcategory name'}
+                                </p>
+                                <p className="mt-4 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6a9ab1]">
+                                    Parent Category
+                                </p>
+                                <p className="mt-2 inline-flex border border-[#d7e5ee] bg-[#f8fbfd] px-3 py-2 text-[14px] font-semibold text-[#214f86]">
+                                    {parentCategory || 'Category'}
+                                </p>
+                            </div>
+                        </aside>
+                    </div>
                 </section>
             </main>
 
