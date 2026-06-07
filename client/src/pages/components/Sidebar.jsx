@@ -149,12 +149,11 @@ function Sidebar() {
                                                                 to={child.href}
                                                         className={({ isActive }) =>
                                                         `group/submenu relative z-[1000] block overflow-hidden px-4 py-3 text-[15px] font-medium transition-colors duration-200 ${
-                                                                    isActive
-                                                                    ? 'bg-[#00A759] text-[#fff]'
-                                                                    : 'bg-[#f4f8fb] text-[#214f86] hover:bg-[#e9f5ee] hover:text-[#0f6b35]'
-                                                                }`
-                                                        }       
-                            
+                                                        isActive
+                                                        ? 'bg-[#2B5B91] text-white'
+                                                        : 'bg-[#5D90AE] text-white hover:bg-[#5D90AE] hover:text-white'
+                                                        }`
+                                                    }
                                                                 style={{
                                                                     clipPath:
                                                                         'polygon(0 0, 100% 0, 100% 68%, 95% 100%, 0 100%)',
@@ -164,7 +163,7 @@ function Sidebar() {
                                                                 {child.label}
                                                                 </span>
 
-                                                                <span className="absolute inset-y-0 left-0 w-[4px] bg-[#01A658]" />
+                                                                <span className="absolute inset-y-0 left-0 w-[4px] bg-[#2B5B91]" />
                                                             </NavLink>
                                             ))}
                                                     </div>

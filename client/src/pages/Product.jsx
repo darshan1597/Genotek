@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { useParams, useSearchParams } from 'react-router-dom'
+import { useParams, useSearchParams, NavLink} from 'react-router-dom'
 import axios from 'axios'
 import { FiChevronDown, FiMaximize2, FiSearch, FiX } from 'react-icons/fi'
 import Navabar from './components/Navabar'
@@ -130,7 +130,22 @@ function Product() {
                                 </div>
                             </div>
                         ) : category ? (
-                            <>
+                            <>  
+                                
+                                <div className="mb-3 flex items-center gap-2 text-[14px] text-gray-500">
+                                    <NavLink to="/">Home</NavLink>
+                                    <span>&gt;</span>
+
+                                    <NavLink to="/products">Products</NavLink>
+                                    <span>&gt;</span>
+
+                                    <NavLink to="/products/chemical">Chemicals</NavLink>
+                                    <span>&gt;</span>
+
+                                    <span className="font-semibold text-[#214f86]">
+                                        {category.name}
+                                    </span>
+                                </div>
                                 <h1 className="text-[34px] font-bold leading-tight text-[#1e487d] md:text-[40px]">
                                     {category.name}
                                 </h1>

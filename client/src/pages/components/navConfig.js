@@ -18,10 +18,10 @@ export const aboutSubmenuItems = [
 export const productSubmenuItems = [
   { href: '/products/chemical', label: 'Chemicals',
     children: [
-      { href: '/products/chemical/solvents', label: 'Solvents' },
-      { href: '/products/chemical/reagents', label: 'Reagents' },
-      { href: '/products/chemical/biochemicals', label: 'Biochemicals' },
-      { href: '/products/chemical/standards', label: 'Standards' },
+      { href: '/products/chemical/Fine Chemicals', label: 'Fine Chemicals' },
+      { href: '/products/chemical/Ionic Liquids', label: 'Ionic Liquids' },
+      { href: '/products/chemical/Catalysts', label: 'Catalysts' },
+      { href: '/products/chemical/Intermediates', label: 'Intermediates' },
     ]
    },
   { href: '/products/hpcl', label: 'HPLC Equipment & Consumables' },
