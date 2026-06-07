@@ -16,6 +16,15 @@ export const aboutSubmenuItems = [
 ]
 
 export const productSubmenuItems = [
-  { href: '/products/chemical', label: 'Chemicals' },
+  { href: '/products/chemical', label: 'Chemicals',
+    children: [
+      { href: '/products/chemical/solvents', label: 'Solvents' },
+      { href: '/products/chemical/reagents', label: 'Reagents' },
+      { href: '/products/chemical/biochemicals', label: 'Biochemicals' },
+      { href: '/products/chemical/standards', label: 'Standards' },
+    ]
+   },
   { href: '/products/hpcl', label: 'HPLC Equipment & Consumables' },
 ]
+
+

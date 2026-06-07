@@ -104,31 +104,80 @@ function Sidebar() {
                             <div className="invisible absolute left-full top-0 z-[1000] ml-[12px] w-[230px] translate-x-[-8px] opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-x-0 group-focus-within:opacity-100">
                                 <div className="relative z-[1000] border-l-[5px] border-white bg-white px-[10px] py-[10px] shadow-[0_16px_32px_rgba(33,79,134,0.22)]">
                                     <div className="flex flex-col gap-[8px]">
+
                                         {productSubmenuItems.map((submenuItem) => (
-                                            <NavLink
+                                            <div
                                                 key={submenuItem.href}
-                                                to={submenuItem.href}
-                                                className={({ isActive }) =>
+                                                className="group/chemical relative"
+                                            >
+                                                <NavLink
+                                                    to={submenuItem.href}
+                                                    className={({ isActive }) =>
                                                     `group/submenu relative z-[1000] block overflow-hidden px-4 py-3 text-[15px] font-medium transition-colors duration-200 ${
                                                         isActive
                                                         ? 'bg-[#00A759] text-[#fff]'
                                                         : 'bg-[#f4f8fb] text-[#214f86] hover:bg-[#e9f5ee] hover:text-[#0f6b35]'
                                                     }`
-                                                }
-                                                style={{
-                                                    clipPath: 'polygon(0 0, 100% 0, 100% 68%, 95% 100%, 0 100%)',
-                                                }}
-                                            >
-                                                <span className="ml-15 relative z-[1] block transition-transform duration-200 group-hover/submenu:translate-x-1">
+                                                    }
+                                                    style={{
+                                                        clipPath:
+                                                            'polygon(0 0, 100% 0, 100% 68%, 95% 100%, 0 100%)',
+                                                    }}
+                                                >
+                                                <span className="ml-18 relative z-[1] block transition-transform duration-200 group-hover/submenu:translate-x-1">
                                                     {submenuItem.label}
                                                 </span>
+
+                                                {submenuItem.children && (
+                                                    <span
+                                                        aria-hidden="true"
+                                                        className="absolute right-[12px] top-1/2 flex h-[28px] w-[28px] -translate-y-1/2 items-center justify-center rounded-full text-white/90 opacity-0 transition duration-200 group-hover:opacity-100 group-focus-within:opacity-100"
+                                                    >
+                                                        <FiChevronDown className="rotate-[-90deg] text-[18px] transition-transform duration-300" />
+                                                    </span>
+                                                )}
                                                 <span className="absolute inset-y-0 left-0 w-[4px] bg-[#01A658]" />
                                             </NavLink>
-                                        ))}
+
+                                        {submenuItem.children && (
+                                            <div className="invisible absolute left-full top-0 z-[1000] ml-[12px] w-[230px] translate-x-[-8px] opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-x-0 group-focus-within:opacity-100">
+                                                <div className="relative z-[1000] border-l-[5px] border-white bg-white px-[10px] py-[10px] shadow-[0_16px_32px_rgba(33,79,134,0.22)]">
+                                                    <div className="flex flex-col gap-[8px]">
+                                                        {submenuItem.children.map((child) => (
+                                                            <NavLink
+                                                                key={child.href}
+                                                                to={child.href}
+                                                        className={({ isActive }) =>
+                                                        `group/submenu relative z-[1000] block overflow-hidden px-4 py-3 text-[15px] font-medium transition-colors duration-200 ${
+                                                                    isActive
+                                                                    ? 'bg-[#00A759] text-[#fff]'
+                                                                    : 'bg-[#f4f8fb] text-[#214f86] hover:bg-[#e9f5ee] hover:text-[#0f6b35]'
+                                                                }`
+                                                        }       
+                            
+                                                                style={{
+                                                                    clipPath:
+                                                                        'polygon(0 0, 100% 0, 100% 68%, 95% 100%, 0 100%)',
+                                                                }}
+                                                            >
+                                                                <span className="ml-18  relative z-[1] block transition-transform duration-200 group-hover/submenu:translate-x-1">
+                                                                {child.label}
+                                                                </span>
+
+                                                                <span className="absolute inset-y-0 left-0 w-[4px] bg-[#01A658]" />
+                                                            </NavLink>
+                                            ))}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            )}
+                                        </div>
+                                         ))}
+
                                     </div>
                                 </div>
-                            </div>
-                        )}
+                             </div>
+                            )}
                     </div>
                 ))}
             </nav>
