@@ -1,6 +1,6 @@
 import Navabar from "./components/Navabar";
 import Sidebar from "./components/Sidebar";
-import hero from "../assets/aboutStory/hero.jpg";
+import hero from "../assets/chromatographySolutions/GC-Columns-Image.png";
 import Footer from "./components/Footer";
 
 function ChiralGc() {

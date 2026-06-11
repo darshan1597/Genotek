@@ -1,6 +1,6 @@
 import Navabar from "./components/Navabar";
 import Sidebar from "./components/Sidebar";
-import hero from "../assets/aboutStory/hero.jpg";
+import hero from "../assets/chromatographySolutions/HPLC-pumps-Image.png";
 import Footer from "./components/Footer";
 
 function HplcPumps() {
