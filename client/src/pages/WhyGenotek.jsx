@@ -1,6 +1,6 @@
 import Navabar from "./components/Navabar";
 import Sidebar from "./components/Sidebar";
-import hero from "../assets/aboutStory/hero.jpg";
+import hero from "../assets/whyGenotek/Why-Genotek-Banner.jpg";
 import Footer from "./components/Footer";
 
 function WhyGenotek() {

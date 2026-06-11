@@ -6,7 +6,7 @@ import img2 from "../assets/services/services2.png";
 import img3 from "../assets/services/services3.png";
 import img4 from "../assets/services/services4.png";
 import Footer from "./components/Footer";
-import hero from '../assets/aboutStory/hero.jpg'
+import hero from '../assets/services/Genoteck-Services.png';
 function Services() {
     const [active, setActive] = useState(null);
     return (

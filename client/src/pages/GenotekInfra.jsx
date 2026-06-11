@@ -1,10 +1,10 @@
 import Navabar from "./components/Navabar";
 import Sidebar from "./components/Sidebar";
-import hero from "../assets/aboutStory/hero.jpg";
-import img1 from "../assets/aboutInfra/1.jpeg";
-import img2 from "../assets/aboutInfra/2.jpg";
-import img3 from "../assets/aboutInfra/3.png";
-import img4 from "../assets/aboutInfra/4.jpg";
+import hero from "../assets/aboutInfra/Genotek-Infra-Banner.jpg";
+import img1 from "../assets/aboutInfra/Infra-Advanced-Research-Center.png";
+import img2 from "../assets/aboutInfra/Infra-Kilo-Labs.jpg";
+import img3 from "../assets/aboutInfra/Infra-High-Pressure.png";
+import img4 from "../assets/aboutInfra/Infra-Analytical-Labs.png";
 import { Link } from "react-router-dom";
 import Footer from "./components/Footer";
 
@@ -20,11 +20,11 @@ function GenotekInfra() {
 
                     <div className="flex-1">
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
-                            <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[450px]">
+                            <div className="relative h-[300px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[380px] md:h-[470px]">
                                 <img
                                     src={hero}
-                                    alt="The Genotek Story"
-                                    className="h-full w-full object-cover"
+                                    alt="The Genotek Infrastructure"
+                                    className="h-full w-full object-cover object-[center_65%]"
                                 />
 
                                 <div
@@ -97,19 +97,16 @@ function GenotekInfra() {
                                         Our in-house kilo labs bridge research and manufacturing, supporting seamless scale-up with pilot-scale reactors and systems for handling complex and hazardous chemistries.
                                     </p>
                                 </div>
-
-                                {/* RIGHT IMAGE */}
-                                <div
-                                    className="w-full overflow-hidden lg:w-[400px] lg:shrink-0 xl:w-[520px]"
+                                    {/* RIGHT IMAGE */}
+                                <div className="w-full overflow-hidden lg:w-[400px] lg:shrink-0 xl:w-[520px]">
+                                <img
+                                    src={img2}
+                                    alt="img2"
+                                    className="h-[190px] w-[75%] object-cover sm:h-[240px] md:h-[280px]"
                                     style={{
-                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)'
+                                    clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)'
                                     }}
-                                >
-                                    <img
-                                        src={img4}
-                                        alt="img4"
-                                        className="h-[190px] w-full object-cover object-left sm:h-[240px] md:h-[280px] lg:h-[250px]"
-                                    />
+                                />
                                 </div>
                             </div>
                             <div className="relative mx-auto mt-6 h-[20px] w-[92%] sm:mt-14 md:mt-8 md:w-[90%]">
@@ -162,19 +159,16 @@ function GenotekInfra() {
                                         Equipped with advanced tools like HPLC, GC, and Prep HPLC, our analytical labs ensure accurate characterization, method development, and consistent product quality.
                                     </p>
                                 </div>
-
                                 {/* RIGHT IMAGE */}
-                                <div
-                                    className="w-full overflow-hidden lg:w-[400px] lg:shrink-0 xl:w-[520px]"
+                                <div className="w-full overflow-hidden lg:w-[400px] lg:shrink-0 xl:w-[520px]">
+                                <img
+                                    src={img4}
+                                    alt="img4"
+                                    className="h-[190px] w-[75%] object-cover sm:h-[240px] md:h-[280px]"
                                     style={{
-                                        clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)'
+                                    clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)'
                                     }}
-                                >
-                                    <img
-                                        src={img2}
-                                        alt="img2"
-                                        className="h-[190px] w-full object-cover object-left sm:h-[240px] md:h-[280px] lg:h-[250px]"
-                                    />
+                                />
                                 </div>
                             </div>
                         </div>
