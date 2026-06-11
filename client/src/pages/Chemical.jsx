@@ -17,7 +17,11 @@ function Chemical() {
             try {
                 const { data } = await axios.get(`${serverUrl}/api/categories/fetch-category`)
 
-                setCategories(Array.isArray(data) ? data : [])
+                setCategories(
+                    Array.isArray(data)
+                        ? data.filter((category) => !category.isStandalone)
+                        : []
+                )
             } catch (error) {
                 console.error('Error fetching categories:', error)
                 setCategories([])

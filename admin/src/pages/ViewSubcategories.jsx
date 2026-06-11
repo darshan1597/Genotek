@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import { FiArrowLeft, FiLayers, FiPlusCircle, FiRefreshCw } from 'react-icons/fi'
+import { FiArrowLeft, FiEdit2, FiImage, FiLayers, FiPlusCircle, FiRefreshCw, FiTrash2 } from 'react-icons/fi'
 import Navabar from './components/Navabar'
 import Toast from './components/Toast'
 import { serverUrl } from '../App'
@@ -9,6 +9,8 @@ import { serverUrl } from '../App'
 function ViewSubcategories() {
     const [subcategories, setSubcategories] = useState([])
     const [loading, setLoading] = useState(true)
+    const [subcategoryToDelete, setSubcategoryToDelete] = useState(null)
+    const [isDeleting, setIsDeleting] = useState(false)
     const [toast, setToast] = useState(null)
 
     const fetchSubcategories = async () => {
@@ -33,6 +35,25 @@ function ViewSubcategories() {
     useEffect(() => {
         fetchSubcategories()
     }, [])
+
+    const handleDelete = async () => {
+        if (!subcategoryToDelete?._id) return
+        setIsDeleting(true)
+        try {
+            const { data } = await axios.delete(`${serverUrl}/api/subcategories/delete-subcategory/${subcategoryToDelete._id}`, { withCredentials: true })
+            setSubcategories((current) => current.filter((item) => item._id !== subcategoryToDelete._id))
+            setToast({ message: data?.message || 'Subcategory deleted successfully.', type: 'success' })
+            setSubcategoryToDelete(null)
+        } catch (error) {
+            setToast({ message: error?.response?.data?.message || 'Unable to delete subcategory.', type: 'error' })
+        } finally {
+            setIsDeleting(false)
+        }
+    }
+
+    const getImageUrl = (subcategory) => subcategory?.image?.name
+        ? `${serverUrl}/subcategoryImages/${subcategory.image.name}`
+        : ''
 
     return (
         <div className="min-h-screen bg-[#f8fbfd]">
@@ -101,26 +122,27 @@ function ViewSubcategories() {
                             </div>
                         ) : subcategories.length ? (
                             <div className="overflow-x-auto">
-                                <div className="min-w-[760px]">
-                                    <div className="grid grid-cols-[88px_minmax(260px,1fr)_minmax(220px,0.8fr)_160px] border-b border-[#d7e5ee] bg-[#f8fbfd] px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6a9ab1]">
+                                <div className="min-w-[940px]">
+                                    <div className="grid grid-cols-[70px_minmax(300px,1fr)_minmax(220px,0.8fr)_140px_110px] border-b border-[#d7e5ee] bg-[#f8fbfd] px-5 py-3 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6a9ab1]">
                                         <span>No.</span>
                                         <span>Subcategory</span>
                                         <span>Parent Category</span>
                                         <span>Created</span>
+                                        <span>Actions</span>
                                     </div>
 
                                     <div className="divide-y divide-[#d7e5ee]">
                                         {subcategories.map((subcategory, index) => (
                                             <div
                                                 key={subcategory._id || `${subcategory.category}-${subcategory.name}-${index}`}
-                                                className="grid grid-cols-[88px_minmax(260px,1fr)_minmax(220px,0.8fr)_160px] items-center px-5 py-4 transition-colors duration-200 hover:bg-[#f8fbfd]"
+                                                className="grid grid-cols-[70px_minmax(300px,1fr)_minmax(220px,0.8fr)_140px_110px] items-center px-5 py-4 transition-colors duration-200 hover:bg-[#f8fbfd]"
                                             >
                                                 <span className="text-[14px] font-semibold text-[#6a9ab1]">
                                                     {String(index + 1).padStart(2, '0')}
                                                 </span>
                                                 <div className="flex min-w-0 items-center gap-3">
-                                                    <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-[#214f86] text-white">
-                                                        <FiLayers className="text-[18px]" />
+                                                    <span className="flex h-16 w-16 shrink-0 items-center justify-center border border-[#d7e5ee] bg-[#f8fbfd] text-[#214f86]">
+                                                        {getImageUrl(subcategory) ? <img src={getImageUrl(subcategory)} alt="" className="h-full w-full object-cover" /> : <FiImage className="text-[20px]" />}
                                                     </span>
                                                     <span className="truncate text-[16px] font-semibold text-[#214f86]">
                                                         {subcategory.name}
@@ -134,6 +156,10 @@ function ViewSubcategories() {
                                                         ? new Date(subcategory.createdAt).toLocaleDateString()
                                                         : 'Not available'}
                                                 </span>
+                                                <div className="flex gap-2">
+                                                    <Link to={`/edit-subcategory/${subcategory._id}`} aria-label={`Edit ${subcategory.name}`} className="inline-flex h-10 w-10 items-center justify-center border border-[#d7e5ee] bg-white text-[#214f86] hover:bg-[#eef5f9]"><FiEdit2 /></Link>
+                                                    <button type="button" onClick={() => setSubcategoryToDelete(subcategory)} aria-label={`Delete ${subcategory.name}`} className="inline-flex h-10 w-10 cursor-pointer items-center justify-center border border-red-200 bg-white text-red-600 hover:bg-red-50"><FiTrash2 /></button>
+                                                </div>
                                             </div>
                                         ))}
                                     </div>
@@ -168,6 +194,21 @@ function ViewSubcategories() {
                     onClose={() => setToast(null)}
                 />
             )}
+            {subcategoryToDelete ? (
+                <div className="fixed inset-0 z-[9998] flex items-center justify-center bg-[rgba(15,35,55,0.42)] px-4">
+                    <section className="w-full max-w-md border border-[#d7e5ee] bg-white p-6 shadow-xl">
+                        <FiTrash2 className="mb-4 text-[28px] text-red-600" />
+                        <h2 className="text-[24px] font-semibold text-[#214f86]">Delete subcategory?</h2>
+                        <p className="mt-3 text-[15px] leading-6 text-[#526b80]">
+                            Delete <strong>{subcategoryToDelete.name}</strong>? Subcategories still containing products cannot be deleted.
+                        </p>
+                        <div className="mt-6 flex justify-end gap-3">
+                            <button type="button" disabled={isDeleting} onClick={() => setSubcategoryToDelete(null)} className="h-11 border border-[#d7e5ee] px-5 font-semibold text-[#214f86] cursor-pointer">Cancel</button>
+                            <button type="button" disabled={isDeleting} onClick={handleDelete} className="h-11 bg-red-600 px-5 font-semibold text-white disabled:bg-red-300 cursor-pointer">{isDeleting ? 'Deleting...' : 'Delete Subcategory'}</button>
+                        </div>
+                    </section>
+                </div>
+            ) : null}
         </div>
     )
 }

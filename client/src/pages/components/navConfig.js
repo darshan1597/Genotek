@@ -12,19 +12,17 @@ export const aboutSubmenuItems = [
   { href: '/about/team', label: 'Genotek Team' },
   { href: '/about/infra', label: 'Genotek Infra' },
   { href: '/about/why-genotek', label: 'Why Genotek' },
-  
 ]
 
 export const productSubmenuItems = [
-  { href: '/products/chemical', label: 'Chemicals',
+  { href: '/products/chemical', label: 'Chemicals', children: [] },
+  {
+    href: '/products/hpcl',
+    label: 'Chromatography Solutions',
     children: [
-      { href: '/products/chemical/Fine Chemicals', label: 'Fine Chemicals' },
-      { href: '/products/chemical/Ionic Liquids', label: 'Ionic Liquids' },
-      { href: '/products/chemical/Catalysts', label: 'Catalysts' },
-      { href: '/products/chemical/Intermediates', label: 'Intermediates' },
-    ]
-   },
-  { href: '/products/hpcl', label: 'HPLC Equipment & Consumables' },
+      { href: '/chiral-gc-columns', label: 'Chiral GC Columns' },
+      { href: '/chiral-hplc-columns', label: 'Chiral HPLC Columns' },
+      { href: '/hplc-pumps', label: 'HPLC Pumps' },
+    ],
+  },
 ]
-
-

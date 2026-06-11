@@ -81,3 +81,7 @@ export const uploadProductImages = createUploader("productImages");
 export const uploadCategoryImages = createUploader("categoryImages");
 
 export const uploadSubcategoryImages = createUploader("subcategoryImages");
+
+export const uploadHeroImages = createUploader("heroImages");
+
+export const uploadHeroSidebarImages = createUploader("heroSidebarImages");

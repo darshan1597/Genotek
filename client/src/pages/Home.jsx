@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { FiSend } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 import Navabar from './components/Navabar'
 import Sidebar from './components/Sidebar'
 import slide1 from '../assets/hero/slide1.jpeg'
@@ -14,13 +15,15 @@ import heroSidebar2 from '../assets/heroSidebars/2.jpeg'
 import heroSidebar3 from '../assets/heroSidebars/3.jpeg'
 import Footer from './components/Footer'
 
-const heroSidebarItems = [
-    { image: heroSidebar1, label: 'Our Infrastructure', href: '/about/infra' },
-    { image: heroSidebar2, label: 'Our Services', href: '/services' },
-    { image: heroSidebar3, label: 'Our HPLC Columns', href: '/products' },
+const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:8000'
+
+const defaultHeroSidebarItems = [
+    { itemId: 'sidebar-1', image: heroSidebar1, label: 'Our Infrastructure', href: '/about/infra' },
+    { itemId: 'sidebar-2', image: heroSidebar2, label: 'Our Services', href: '/services' },
+    { itemId: 'sidebar-3', image: heroSidebar3, label: 'Our HPLC Columns', href: '/products' },
 ]
 
-const slides = [
+const defaultSlides = [
     {
         id: 'intro',
         image: slide1,
@@ -341,7 +344,114 @@ function SequentialPhraseText({ text, delay = 0, stepDelay = 520 }) {
     )
 }
 
+function GenotekExclusiveStrip() {
+    const [category, setCategory] = useState(null)
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+        const fetchExclusiveProducts = async () => {
+            try {
+                const [categoriesResponse, productsResponse] = await Promise.all([
+                    axios.get(`${serverUrl}/api/categories/fetch-category`),
+                    axios.get(`${serverUrl}/api/products/fetch-products`),
+                ])
+
+                const categories = Array.isArray(categoriesResponse.data) ? categoriesResponse.data : []
+                const exclusiveCategory = categories.find((item) => item.isStandalone)
+                const allProducts = Array.isArray(productsResponse.data) ? productsResponse.data : []
+
+                setCategory(exclusiveCategory || null)
+                setProducts(
+                    exclusiveCategory
+                        ? allProducts.filter((product) => product.category === exclusiveCategory.name)
+                        : []
+                )
+            } catch (error) {
+                console.error('Error loading Genotek Exclusive home strip:', error)
+                setCategory(null)
+                setProducts([])
+            }
+        }
+
+        fetchExclusiveProducts()
+    }, [])
+
+    if (!category || !products.length) return null
+
+    const categoryImageUrl = category.image?.name
+        ? `${serverUrl}/categoryImages/${category.image.name}`
+        : ''
+    const showcaseProducts = Array.from(
+        { length: Math.max(1, Math.ceil(6 / products.length)) },
+        () => products
+    ).flat()
+
+    const renderProductGroup = (groupKey) => (
+        <div className="flex shrink-0 gap-4 pr-4" aria-hidden={groupKey !== 'primary'}>
+            {showcaseProducts.map((product, index) => {
+                const imageUrl = product.image?.name
+                    ? `${serverUrl}/productImages/${product.image.name}`
+                    : ''
+
+                return (
+                    <Link
+                        key={`${groupKey}-${product._id || `${product.name}-${product.cas}`}-${index}`}
+                        to={`/genotekexclusive?product=${encodeURIComponent(product._id || '')}`}
+                        className="block w-[145px] shrink-0 overflow-hidden rounded-[14px] border-2 border-[#5790aa] bg-white transition hover:-translate-y-1 hover:shadow-lg sm:w-[210px] sm:rounded-[20px]"
+                        aria-label={`View ${product.name} on Genotek Exclusive page`}
+                    >
+                        <div className="truncate bg-[#5790aa] px-2 py-2 text-center text-[11px] font-bold text-white sm:px-3 sm:text-[13px]">
+                            CAS No: {product.cas}
+                        </div>
+                        <p className="line-clamp-2 min-h-[40px] px-2 py-1 text-center text-[10px] font-semibold leading-[15px] text-[#526b80] sm:min-h-[48px] sm:px-3 sm:py-2 sm:text-[12px] sm:leading-4">
+                            {product.description || 'Description not available.'}
+                        </p>
+                        <div className="flex h-[76px] items-center justify-center overflow-hidden bg-white sm:h-[112px]">
+                            {imageUrl ? (
+                                <img
+                                    src={imageUrl}
+                                    alt={product.name}
+                                    className="block h-[calc(100%-1rem)] w-[calc(100%-1rem)] object-fill"
+                                />
+                            ) : (
+                                <span className="text-[12px] text-[#5790aa]">No image</span>
+                            )}
+                        </div>
+                        <div className="line-clamp-2 min-h-[36px] px-2 pb-1 text-center text-[10px] leading-[15px] text-[#3c82b0] sm:min-h-[46px] sm:px-3 sm:pb-2 sm:text-[12px] sm:leading-[18px]">
+                            {product.name}
+                        </div>
+                    </Link>
+                )
+            })}
+        </div>
+    )
+
+    return (
+        <section className="relative mt-5 flex min-h-[170px] w-full items-center overflow-hidden bg-white py-2 sm:min-h-[190px] sm:py-3">
+            <div className="exclusive-product-track flex w-max">
+                {renderProductGroup('duplicate')}
+                {renderProductGroup('primary')}
+            </div>
+
+            <div className="absolute inset-y-0 left-0 z-10 flex w-[145px] items-center justify-center bg-white roundedf sm:w-[220px]">
+                {categoryImageUrl ? (
+                    <img
+                        src={categoryImageUrl}
+                        alt={category.name}
+                        className="h-full w-full object-contain"
+                    />
+                ) : (
+                    <p className="px-3 text-center text-[16px] font-bold text-[#214f86]">{category.name}</p>
+                )}
+            </div>
+            <div className="pointer-events-none absolute inset-y-0 left-[145px] z-10 w-8 bg-gradient-to-r from-white to-transparent sm:left-[220px] sm:w-14" />
+        </section>
+    )
+}
+
 function Home() {
+    const [heroSlides, setHeroSlides] = useState(defaultSlides)
+    const [heroSidebarItems, setHeroSidebarItems] = useState(defaultHeroSidebarItems)
     const [activeSlide, setActiveSlide] = useState(0)
     const [specialPhase, setSpecialPhase] = useState('opening')
     const [imagePhase, setImagePhase] = useState('center')
@@ -353,7 +463,7 @@ function Home() {
         return window.innerWidth < 1024
     })
 
-    const currentSlide = slides[activeSlide]
+    const currentSlide = heroSlides[activeSlide]
     const isSpecialSlide = currentSlide.variant === 'special'
     const braceDistance = isMobile ? 350 : 830
     const leftBraceDistance = isMobile ? 500 : braceDistance + 100
@@ -426,12 +536,58 @@ function Home() {
     }, [])
 
     useEffect(() => {
+        const fetchHeroSlides = async () => {
+            try {
+                const [slidesResponse, sidebarResponse] = await Promise.all([
+                    axios.get(`${serverUrl}/api/hero-slides`),
+                    axios.get(`${serverUrl}/api/hero-slides/sidebar`),
+                ])
+                const savedSlides = Array.isArray(slidesResponse.data) ? slidesResponse.data : []
+                const savedSidebarItems = Array.isArray(sidebarResponse.data) ? sidebarResponse.data : []
+
+                setHeroSlides(defaultSlides.map((fallback) => {
+                    const saved = savedSlides.find((slide) => slide.slideId === fallback.id)
+                    if (!saved) return fallback
+
+                    return {
+                        ...fallback,
+                        ...saved,
+                        id: fallback.id,
+                        image: saved.image?.name
+                            ? `${serverUrl}/heroImages/${saved.image.name}`
+                            : fallback.image,
+                        lines: saved.lines?.length ? saved.lines : fallback.lines,
+                    }
+                }))
+                setHeroSidebarItems(defaultHeroSidebarItems.map((fallback) => {
+                    const saved = savedSidebarItems.find((item) => item.itemId === fallback.itemId)
+                    if (!saved) return fallback
+
+                    return {
+                        ...fallback,
+                        ...saved,
+                        image: saved.image?.name
+                            ? `${serverUrl}/heroSidebarImages/${saved.image.name}`
+                            : fallback.image,
+                    }
+                }))
+            } catch (error) {
+                console.error('Error loading managed hero slides:', error)
+                setHeroSlides(defaultSlides)
+                setHeroSidebarItems(defaultHeroSidebarItems)
+            }
+        }
+
+        fetchHeroSlides()
+    }, [])
+
+    useEffect(() => {
         const timers = []
 
         setImagePhase('center')
 
-        if (slides[activeSlide].variant === 'special') {
-            const currentSpecialSlideId = slides[activeSlide].id
+        if (heroSlides[activeSlide].variant === 'special') {
+            const currentSpecialSlideId = heroSlides[activeSlide].id
             const slideAdvanceDelay = currentSpecialSlideId === 'outro' ? outroSlideAdvanceDelay : introSlideAdvanceDelay
 
             setSpecialPhase('opening')
@@ -452,7 +608,7 @@ function Home() {
 
             timers.push(
                 window.setTimeout(() => {
-                    setActiveSlide((current) => (current + 1) % slides.length)
+                    setActiveSlide((current) => (current + 1) % heroSlides.length)
                 }, slideAdvanceDelay)
             )
         } else {
@@ -460,13 +616,13 @@ function Home() {
 
             timers.push(
                 window.setTimeout(() => {
-                    setActiveSlide((current) => (current + 1) % slides.length)
+                    setActiveSlide((current) => (current + 1) % heroSlides.length)
                 }, normalSlideAdvanceDelay)
             )
         }
 
         return () => timers.forEach((timer) => window.clearTimeout(timer))
-    }, [activeSlide])
+    }, [activeSlide, heroSlides])
 
     return (
         <div className="min-h-screen bg-white text-slate-900">
@@ -639,10 +795,17 @@ function Home() {
                             </div>
 
                             <div className="relative z-[1] grid w-full shrink-0 grid-cols-1 gap-3 sm:grid-cols-3 sm:gap-4 lg:-ml-[70px] lg:flex lg:w-[calc(24%+70px)] lg:flex-col lg:gap-[12px]">
-                                {heroSidebarItems.map(({ image, label, href }, index) => (
-                                    <Link
-                                        key={image}
-                                        to={href}
+                                {heroSidebarItems.map(({ itemId, image, label, href }, index) => {
+                                    const isExternal = /^https?:\/\//i.test(href)
+                                    const SectionLink = isExternal ? 'a' : Link
+                                    const linkProps = isExternal
+                                        ? { href, target: '_blank', rel: 'noreferrer' }
+                                        : { to: href }
+
+                                    return (
+                                    <SectionLink
+                                        key={itemId}
+                                        {...linkProps}
                                         className="group relative h-[112px] cursor-pointer overflow-hidden bg-[#d7d4cb] sm:h-[132px] lg:h-auto lg:flex-1"
                                     >
                                         <img
@@ -654,8 +817,9 @@ function Home() {
                                         <p className="pointer-events-none absolute inset-x-0 bottom-2 px-3 py-1.5 text-center text-[15px] font-bold leading-tight bg-[#2b5b91] text-white transition-all duration-500 ease-out group-hover:bottom-1/4 group-hover:translate-y-1/4 group-hover:text-[18px] sm:bottom-2.5 sm:text-[15px] sm:group-hover:text-[20px] lg:text-[16px] lg:group-hover:text-[22px]">
                                             {label}
                                         </p>
-                                    </Link>
-                                ))} 
+                                    </SectionLink>
+                                    )
+                                })} 
                             </div>
 
                             <div className="pointer-events-none absolute left-[calc(77%-95px)] top-0 z-[3] hidden h-full w-[100px] lg:block">
@@ -672,6 +836,7 @@ function Home() {
                                 </svg>
                             </div>
                         </div>
+                        <GenotekExclusiveStrip />
                         <Footer insetForSidebar={false} />
                     </div>
                 </section>

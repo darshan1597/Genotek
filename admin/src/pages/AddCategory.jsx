@@ -11,6 +11,7 @@ function AddCategory() {
     const [category, setCategory] = useState('')
     const [description, setDescription] = useState('')
     const [hasSubcategories, setHasSubcategories] = useState(false)
+    const [isStandalone, setIsStandalone] = useState(false)
     const [categoryImage, setCategoryImage] = useState(null)
     const [imagePreview, setImagePreview] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -57,6 +58,7 @@ function AddCategory() {
             formData.append('name', categoryName)
             formData.append('description', categoryDescription)
             formData.append('hasSubcategories', hasSubcategories)
+            formData.append('isStandalone', isStandalone)
             formData.append('image', categoryImage)
 
             await axios.post(
@@ -71,6 +73,7 @@ function AddCategory() {
             setCategory("")
             setDescription("")
             setHasSubcategories(false)
+            setIsStandalone(false)
             setCategoryImage(null)
 
             if (categoryImageInputRef.current) {
@@ -91,6 +94,7 @@ function AddCategory() {
         setCategory('')
         setDescription('')
         setHasSubcategories(false)
+        setIsStandalone(false)
         setCategoryImage(null)
 
         if (categoryImageInputRef.current) {
@@ -204,6 +208,25 @@ function AddCategory() {
                                 </span>
                             </label>
 
+                            <div className="mb-6">
+                                <label className="flex cursor-pointer items-start gap-4 border border-[#d7e5ee] bg-[#f8fbfd] p-4">
+                                    <input
+                                        type="checkbox"
+                                        checked={isStandalone}
+                                        onChange={(event) => setIsStandalone(event.target.checked)}
+                                        className="mt-1 h-5 w-5 accent-[#214f86]"
+                                    />
+                                    <span>
+                                        <span className="block text-[15px] font-semibold text-[#214f86]">
+                                            Genotek Exclusice
+                                        </span>
+                                        <span className="mt-1 block text-[13px] leading-5 text-[#526b80]">
+                                            Keep this category for its own dedicated client page.
+                                        </span>
+                                    </span>
+                                </label>
+                            </div>
+
                             <div className="mb-6 block">
                                 <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
                                     Category Image
@@ -286,6 +309,14 @@ function AddCategory() {
                                 <p className="mt-2 inline-flex border border-[#d7e5ee] bg-[#f8fbfd] px-3 py-2 text-[14px] font-semibold text-[#214f86]">
                                     {hasSubcategories ? 'Has subcategories' : 'Direct products'}
                                 </p>
+                                <p className="mt-4 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6a9ab1]">
+                                    Client Display
+                                </p>
+                                <div className="mt-2 flex flex-wrap gap-2">
+                                    <span className="border border-[#d7e5ee] bg-[#f8fbfd] px-3 py-2 text-[13px] font-semibold text-[#214f86]">
+                                        {isStandalone ? 'Genotek Exclusice' : 'Chemicals page'}
+                                    </span>
+                                </div>
                             </div>
                         </aside>
                     </div>

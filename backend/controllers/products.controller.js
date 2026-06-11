@@ -16,6 +16,10 @@ export const addProduct = async (req, res) => {
             return res.status(400).json({ message: "Select a subcategory for this category" });
         }
 
+        if (parentCategory.isStandalone && !req.body.description?.trim()) {
+            return res.status(400).json({ message: "Product description is required for Genotek Exclusice products" });
+        }
+
         if (req.body.subcategory) {
             const subcategory = await Subcategory.findOne({
                 name: req.body.subcategory,
@@ -36,6 +40,7 @@ export const addProduct = async (req, res) => {
         const newProduct = new Product({
             ...req.body,
             subcategory: req.body.subcategory || "",
+            description: parentCategory.isStandalone ? req.body.description.trim() : "",
             image: {
                 name: uploadedImage.filename
             }
@@ -117,6 +122,12 @@ export const updateProduct = async (req, res) => {
         if (parentCategory.hasSubcategories && !product.subcategory) {
             return res.status(400).json({ message: "Select a subcategory for this category" });
         }
+
+        if (parentCategory.isStandalone && !req.body.description?.trim()) {
+            return res.status(400).json({ message: "Product description is required for Genotek Exclusice products" });
+        }
+
+        product.description = parentCategory.isStandalone ? req.body.description.trim() : "";
 
         if (product.subcategory) {
             const subcategory = await Subcategory.findOne({

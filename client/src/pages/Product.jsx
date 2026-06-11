@@ -87,8 +87,6 @@ function Product() {
         )
     }, [scopedProducts, searchTerm])
 
-    const shouldUseProductTable = scopedProducts.length > 4
-
     const getProductImageUrl = (product) => {
         if (!product?.image?.name) return ''
 
@@ -130,15 +128,8 @@ function Product() {
                                 </div>
                             </div>
                         ) : category ? (
-                            <>  
-                                
+                            <>
                                 <div className="mb-3 flex items-center gap-2 text-[14px] text-gray-500">
-                                    <NavLink to="/">Home</NavLink>
-                                    <span>&gt;</span>
-
-                                    <NavLink to="/products">Products</NavLink>
-                                    <span>&gt;</span>
-
                                     <NavLink to="/products/chemical">Chemicals</NavLink>
                                     <span>&gt;</span>
 
@@ -207,7 +198,6 @@ function Product() {
                                                         <span className="min-w-0 flex-1 text-right text-[14px] font-bold uppercase leading-[17px] text-[#244f80]">
                                                             {subcategory.name}
                                                         </span>
-                                                        <span className="absolute bottom-1.5 left-3 right-3 h-[2px] bg-[#244f80]" />
                                                     </button>
                                                 )
                                             })}
@@ -221,7 +211,7 @@ function Product() {
                                                     className="inline-flex h-9 items-center gap-2 rounded-full border border-[#5790aa] bg-white px-4 text-[13px] font-semibold text-[#214f86] shadow-sm transition hover:bg-[#eef5f9] cursor-pointer"
                                                     aria-expanded={isSubcategoryPanelOpen}
                                                 >
-                                                    {isSubcategoryPanelOpen ? 'Hide subcategories' : 'Show subcategories'}
+                                                    {isSubcategoryPanelOpen ? 'Hide Fine Chemcials Portfolio' : 'Expand Fine Chemcials Portfolio'}
                                                     <FiChevronDown
                                                         className={`text-[17px] transition-transform duration-300 ${
                                                             isSubcategoryPanelOpen ? 'rotate-180' : ''
@@ -237,7 +227,7 @@ function Product() {
                                     <p className="mt-8 text-[15px] text-black/70">
                                         Select a subcategory to view products.
                                     </p>
-                                ) : shouldUseProductTable ? (
+                                ) : (
                                     <div className="mt-5 w-full max-w-[1040px] overflow-x-auto">
                                         <div className="min-w-[560px] md:min-w-[760px]">
                                             <div className="grid grid-cols-[90px_minmax(190px,1fr)_180px] items-center gap-3 bg-[#244f80] px-4 py-4 text-[13px] font-bold text-white md:grid-cols-[120px_minmax(320px,1fr)_390px] md:gap-6 md:px-11 md:py-5 md:text-[15px]">
@@ -298,53 +288,6 @@ function Product() {
                                                 </p>
                                             )}
                                         </div>
-                                    </div>
-                                ) : (
-                                    <div className="mt-4 grid gap-x-6 gap-y-5 sm:grid-cols-2 xl:grid-cols-4">
-                                        {visibleProducts.length ? (
-                                            visibleProducts.map((product) => {
-                                                const imageUrl = getProductImageUrl(product)
-
-                                                return (
-                                                    <article
-                                                        key={product._id || `${product.name}-${product.cas}`}
-                                                        className="overflow-hidden rounded-[28px] border-2 border-[#5790aa] bg-white"
-                                                    >
-                                                        <div className="bg-[#5790aa] px-6 py-4 text-[17px] text-center font-bold text-white">
-                                                            CAS No: {product.cas}
-                                                        </div>
-                                                        <div className="flex h-[230px] items-center justify-center overflow-hidden bg-white sm:h-[150px]">
-                                                            {imageUrl ? (
-                                                                <button
-                                                                    type="button"
-                                                                    onClick={() => setPreviewImage({ src: imageUrl, alt: product.name })}
-                                                                    className="group relative flex h-full w-full cursor-pointer items-center justify-center"
-                                                                    aria-label={`Open ${product.name} image`}
-                                                                >
-                                                                    <img
-                                                                        src={imageUrl}
-                                                                        alt={product.name}
-                                                                        className="block h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] object-fill"
-                                                                    />
-                                                                    <span className="pointer-events-none absolute bottom-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-[#244f80] text-white opacity-0 shadow-md transition group-hover:opacity-100">
-                                                                        <FiMaximize2 className="text-[16px]" />
-                                                                    </span>
-                                                                </button>
-                                                            ) : (
-                                                                <span className="text-[14px] text-[#5790aa]">No image</span>
-                                                            )}
-                                                        </div>
-                                                        <div className="px-4 pb-2 text-center text-[15px] leading-6 text-[#3c82b0]">
-                                                            {product.name}
-                                                        </div>
-                                                    </article>
-                                                )
-                                            })
-                                        ) : (
-                                            <p className="col-span-full mt-4 text-[15px] text-black/70">
-                                                No products found.
-                                            </p>
-                                        )}
                                     </div>
                                 )}
                             </>

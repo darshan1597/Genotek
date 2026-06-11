@@ -4,6 +4,7 @@ import {
     FiArrowLeft,
     FiChevronDown,
     FiCheckCircle,
+    FiFileText,
     FiHash,
     FiImage,
     FiPackage,
@@ -22,6 +23,7 @@ function AddProduct() {
     const productImageInputRef = useRef(null)
     const [productName, setProductName] = useState('')
     const [casNumber, setCasNumber] = useState('')
+    const [productDescription, setProductDescription] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('')
     const [categories, setCategories] = useState([])
     const [subcategories, setSubcategories] = useState([])
@@ -140,6 +142,12 @@ function AddProduct() {
             return
         }
 
+        if (selectedCategoryData?.isStandalone && !productDescription.trim()) {
+            setToast({ message: 'Enter product description.', type: 'error' })
+            setIsSubmitting(false)
+            return
+        }
+
         if (!productImage) {
             setToast({ message: 'Upload product image.', type: 'error' })
             setIsSubmitting(false)
@@ -152,6 +160,7 @@ function AddProduct() {
             formData.append('cas', cas)
             formData.append('category', selectedCategory)
             formData.append('subcategory', selectedCategoryData?.hasSubcategories ? selectedSubcategory : '')
+            formData.append('description', selectedCategoryData?.isStandalone ? productDescription.trim() : '')
             formData.append('image', productImage)
 
             await axios.post(`${serverUrl}/api/products/add-product`, formData, {
@@ -164,6 +173,7 @@ function AddProduct() {
             setCasNumber('')
             setSelectedCategory('')
             setSelectedSubcategory('')
+            setProductDescription('')
             setProductImage(null)
         } catch (error) {
             setToast({
@@ -180,6 +190,7 @@ function AddProduct() {
         setCasNumber('')
         setSelectedCategory('')
         setSelectedSubcategory('')
+        setProductDescription('')
         setProductImage(null)
         setToast(null)
         setIsCategoryDropdownOpen(false)
@@ -410,6 +421,23 @@ function AddProduct() {
                                 </div>
                             ) : null}
 
+                            {selectedCategoryData?.isStandalone ? (
+                                <label className="mb-5 block">
+                                    <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
+                                        Product Description
+                                    </span>
+                                    <span className="flex min-h-[130px] items-start border-2 border-[#d6e4ed] bg-[#f8fbfd] px-4 py-4 transition-colors duration-200 focus-within:border-[#214f86]">
+                                        <FiFileText className="mr-3 mt-1 shrink-0 text-[20px] text-[#6a9ab1]" />
+                                        <textarea
+                                            value={productDescription}
+                                            onChange={(event) => setProductDescription(event.target.value)}
+                                            className="min-h-[96px] w-full resize-y bg-transparent text-[15px] leading-6 text-[#23384d] outline-none placeholder:text-[#98aab8]"
+                                            placeholder="Write the Genotek Exclusice product description"
+                                        />
+                                    </span>
+                                </label>
+                            ) : null}
+
                             <div className="mb-6 block">
                                 <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
                                     Product Image
@@ -499,6 +527,16 @@ function AddProduct() {
                                         </p>
                                         <p className="mt-2 text-[15px] font-semibold text-[#526b80]">
                                             {selectedSubcategory || 'Subcategory'}
+                                        </p>
+                                    </>
+                                ) : null}
+                                {selectedCategoryData?.isStandalone ? (
+                                    <>
+                                        <p className="mt-4 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6a9ab1]">
+                                            Description
+                                        </p>
+                                        <p className="mt-2 whitespace-pre-line break-words text-[14px] leading-6 text-[#526b80]">
+                                            {productDescription.trim() || 'Product description'}
                                         </p>
                                     </>
                                 ) : null}

@@ -24,6 +24,31 @@
   }
 }
 
+@keyframes exclusiveProductsLeftToRight {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+.exclusive-product-track {
+  animation: exclusiveProductsLeftToRight 28s linear infinite;
+  will-change: transform;
+}
+
+.exclusive-product-track:hover {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exclusive-product-track {
+    animation-play-state: paused;
+  }
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
   margin: 0;

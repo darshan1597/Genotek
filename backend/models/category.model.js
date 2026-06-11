@@ -23,6 +23,10 @@ const categorySchema = new mongoose.Schema(
             type: Boolean,
             default: false,
         },
+        isStandalone: {
+            type: Boolean,
+            default: false,
+        },
         image: {
             type: ImageSchema,
             required: true,

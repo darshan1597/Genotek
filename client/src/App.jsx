@@ -13,6 +13,10 @@ import Services from './pages/Services'
 import Industry from './pages/Industry'
 import Chemical from './pages/Chemical'
 import Product from './pages/Product'
+import GenotekExclusive from './pages/GenotekExclusive'
+import ChiralGc from './pages/ChiralGc'
+import HplcColumns from './pages/HplcColumns'
+import HplcPumps from './pages/HplcPumps'
 
 function ScrollToTop() {
     const { pathname } = useLocation()
@@ -42,7 +46,10 @@ function App() {
             <Route path="/about/infra" element={<GenotekInfra />} />
             <Route path="/products/chemical" element={<Chemical />} />
             <Route path="/products/chemical/:categoryName" element={<Product />} />
-            {/* <Route path="/product/:categoryName" element={<Product />} /> */}
+            <Route path="/chiral-gc-columns" element={<ChiralGc />} />
+            <Route path="/chiral-hplc-columns" element={<HplcColumns />} />
+            <Route path="/hplc-pumps" element={<HplcPumps />} />
+            <Route path="/genotekexclusive" element={<GenotekExclusive />} />
             <Route path="/industry" element={<Industry />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<GetInTouch />} />

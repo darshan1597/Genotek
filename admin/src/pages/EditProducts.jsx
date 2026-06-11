@@ -4,6 +4,7 @@ import {
     FiArrowLeft,
     FiChevronDown,
     FiCheckCircle,
+    FiFileText,
     FiHash,
     FiImage,
     FiPackage,
@@ -24,6 +25,7 @@ function EditProducts() {
     const productImageInputRef = useRef(null)
     const [productName, setProductName] = useState('')
     const [casNumber, setCasNumber] = useState('')
+    const [productDescription, setProductDescription] = useState('')
     const [selectedCategory, setSelectedCategory] = useState('')
     const [selectedSubcategory, setSelectedSubcategory] = useState('')
     const [categories, setCategories] = useState([])
@@ -51,6 +53,7 @@ function EditProducts() {
                 if (product) {
                     setProductName(product.name || '')
                     setCasNumber(product.cas || '')
+                    setProductDescription(product.description || '')
                     setSelectedCategory(product.category || '')
                     setSelectedSubcategory(product.subcategory || '')
                     setCurrentImageName(product.image?.name || '')
@@ -146,6 +149,11 @@ function EditProducts() {
             return
         }
 
+        if (selectedCategoryData?.isStandalone && !productDescription.trim()) {
+            setToast({ message: 'Enter product description.', type: 'error' })
+            return
+        }
+
         setIsSubmitting(true)
 
         try {
@@ -154,6 +162,7 @@ function EditProducts() {
             formData.append('cas', cas)
             formData.append('category', selectedCategory)
             formData.append('subcategory', selectedCategoryData?.hasSubcategories ? selectedSubcategory : '')
+            formData.append('description', selectedCategoryData?.isStandalone ? productDescription.trim() : '')
 
             if (productImage) {
                 formData.append('image', productImage)
@@ -390,6 +399,23 @@ function EditProducts() {
                                     </div>
                                 ) : null}
 
+                                {selectedCategoryData?.isStandalone ? (
+                                    <label className="mb-5 block">
+                                        <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
+                                            Product Description
+                                        </span>
+                                        <span className="flex min-h-[130px] items-start border-2 border-[#d6e4ed] bg-[#f8fbfd] px-4 py-4 transition-colors duration-200 focus-within:border-[#214f86]">
+                                            <FiFileText className="mr-3 mt-1 shrink-0 text-[20px] text-[#6a9ab1]" />
+                                            <textarea
+                                                value={productDescription}
+                                                onChange={(event) => setProductDescription(event.target.value)}
+                                                className="min-h-[96px] w-full resize-y bg-transparent text-[15px] leading-6 text-[#23384d] outline-none placeholder:text-[#98aab8]"
+                                                placeholder="Write the Genotek Exclusice product description"
+                                            />
+                                        </span>
+                                    </label>
+                                ) : null}
+
                                 <div className="mb-6 block">
                                     <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
                                         Product Image
@@ -481,6 +507,16 @@ function EditProducts() {
                                             </p>
                                             <p className="mt-2 text-[15px] font-semibold text-[#526b80]">
                                                 {selectedSubcategory || 'Subcategory'}
+                                            </p>
+                                        </>
+                                    ) : null}
+                                    {selectedCategoryData?.isStandalone ? (
+                                        <>
+                                            <p className="mt-4 text-[12px] font-semibold uppercase tracking-[0.14em] text-[#6a9ab1]">
+                                                Description
+                                            </p>
+                                            <p className="mt-2 whitespace-pre-line break-words text-[14px] leading-6 text-[#526b80]">
+                                                {productDescription.trim() || 'Product description'}
                                             </p>
                                         </>
                                     ) : null}
