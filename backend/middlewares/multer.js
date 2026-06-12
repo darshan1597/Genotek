@@ -28,10 +28,10 @@ const fileFilter = (req, file, cb) => {
     else cb(new Error("Only .jpg, .jpeg, .png, .webp formats allowed!"));
 };
 
-const createUploader = (folder) => {
+const createUploader = (folder, maxFileSize = 5 * 1024 * 1024) => {
     const upload = multer({
         storage: multer.memoryStorage(),
-        limits: { fileSize: 5 * 1024 * 1024 },
+        limits: { fileSize: maxFileSize },
         fileFilter,
     });
 
@@ -142,6 +142,8 @@ export const uploadCategoryImages = createUploader("categoryImages");
 
 export const uploadSubcategoryImages = createUploader("subcategoryImages");
 
-export const uploadHeroImages = createUploader("heroImages");
+export const uploadHeroImages = createUploader("heroImages", 25 * 1024 * 1024);
 
-export const uploadHeroSidebarImages = createUploader("heroSidebarImages");
+export const uploadHeroSidebarImages = createUploader("heroSidebarImages", 15 * 1024 * 1024);
+
+export const uploadTeamImages = createUploader("teamImages");

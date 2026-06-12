@@ -15,6 +15,10 @@ import EditCategory from './pages/EditCategory'
 import EditSubcategory from './pages/EditSubcategory'
 import HeroSection from './pages/HeroSection'
 import ViewForms from './pages/ViewForms'
+import AddAdmin from './pages/AddAdmin'
+import ViewAdmins from './pages/ViewAdmins'
+import AddAboutTeam from './pages/AddAboutTeam'
+import EditAboutTeam from './pages/EditAboutTeam'
 
 export const serverUrl = import.meta.env.VITE_SERVER_URL
 
@@ -58,6 +62,10 @@ function App() {
             <Route path="/profile" element={admin ? <Profile /> : <Navigate to="/login" replace /> } />
             <Route path="/hero-banners" element={admin ? <HeroSection /> : <Navigate to="/login" replace /> } />
             <Route path="/viewforms" element={admin ? <ViewForms /> : <Navigate to="/login" replace /> } />
+            <Route path="/add-admin" element={admin ? <AddAdmin /> : <Navigate to="/login" replace /> } />
+            <Route path="/admins" element={admin ? <ViewAdmins /> : <Navigate to="/login" replace /> } />
+            <Route path="/add-about-team" element={admin ? <AddAboutTeam /> : <Navigate to="/login" replace /> } />
+            <Route path="/edit-about-team" element={admin ? <EditAboutTeam /> : <Navigate to="/login" replace /> } />
         </Routes>
     )
 }

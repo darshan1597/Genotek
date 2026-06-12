@@ -12,6 +12,7 @@ import productRouter from "./routes/products.routes.js";
 import subcategoryRouter from "./routes/subcategories.routes.js";
 import heroSlidesRouter from "./routes/heroSlides.routes.js";
 import pdfDownloadFormsRouter from "./routes/pdfDownloadForms.routes.js";
+import teamMembersRouter from "./routes/teamMembers.routes.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -41,6 +42,8 @@ app.use("/api/products", productRouter)
 app.use("/api/hero-slides", heroSlidesRouter)
 
 app.use("/api/pdf-download-forms", pdfDownloadFormsRouter)
+
+app.use("/api/team-members", teamMembersRouter)
 
 const startServer = async () => {
     app.listen(port, () => {

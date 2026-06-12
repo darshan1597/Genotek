@@ -45,6 +45,9 @@ export const adminSignIn = async (req, res) => {
         if(!admin){
             return res.status(400).json({message: "Admin does not exist."})
         }
+        if (!admin.isActive) {
+            return res.status(403).json({ message: "Admin account is inactive." })
+        }
 
         const passwordMatch = await bcrypt.compare(password, admin.password)
 

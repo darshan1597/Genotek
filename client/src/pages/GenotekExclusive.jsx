@@ -189,8 +189,8 @@ function GenotekExclusive() {
                                                 )}
                                             </div>
 
-                                            <div className="px-4 pb-2 text-center font-semibold text-[17px] leading-6 text-[#3c82b0]">
-                                                {product.name}
+                                            <div className="flex min-h-[58px] items-center justify-center px-4 pb-2 text-center font-semibold text-[17px] leading-6 text-[#3c82b0]">
+                                                <span>{product.name}</span>
                                             </div>
                                         </article>
                                     )

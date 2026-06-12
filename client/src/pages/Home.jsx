@@ -396,7 +396,7 @@ function GenotekExclusiveStrip() {
                 return (
                     <Link
                         key={`${groupKey}-${product._id || `${product.name}-${product.cas}`}-${index}`}
-                        to={`/genotekexclusive?product=${encodeURIComponent(product._id || '')}`}
+                        to={`/genotek-exclusive?product=${encodeURIComponent(product._id || '')}`}
                         className="block w-[145px] shrink-0 overflow-hidden rounded-[14px] border-2 border-[#5790aa] bg-white transition hover:-translate-y-1 hover:shadow-lg sm:w-[210px] sm:rounded-[20px]"
                         aria-label={`View ${product.name} on Genotek Exclusive page`}
                     >
@@ -417,8 +417,8 @@ function GenotekExclusiveStrip() {
                                 <span className="text-[12px] text-[#5790aa]">No image</span>
                             )}
                         </div>
-                        <div className="line-clamp-2 min-h-[36px] px-2 pb-1 text-center text-[10px] leading-[15px] text-[#3c82b0] sm:min-h-[46px] sm:px-3 sm:pb-2 sm:text-[12px] sm:leading-[18px]">
-                            {product.name}
+                        <div className="flex min-h-[36px] items-center justify-center px-2 pb-1 text-center text-[10px] leading-[15px] text-[#3c82b0] sm:min-h-[46px] sm:px-3 sm:pb-2 sm:text-[12px] sm:leading-[18px]">
+                            <span className="line-clamp-2">{product.name}</span>
                         </div>
                     </Link>
                 )

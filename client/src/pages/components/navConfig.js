@@ -17,7 +17,7 @@ export const aboutSubmenuItems = [
 export const productSubmenuItems = [
   { href: '/products/chemical', label: 'Chemicals', children: [] },
   {
-    href: '/products/hpcl',
+    href: '/products/chromatography-solutions',
     label: 'Chromatography Solutions',
     children: [
       { href: '/products/chiral-gc-columns', label: 'Chiral GC Columns' },

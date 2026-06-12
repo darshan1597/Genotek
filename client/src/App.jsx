@@ -17,6 +17,7 @@ import GenotekExclusive from './pages/GenotekExclusive'
 import ChiralGc from './pages/ChiralGc'
 import HplcColumns from './pages/HplcColumns'
 import HplcPumps from './pages/HplcPumps'
+import Chromatogrphy from './pages/Chromatogrphy'
 
 function ScrollToTop() {
     const { pathname } = useLocation()
@@ -46,6 +47,7 @@ function App() {
             <Route path="/about/infra" element={<GenotekInfra />} />
             <Route path="/products/chemical" element={<Chemical />} />
             <Route path="/products/chemical/:categoryName" element={<Product />} />
+            <Route path="/products/chromatography-solutions" element={<Chromatogrphy />} />
             <Route path="/products/chiral-gc-columns" element={<ChiralGc />} />
             <Route path="/products/chiral-hplc-columns" element={<HplcColumns />} />
             <Route path="/products/hplc-pumps" element={<HplcPumps />} />
