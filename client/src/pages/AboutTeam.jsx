@@ -49,12 +49,12 @@ function AboutTeam() {
                             {members.length ? members.map((member, index) => (
                                 <div key={member._id}>
                                     <article className="mt-8 grid items-start gap-6 md:mt-10 md:gap-8 lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_520px]">
-                                        <div className="max-w-[760px] text-left lg:ml-10">
+                                        <div className="w-full text-left lg:ml-10">
                                             <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] sm:text-[32px] md:text-[36px]">{member.name}</h2>
                                             <h3 className="mt-2 text-[17px] text-gray-600 md:text-[20px]">{member.role}</h3>
                                             {member.about ? <p className="mt-4 whitespace-pre-line text-[16px] leading-[1.7] text-black/80 sm:text-[18px] md:text-[19px] md:text-justify">{member.about}</p> : null}
                                             {member.bulletPoints?.length ? (
-                                                <ul className="mt-5 list-disc space-y-2 pl-6 text-[16px] leading-[1.6] text-black/80 sm:text-[18px] md:text-[19px]">
+                                                <ul className="mt-5 w-full list-disc pl-5 space-y-2 text-[16px] leading-[1.6] text-black/80 sm:text-[18px] md:text-[19px]">
                                                     {member.bulletPoints.map((point, pointIndex) => <li key={`${member._id}-${pointIndex}`}>{point}</li>)}
                                                 </ul>
                                             ) : null}
@@ -63,8 +63,10 @@ function AboutTeam() {
                                             <img
                                                 src={`${serverUrl}/teamImages/${member.image.name}`}
                                                 alt={member.name}
-                                                className="h-[190px] w-[75%] object-cover sm:h-[240px] md:h-[280px]"
-                                                style={{ clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)' }}
+                                                className="w-[220px] aspect-[3/4] object-cover mx-auto"
+                                                style={{
+                                                    clipPath: 'polygon(0 0, 100% 0, 100% 75%, 85% 100%, 0 100%)'
+                                                }}
                                             />
                                         </div>
                                     </article>
