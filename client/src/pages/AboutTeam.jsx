@@ -25,7 +25,7 @@ function AboutTeam() {
                                 />
              
                                 <div
-                                    className="absolute bottom-[24px] left-0 z-[4] w-[min(92%,320px)] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[38px] sm:w-[min(88%,420px)] sm:px-8 sm:py-3 md:bottom-[64px] md:w-auto md:px-15"
+                                    className="absolute bottom-[50px] left-0 z-[4] -translate-y-[80px] w-[min(92%,320px)] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[60px] sm:w-[min(88%,420px)] sm:px-8 sm:py-3 md:bottom-[80px] md:w-auto md:px-15"
                                     style={{
                                         clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)',
                                     }}
@@ -62,7 +62,7 @@ function AboutTeam() {
                                     <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] sm:text-[32px] md:text-[35px]">
                                         Rushab Gohil
                                     </h2>
-                                    <h4 className='mt-3 text-[16px] text-gray-500 sm:text-[18px] md:mt-4 md:text-[20px]'>Founder & CEO</h4>
+                                    <h4 className='mt-3 text-[20px] text-gray-500 sm:text-[20px] md:mt-4 md:text-[25px]'>Founder & CEO</h4>
                                     <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-black/80 text-left sm:text-[18px] md:text-[20px] md:text-justify">
                                         Rushabh Gohil is an emerging leader known for his strategic thinking and execution-driven approach. With a strong focus on building arelationships and driving business outcomes, he brings a balanced perspective of operational discipline and growth ambition. He plays a key role in enabling customerfocused solutions, contributing to scalable success and long-term value creation in dynamic and competitive environments.
                                     </p>
@@ -94,7 +94,7 @@ function AboutTeam() {
                                     <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] sm:text-[32px] md:text-[35px]">
                                         Nisarg Gohil
                                     </h2>
-                                    <h4 className='mt-3 text-[16px] text-gray-500 sm:text-[18px] md:mt-4 md:text-[20px]'>Co-founder & COO</h4>
+                                    <h4 className='mt-3 text-[16px] text-gray-500 sm:text-[18px] md:mt-4 md:text-[25px]'>Co-founder & COO</h4>
                                     <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-black/80 text-left sm:text-[18px] md:text-[20px] md:text-justify">
                                         Nisarg Gohil is a biotechnology professional with Genotek Biochem in India, supported by a strong academic background and international exposure, including at Cornell University. Based in Mumbai, he is active in the life sciences sector and maintains a large professional network. His profile reflects a blend of scientific expertise, global perspective, and industry engagement.
                                     </p>
@@ -125,7 +125,7 @@ function AboutTeam() {
                                     <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] sm:text-[32px] md:text-[35px]">
                                         Hitesh Gandhi
                                     </h2>
-                                    <h4 className='mt-3 text-[16px] text-gray-500 sm:text-[18px] md:mt-4 md:text-[20px]'>President- Marketing & Projects</h4>
+                                    <h4 className='mt-3 text-[16px] text-gray-500 sm:text-[18px] md:mt-4 md:text-[25px]'>President- Marketing & Projects</h4>
                                     <p className="mt-4 max-w-[900px] text-[16px] leading-[1.7] text-black/80 text-left sm:text-[18px] md:text-[20px] md:text-justify">
                                         Hitesh is a results-driven leader in the pharmaceutical and CDMO sector, recognized for shaping growth strategies and building strong global partnerships. Combining commercial acumen with industry expertise, he drives execution-focused teams to deliver customer-centric solutions. His leadership emphasizes innovation, agility, and long-term value creation, enabling organizations to scale effectively and succeed in competitive, evolving markets.
                                     </p>
