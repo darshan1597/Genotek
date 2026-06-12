@@ -31,7 +31,8 @@ export const addProduct = async (req, res) => {
             }
         }
 
-        const uploadedImage = req.file;
+        const uploadedImage = req.files?.image?.[0];
+        const uploadedPdf = req.files?.pdf?.[0];
 
         if (!uploadedImage) {
             return res.status(400).json({ message: "Product image is required" });
@@ -43,7 +44,10 @@ export const addProduct = async (req, res) => {
             description: parentCategory.isStandalone ? req.body.description.trim() : "",
             image: {
                 name: uploadedImage.filename
-            }
+            },
+            pdf: {
+                name: parentCategory.isStandalone && uploadedPdf ? uploadedPdf.filename : ""
+            },
         });
 
         await newProduct.save();
@@ -77,6 +81,10 @@ export const deleteProduct = async (req, res) => {
                 fs.unlinkSync(imagePath);
             }
         }
+        if (product.pdf?.name) {
+            const pdfPath = path.join(process.cwd(), "public", "productPdfs", product.pdf.name);
+            if (fs.existsSync(pdfPath)) fs.unlinkSync(pdfPath);
+        }
         await Product.findByIdAndDelete(req.params.id);
 
         return res.status(200).json({ message: "Product deleted successfully" });
@@ -106,7 +114,8 @@ export const updateProduct = async (req, res) => {
             return res.status(404).json({ message: "Product not found" });
         }
 
-        const uploadedImage = req.file;
+        const uploadedImage = req.files?.image?.[0];
+        const uploadedPdf = req.files?.pdf?.[0];
 
         product.name = req.body.name || product.name;
         product.category = req.body.category || product.category;
@@ -128,6 +137,18 @@ export const updateProduct = async (req, res) => {
         }
 
         product.description = parentCategory.isStandalone ? req.body.description.trim() : "";
+
+        if (!parentCategory.isStandalone && product.pdf?.name) {
+            const oldPdfPath = path.join(process.cwd(), "public", "productPdfs", product.pdf.name);
+            if (fs.existsSync(oldPdfPath)) fs.unlinkSync(oldPdfPath);
+            product.pdf = { name: "" };
+        } else if (parentCategory.isStandalone && uploadedPdf) {
+            if (product.pdf?.name) {
+                const oldPdfPath = path.join(process.cwd(), "public", "productPdfs", product.pdf.name);
+                if (fs.existsSync(oldPdfPath)) fs.unlinkSync(oldPdfPath);
+            }
+            product.pdf = { name: uploadedPdf.filename };
+        }
 
         if (product.subcategory) {
             const subcategory = await Subcategory.findOne({

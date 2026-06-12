@@ -34,6 +34,8 @@ function EditProducts() {
     const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false)
     const [isSubcategoryDropdownOpen, setIsSubcategoryDropdownOpen] = useState(false)
     const [productImage, setProductImage] = useState(null)
+    const [productPdf, setProductPdf] = useState(null)
+    const [currentPdfName, setCurrentPdfName] = useState('')
     const [currentImageName, setCurrentImageName] = useState('')
     const [imagePreview, setImagePreview] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
@@ -57,6 +59,7 @@ function EditProducts() {
                     setSelectedCategory(product.category || '')
                     setSelectedSubcategory(product.subcategory || '')
                     setCurrentImageName(product.image?.name || '')
+                    setCurrentPdfName(product.pdf?.name || '')
                     setImagePreview(product.image?.name ? `${serverUrl}/productImages/${product.image.name}` : '')
                 }
             } catch (error) {
@@ -166,6 +169,9 @@ function EditProducts() {
 
             if (productImage) {
                 formData.append('image', productImage)
+            }
+            if (selectedCategoryData?.isStandalone && productPdf) {
+                formData.append('pdf', productPdf)
             }
 
             await axios.put(`${serverUrl}/api/products/update-product/${id}`, formData, {
@@ -400,7 +406,8 @@ function EditProducts() {
                                 ) : null}
 
                                 {selectedCategoryData?.isStandalone ? (
-                                    <label className="mb-5 block">
+                                    <div className="mb-5">
+                                    <label className="block">
                                         <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
                                             Product Description
                                         </span>
@@ -414,6 +421,24 @@ function EditProducts() {
                                             />
                                         </span>
                                     </label>
+                                    <label className="mt-4 block">
+                                        <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
+                                            Product PDF <span className="font-normal text-[#526b80]">(Optional)</span>
+                                        </span>
+                                        <span className="flex cursor-pointer items-center gap-3 border-2 border-dashed border-[#d6e4ed] bg-[#f8fbfd] px-4 py-4 text-[#214f86] transition hover:border-[#214f86]">
+                                            <FiFileText className="shrink-0 text-[22px]" />
+                                            <span className="min-w-0 truncate text-[14px] font-semibold">
+                                                {productPdf?.name || currentPdfName || 'Upload PDF'}
+                                            </span>
+                                        </span>
+                                        <input
+                                            type="file"
+                                            accept="application/pdf"
+                                            className="hidden"
+                                            onChange={(event) => setProductPdf(event.target.files?.[0] || null)}
+                                        />
+                                    </label>
+                                    </div>
                                 ) : null}
 
                                 <div className="mb-6 block">

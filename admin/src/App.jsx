@@ -14,6 +14,7 @@ import ViewSubcategories from './pages/ViewSubcategories'
 import EditCategory from './pages/EditCategory'
 import EditSubcategory from './pages/EditSubcategory'
 import HeroSection from './pages/HeroSection'
+import ViewForms from './pages/ViewForms'
 
 export const serverUrl = import.meta.env.VITE_SERVER_URL
 
@@ -56,6 +57,7 @@ function App() {
             <Route path="/edit-product/:id" element={admin ? <EditProducts /> : <Navigate to="/login" replace /> } />
             <Route path="/profile" element={admin ? <Profile /> : <Navigate to="/login" replace /> } />
             <Route path="/hero-banners" element={admin ? <HeroSection /> : <Navigate to="/login" replace /> } />
+            <Route path="/viewforms" element={admin ? <ViewForms /> : <Navigate to="/login" replace /> } />
         </Routes>
     )
 }

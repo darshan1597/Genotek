@@ -34,6 +34,12 @@ const ProductSchema = new mongoose.Schema({
         type: ImageSchema,
         required: true
     },
+    pdf: {
+        name: {
+            type: String,
+            default: "",
+        },
+    },
 }, {timestamps: true});
 
 const Product = mongoose.model("Product", ProductSchema)

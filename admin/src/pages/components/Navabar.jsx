@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FiUser } from 'react-icons/fi'
 import { useAdminAuth } from '../context/AdminAuthContext'
 import { RiLogoutBoxFill } from "react-icons/ri"
+import { IoReceiptSharp } from "react-icons/io5";
 import axios from 'axios'
 import { serverUrl } from '../../App'
 
@@ -93,6 +94,18 @@ function Navabar() {
                                     {admin?.name?.slice(0, 1) || "A"}
                                 </span>
                                 Profile
+                            </button>
+
+                            <button
+                                type="button"
+                                className="flex w-full items-center gap-3 px-4 py-3 text-left text-[15px] font-semibold text-[#526b80] transition-colors duration-200 hover:bg-[#f8fbfd] hover:text-[#214f86] cursor-pointer"
+                                onClick={() => {
+                                    navigate("/viewforms")
+                                    setAccountLoginMenuOpen(false)
+                                }}
+                            >
+                                <IoReceiptSharp size={22} className='text-[#214f86]' />
+                                View Forms
                             </button>
 
                             <button

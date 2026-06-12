@@ -10,7 +10,11 @@ function Sidebar() {
     const location = useLocation()
     const [chemicalCategories, setChemicalCategories] = useState([])
     const isAboutRoute = location.pathname.startsWith('/about')
-    const isProductsRoute = location.pathname.startsWith('/products')
+    const isProductsRoute =
+        location.pathname.startsWith('/products') ||
+        location.pathname === '/genotek-exclusive' ||
+        ['/chiral-gc-columns', '/chiral-hplc-columns', '/hplc-pumps'].includes(location.pathname)
+    const isChromatographyRoute = ['/chiral-gc-columns', '/chiral-hplc-columns', '/hplc-pumps'].includes(location.pathname)
 
     useEffect(() => {
         const fetchChemicalCategories = async () => {
@@ -20,9 +24,10 @@ function Sidebar() {
 
                 setChemicalCategories(
                     categories
-                        .filter((category) => !category.isStandalone)
                         .map((category) => ({
-                            href: `/products/chemical/${encodeURIComponent(category.name)}`,
+                            href: category.isStandalone
+                                ? '/genotek-exclusive'
+                                : `/products/chemical/${encodeURIComponent(category.name)}`,
                             label: category.name,
                         }))
                 )
@@ -146,13 +151,18 @@ function Sidebar() {
                                             >
                                                 <NavLink
                                                     to={submenuItem.href}
-                                                    className={({ isActive }) =>
-                                                    `group/submenu relative z-[1000] block overflow-hidden px-4 py-3 text-[15px] font-medium transition-colors duration-200 ${
-                                                        isActive
-                                                        ? 'bg-[#00A759] text-[#fff]'
-                                                        : 'bg-[#f4f8fb] text-[#214f86] hover:bg-[#e9f5ee] hover:text-[#0f6b35]'
-                                                    }`
-                                                    }
+                                                    className={({ isActive }) => {
+                                                        const isSubmenuActive =
+                                                            isActive ||
+                                                            (submenuItem.label === 'Chromatography Solutions' && isChromatographyRoute) ||
+                                                            (submenuItem.label === 'Chemicals' && location.pathname === '/genotek-exclusive')
+
+                                                        return `group/submenu relative z-[1000] block overflow-hidden px-4 py-3 text-[15px] font-medium transition-colors duration-200 ${
+                                                            isSubmenuActive
+                                                                ? 'bg-[#00A759] text-[#fff]'
+                                                                : 'bg-[#f4f8fb] text-[#214f86] hover:bg-[#e9f5ee] hover:text-[#0f6b35]'
+                                                        }`
+                                                    }}
                                                     style={{
                                                         clipPath:
                                                             'polygon(0 0, 100% 0, 100% 68%, 95% 100%, 0 100%)',

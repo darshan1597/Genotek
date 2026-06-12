@@ -1,9 +1,21 @@
+import { useState } from "react";
+import { FiFileText } from "react-icons/fi";
 import Navabar from "./components/Navabar";
 import Sidebar from "./components/Sidebar";
 import hero from "../assets/chromatographySolutions/HPLC-pumps-Image.png";
 import Footer from "./components/Footer";
+import GatedPdfModal from "./components/GatedPdfModal";
+import pump3350Pdf from "../assets/hpclPumps/Bischoff 3350 HPLC Dosing Pump.pdf";
+import pump3351Pdf from "../assets/hpclPumps/Bischoff 3351 HPLC Dosing Pump.pdf";
+
+const pumpDocuments = [
+    { title: "Bischoff 3350 HPLC Dosing Pump", url: pump3350Pdf, context: "HPLC Pumps" },
+    { title: "Bischoff 3351 HPLC Dosing Pump", url: pump3351Pdf, context: "HPLC Pumps" },
+];
 
 function HplcPumps() {
+    const [selectedPdf, setSelectedPdf] = useState(null);
+
     return (
         <div className="min-h-screen bg-white text-slate-900">
             <div className="h-[2px] w-full bg-[#6a9fba]" />
@@ -15,7 +27,7 @@ function HplcPumps() {
 
                     <div className="flex-1">
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
-                            <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[450px]">
+                            <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[520px]">
                                 <img
                                     src={hero}
                                     alt="The Genotek Story"
@@ -29,7 +41,7 @@ function HplcPumps() {
                                         "polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)",
                                     }}
                                 >
-                                    <p className="text-[22px] text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
+                                    <p className="text-[20px] leading-[1.0] font-normal sm:text-[28px] md:text-[35px]">
                                         HPLC
                                     </p>
 
@@ -79,10 +91,35 @@ function HplcPumps() {
                                 </li>
                             </ul>
                         </section>
+
+                        <section className="px-1 pb-10">
+                            <h2 className="mb-5 text-[26px] font-semibold text-[#214f86]">Product Documents</h2>
+                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                {pumpDocuments.map((document) => (
+                                    <button
+                                        key={document.title}
+                                        type="button"
+                                        onClick={() => setSelectedPdf(document)}
+                                        className="group flex min-h-[112px] cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-5 py-4 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)]"
+                                    >
+                                        <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#5790aa] text-white transition group-hover:bg-[#214f86]">
+                                            <FiFileText className="text-[25px]" />
+                                        </span>
+                                        <span className="min-w-0">
+                                            <span className="block text-[16px] font-semibold leading-6 text-[#214f86]">
+                                                {document.title}
+                                            </span>
+                                            <span className="mt-1 block text-[13px] text-[#526b80]">Open PDF</span>
+                                        </span>
+                                    </button>
+                                ))}
+                            </div>
+                        </section>
                         <Footer insetForSidebar={false} />
                     </div>
                 </section>
             </main>
+            <GatedPdfModal document={selectedPdf} onClose={() => setSelectedPdf(null)} />
         </div>
     );
 }

@@ -34,17 +34,33 @@
   }
 }
 
+@keyframes exclusiveLogoClockwise {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .exclusive-product-track {
   animation: exclusiveProductsLeftToRight 28s linear infinite;
   will-change: transform;
 }
 
-.exclusive-product-track:hover {
+.exclusive-logo-spin {
+  animation: exclusiveLogoClockwise 28s linear infinite;
+  will-change: transform;
+}
+
+.exclusive-showcase:hover .exclusive-product-track,
+.exclusive-showcase:hover .exclusive-logo-spin {
   animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .exclusive-product-track {
+    animation-play-state: paused;
+  }
+
+  .exclusive-logo-spin {
     animation-play-state: paused;
   }
 }

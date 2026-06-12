@@ -23,9 +23,9 @@ function AboutTeam() {
                                     alt="The Genotek Story"
                                     className="h-full w-full object-cover"
                                 />
-             
+
                                 <div
-                                    className="absolute bottom-[24px] left-0 z-[4] w-[min(92%,320px)] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[38px] sm:w-[min(88%,420px)] sm:px-8 sm:py-3 md:bottom-[64px] md:w-auto md:px-15"
+                                    className="absolute bottom-[110px] left-0 z-[4] w-[min(92%,200px)] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[135px] sm:w-[min(88%,220px)] sm:px-8 sm:py-3 md:bottom-[170px] md:w-auto md:px-15"
                                     style={{
                                         clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)',
                                     }}

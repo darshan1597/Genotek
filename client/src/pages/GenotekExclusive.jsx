@@ -1,10 +1,11 @@
 import { useEffect, useMemo, useState } from 'react'
 import axios from 'axios'
-import { FiMaximize2, FiX } from 'react-icons/fi'
+import { FiFileText, FiMaximize2, FiX } from 'react-icons/fi'
 import { Link, useSearchParams } from 'react-router-dom'
 import Navabar from './components/Navabar'
 import Sidebar from './components/Sidebar'
 import Footer from './components/Footer'
+import GatedPdfModal from './components/GatedPdfModal'
 
 const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:8000'
 
@@ -13,6 +14,7 @@ function GenotekExclusive() {
     const [category, setCategory] = useState(null)
     const [products, setProducts] = useState([])
     const [previewImage, setPreviewImage] = useState(null)
+    const [pdfDocument, setPdfDocument] = useState(null)
     const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
@@ -59,6 +61,7 @@ function GenotekExclusive() {
 
         return selectedProduct ? [selectedProduct] : products
     }, [products, selectedProductId])
+
     const selectedProduct = selectedProductId
         ? products.find((product) => product._id === selectedProductId)
         : null
@@ -89,13 +92,13 @@ function GenotekExclusive() {
                                 <img
                                     src={getCategoryImageUrl()}
                                     alt={category.name}
-                                    className="h-[118px] w-[118px] object-contain sm:h-[145px] sm:w-[145px]"
+                                    className="h-[118px] w-[118px] object-contain sm:h-[200px] sm:w-[200px]"
                                 />
                             ) : null}
                             {category?.name && selectedProduct ? (
                                 <nav className="mt-4 flex flex-wrap items-center gap-2 text-[14px] text-[#526b80]" aria-label="Breadcrumb">
                                     <Link
-                                        to="/genotekexclusive"
+                                        to="/genotek-exclusive"
                                         className="font-semibold text-[#214f86] transition hover:text-[#5790aa]"
                                     >
                                         {category.name}
@@ -110,7 +113,7 @@ function GenotekExclusive() {
                                 </h1>
                             ) : null}
                             {category?.description ? (
-                                <p className="mt-4 max-w-5xl text-[16px] leading-7 text-black/80">
+                                <p className="mt-4 max-w-5xl text-[19px] leading-7 text-black/80">
                                     {category.description}
                                 </p>
                             ) : null}
@@ -138,8 +141,26 @@ function GenotekExclusive() {
                                                     : 'border-[#5790aa]'
                                             }`}
                                         >
-                                            <div className="bg-[#5790aa] px-6 py-4 text-center text-[17px] font-bold text-white">
-                                                CAS No: {product.cas}
+                                            <div className="flex items-center justify-between gap-3 bg-[#5790aa] px-5 py-4 text-[17px] font-bold text-white">
+                                                <span className="min-w-0 truncate text-left">CAS No: {product.cas}</span>
+                                                {product.pdf?.name ? (
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => {
+                                                            setPdfDocument({
+                                                                title: product.name,
+                                                                url: `${serverUrl}/productPdfs/${product.pdf.name}`,
+                                                                productId: product._id,
+                                                                context: product.cas,
+                                                            })
+                                                        }}
+                                                        className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-white text-[#214f86] transition hover:bg-[#eef5f9]"
+                                                        aria-label={`Open ${product.name} PDF`}
+                                                        title="Open PDF"
+                                                    >
+                                                        <FiFileText className="text-[17px]" />
+                                                    </button>
+                                                ) : null}
                                             </div>
 
                                             <p className="px-4 py-3 text-center font-bold text-[16px] leading-5 text-[#526b80]">
@@ -195,7 +216,7 @@ function GenotekExclusive() {
                     onClick={() => setPreviewImage(null)}
                 >
                     <div
-                        className="relative flex max-h-full w-full max-w-5xl items-center justify-center"
+                        className="relative flex max-h-full max-w-[94vw] items-center justify-center"
                         onClick={(event) => event.stopPropagation()}
                     >
                         <button
@@ -206,16 +227,18 @@ function GenotekExclusive() {
                         >
                             <FiX />
                         </button>
-                        <div className="flex max-h-[86vh] w-full items-center justify-center bg-white p-4">
+                        <div className="inline-flex max-h-[86vh] max-w-[94vw] items-center justify-center border-2 border-[#5790aa] bg-white p-3 shadow-[0_18px_50px_rgba(0,0,0,0.3)] sm:p-4">
                             <img
                                 src={previewImage.src}
                                 alt={previewImage.alt}
-                                className="max-h-[calc(86vh-2rem)] max-w-full object-contain"
+                                className="block h-auto max-h-[calc(86vh-2rem)] w-auto max-w-[calc(94vw-2rem)] object-contain"
                             />
                         </div>
                     </div>
                 </div>
             ) : null}
+
+            <GatedPdfModal document={pdfDocument} onClose={() => setPdfDocument(null)} />
         </div>
     )
 }

@@ -133,14 +133,36 @@ function Product() {
                                     <NavLink to="/products/chemical">Chemicals</NavLink>
                                     <span>&gt;</span>
 
-                                    <span className="font-semibold text-[#214f86]">
-                                        {category.name}
-                                    </span>
+                                    {activeSubcategory ? (
+                                        <button
+                                            type="button"
+                                            onClick={() => {
+                                                setActiveSubcategory('')
+                                                setSearchTerm('')
+                                                setIsSubcategoryPanelOpen(true)
+                                            }}
+                                            className="cursor-pointer font-semibold text-[#214f86] transition hover:text-[#5790aa]"
+                                        >
+                                            {category.name}
+                                        </button>
+                                    ) : (
+                                        <span className="font-semibold text-[#214f86]">
+                                            {category.name}
+                                        </span>
+                                    )}
+                                    {activeSubcategory ? (
+                                        <>
+                                            <span>&gt;</span>
+                                            <span className="font-semibold text-[#214f86]">
+                                                {activeSubcategory}
+                                            </span>
+                                        </>
+                                    ) : null}
                                 </div>
                                 <h1 className="text-[34px] font-bold leading-tight text-[#1e487d] md:text-[40px]">
                                     {category.name}
                                 </h1>
-                                <p className="mt-4 max-w-5xl text-[17px] leading-6 text-black">
+                                <p className="mt-4 max-w-5xl text-[19px] leading-7 text-black/80">
                                     {category.description}
                                 </p>
 
@@ -225,7 +247,7 @@ function Product() {
 
                                 {category.hasSubcategories && !activeSubcategory ? (
                                     <p className="mt-8 text-[15px] text-black/70">
-                                        Select a subcategory to view products.
+                                        Select a category to view products.
                                     </p>
                                 ) : (
                                     <div className="mt-5 w-full max-w-[1040px] overflow-x-auto">
@@ -313,7 +335,7 @@ function Product() {
                     onClick={() => setPreviewImage(null)}
                 >
                     <div
-                        className="relative flex max-h-full w-full max-w-5xl items-center justify-center"
+                        className="relative flex max-h-full max-w-[94vw] items-center justify-center"
                         onClick={(event) => event.stopPropagation()}
                     >
                         <button
@@ -324,11 +346,11 @@ function Product() {
                         >
                             <FiX />
                         </button>
-                        <div className="flex max-h-[86vh] w-full items-center justify-center bg-white p-4">
+                        <div className="inline-flex max-h-[86vh] max-w-[94vw] items-center justify-center border-2 border-[#5790aa] bg-white p-3 shadow-[0_18px_50px_rgba(0,0,0,0.3)] sm:p-4">
                             <img
                                 src={previewImage.src}
                                 alt={previewImage.alt}
-                                className="max-h-[calc(86vh-2rem)] w-full object-contain"
+                                className="block h-auto max-h-[calc(86vh-2rem)] w-auto max-w-[calc(94vw-2rem)] object-contain"
                             />
                         </div>
                     </div>

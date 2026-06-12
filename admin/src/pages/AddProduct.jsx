@@ -32,6 +32,7 @@ function AddProduct() {
     const [isCategoryDropdownOpen, setIsCategoryDropdownOpen] = useState(false)
     const [isSubcategoryDropdownOpen, setIsSubcategoryDropdownOpen] = useState(false)
     const [productImage, setProductImage] = useState(null)
+    const [productPdf, setProductPdf] = useState(null)
     const [imagePreview, setImagePreview] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [toast, setToast] = useState(null)
@@ -162,6 +163,7 @@ function AddProduct() {
             formData.append('subcategory', selectedCategoryData?.hasSubcategories ? selectedSubcategory : '')
             formData.append('description', selectedCategoryData?.isStandalone ? productDescription.trim() : '')
             formData.append('image', productImage)
+            if (selectedCategoryData?.isStandalone && productPdf) formData.append('pdf', productPdf)
 
             await axios.post(`${serverUrl}/api/products/add-product`, formData, {
                 withCredentials: true,
@@ -175,6 +177,7 @@ function AddProduct() {
             setSelectedSubcategory('')
             setProductDescription('')
             setProductImage(null)
+            setProductPdf(null)
         } catch (error) {
             setToast({
                 message: error?.response?.data?.message || "Failed to add product. Please try again.",
@@ -192,6 +195,7 @@ function AddProduct() {
         setSelectedSubcategory('')
         setProductDescription('')
         setProductImage(null)
+        setProductPdf(null)
         setToast(null)
         setIsCategoryDropdownOpen(false)
         setIsSubcategoryDropdownOpen(false)
@@ -422,7 +426,8 @@ function AddProduct() {
                             ) : null}
 
                             {selectedCategoryData?.isStandalone ? (
-                                <label className="mb-5 block">
+                                <div className="mb-5">
+                                <label className="block">
                                     <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
                                         Product Description
                                     </span>
@@ -436,6 +441,24 @@ function AddProduct() {
                                         />
                                     </span>
                                 </label>
+                                <label className="mt-4 block">
+                                    <span className="mb-2 block text-[14px] font-semibold text-[#214f86]">
+                                        Product PDF <span className="font-normal text-[#526b80]">(Optional)</span>
+                                    </span>
+                                    <span className="flex cursor-pointer items-center gap-3 border-2 border-dashed border-[#d6e4ed] bg-[#f8fbfd] px-4 py-4 text-[#214f86] transition hover:border-[#214f86]">
+                                        <FiFileText className="shrink-0 text-[22px]" />
+                                        <span className="min-w-0 truncate text-[14px] font-semibold">
+                                            {productPdf ? productPdf.name : 'Upload PDF'}
+                                        </span>
+                                    </span>
+                                    <input
+                                        type="file"
+                                        accept="application/pdf"
+                                        className="hidden"
+                                        onChange={(event) => setProductPdf(event.target.files?.[0] || null)}
+                                    />
+                                </label>
+                                </div>
                             ) : null}
 
                             <div className="mb-6 block">

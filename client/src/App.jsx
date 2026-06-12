@@ -46,10 +46,10 @@ function App() {
             <Route path="/about/infra" element={<GenotekInfra />} />
             <Route path="/products/chemical" element={<Chemical />} />
             <Route path="/products/chemical/:categoryName" element={<Product />} />
-            <Route path="/chiral-gc-columns" element={<ChiralGc />} />
-            <Route path="/chiral-hplc-columns" element={<HplcColumns />} />
-            <Route path="/hplc-pumps" element={<HplcPumps />} />
-            <Route path="/genotekexclusive" element={<GenotekExclusive />} />
+            <Route path="/products/chiral-gc-columns" element={<ChiralGc />} />
+            <Route path="/products/chiral-hplc-columns" element={<HplcColumns />} />
+            <Route path="/products/hplc-pumps" element={<HplcPumps />} />
+            <Route path="/genotek-exclusive" element={<GenotekExclusive />} />
             <Route path="/industry" element={<Industry />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<GetInTouch />} />

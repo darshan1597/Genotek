@@ -427,7 +427,7 @@ function GenotekExclusiveStrip() {
     )
 
     return (
-        <section className="relative mt-5 flex min-h-[170px] w-full items-center overflow-hidden bg-white py-2 sm:min-h-[190px] sm:py-3">
+        <section className="exclusive-showcase relative mt-5 flex min-h-[170px] w-full items-center overflow-hidden bg-white py-2 sm:min-h-[190px] sm:py-3">
             <div className="exclusive-product-track flex w-max">
                 {renderProductGroup('duplicate')}
                 {renderProductGroup('primary')}
@@ -435,13 +435,21 @@ function GenotekExclusiveStrip() {
 
             <div className="absolute inset-y-0 left-0 z-10 flex w-[145px] items-center justify-center bg-white roundedf sm:w-[220px]">
                 {categoryImageUrl ? (
-                    <img
-                        src={categoryImageUrl}
-                        alt={category.name}
-                        className="h-full w-full object-contain"
-                    />
+                    <Link
+                        to="/genotek-exclusive"
+                        className="flex h-full w-full cursor-pointer items-center justify-center"
+                        aria-label={`View ${category.name}`}
+                    >
+                        <img
+                            src={categoryImageUrl}
+                            alt={category.name}
+                            className="exclusive-logo-spin h-full w-full object-contain"
+                        />
+                    </Link>
                 ) : (
-                    <p className="px-3 text-center text-[16px] font-bold text-[#214f86]">{category.name}</p>
+                    <Link to="/genotek-exclusive" className="px-3 text-center text-[16px] font-bold text-[#214f86]">
+                        {category.name}
+                    </Link>
                 )}
             </div>
             <div className="pointer-events-none absolute inset-y-0 left-[145px] z-10 w-8 bg-gradient-to-r from-white to-transparent sm:left-[220px] sm:w-14" />
