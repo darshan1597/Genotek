@@ -153,7 +153,7 @@ function Navabar() {
                             onChange={(event) => setSearchQuery(event.target.value)}
                             onKeyDown={handleSearchKeyDown}
                             // placeholder="Please Enter Cat No., CAS No., Product Name"
-                            placeholder="Please Enter CAS No., Product Name"
+                            placeholder="Please Enter CAS No. or Product Name"
                             className="min-w-0 w-full border-none bg-transparent text-[15px] font-normal tracking-[0.1px] text-[#0f4b8a] outline-none placeholder:text-[#bab7b1] xl:text-[16px]"
                         />
 
