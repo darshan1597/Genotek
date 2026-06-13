@@ -93,7 +93,7 @@ function HplcColumns() {
                             <h2 className="mb-5 text-[26px] font-semibold text-[#214f86]">Product Documents</h2>
                             <div className="flex flex-wrap gap-4">
                                 {hplcDocuments.map((document) => (
-                                    <button key={document.title} type="button" onClick={() => setSelectedPdf(document)} className="group flex min-h-[112px] cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-5 py-4 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)]">
+                                    <button key={document.title} type="button" onClick={() => setSelectedPdf(document)} className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px]">
                                         <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#5790aa] text-white transition group-hover:bg-[#214f86]">
                                             <FiFileText className="text-[25px]" />
                                         </span>
