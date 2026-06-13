@@ -48,7 +48,7 @@ function AboutTeam() {
                         <div className="px-1 pb-10 pt-8">
                             {members.length ? members.map((member, index) => (
                                 <div key={member._id}>
-                                    <article className="mt-8 grid items-start gap-6 md:mt-10 md:gap-8 lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-10 xl:grid-cols-[minmax(0,1fr)_520px]">
+                                    <article className="mt-8 grid items-start gap-6 md:mt-10 md:gap-8 lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-5 lg:pr-[100px] xl:pr-[150px]">
                                         <div className="w-full text-left lg:ml-10">
                                             <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] sm:text-[32px] md:text-[36px]">{member.name}</h2>
                                             <h3 className="mt-2 text-[17px] text-gray-600 md:text-[20px]">{member.role}</h3>
@@ -59,7 +59,7 @@ function AboutTeam() {
                                                 </ul>
                                             ) : null}
                                         </div>
-                                        <div className="w-full overflow-hidden lg:w-[400px] lg:shrink-0 xl:w-[520px]">
+                                        <div className="w-full overflow-hidden lg:w-[400px] lg:shrink-0">
                                             <img
                                                 src={`${serverUrl}/teamImages/${member.image.name}`}
                                                 alt={member.name}

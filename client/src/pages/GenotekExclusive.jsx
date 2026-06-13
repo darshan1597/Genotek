@@ -227,12 +227,14 @@ function GenotekExclusive() {
                         >
                             <FiX />
                         </button>
-                        <div className="inline-flex max-h-[86vh] max-w-[94vw] items-center justify-center border-2 border-[#5790aa] bg-white p-3 shadow-[0_18px_50px_rgba(0,0,0,0.3)] sm:p-4">
-                            <img
-                                src={previewImage.src}
-                                alt={previewImage.alt}
-                                className="block h-auto max-h-[calc(86vh-2rem)] w-auto max-w-[calc(94vw-2rem)] object-contain"
-                            />
+                        <div className="inline-flex max-h-[86vh] max-w-[94vw] items-center justify-center rounded-[28px] bg-white shadow-[0_18px_50px_rgba(0,0,0,0.3)] p-[2px]">
+                            <div className="overflow-hidden rounded-[28px] border-2 border-[#5790aa] p-4">
+                                <img
+                                    src={previewImage.src}
+                                    alt={previewImage.alt}
+                                    className="block h-auto max-h-[calc(86vh-2rem)] w-auto max-w-[calc(94vw-2rem)] object-contain"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>

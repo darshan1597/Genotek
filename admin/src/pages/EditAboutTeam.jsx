@@ -193,9 +193,8 @@ function EditAboutTeam() {
                             ))}
                         </div>
                         <label className="mt-4 block">
-                            About
+                            About <span className="text-[#526b80]">(Optional)</span>
                             <textarea
-                                required
                                 rows="5"
                                 value={editing.about}
                                 onChange={(e) =>
@@ -208,6 +207,9 @@ function EditAboutTeam() {
                             />
                         </label>
                         <div className="mt-4">
+                            <p className="mb-2">
+                                Bullet Points <span className="text-[#526b80]">(Optional)</span>
+                            </p>
                             {editing.bulletPoints.map((point, index) => (
                                 <input
                                     key={index}

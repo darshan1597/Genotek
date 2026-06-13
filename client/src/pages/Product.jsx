@@ -252,17 +252,17 @@ function Product() {
                                 ) : (
                                     <div className="mt-5 w-full max-w-[1040px] overflow-x-auto">
                                         <div className="min-w-[560px] md:min-w-[760px]">
-                                            <div className="grid grid-cols-[90px_minmax(190px,1fr)_180px] items-center gap-3 bg-[#244f80] px-4 py-4 text-[13px] font-bold text-white md:grid-cols-[120px_minmax(320px,1fr)_390px] md:gap-6 md:px-11 md:py-5 md:text-[15px]">
+                                            <div className="grid grid-cols-[90px_minmax(190px,1fr)_180px] items-center gap-3 bg-[#244f80] py-4 text-[13px] font-bold text-white md:grid-cols-[120px_minmax(320px,1fr)_390px] md:gap-6 md:py-5 md:text-[17px] pr-5">
                                                 <span className="pl-2 md:pl-5">CAS No.</span>
                                                 <span>Product</span>
-                                                <div className="flex items-center rounded-[7px] bg-white px-3 py-2 text-slate-900 shadow-sm">
+                                                <div className="flex items-center rounded-[7px] font-normal bg-white px-3 py-2 text-slate-900 shadow-sm">
                                                     <FiSearch className="mr-2 shrink-0 text-[18px] text-[#0f568f]" />
                                                     <input
                                                         type="text"
                                                         value={searchTerm}
                                                         onChange={(event) => setSearchTerm(event.target.value)}
-                                                        className="w-full text-[14px] outline-none placeholder:text-slate-400"
-                                                        placeholder="Search CAS or name"
+                                                        className="min-w-0 w-full border-none bg-transparent text-[15px] font-normal tracking-[0.1px] text-[#0f4b8a] outline-none placeholder:text-[#bab7b1] xl:text-[16px]"
+                                                        placeholder="Please Enter CAS No. or Product name"
                                                     />
                                                 </div>
                                             </div>
@@ -274,12 +274,12 @@ function Product() {
                                                     return (
                                                         <article
                                                             key={product._id || `${product.name}-${product.cas}`}
-                                                            className="grid min-h-[84px] grid-cols-[90px_minmax(190px,1fr)_180px] items-center gap-3 border-b border-dotted border-[#5790aa] px-4 py-3 text-black md:grid-cols-[120px_minmax(320px,1fr)_260px] md:gap-6 md:px-11 md:py-4"
+                                                            className="grid min-h-[84px] grid-cols-[90px_minmax(190px,1fr)_180px] items-center gap-3 border-b-3 border-dotted border-[#5790aa] py-3 text-black md:grid-cols-[120px_minmax(320px,1fr)_260px] md:gap-6 md:py-4"
                                                         >
-                                                            <div className="text-center text-[13px] leading-5 md:text-[16px] md:leading-6">
+                                                            <div className="text-center text-[14px] leading-5 md:text-[17px] md:leading-6">
                                                                 {product.cas}
                                                             </div>
-                                                            <div className="text-[14px] leading-5 md:text-[16px] md:leading-6">
+                                                            <div className="text-[14px] leading-5 md:text-[17px] md:leading-6">
                                                                 {product.name}
                                                             </div>
                                                             <div className="flex h-[105px] items-center justify-center overflow-hidden md:h-[120px]">
@@ -346,12 +346,14 @@ function Product() {
                         >
                             <FiX />
                         </button>
-                        <div className="inline-flex max-h-[86vh] max-w-[94vw] items-center justify-center border-2 border-[#5790aa] bg-white p-3 shadow-[0_18px_50px_rgba(0,0,0,0.3)] sm:p-4">
-                            <img
-                                src={previewImage.src}
-                                alt={previewImage.alt}
-                                className="block h-auto max-h-[calc(86vh-2rem)] w-auto max-w-[calc(94vw-2rem)] object-contain"
-                            />
+                        <div className="inline-flex max-h-[86vh] max-w-[94vw] items-center justify-center rounded-[28px] bg-white shadow-[0_18px_50px_rgba(0,0,0,0.3)] p-[2px]">
+                            <div className="overflow-hidden rounded-[28px] border-2 border-[#5790aa] p-4">
+                                <img
+                                    src={previewImage.src}
+                                    alt={previewImage.alt}
+                                    className="block h-auto max-h-[calc(86vh-2rem)] w-auto max-w-[calc(94vw-2rem)] object-contain"
+                                />
+                            </div>
                         </div>
                     </div>
                 </div>
