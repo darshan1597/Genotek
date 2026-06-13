@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { FiMenu, FiSearch, FiX } from 'react-icons/fi'
+import { FiArrowRight, FiMenu, FiSearch, FiX } from 'react-icons/fi'
 import logo from '../../assets/logo.jpeg'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { aboutSubmenuItems, navItems, productSubmenuItems } from './navConfig'
@@ -380,6 +380,7 @@ useEffect(() => {
                                                                 <>
                                                                     <button
                                                                         type="button"
+                                                                        aria-expanded={activeProductChild === submenu.label}
                                                                         onClick={() =>
                                                                             setActiveProductChild(
                                                                                 activeProductChild === submenu.label
@@ -401,12 +402,31 @@ useEffect(() => {
                                                                     </button>
 
                                                                     {activeProductChild === submenu.label && (
-                                                                        <div className="bg-white">
+                                                                        <div className="border-t border-[#e3edf3] bg-white">
+                                                                            <NavLink
+                                                                                to={submenu.href}
+                                                                                className={({ isActive }) =>
+                                                                                    `flex items-center justify-between px-8 py-3 text-[14px] font-semibold transition-colors duration-200 ${
+                                                                                        isActive
+                                                                                            ? 'bg-[#e7f1f7] text-[#214f86]'
+                                                                                            : 'text-[#0f6b35] hover:bg-[#edf5fa]'
+                                                                                    }`
+                                                                                }
+                                                                            >
+                                                                                <span>{submenu.label}</span>
+                                                                                <FiArrowRight aria-hidden="true" className="shrink-0 text-[16px]" />
+                                                                            </NavLink>
                                                                             {submenu.children.map((child) => (
                                                                                 <NavLink
                                                                                     key={child.href}
                                                                                     to={child.href}
-                                                                                    className="block px-8 py-2 text-[14px] text-[#214f86] hover:bg-[#edf5fa]"
+                                                                                    className={({ isActive }) =>
+                                                                                        `block border-t border-[#eef4f7] px-8 py-2.5 text-[14px] transition-colors duration-200 ${
+                                                                                            isActive
+                                                                                                ? 'bg-[#e7f1f7] font-medium text-[#214f86]'
+                                                                                                : 'text-[#214f86] hover:bg-[#edf5fa]'
+                                                                                        }`
+                                                                                    }
                                                                                 >
                                                                                     {child.label}
                                                                                 </NavLink>

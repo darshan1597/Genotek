@@ -94,7 +94,7 @@ function HplcPumps() {
 
                         <section className="px-1 pb-10">
                             <h2 className="mb-5 text-[26px] font-semibold text-[#214f86]">Product Documents</h2>
-                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            <div className="flex flex-wrap gap-4">
                                 {pumpDocuments.map((document) => (
                                     <button
                                         key={document.title}

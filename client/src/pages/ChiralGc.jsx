@@ -52,8 +52,8 @@ function ChiralGc() {
                             </div>
                         </div>
                         
-                        <section className="max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.6] text-black/80  sm:text-[18px] md:pb-10 md:text-[20px] md:leading-[1.45]">
-                            <p className="font-semibold mb-4">
+                        <section className="max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.6] text-black/80 sm:text-[18px] md:pb-10 md:text-[20px] md:leading-[1.45]">
+                            <p className="font-semibold mb-4 text-[19px] sm:text-[21px] md:text-[23px]">
                                 Fast, Selective & High-Efficiency GC Solutions
                             </p>
                             <p className="mb-4 text-black/80">
@@ -93,9 +93,9 @@ function ChiralGc() {
                         </section>
                         <section className="px-1 pb-10">
                             <h2 className="mb-5 text-[26px] font-semibold text-[#214f86]">Product Documents</h2>
-                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                            <div className="flex flex-wrap gap-4">
                                 {gcDocuments.map((document) => (
-                                    <button key={document.title} type="button" onClick={() => setSelectedPdf(document)} className="group flex min-h-[112px] cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-5 py-4 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)]">
+                                    <button key={document.title} type="button" onClick={() => setSelectedPdf(document)} className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-auto sm:min-w-[290px] sm:max-w-[360px]">
                                         <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#5790aa] text-white transition group-hover:bg-[#214f86]">
                                             <FiFileText className="text-[25px]" />
                                         </span>
