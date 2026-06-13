@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { FiMenu, FiSearch, FiX } from 'react-icons/fi'
 import logo from '../../assets/logo.jpeg'
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { aboutSubmenuItems, navItems } from './navConfig'
+import { aboutSubmenuItems, navItems, productSubmenuItems } from './navConfig'
 import { FiChevronDown } from 'react-icons/fi'
 import { FaLinkedin } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
@@ -19,7 +19,13 @@ function Navabar() {
     const [searchQuery, setSearchQuery] = useState('')
     const [searchError, setSearchError] = useState('')
     const [aboutOpen, setAboutOpen] = useState(location.pathname.startsWith('/about'))
+    const [productsOpen, setProductsOpen] = useState(false)
+    const [activeProductChild, setActiveProductChild] = useState(null)
+    const [chemicalCategories, setChemicalCategories] = useState([])
+    
 
+    
+    
     useEffect(() => {
         setMenuOpen(false)
         setSearchOpen(false)
@@ -65,6 +71,37 @@ function Navabar() {
             handleGlobalSearch(event)
         }
     }
+useEffect(() => {
+    const fetchChemicalCategories = async () => {
+        try {
+            const { data } = await axios.get(
+                `${serverUrl}/api/categories/fetch-category`
+            )
+
+            const categories = Array.isArray(data) ? data : []
+
+            setChemicalCategories(
+                categories.map((category) => ({
+                    href: category.isStandalone
+                        ? '/genotek-exclusive'
+                        : `/products/chemical/${encodeURIComponent(category.name)}`,
+                    label: category.name,
+                }))
+            )
+        } catch (error) {
+            console.error('Error loading sidebar categories:', error)
+            setChemicalCategories([])
+        }
+    }
+
+    fetchChemicalCategories()
+}, [])
+
+    const dynamicProductSubmenuItems = productSubmenuItems.map((item) =>
+        item.label === 'Chemicals'
+            ? { ...item, children: chemicalCategories }
+            : item
+    )
 
     return (
         <header className="bg-white">
@@ -284,42 +321,112 @@ function Navabar() {
                             </div>
 
                             <div className="flex flex-col gap-3">
-                                {navItems.map((item) => (
+                                {navItems.map((item) =>
                                     item.label === 'About us' ? (
-                                        <div key={item.label} className="overflow-hidden rounded-[18px] border border-[#d6e4ed] bg-white">
+                                        <div
+                                            key={item.label}
+                                            className="overflow-hidden rounded-[18px] border border-[#d6e4ed] bg-white"
+                                        >
                                             <button
                                                 type="button"
                                                 onClick={() => setAboutOpen((open) => !open)}
                                                 className="flex w-full items-center justify-between px-4 py-4 text-left text-[18px] font-medium text-[#214f86]"
                                             >
                                                 <span>About us</span>
-                                                <FiChevronDown className={`text-[20px] transition-transform duration-300 ${aboutOpen ? 'rotate-180' : ''}`} />
+                                                <FiChevronDown
+                                                    className={`text-[20px] transition-transform duration-300 ${
+                                                        aboutOpen ? 'rotate-180' : ''
+                                                    }`}
+                                                />
                                             </button>
-                                            <AnimatePresence initial={false}>
-                                                {aboutOpen && (
-                                                    <motion.div
-                                                        initial={{ height: 0, opacity: 0 }}
-                                                        animate={{ height: 'auto', opacity: 1 }}
-                                                        exit={{ height: 0, opacity: 0 }}
-                                                        transition={{ duration: 0.22 }}
-                                                        className="overflow-hidden border-t border-[#d6e4ed] bg-[#f7fbfd]"
-                                                    >
-                                                        {aboutSubmenuItems.map((submenuItem) => (
-                                                            <NavLink
-                                                                key={submenuItem.href}
-                                                                to={submenuItem.href}
-                                                                className={({ isActive }) =>
-                                                                    `block px-5 py-3 text-[15px] transition-colors duration-200 ${
-                                                                        isActive ? 'bg-[#e7f1f7] text-[#214f86]' : 'text-[#48657c] hover:bg-[#edf5fa]'
-                                                                    }`
-                                                                }
-                                                            >
-                                                                {submenuItem.label}
-                                                            </NavLink>
-                                                        ))}
-                                                    </motion.div>
-                                                )}
-                                            </AnimatePresence>
+
+                                            {aboutOpen && (
+                                                <div className="border-t border-[#d6e4ed] bg-[#f7fbfd]">
+                                                    {aboutSubmenuItems.map((submenuItem) => (
+                                                        <NavLink
+                                                            key={submenuItem.href}
+                                                            to={submenuItem.href}
+                                                            className="block px-5 py-3 text-[15px] text-[#48657c]"
+                                                        >
+                                                            {submenuItem.label}
+                                                        </NavLink>
+                                                    ))}
+                                                </div>
+                                            )}
+                                        </div>
+                                    ) : item.label === 'Products' ? (
+                                        <div
+                                            key={item.label}
+                                            className="overflow-hidden rounded-[18px] border border-[#d6e4ed] bg-white"
+                                        >
+                                            <button
+                                                type="button"
+                                                onClick={() => setProductsOpen(!productsOpen)}
+                                                className="flex w-full items-center justify-between px-4 py-4 text-left text-[18px] font-medium text-[#214f86]"
+                                            >
+                                                <span>Products</span>
+
+                                                <FiChevronDown
+                                                    className={`text-[20px] transition-transform duration-300 ${
+                                                        productsOpen ? 'rotate-180' : ''
+                                                    }`}
+                                                />
+                                            </button>
+
+                                            {productsOpen && (
+                                                <div className="border-t border-[#d6e4ed] bg-[#f7fbfd]">
+                                                    {dynamicProductSubmenuItems.map((submenu) => (
+                                                        <div key={submenu.href}>
+                                                            {submenu.label === 'Chemicals' || submenu.children?.length > 0 ? (
+                                                                <>
+                                                                    <button
+                                                                        type="button"
+                                                                        onClick={() =>
+                                                                            setActiveProductChild(
+                                                                                activeProductChild === submenu.label
+                                                                                    ? null
+                                                                                    : submenu.label
+                                                                            )
+                                                                        }
+                                                                        className="flex w-full items-center justify-between px-5 py-3 text-left text-[15px] text-[#48657c]"
+                                                                    >
+                                                                        <span>{submenu.label}</span>
+
+                                                                        <FiChevronDown
+                                                                            className={`transition-transform duration-300 ${
+                                                                                activeProductChild === submenu.label
+                                                                                    ? 'rotate-180'
+                                                                                    : ''
+                                                                            }`}
+                                                                        />
+                                                                    </button>
+
+                                                                    {activeProductChild === submenu.label && (
+                                                                        <div className="bg-white">
+                                                                            {submenu.children.map((child) => (
+                                                                                <NavLink
+                                                                                    key={child.href}
+                                                                                    to={child.href}
+                                                                                    className="block px-8 py-2 text-[14px] text-[#214f86] hover:bg-[#edf5fa]"
+                                                                                >
+                                                                                    {child.label}
+                                                                                </NavLink>
+                                                                            ))}
+                                                                        </div>
+                                                                    )}
+                                                                </>
+                                                            ) : (
+                                                                <NavLink
+                                                                    to={submenu.href}
+                                                                    className="block px-5 py-3 text-[15px] text-[#48657c] hover:bg-[#edf5fa]"
+                                                                >
+                                                                    {submenu.label}
+                                                                </NavLink>
+                                                            )}
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
                                         </div>
                                     ) : (
                                         <NavLink
@@ -336,7 +443,7 @@ function Navabar() {
                                             {item.label}
                                         </NavLink>
                                     )
-                                ))}
+                                )}
                             </div>
 
                             <div className="mt-6 rounded-[16px] bg-[#f3f8fb] p-4 text-[#5a768f]">
