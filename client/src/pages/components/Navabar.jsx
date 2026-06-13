@@ -281,7 +281,7 @@ useEffect(() => {
                                     onKeyDown={handleSearchKeyDown}
                                     autoFocus
                                     // placeholder="Please Enter Cat No., CAS No., Product Name"
-                                    placeholder="Please Enter CAS No., Product Name"
+                                    placeholder="Please Enter CAS No. or Product Name"
                                     className="w-full border-none bg-transparent text-[15px] text-[#7e8590] outline-none placeholder:text-[#bab7b1]"
                                 />
                             </form>
