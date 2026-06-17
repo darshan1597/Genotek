@@ -129,7 +129,7 @@ function MethodTransferEq() {
                                 </li>
                              </ul>
                              <Link to="/contact">
-                             <p className="mt-5 text-[21px] italic leading-snug text-black/80 sm:text-[25px]">
+                             <p className="mt-4 inline-block italic text-[18px] font-semibold text-[#5a92b6] underline underline-offset-4 sm:text-[20px] md:text-[22px]">
                              Reach out to us to know more.
                              </p>
                              </Link>

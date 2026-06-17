@@ -113,7 +113,7 @@ function ChiralGc() {
 
                         <div className="px-4 pt-8">
                             {/* 2 IMAGES */}
-                            <div className="mx-auto grid max-w-[820px] grid-cols-2 gap-1 md:grid-cols-4">
+                            <div className="mx-auto flex max-w-[820px] justify-center gap-12">
                                 {[
                                     { id: 1, title: "Compound Libraries", img: img1 },
                                     { id: 2, title: "Process Development", img: img2 },

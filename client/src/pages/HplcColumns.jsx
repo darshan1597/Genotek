@@ -108,7 +108,7 @@ function HplcColumns() {
                         
                         <div className="px-4 pt-8">
                             {/* 5 IMAGES */}
-                            <div className="mx-auto grid max-w-[820px] grid-cols-2 gap-1 md:grid-cols-4">
+                            <div className="mx-auto grid max-w-[820px] grid-cols-2 gap-1 md:grid-cols-5">
                                 {[
                                     { id: 1, title: "Analytical HPLC & UHPLC Solutions", img: img1 },
                                     { id: 2, title: "Process Development", img: img2 },
