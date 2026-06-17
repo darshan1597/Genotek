@@ -17,7 +17,7 @@ import GenotekExclusive from './pages/GenotekExclusive'
 import ChiralGc from './pages/ChiralGc'
 import HplcColumns from './pages/HplcColumns'
 import HplcPumps from './pages/HplcPumps'
-import Chromatogrphy from './pages/Chromatogrphy'
+import MethodTransferEq from './pages/methodTransferEq'
 
 function ScrollToTop() {
     const { pathname } = useLocation()
@@ -39,6 +39,7 @@ function App() {
         aria-hidden="true"
         className="pointer-events-none fixed inset-0 z-40 h-screen w-screen object-cover opacity-[0.2] mix-blend-multiply"
       /> */}
+       
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about/story" element={<AboutStory />} />
@@ -47,9 +48,9 @@ function App() {
             <Route path="/about/infra" element={<GenotekInfra />} />
             <Route path="/products/chemical" element={<Chemical />} />
             <Route path="/products/chemical/:categoryName" element={<Product />} />
-            <Route path="/products/chromatography-solutions" element={<Chromatogrphy />} />
             <Route path="/products/chiral-gc-columns" element={<ChiralGc />} />
             <Route path="/products/chiral-hplc-columns" element={<HplcColumns />} />
+            <Route path="/products/method-transfer-&-equivalency" element={<MethodTransferEq />} />
             <Route path="/products/hplc-pumps" element={<HplcPumps />} />
             <Route path="/genotek-exclusive" element={<GenotekExclusive />} />
             <Route path="/industry" element={<Industry />} />

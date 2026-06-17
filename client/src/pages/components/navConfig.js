@@ -20,9 +20,10 @@ export const productSubmenuItems = [
     href: '/products/chromatography-solutions',
     label: 'Chromatography Solutions',
     children: [
-      { href: '/products/chiral-gc-columns', label: 'Chiral GC Columns' },
-      { href: '/products/chiral-hplc-columns', label: 'Chiral HPLC Columns' },
+      { href: '/products/gc-columns', label: 'GC Columns' },
+      { href: '/products/hplc-columns', label: 'HPLC Columns' },
       { href: '/products/hplc-pumps', label: 'HPLC Pumps' },
+      { href: '/products/method-transfer-&-equivalency', label: 'Method Transfer & Equivalency' },
     ],
   },
 ]

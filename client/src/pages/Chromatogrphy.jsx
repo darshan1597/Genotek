@@ -1,8 +1,9 @@
 import Navabar from "./components/Navabar";
 import Sidebar from "./components/Sidebar";
-import img1 from "../assets/Chromatography/Chiral_GC_Columns.png";
-import img2 from "../assets/Chromatography/Chiral_HPLC_Columns.png";
+import img1 from "../assets/Chromatography/GC_Columns.png";
+import img2 from "../assets/Chromatography/HPLC_Columns.png";
 import img3 from "../assets/Chromatography/HPLC_Pumps.png";
+import img4 from "../assets/Chromatography/Method_Transfer_& _Equivalency.png";
 import Footer from "./components/Footer";
 import hero from '../assets/Chromatography/Chromatography_Solutions_Banner.png';
 import { Link } from "react-router-dom";
@@ -63,12 +64,13 @@ function Chromatogrphy() {
                             </ul>
                         </div>
                         <div className="px-4">
-                            {/* 3 IMAGES */}
+                            {/* 4 IMAGES */}
                             <div className="mx-auto grid max-w-[820px] grid-cols-2 gap-1 md:grid-cols-4">
                                 {[
                                     { id: 1, title: "Chiral GC Columns", img: img1, link: "/products/chiral-gc-columns" },
                                     { id: 2, title: "Chiral Hplc Columns", img: img2, link: "/products/chiral-hplc-columns" },
                                     { id: 3, title: "HPLC Pumps", img: img3, link: "/products/hplc-pumps" },
+                                    { id: 4, title: "Method Transfer Equivalency", img: img4, link: "/products/method-transfer-&-equivalency" },
                                 ].map((item) => (
                                     <div key={item.id} className="text-center">
                                         <Link
