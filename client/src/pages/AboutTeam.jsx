@@ -51,10 +51,10 @@ function AboutTeam() {
                                     <article className="mt-8 grid items-start gap-6 md:mt-10 md:gap-8 lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-5 lg:pr-[100px] xl:pr-[150px]">
                                         <div className="w-full text-left lg:ml-10">
                                             <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] sm:text-[32px] md:text-[36px]">{member.name}</h2>
-                                            <h3 className="mt-2 text-[17px] text-gray-600 md:text-[20px]">{member.role}</h3>
+                                            <h3 className="ml-1 mt-2 text-[17px] text-gray-600 md:text-[20px]">{member.role}</h3>
                                             {member.about ? <p className="mt-4 whitespace-pre-line text-[16px] leading-[1.7] text-black/80 sm:text-[18px] md:text-[19px] md:text-justify">{member.about}</p> : null}
                                             {member.bulletPoints?.length ? (
-                                                <ul className="mt-5 w-full list-disc pl-5 space-y-2 text-[16px] leading-[1.6] text-black/80 sm:text-[18px] md:text-[19px]">
+                                                <ul className="mt-4 list-disc space-y-2 pl-6 text-[16px] text-black/80 sm:pl-12 sm:text-[18px]">
                                                     {member.bulletPoints.map((point, pointIndex) => <li key={`${member._id}-${pointIndex}`}>{point}</li>)}
                                                 </ul>
                                             ) : null}

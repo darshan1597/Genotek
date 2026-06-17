@@ -5,15 +5,18 @@ import Sidebar from "./components/Sidebar";
 import hero from "../assets/chromatographySolutions/GC-Columns-Image.png";
 import Footer from "./components/Footer";
 import GatedPdfModal from "./components/GatedPdfModal";
-import chiralGcPdf from "../assets/GcColumns/Bischoff Chiral GC-Phases.pdf";
-import fastGcPdf from "../assets/GcColumns/Bischoff_Fast GC Columns.pdf";
+import ProntoSIL_GC from "../assets/GcColumns/ProntoSIL_GC.pdf";
+import ProntoSIL_SF_GC from "../assets/GcColumns/ProntoSIL_SF_GC.pdf";
+import img1 from "../assets/GcColumns/Gas_Chromatography.png";
+import img2 from "../assets/GcColumns/SuperFast_Gas_Chromatography.png";
 
 const gcDocuments = [
-    { title: "Bischoff Chiral GC Phases", url: chiralGcPdf, context: "GC Columns" },
-    { title: "Bischoff Fast GC Columns", url: fastGcPdf, context: "GC Columns" },
+    { title: "ProntoSIL GC", url: ProntoSIL_GC, context: "GC Columns" },
+    { title: "ProntoSIL SF-GC", url: ProntoSIL_SF_GC, context: "GC Columns" },
 ];
 
 function ChiralGc() {
+    const [active, setActive] = useState(null);
     const [selectedPdf, setSelectedPdf] = useState(null);
 
     return (
@@ -42,7 +45,7 @@ function ChiralGc() {
                                     }}
                                 >
                                     <p className="ttext-[20px] leading-[1.0] font-normal sm:text-[28px] md:text-[35px]">
-                                        Chiral GC
+                                        GC
                                     </p>
 
                                     <p className="mt-1 ml-[40px] text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
@@ -91,7 +94,7 @@ function ChiralGc() {
                                 </li>
                             </ul>
                         </section>
-                        <section className="px-1 pb-10">
+                        {/* <section className="px-1 pb-10">
                             <h2 className="mb-5 text-[26px] font-semibold text-[#214f86]">Product Documents</h2>
                             <div className="flex flex-wrap gap-4">
                                 {gcDocuments.map((document) => (
@@ -106,7 +109,165 @@ function ChiralGc() {
                                     </button>
                                 ))}
                             </div>
-                        </section>
+                        </section> */}
+
+                        <div className="px-4 pt-8">
+                            {/* 2 IMAGES */}
+                            <div className="mx-auto grid max-w-[820px] grid-cols-2 gap-1 md:grid-cols-4">
+                                {[
+                                    { id: 1, title: "Compound Libraries", img: img1 },
+                                    { id: 2, title: "Process Development", img: img2 },
+                                    
+                                ].map((item) => (
+                                    <div key={item.id} className="text-center">
+                                        <div
+                                            onClick={() =>
+                                                setActive(active === item.id ? null : item.id)
+                                            }
+                                             className="flex h-[155px] cursor-pointer items-center justify-center overflow-hidden rounded-lg p-1 sm:p-2"
+                                        >
+                                        <img
+                                            src={item.img}
+                                            alt={item.title}
+                                            className={`h-full w-full object-contain transition duration-300 hover:opacity-80
+                                            ${active === item.id ? "scale-[1.04] opacity-100" : active ? "scale-100 opacity-40 hover:opacity-75" : "scale-100 opacity-100"}`}
+                                        />
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                            {/* CONTENT */} 
+                            <div className=" mt-12 mx-auto text-left">
+                                {/* 1 */}
+                                {active === 1 && (
+                                    <div className="ml-0 md:ml-10">
+                                        <h2 className="text-[28px] font-semibold text-[#5a92b6]">
+                                            Gas Chromatography (GC) Columns
+                                        </h2>
+                                        <p className="mt-3 text-[18px] text-[#42556c]">
+                                            Gas chromatography columns are designed for high-efficiency separation of volatile and semi-volatile compounds across a wide range of analytical applications. The BISCHOFF GC portfolio offers diverse stationary phase chemistries with optimized selectivity, enabling accurate, reproducible, and high-resolution separations even for complex sample matrices.
+                                        </p>
+                                        <ul className="mt-4 list-disc pl-12 space-y-2 text-[16px] text-black/80 sm:text-[18px]">
+                                            <li>
+                                                Wide range of stationary phases for tailored selectivity 
+                                            </li>
+                                            <li>
+                                               High-resolution separation of volatile compounds 
+                                            </li>
+                                            <li>
+                                                Reliable performance for routine & advanced analysis 
+                                            </li>
+                                            <li>
+                                                Suitable for complex multi-component mixtures 
+                                            </li>
+                                            <li>
+                                                Consistent reproducibility across applications 
+                                            </li>
+                            
+                                        </ul>
+                                        <p className="mt-3 text-[18px] text-[#42556c]">
+                                            Key Applications:
+                                        </p>
+                                        <ul className="mt-4 list-disc pl-12 space-y-2 text-[16px] text-black/80 sm:text-[18px]">
+                                            <li>
+                                                Residual solvent analysis
+                                            </li>
+                                            <li>
+                                                Petrochemical characterization
+                                            </li>
+                                            <li>
+                                                Essential oils & flavors
+                                            </li>
+                                            <li>
+                                                Environmental contaminant analysis
+                                            </li>
+                                            <li>
+                                                Food safety & quality testing
+                                            </li>
+                                        </ul>
+                                        {/* pdf0 */}
+                                        <div className="flex flex-wrap gap-4 mt-6">
+                                            {gcDocuments[0] && (
+                                                <button
+                                                    key={document.title}
+                                                    type="button"
+                                                    onClick={() => setSelectedPdf(gcDocuments[0])}
+                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px]"
+                                                >
+                                                    <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#5790aa] text-white transition group-hover:bg-[#214f86]">
+                                                        <FiFileText className="text-[25px]" />
+                                                    </span>
+                                                    <span className="min-w-0">
+                                                        <span className="block text-[16px] font-semibold leading-6 text-[#214f86]">{gcDocuments[0].title}</span>
+                                                        <span className="mt-1 block text-[13px] text-[#526b80]">Open PDF</span>
+                                                    </span>
+                                                    
+                                                </button>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+                                {/* 2 */}
+                                {active === 2 && (
+                                    <div className="ml-0 md:ml-10">
+                                        <h2 className="text-[28px] font-semibold text-[#5a92b6]">
+                                            Super Fast Gas Chromatography (SF-GC)
+                                        </h2>
+                                        <p className="mt-3 text-[18px] text-[#42556c]">
+                                            Super Fast Gas Chromatography (SF-GC) is an advanced technique designed to significantly reduce analysis time while maintaining high separation efficiency. By utilizing narrow-bore columns, optimized stationary phases, and higher temperature ramp rates, SF-GC enables rapid analysis of medium-to-high complexity mixtures, making it ideal for high-throughput laboratories and time-sensitive workflows.
+                                        </p>
+                                        <ul className="mt-4 list-disc pl-12 space-y-2 text-[16px] text-black/80 sm:text-[18px]">
+                                            <li>
+                                            3x–10x faster analysis compared to conventional GC 
+                                            </li>
+                                            <li>
+                                            Maintains resolution with reduced run times 
+                                            </li>
+                                            <li>
+                                            Narrow-bore columns for high efficiency 
+                                            </li>
+                                            <li>
+                                             Optimized selectivity for critical peak separation 
+                                            </li>
+                                            <li>
+                                            Ideal for high-throughput analytical environments 
+                                            </li>
+                                        </ul>
+                                        <p className="mt-3 text-[18px] text-[#42556c]">
+                                            Key Applications:
+                                        </p>    
+                                        <ul className="mt-4 list-disc pl-12 space-y-2 text-[16px] text-black/80 sm:text-[18px]">
+                                            <li> Faster method development & increased productivity</li>
+                                            <li>Reduced operational time & improved throughput </li>
+                                            <li>Efficient handling of complex mixtures </li>
+                                            <li>Enhanced performance with optimized stationary phases</li>
+                                        </ul>
+
+                                        {/* pdf1 */}
+                                        <div className="flex flex-wrap gap-4 mt-6">
+                                            {gcDocuments[1] && (
+                                                <button
+                                                    key={document.title}
+                                                    type="button"
+                                                    onClick={() => setSelectedPdf(gcDocuments[1])}
+                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px]"
+                                                >
+                                                    <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#5790aa] text-white transition group-hover:bg-[#214f86]">
+                                                        <FiFileText className="text-[25px]" />
+                                                    </span>
+                                                    <span className="min-w-0">
+                                                        <span className="block text-[16px] font-semibold leading-6 text-[#214f86]">{gcDocuments[1].title}</span>
+                                                        <span className="mt-1 block text-[13px] text-[#526b80]">Open PDF</span>
+                                                    </span>
+                                                    
+                                                </button>
+                                            )}
+                                        </div>
+                                    </div>
+                                )}
+                                
+                            </div>
+                        </div>
                         <Footer insetForSidebar={false} />
                     </div>
                 </section>

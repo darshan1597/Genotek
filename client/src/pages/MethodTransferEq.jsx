@@ -2,14 +2,12 @@ import { useState } from "react";
 import { FiFileText } from "react-icons/fi";
 import Navabar from "./components/Navabar";
 import Sidebar from "./components/Sidebar";
-import hero from "../assets/chromatographySolutions/HPLC-Columns-Image.png";
+import hero from "../assets/chromatographySolutions/Method_Transfer_&_Equivalency_Banner-Image.png";
 import Footer from "./components/Footer";
 import GatedPdfModal from "./components/GatedPdfModal";
-import hplcColumnsPdf from "../assets/hplcColumns/Bischoff Prontosil Chiral HPLC Columns.pdf";
+import { Link } from 'react-router-dom'
 
-const hplcDocuments = [
-    { title: "Bischoff Prontosil Chiral HPLC Columns", url: hplcColumnsPdf, context: "HPLC Columns" },
-];
+
 
 function MethodTransferEq() {
     const [selectedPdf, setSelectedPdf] = useState(null);
@@ -40,71 +38,104 @@ function MethodTransferEq() {
                                     }}
                                 >
                                     <p className="text-[20px] leading-[1.0] font-normal sm:text-[28px] md:text-[35px]">
-                                        Chiral HPLC
+                                        Method Transfer & 
                                     </p>
 
                                     <p className="mt-1 ml-[40px] text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                        Columns
+                                        Equivalency
                                     </p>
                                 </div>
                             </div>
                         </div>
                         
                         <section className="max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.6] text-black/80  sm:text-[18px] md:pb-10 md:text-[20px] md:leading-[1.45]">
-                            <p className="font-semibold mb-4">
-                                High-Resolution & Reproducible Separation Performance
-                            </p>
+                            
                             <p className="mb-4 text-black/80">
-                                HPLC columns are at the core of liquid chromatography, determining selectivity, resolution, and reproducibility in analytical workflows. Designed with advanced stationary phase chemistries, these columns support a wide range of applications across pharmaceuticals, food analysis, environmental testing, and life sciences. With strong emphasis on consistent selectivity and batch-to-batch reproducibility, they enable reliable method development, validation, and routine analysis, even for structurally complex and closely related compounds.
+                                Column equivalency and method transfer are critical for ensuring continuity and consistency in analytical workflows, especially when facing column discontinuation, supply chain changes, or system upgrades. These studies are designed to identify suitable alternative stationary phases while preserving established chromatographic performance. Through systematic scientific evaluation, laboratories can transition between columns or technologies with minimal disruption, ensuring method integrity, regulatory compliance, and reliable analytical outcomes.
                             </p>
                             <ul className="list-disc space-y-3 pl-6 sm:pl-12">
                                 <li>
                                     <span className="text-black/80">
-                                        Wide range of chemistries: C18, Phenyl-Hexyl, PFP, CN, Amino, Diol, HILIC, ion-exchange
+                                        Retention behavior assessment for method consistency 
                                     </span>
                                 </li>
 
                                 <li>
                                     <span className="text-black/80">
-                                        High reproducibility ensuring consistent analytical performance
+                                        Selectivity comparison across equivalent stationary phases 
                                     </span>
                                 </li>
 
                                 <li>
                                     <span className="text-black/80">
-                                        Suitable for impurity profiling, stability studies, and bioanalysis
+                                        Resolution studies for critical peak separation 
                                     </span>
                                 </li>
 
                                 <li>
                                     <span className="text-black/80">
-                                        Chiral columns available for enantiomeric separations
+                                       Peak shape evaluation for accurate quantification 
                                     </span>
                                 </li>
 
                                 <li>
                                     <span className="text-black/80">
-                                        Scalable solutions from analytical to preparative chromatography
+                                        Robustness assessment under varied conditions 
+                                    </span>
+                                </li>
+                                <li>
+                                    <span className="text-black/80">
+                                        Method transfer support across instruments & systems 
+                                    </span>
+                                </li>
+                                <li>
+                                    <span className="text-black/80 ">
+                                        Documentation support for regulated environments 
                                     </span>
                                 </li>
                             </ul>
+                             
+                             <p className="mt-4 mb-4 text-black/80">Beyond products, chromatography solutions are strengthened through close scientific collaboration, enabling development of fit-for-purpose separation strategies tailored to specific analytical goals. By working closely with analytical scientists, process chemists, and quality control teams, solutions are designed to improve efficiency, reproducibility, and scalability across applications ranging from routine analysis to complex separations.</p>
+                             <ul className="list-disc space-y-3 pl-6 sm:pl-12">
+                                <li>
+                                    <span className="text-black/80">
+                                        Improved resolution for complex separations 
+                                    </span>
+                                </li>
+                                <li>
+                                    <span className="text-black/80">
+                                        Faster method development & optimization 
+                                    </span>
+                                </li>
+                                <li>
+                                    <span className="text-black/80">
+                                    Enhanced reproducibility across workflows 
+                                    </span>
+                                </li>
+                                <li>
+                                    <span className="text-black/80">
+                                        Reduced analytical and operational costs 
+                                    </span>
+                                </li>
+                                <li>
+                                    <span className="text-black/80">
+                                        Efficient purification and scale-up workflows 
+                                    </span>
+                                </li>
+                                <li>
+                                    <span className="text-black/80">
+                                        Reliable and seamless method transfer
+                                    </span>
+                                </li>
+                             </ul>
+                             <Link to="/contact">
+                             <p className="mt-5 text-[21px] italic leading-snug text-black/80 sm:text-[25px]">
+                             Reach out to us to know more.
+                             </p>
+                             </Link>
+                             
                         </section>
-                        <section className="px-1 pb-10">
-                            <h2 className="mb-5 text-[26px] font-semibold text-[#214f86]">Product Documents</h2>
-                            <div className="flex flex-wrap gap-4">
-                                {hplcDocuments.map((document) => (
-                                    <button key={document.title} type="button" onClick={() => setSelectedPdf(document)} className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px]">
-                                        <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#5790aa] text-white transition group-hover:bg-[#214f86]">
-                                            <FiFileText className="text-[25px]" />
-                                        </span>
-                                        <span className="min-w-0">
-                                            <span className="block text-[16px] font-semibold leading-6 text-[#214f86]">{document.title}</span>
-                                            <span className="mt-1 block text-[13px] text-[#526b80]">Open PDF</span>
-                                        </span>
-                                    </button>
-                                ))}
-                            </div>
-                        </section>
+                    
                         <Footer insetForSidebar={false} />
                     </div>
                 </section>
