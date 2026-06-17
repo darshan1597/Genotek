@@ -70,7 +70,7 @@ function Chromatogrphy() {
                                     { id: 1, title: "Chiral GC Columns", img: img1, link: "/products/chiral-gc-columns" },
                                     { id: 2, title: "Chiral Hplc Columns", img: img2, link: "/products/chiral-hplc-columns" },
                                     { id: 3, title: "HPLC Pumps", img: img3, link: "/products/hplc-pumps" },
-                                    { id: 4, title: "Method Transfer Equivalency", img: img4, link: "/products/method-transfer-&-equivalency" },
+                                    { id: 4, title: "Method Transfer Equivalency", img: img4, link: "/products/method-transfer-n-equivalency" },
                                 ].map((item) => (
                                     <div key={item.id} className="text-center">
                                         <Link

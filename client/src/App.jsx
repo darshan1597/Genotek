@@ -17,7 +17,7 @@ import GenotekExclusive from './pages/GenotekExclusive'
 import ChiralGc from './pages/ChiralGc'
 import HplcColumns from './pages/HplcColumns'
 import HplcPumps from './pages/HplcPumps'
-import MethodTransferEq from './pages/methodTransferEq'
+import MethodTransferEq from './pages/MethodTransferEq'
 import Chromatogrphy from './pages/Chromatogrphy'
 
 function ScrollToTop() {
@@ -52,7 +52,7 @@ function App() {
             <Route path="/products/gc-columns" element={<ChiralGc />} />
             <Route path="/products/chromatography-solutions" element={<Chromatogrphy />} />
             <Route path="/products/hplc-columns" element={<HplcColumns />} />
-            <Route path="/products/method-transfer-&-equivalency" element={<MethodTransferEq />} />
+            <Route path="/products/method-transfer-n-equivalency" element={<MethodTransferEq />} />
             <Route path="/products/hplc-pumps" element={<HplcPumps />} />
             <Route path="/genotek-exclusive" element={<GenotekExclusive />} />
             <Route path="/industry" element={<Industry />} />

@@ -23,7 +23,7 @@ export const productSubmenuItems = [
       { href: '/products/gc-columns', label: 'GC Columns' },
       { href: '/products/hplc-columns', label: 'HPLC Columns' },
       { href: '/products/hplc-pumps', label: 'HPLC Pumps' },
-      { href: '/products/method-transfer-&-equivalency', label: 'Method Transfer & Equivalency' },
+      { href: '/products/method-transfer-n-equivalency', label: 'Method Transfer & Equivalency' },
     ],
   },
 ]

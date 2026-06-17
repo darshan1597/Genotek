@@ -13,8 +13,8 @@ function Sidebar() {
     const isProductsRoute =
         location.pathname.startsWith('/products') ||
         location.pathname === '/genotek-exclusive' ||
-        ['/chiral-gc-columns', '/chiral-hplc-columns', '/hplc-pumps', '/method-transfer-&-equivalency'].includes(location.pathname)
-    const isChromatographyRoute = ['/chiral-gc-columns', '/chiral-hplc-columns', '/hplc-pumps', '/method-transfer-&-equivalency'].includes(location.pathname)
+        ['/products/gc-columns', '/products/hplc-columns', '/products/hplc-pumps', '/products/method-transfer-n-equivalency'].includes(location.pathname)
+    const isChromatographyRoute = ['/products/gc-columns', '/products/hplc-columns', '/products/hplc-pumps', '/products/method-transfer-n-equivalency'].includes(location.pathname)
 
     useEffect(() => {
         const fetchChemicalCategories = async () => {
