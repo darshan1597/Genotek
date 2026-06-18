@@ -38,8 +38,8 @@ function AboutTeam() {
                     <Sidebar />
                     <div className="min-w-0 flex-1">
                         <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[500px]">
-                            <img src={hero} alt="Genotek Team" className="h-full w-full object-cover" />
-                            <div className="absolute bottom-[110px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[170px] md:px-15" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)' }}>
+                            <img src={hero} alt="Genotek Team" className="h-full w-full object-content" />
+                            <div className="absolute bottom-[110px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[200px] md:px-15" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)' }}>
                                 <p className="text-[20px] sm:text-[28px] md:text-[35px]">Genotek</p>
                                 <p className="ml-[60px] mt-1 text-[24px] leading-[0.95] sm:text-[42px] md:text-[50px]">Team.</p>
                             </div>
@@ -59,16 +59,16 @@ function AboutTeam() {
                                                 </ul>
                                             ) : null}
                                         </div>
-                                        <div className="w-full overflow-hidden lg:w-[400px] lg:shrink-0">
-                                            <img
-                                                src={`${serverUrl}/teamImages/${member.image.name}`}
-                                                alt={member.name}
-                                                className="w-[220px] aspect-[3/4] object-cover mx-auto"
-                                                style={{
-                                                    clipPath: 'polygon(0 0, 100% 0, 100% 75%, 85% 100%, 0 100%)'
-                                                }}
-                                            />
-                                        </div>
+                                            <div className="w-full overflow-hidden lg:w-[400px] lg:shrink-0">
+                                                <img
+                                                    src={`${serverUrl}/teamImages/${member.image.name}`}
+                                                    alt={member.name}
+                                                    className="w-[220px] aspect-[3/4] object-cover mx-auto"
+                                                    style={{
+                                                        clipPath: 'polygon(0 0, 100% 0, 100% 75%, 85% 100%, 0 100%)'
+                                                    }}
+                                                />
+                                            </div>
                                     </article>
                                     {index < members.length - 1 ? <Divider /> : null}
                                 </div>

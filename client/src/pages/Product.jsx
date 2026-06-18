@@ -272,22 +272,24 @@ function Product() {
                                                     type="text"
                                                     value={searchTerm}
                                                     onChange={(e) => setSearchTerm(e.target.value)}
-                                                    className="w-full bg-transparent outline-none"
+                                                    className="min-w-0 w-full border-none   bg-transparent text-[15px] font-normal tracking-[0.1px] text-[#0f4b8a] outline-none placeholder:text-[#bab7b1] xl:text-[16px]"
                                                     placeholder="Please Enter CAS No. or Product name"
                                                 />
                                             </div>
                                         </div>
 
                                         {showMobileSearch && (
-                                            <div className="bg-[#244f80] px-3 pb-3 md:hidden">
-                                                <input
-                                                    type="text"
-                                                    value={searchTerm}
-                                                    onChange={(e) => setSearchTerm(e.target.value)}
-                                                    className="w-full rounded-md px-3 py-2 text-black outline-none"
-                                                    placeholder="Search products..."
-                                                />
+                                        <div className="mt-2 px-3 pb-3 md:hidden">
+                                            <div className="rounded-md border border-[#5790aa] px-3 py-2">
+                                            <input
+                                                type="text"
+                                                value={searchTerm}
+                                                onChange={(e) => setSearchTerm(e.target.value)}
+                                                className="w-full border-none bg-transparent text-[15px] text-[#7e8590] outline-none placeholder:text-[#bab7b1]"
+                                                placeholder="Please Enter CAS No. or Product name"
+                                            />
                                             </div>
+                                        </div>
                                         )}
                                             
 
@@ -370,7 +372,7 @@ function Product() {
                         >
                             <FiX />
                         </button>
-                        <div className="inline-flex max-h-[86vh] max-w-[94vw] items-center justify-center rounded-[28px] bg-white shadow-[0_18px_50px_rgba(0,0,0,0.3)] p-[2px]">
+                        <div className="inline-flex max-h-[86vh] max-w-[94vw] items-center justify-center rounded-[28px] bg-white shadow-[0_18px_50px_rgba(0,0,0,0.3)] p-[6px]">
                             <div className="overflow-hidden rounded-[28px] border-2 border-[#5790aa] p-4">
                                 <img
                                     src={previewImage.src}

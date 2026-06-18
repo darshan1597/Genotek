@@ -44,7 +44,7 @@ function ChiralGc() {
                                         "polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)",
                                     }}
                                 >
-                                    <p className="ttext-[20px] leading-[1.0] font-normal sm:text-[28px] md:text-[35px]">
+                                    <p className="text-[30px] leading-[1.0] font-normal sm:text-[28px] md:text-[35px]">
                                         GC
                                     </p>
 
@@ -111,9 +111,9 @@ function ChiralGc() {
                             </div>
                         </section> */}
 
-                        <div className="px-4 pt-8">
+                        <div className="px-4">
                             {/* 2 IMAGES */}
-                            <div className="mx-auto flex max-w-[820px] justify-center gap-12">
+                            <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-1 md:grid-cols-5">
                                 {[
                                     { id: 1, title: "Compound Libraries", img: img1 },
                                     { id: 2, title: "Process Development", img: img2 },
@@ -192,7 +192,7 @@ function ChiralGc() {
                                                     key={document.title}
                                                     type="button"
                                                     onClick={() => setSelectedPdf(gcDocuments[0])}
-                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px]"
+                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px] rounded-lg"
                                                 >
                                                     <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#5790aa] text-white transition group-hover:bg-[#214f86]">
                                                         <FiFileText className="text-[25px]" />
@@ -250,7 +250,7 @@ function ChiralGc() {
                                                     key={document.title}
                                                     type="button"
                                                     onClick={() => setSelectedPdf(gcDocuments[1])}
-                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px]"
+                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px] rounded-lg"
                                                 >
                                                     <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#5790aa] text-white transition group-hover:bg-[#214f86]">
                                                         <FiFileText className="text-[25px]" />

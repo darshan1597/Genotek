@@ -92,7 +92,7 @@ function GenotekExclusive() {
                                 <img
                                     src={getCategoryImageUrl()}
                                     alt={category.name}
-                                    className="h-[118px] w-[118px] object-contain sm:h-[200px] sm:w-[200px]"
+                                    className="h-[118px] w-[118px] object-contain sm:h-[260px] sm:w-[260px]"
                                 />
                             ) : null}
                             {category?.name && selectedProduct ? (
@@ -227,8 +227,8 @@ function GenotekExclusive() {
                         >
                             <FiX />
                         </button>
-                        <div className="inline-flex max-h-[86vh] max-w-[94vw] items-center justify-center rounded-[28px] bg-white shadow-[0_18px_50px_rgba(0,0,0,0.3)] p-[2px]">
-                            <div className="overflow-hidden rounded-[28px] border-2 border-[#5790aa] p-4">
+                        <div className="inline-flex max-h-[86vh] max-w-[94vw] items-center justify-center rounded-[28px] bg-white shadow-[0_18px_50px_rgba(0,0,0,0.3)] p-[6px]">
+                            <div className="overflow-hidden rounded-[28px] border-2 border-[#5790aa] p-6">
                                 <img
                                     src={previewImage.src}
                                     alt={previewImage.alt}

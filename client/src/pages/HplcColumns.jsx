@@ -106,15 +106,15 @@ function HplcColumns() {
                             </ul>
                         </section>
                         
-                        <div className="px-4 pt-8">
+                        <div className="px-4">
                             {/* 5 IMAGES */}
-                            <div className="mx-auto grid max-w-[820px] grid-cols-2 gap-1 md:grid-cols-5">
+                            <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-1 md:grid-cols-5">
                                 {[
                                     { id: 1, title: "Analytical HPLC & UHPLC Solutions", img: img1 },
-                                    { id: 2, title: "Process Development", img: img2 },
-                                    { id: 3, title: "Bioanalysis", img: img3 },
-                                    { id: 4, title: "Chiral Separations", img: img4 },
-                                    { id: 5, title: "Size Exclusion Chromatography", img: img5 },
+                                    { id: 2, title: "Chiral Chromatography Solutions", img: img2 },
+                                    { id: 3, title: "Preparative Chromatography Solutions", img: img3 },
+                                    { id: 4, title: "Supercritical Fluid Chromatography (SFC)", img: img4 },
+                                    { id: 5, title: "Size Exclusion Chromatography (SEC / GPC)", img: img5 },
 
                                     
                                 ].map((item) => (
@@ -161,7 +161,7 @@ function HplcColumns() {
                                                     key={document.title}
                                                     type="button"
                                                     onClick={() => setSelectedPdf(hplcDocuments[0])}
-                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px]"
+                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px] rounded-lg"
                                                 >
                                                     <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#5790aa] text-white transition group-hover:bg-[#214f86]">
                                                         <FiFileText className="text-[25px]" />
@@ -200,7 +200,7 @@ function HplcColumns() {
                                                     key={document.title}
                                                     type="button"
                                                     onClick={() => setSelectedPdf(hplcDocuments[1])}
-                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px]"
+                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px] rounded-lg"
                                                 >
                                                     <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#5790aa] text-white transition group-hover:bg-[#214f86]">
                                                         <FiFileText className="text-[25px]" />
@@ -239,7 +239,7 @@ function HplcColumns() {
                                                     key={document.title}
                                                     type="button"
                                                     onClick={() => setSelectedPdf(hplcDocuments[2])}
-                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px]"
+                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px] rounded-lg"
                                                 >
                                                     <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#5790aa] text-white transition group-hover:bg-[#214f86]">
                                                         <FiFileText className="text-[25px]" />
@@ -278,7 +278,7 @@ function HplcColumns() {
                                                     key={document.title}
                                                     type="button"
                                                     onClick={() => setSelectedPdf(hplcDocuments[3])}
-                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px]"
+                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px] rounded-lg"
                                                 >
                                                     <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#5790aa] text-white transition group-hover:bg-[#214f86]">
                                                         <FiFileText className="text-[25px]" />
@@ -317,7 +317,7 @@ function HplcColumns() {
                                                     key={document.title}
                                                     type="button"
                                                     onClick={() => setSelectedPdf(hplcDocuments[4])}
-                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px]"
+                                                    className="group flex min-h-[96px] w-full cursor-pointer items-center gap-4 border-2 border-[#5790aa] bg-white px-4 py-3 text-left transition hover:border-[#214f86] hover:shadow-[0_10px_24px_rgba(33,79,134,0.15)] sm:w-[360px] rounded-lg"
                                                 >
                                                     <span className="flex h-14 w-14 shrink-0 items-center justify-center bg-[#5790aa] text-white transition group-hover:bg-[#214f86]">
                                                         <FiFileText className="text-[25px]" />
