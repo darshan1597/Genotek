@@ -45,13 +45,43 @@ function AboutTeam() {
                             </div>
                         </div>
 
-                        <div className="px-1 pb-10 pt-8">
+                        <div className="px-1 pb-10 pt-1">
                             {members.length ? members.map((member, index) => (
                                 <div key={member._id}>
                                     <article className="mt-8 grid items-start gap-6 md:mt-10 md:gap-8 lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-5 lg:pr-[100px] xl:pr-[150px]">
                                         <div className="w-full text-left lg:ml-10">
-                                            <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] sm:text-[32px] md:text-[36px]">{member.name}</h2>
-                                            <h3 className="ml-1 mt-2 text-[17px] text-gray-600 md:text-[20px]">{member.role}</h3>
+                                            {/* Mobile Layout */}
+                                        <div className="flex items-start lg:hidden">
+                                            <div className="min-w-0 pr-3">
+                                                <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6]">
+                                                    {member.name}
+                                                </h2>
+
+                                                <h3 className="mt-1 text-[17px] text-gray-600">
+                                                    {member.role}
+                                                </h3>
+                                            </div>
+
+                                            <img
+                                                src={`${serverUrl}/teamImages/${member.image.name}`}
+                                                alt={member.name}
+                                                className="ml-8 h-28 w-24 shrink-0 object-cover"
+                                                style={{
+                                                    clipPath: 'polygon(0 0, 100% 0, 100% 75%, 85% 100%, 0 100%)'
+                                                }}
+                                            />
+                                        </div>
+
+                                        {/* Desktop Layout */}
+                                        <div className="hidden lg:block">
+                                            <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] sm:text-[32px] md:text-[36px]">
+                                                {member.name}
+                                            </h2>
+
+                                            <h3 className="ml-1 mt-2 text-[17px] text-gray-600 md:text-[20px]">
+                                                {member.role}
+                                            </h3>
+                                        </div>
                                             {member.about ? <p className="mt-4 whitespace-pre-line text-[16px] leading-[1.7] text-black/80 sm:text-[18px] md:text-[19px] md:text-justify">{member.about}</p> : null}
                                             {member.bulletPoints?.length ? (
                                                 <ul className="mt-4 list-disc space-y-2 pl-6 text-[16px] text-black/80 sm:pl-12 sm:text-[18px]">
@@ -59,7 +89,7 @@ function AboutTeam() {
                                                 </ul>
                                             ) : null}
                                         </div>
-                                            <div className="w-full overflow-hidden lg:w-[400px] lg:shrink-0">
+                                            <div className="hidden w-full overflow-hidden lg:block lg:w-[400px] lg:shrink-0">
                                                 <img
                                                     src={`${serverUrl}/teamImages/${member.image.name}`}
                                                     alt={member.name}

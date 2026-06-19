@@ -71,7 +71,7 @@ function Chemical() {
                             </p>
                         </div>
                         <div className="px-4">
-                            <div className="mx-auto grid max-w-[1120px] grid-cols-2 gap-3 md:grid-cols-4">
+                            <div className="mx-auto grid max-w-[820px] grid-cols-2 gap-1 md:grid-cols-4">
                                 {isLoadingCategories ? (
                                     [1, 2, 3, 4].map((item) => (
                                         <div key={item} className="h-[155px] animate-pulse rounded-lg bg-slate-100" />
@@ -86,7 +86,7 @@ function Chemical() {
                                                 to={getCategoryPath(category.name)}
                                                 className="text-center"
                                             >
-                                                <div className="flex h-[225px] cursor-pointer items-center justify-center overflow-hidden rounded-lg p-1 sm:p-2">
+                                                <div className="flex h-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg p-4 ">
                                                     {imageUrl ? (
                                                         <img
                                                             src={imageUrl}

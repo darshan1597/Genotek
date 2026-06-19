@@ -24,23 +24,12 @@ function GenotekInfra() {
                                 <img
                                     src={hero}
                                     alt="The Genotek Infrastructure"
-                                    className="h-full w-full object-cover object-[center_65%]"
+                                    className="h-full w-full object-content object-[center_65%]"
                                 />
 
-                                <div
-                                    className="absolute bottom-[24px] left-0 z-[4] w-[min(92%,320px)] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[38px] sm:w-[min(88%,420px)] sm:px-8 sm:py-3 md:bottom-[64px] md:w-auto md:px-15"
-                                    style={{
-                                        clipPath:
-                                        "polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)",
-                                    }}
-                                >
-                                    <p className="text-[22px] leading-[1.05] font-normal sm:text-[28px] md:text-[35px]">
-                                        Genotek
-                                    </p>
-
-                                    <p className="mt-1 ml-[50px] text-[20px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                        Infra.
-                                    </p>
+                                <div className="absolute bottom-[20px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[60px] md:px-15" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)' }}>
+                                    <p className="text-[20px] sm:text-[28px] md:text-[35px]">Genotek</p>
+                                    <p className="ml-[60px] mt-1 text-[24px] leading-[0.95] sm:text-[42px] md:text-[50px]">Infra.</p>
                                 </div>
                             </div>
                         </div>

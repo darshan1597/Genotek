@@ -89,7 +89,7 @@ function Services() {
                                 evolving requirements.
                             </p>
                         </div>
-                        <div className="px-4 pt-8">
+                        <div className="px-4">
                             {/* 4 IMAGES */}
                             <div className="mx-auto grid max-w-[820px] grid-cols-2 gap-1 md:grid-cols-4">
                                 {[

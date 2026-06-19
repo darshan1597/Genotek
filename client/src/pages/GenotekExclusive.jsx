@@ -92,7 +92,7 @@ function GenotekExclusive() {
                                 <img
                                     src={getCategoryImageUrl()}
                                     alt={category.name}
-                                    className="h-[118px] w-[118px] object-contain sm:h-[260px] sm:w-[260px]"
+                                    className="h-[218px] w-[218px] object-contain sm:h-[260px] sm:w-[260px]"
                                 />
                             ) : null}
                             {category?.name && selectedProduct ? (
@@ -126,7 +126,7 @@ function GenotekExclusive() {
                                 ))}
                             </div>
                         ) : products.length ? (
-                            <div className="mt-4 grid gap-x-6 gap-y-5 sm:grid-cols-2 xl:grid-cols-4">
+                            <div className="mt-4 grid grid-cols-1 min-[420px]:grid-cols-2 gap-4 xl:grid-cols-4">
                                 {orderedProducts.map((product) => {
                                     const imageUrl = getProductImageUrl(product)
                                     const isSelected = product._id === selectedProductId

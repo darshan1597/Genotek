@@ -15,27 +15,16 @@ function WhyGenotek() {
 
                     <div className="flex-1">
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
-                            <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[450px]">
+                            <div className="relative h-[280px] w-full overflow-hidden  sm:h-[360px] md:h-[450px]">
                                 <img
                                     src={hero}
                                     alt="The Genotek Story"
-                                    className="h-full w-full object-cover"
+                                    className="h-full w-full object-contain md:object-cover"
                                 />
 
-                                <div
-                                    className="absolute bottom-[24px] left-0 z-[4] w-[min(92%,320px)] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[38px] sm:w-[min(88%,420px)] sm:px-8 sm:py-3 md:bottom-[64px] md:w-auto md:px-15"
-                                    style={{
-                                        clipPath:
-                                        "polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)",
-                                    }}
-                                >
-                                    <p className="text-[22px] leading-[1.05] font-normal sm:text-[28px] md:text-[35px]">
-                                        Why
-                                    </p>
-
-                                    <p className="mt-1 ml-[40px] text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                        Genotek?
-                                    </p>
+                               <div className="absolute bottom-[30px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[60px] md:px-15" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)' }}>
+                                    <p className="text-[20px] sm:text-[28px] md:text-[35px]">Why</p>
+                                    <p className="ml-[40px] mt-1 text-[24px] leading-[0.95] sm:text-[42px] md:text-[50px]">Genotek?</p>
                                 </div>
                             </div>
                         </div>
@@ -143,7 +132,9 @@ function WhyGenotek() {
                             </ul>
 
                             <p className="mt-6 text-[21px] italic leading-snug text-black/80 sm:text-[25px]">
-                                Always within Reach, from Experiment to Outcome.
+                                Always within Reach,{` `}
+                                <br className="block sm:hidden" />
+                                 from Experiment to Outcome.
                             </p>
                         </section>
                         <Footer insetForSidebar={false} />

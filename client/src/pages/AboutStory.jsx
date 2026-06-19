@@ -26,19 +26,9 @@ function AboutStory() {
                                     className="h-full w-full object-cover"
                                 />
 
-                                <div
-                                    className="absolute bottom-[24px] left-0 z-[4] w-[min(92%,320px)] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[38px] sm:w-[min(88%,420px)] sm:px-8 sm:py-3 md:bottom-[64px] md:w-auto md:px-15"
-                                    style={{
-                                        clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)',
-                                    }}
-                                >
-                                    <p className="text-[20px] leading-[1.0] font-normal sm:text-[28px] md:text-[35px]">
-                                        Genotek
-                                    </p>
-
-                                    <p className="mt-1 ml-[60px] text-[24px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                        Story.
-                                    </p>
+                               <div className="absolute bottom-[130px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[110px] md:px-15" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)' }}>
+                                    <p className="text-[20px] sm:text-[28px] md:text-[35px]">Genotek</p>
+                                    <p className="ml-[60px] mt-1 text-[24px] leading-[0.95] sm:text-[42px] md:text-[50px]">Story.</p>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +61,7 @@ function AboutStory() {
                                     </h2>
 
                                     {/* Paragraph */}
-                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.8] text-black/80 sm:text-[18px] md:text-[19px] text-justify">
+                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.8] text-black/80 sm:text-[18px] md:text-[19px] text-justify-left">
                                         At Genotek Biochem Private Limited, we combine scientific capability with a human touch. We balance scale, expertise, and responsiveness to serve our partners better. We are a chemistry-driven organization committed to delivering reliable, high-quality solutions while building meaningful, long-term relationships.
                                     </p>
 
@@ -85,8 +75,10 @@ function AboutStory() {
                                     </ul>
 
                                     {/* Tagline */}
-                                    <p className="mt-5 text-[21px] italic leading-snug text-black/80 sm:text-[25px]">
-                                        Big enough to Deliver, Small enough to Care.
+                                    <p className="mt-5 text-[21px] italic leading-snug text-black/80 sm:text-[25px] ">
+                                    Big enough to Deliver,{` `}
+                                    <br className="block sm:hidden" />
+                                    Small enough to Care.
                                     </p>
 
                                     {/* Link */}
@@ -112,12 +104,12 @@ function AboutStory() {
                             
                             <div className="mt-8 grid items-start gap-8 md:mt-10 lg:grid-cols-[1fr_420px] lg:gap-12 xl:gap-16">
                                 {/* LEFT CONTENT */}
-                                <div className="max-w-[700px] text-left lg:pl-10 xl:pl-16">
+                                <div className="order-2 max-w-[700px] text-left lg:order-1 lg:pl-10 xl:pl-16">
                                     <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] sm:text-[32px] md:text-[36px]">
                                         What we do
                                     </h2>
 
-                                    <p className="mt-4 text-[16px] leading-[1.7] text-[#42556c] sm:text-[18px] md:text-[19px] text-justify text-black/80">
+                                    <p className="mt-4 text-[16px] leading-[1.7] text-[#42556c] sm:text-[18px] md:text-[19px] text-justify-left text-black/80">
                                         At Genotek Biochem Private Limited, we enable innovation from concept to commercialization. 
                                         As a Research, Development, and Manufacturing partner, we provide integrated, scalable 
                                         solutions across industries including pharmaceuticals, agrochemicals, and material sciences.
@@ -133,14 +125,16 @@ function AboutStory() {
                                         <li>Collaborative, flexible engagement models with fast turnaround</li>
                                     </ul>
 
-                                    <p className="mt-4 text-[21px] italic leading-snug text-black/80 sm:text-[25px]">
-                                        Driven by Innovation, Defined by Quality.
+                                    <p className="mt-5 text-[21px] italic leading-snug text-black/80 sm:text-[25px]">
+                                        Driven by Innovation,{` `}
+                                        <br className="block sm:hidden" />
+                                         Defined by Quality.
                                     </p>
 
                                 </div>
 
                                 <div
-                                    className="overflow-hidden "
+                                    className="order-1 overflow-hidden lg:order-2"
                                     style={{
                                         clipPath: 'polygon(0 0, 100% 0, 100% 72%, 86% 100%, 0 100%)',
                                     }}
