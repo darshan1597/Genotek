@@ -126,7 +126,7 @@ function GenotekExclusive() {
                                 ))}
                             </div>
                         ) : products.length ? (
-                            <div className="mt-4 grid grid-cols-1 min-[420px]:grid-cols-2 gap-4 xl:grid-cols-4">
+                            <div className="mt-4 grid grid-cols-2 gap-2 md:grid-cols-4">
                                 {orderedProducts.map((product) => {
                                     const imageUrl = getProductImageUrl(product)
                                     const isSelected = product._id === selectedProductId
@@ -141,7 +141,7 @@ function GenotekExclusive() {
                                                     : 'border-[#5790aa]'
                                             }`}
                                         >
-                                            <div className="flex items-center justify-between gap-3 bg-[#5790aa] px-5 py-4 text-[17px] font-bold text-white">
+                                            <div className="flex items-center justify-between gap-2 bg-[#5790aa] px-2 py-2 text-[12px] font-bold text-white sm:px-5 sm:py-4 sm:text-[17px]">
                                                 <span className="min-w-0 truncate text-left">CAS No: {product.cas}</span>
                                                 {product.pdf?.name ? (
                                                     <button
@@ -163,11 +163,11 @@ function GenotekExclusive() {
                                                 ) : null}
                                             </div>
 
-                                            <p className="px-4 py-3 text-center font-bold text-[16px] leading-5 text-[#526b80]">
+                                            <p className="px-2 py-2 text-center font-bold text-[13px] leading-4 text-[#526b80] sm:px-4 sm:py-3 sm:text-[16px] sm:leading-5">
                                                 {product.description || 'Description not available.'}
                                             </p>
 
-                                            <div className="flex h-[230px] items-center justify-center overflow-hidden bg-white sm:h-[150px]">
+                                            <div className="flex h-[120px] sm:h-[150px] items-center justify-center overflow-hidden bg-white">
                                                 {imageUrl ? (
                                                     <button
                                                         type="button"
@@ -189,7 +189,7 @@ function GenotekExclusive() {
                                                 )}
                                             </div>
 
-                                            <div className="flex min-h-[58px] items-center justify-center px-4 pb-2 text-center font-semibold text-[17px] leading-6 text-[#3c82b0]">
+                                            <div className="flex min-h-[48px] items-center justify-center px-2 pb-2 text-center font-semibold text-[13px] leading-4 text-[#3c82b0] sm:min-h-[58px] sm:px-4 sm:text-[17px] sm:leading-6">
                                                 <span>{product.name}</span>
                                             </div>
                                         </article>

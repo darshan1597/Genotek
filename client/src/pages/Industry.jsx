@@ -116,19 +116,10 @@ function Industry() {
                                     className="h-full w-full object-cover"
                                 />
                         
-                                <div
-                                    className="absolute bottom-[24px] left-0 z-[4] w-[min(92%,320px)] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[38px] sm:w-[min(88%,420px)] sm:px-8 sm:py-3 md:bottom-[64px] md:w-auto md:px-15"
-                                    style={{
-                                        clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)',
-                                    }}
-                                >
-                                    <p className="text-[20px] leading-[1.0] font-normal sm:text-[28px] md:text-[35px]">
-                                        Industries
-                                        </p>
-                                        <p className="mt-1 ml-[60px] text-[24px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                        We Serve.
-                                        </p>
-                                </div>
+                                <div className="absolute bottom-[10px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[60px] md:px-15" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)' }}>
+                                <p className="text-[20px] sm:text-[28px] md:text-[35px]">Industries</p>
+                                <p className="ml-[60px] mt-1 text-[24px] leading-[0.95] sm:text-[42px] md:text-[50px]">We Serve.</p>
+                            </div>
                             </div>
                         </div>
                         <div className="max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.6] text-black/80  sm:text-[18px] md:pb-10 md:text-[20px] md:leading-[1.45]">
@@ -151,7 +142,7 @@ function Industry() {
                                 . By combining deep scientific expertise with flexible execution, we enable faster development cycles, reliable scale-up, and consistent quality across applications.
                             </p>
                         </div>
-                        <div className="px-4 pt-8">
+                        <div className="px-4 ">
                             {/* INDUSTRY CAROUSEL */}
                             <div className="mx-auto flex max-w-[1080px] items-center justify-center gap-3">
                                 <button

@@ -34,21 +34,10 @@ function HplcPumps() {
                                     className="h-full w-full object-cover"
                                 />
 
-                                <div
-                                    className="absolute bottom-[24px] left-0 z-[4] w-[min(92%,320px)] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[38px] sm:w-[min(88%,420px)] sm:px-8 sm:py-3 md:bottom-[64px] md:w-auto md:px-15"
-                                    style={{
-                                        clipPath:
-                                        "polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)",
-                                    }}
-                                >
-                                    <p className="text-[20px] leading-[1.0] font-normal sm:text-[28px] md:text-[35px]">
-                                        HPLC
-                                    </p>
-
-                                    <p className="mt-1 ml-[40px] text-[34px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                        Pumps
-                                    </p>
-                                </div>
+                            <div className="absolute bottom-[40px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[60px] md:px-15" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)' }}>
+                                <p className="text-[20px] sm:text-[28px] md:text-[35px]">HPLC</p>
+                                <p className="ml-[30px] mt-1 text-[24px] leading-[0.95] sm:text-[42px] md:text-[50px]">Pumps.</p>
+                            </div>
                             </div>
                         </div>
                         
