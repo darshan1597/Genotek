@@ -14,6 +14,9 @@ import heroSidebar1 from '../assets/heroSidebars/1.jpeg'
 import heroSidebar2 from '../assets/heroSidebars/2.jpeg'
 import heroSidebar3 from '../assets/heroSidebars/3.jpeg'
 import Footer from './components/Footer'
+import circleImageUrl from '../assets/genotek 1.gif'
+import centerLogoUrl from '../assets/genotek 2.gif'
+
 
 const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:8000'
 
@@ -440,10 +443,18 @@ function GenotekExclusiveStrip() {
                         className="flex h-full w-full cursor-pointer items-center justify-center"
                         aria-label={`View ${category.name}`}
                     >
+                        {/* Spinning outer ring */}
                         <img
-                            src={categoryImageUrl}
+                            src={centerLogoUrl}
+                            alt="Genotek Exclusive Ring"
+                            className="absolute h-[110px] w-[110px] animate-[spin_20s_linear_infinite] object-contain sm:h-[160px] sm:w-[160px]"
+                        />
+
+                        {/* Static center logo */}
+                        <img
+                            src={circleImageUrl}
                             alt={category.name}
-                            className="exclusive-logo-spin h-full w-full object-contain"
+                            className="relative z-10 h-[45px] w-[45px] object-contain sm:h-[65px] sm:w-[65px]"
                         />
                     </Link>
                 ) : (
@@ -454,6 +465,7 @@ function GenotekExclusiveStrip() {
             </div>
             <div className="pointer-events-none absolute inset-y-0 left-[145px] z-10 w-8 bg-gradient-to-r from-white to-transparent sm:left-[220px] sm:w-14" />
         </section>
+        
     )
 }
 
