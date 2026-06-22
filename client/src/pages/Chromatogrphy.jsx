@@ -67,8 +67,8 @@ function Chromatogrphy() {
                             {/* 4 IMAGES */}
                             <div className="mx-auto grid max-w-[820px] grid-cols-2 gap-1 md:grid-cols-4">
                                 {[
-                                    { id: 1, title: "Chiral GC Columns", img: img1, link: "/products/chiral-gc-columns" },
-                                    { id: 2, title: "Chiral Hplc Columns", img: img2, link: "/products/chiral-hplc-columns" },
+                                    { id: 1, title: "Chiral GC Columns", img: img1, link: "/products/gc-columns" },
+                                    { id: 2, title: "Chiral Hplc Columns", img: img2, link: "/products/hplc-columns" },
                                     { id: 3, title: "HPLC Pumps", img: img3, link: "/products/hplc-pumps" },
                                     { id: 4, title: "Method Transfer Equivalency", img: img4, link: "/products/method-transfer-n-equivalency" },
                                 ].map((item) => (

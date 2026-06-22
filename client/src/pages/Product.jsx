@@ -131,7 +131,7 @@ function Product() {
                         ) : category ? (
                             <>
                                 <div className="mb-3 flex items-center gap-2 text-[14px] text-gray-500">
-                                    <NavLink to="/products/chemical">Chemicals</NavLink>
+                                    <NavLink to="/products/chem">Chemicals</NavLink>
                                     <span>&gt;</span>
 
                                     {activeSubcategory ? (

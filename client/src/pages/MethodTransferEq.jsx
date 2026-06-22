@@ -5,7 +5,7 @@ import Sidebar from "./components/Sidebar";
 import hero from "../assets/chromatographySolutions/Method_Transfer_&_Equivalency_Banner-Image.png";
 import Footer from "./components/Footer";
 import GatedPdfModal from "./components/GatedPdfModal";
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 
 
@@ -22,6 +22,22 @@ function MethodTransferEq() {
                     <Sidebar />
 
                     <div className="flex-1">
+                        <nav aria-label="Breadcrumb" className="mb-3 px-1">
+                            <div className="flex items-center gap-2 text-[14px] text-gray-500">
+                                <Link
+                                    to="/products/chromatography-solutions"
+                                    className="hover:text-[#214f86]"
+                                >
+                                    Chromatography Solutions
+                                </Link>
+
+                                <span>&gt;</span>
+
+                                <span className="font-semibold text-[#214f86]">
+                                    Method Transfer & Equivalency
+                                </span>
+                            </div>
+                        </nav>
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
                             <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[520px]">
                                 <img

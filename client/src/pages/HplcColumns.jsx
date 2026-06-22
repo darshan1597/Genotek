@@ -15,6 +15,7 @@ import img2 from "../assets/hplcColumns/Chiral Chromatography.png";
 import img3 from "../assets/hplcColumns/Preparative Chromatography.png";
 import img4 from "../assets/hplcColumns/Supercritical Fluid Chromatography.png";
 import img5 from "../assets/hplcColumns/Size Exclusion Chromatography.png";
+import { Link } from "react-router-dom";
 
 
 
@@ -40,6 +41,22 @@ function HplcColumns() {
                     <Sidebar />
 
                     <div className="flex-1">
+                        <nav aria-label="Breadcrumb" className="mb-3 px-1">
+                            <div className="flex items-center gap-2 text-[14px] text-gray-500">
+                                <Link
+                                    to="/products/chromatography-solutions"
+                                    className="hover:text-[#214f86]"
+                                >
+                                    Chromatography Solutions
+                                </Link>
+
+                                <span>&gt;</span>
+
+                                <span className="font-semibold text-[#214f86]">
+                                    HPLC Columns
+                                </span>
+                            </div>
+                        </nav>
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
                             <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[520px]">
                                 <img

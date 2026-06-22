@@ -400,16 +400,17 @@ function GenotekExclusiveStrip() {
                     <Link
                         key={`${groupKey}-${product._id || `${product.name}-${product.cas}`}-${index}`}
                         to={`/genotek-exclusive?product=${encodeURIComponent(product._id || '')}`}
-                        className="block w-[145px] shrink-0 overflow-hidden rounded-[14px] border-2 border-[#5790aa] bg-white transition hover:-translate-y-1 hover:shadow-lg sm:w-[210px] sm:rounded-[20px]"
+                        className="block w-[120px] shrink-0 overflow-hidden rounded-[12px] border-2 border-[#5790aa] bg-white transition hover:-translate-y-1 hover:shadow-lg sm:w-[210px] sm:rounded-[20px]"
                         aria-label={`View ${product.name} on Genotek Exclusive page`}
                     >
                         <div className="truncate bg-[#5790aa] px-2 py-2 text-center text-[11px] font-bold text-white sm:px-3 sm:text-[13px]">
                             CAS No: {product.cas}
                         </div>
-                        <p className="line-clamp-2 min-h-[40px] px-2 py-1 text-center text-[10px] font-semibold leading-[15px] text-[#526b80] sm:min-h-[48px] sm:px-3 sm:py-2 sm:text-[12px] sm:leading-4">
-                            {product.description || 'Description not available.'}
+                        <p className="line-clamp-2 min-h-[40px] px-2 py-1 text-center text-[8px] font-semibold leading-[12px] text-[#526b80] sm:min-h-[48px] sm:px-3 sm:py-2 sm:text-[12px] sm:leading-4">
+                        {product.description || 'Description not available.'}
+
                         </p>
-                        <div className="flex h-[76px] items-center justify-center overflow-hidden bg-white sm:h-[112px]">
+                        <div className="flex h-[60px] items-center justify-center overflow-hidden bg-white sm:h-[112px]">
                             {imageUrl ? (
                                 <img
                                     src={imageUrl}

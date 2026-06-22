@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FiFileText } from "react-icons/fi";
+
 import Navabar from "./components/Navabar";
 import Sidebar from "./components/Sidebar";
 import hero from "../assets/chromatographySolutions/GC-Columns-Image.png";
@@ -9,6 +10,7 @@ import ProntoSIL_GC from "../assets/GcColumns/ProntoSIL_GC.pdf";
 import ProntoSIL_SF_GC from "../assets/GcColumns/ProntoSIL_SF_GC.pdf";
 import img1 from "../assets/GcColumns/Gas_Chromatography.png";
 import img2 from "../assets/GcColumns/SuperFast_Gas_Chromatography.png";
+import { Link } from "react-router-dom";
 
 const gcDocuments = [
     { title: "ProntoSIL GC", url: ProntoSIL_GC, context: "GC Columns" },
@@ -27,8 +29,25 @@ function ChiralGc() {
             <main className="w-full px-4 md:px-5 min-[1117px]:px-0 min-[1117px]:pr-6">
                 <section className="flex flex-col gap-2 pt-3 lg:flex-row lg:items-start">
                     <Sidebar />
+                    
 
                     <div className="flex-1">
+                         <nav aria-label="Breadcrumb" className="mb-3 px-1">
+        <div className="flex items-center gap-2 text-[14px] text-gray-500">
+            <Link
+                to="/products/chromatography-solutions"
+                className="hover:text-[#214f86]"
+            >
+                Chromatography Solutions
+            </Link>
+
+            <span>&gt;</span>
+
+            <span className="font-semibold text-[#214f86]">
+                GC Columns
+            </span>
+        </div>
+    </nav>
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
                             <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[520px]">
                                 <img
