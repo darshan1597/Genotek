@@ -6,6 +6,9 @@ import Navabar from './components/Navabar'
 import Sidebar from './components/Sidebar'
 import Footer from './components/Footer'
 import GatedPdfModal from './components/GatedPdfModal'
+import centerLogoUrl from '../assets/genotek 2.gif'
+import circleImageUrl from '../assets/genotek 1.gif'
+
 
 const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:8000'
 
@@ -89,11 +92,29 @@ function GenotekExclusive() {
                     <div className="min-w-0 flex-1 px-1 md:px-8">
                         <header className="border-b border-[#d7e5ee] pb-7">
                             {getCategoryImageUrl() ? (
-                                <img
-                                    src={getCategoryImageUrl()}
-                                    alt={category.name}
-                                    className="h-[218px] w-[218px] object-contain sm:h-[260px] sm:w-[260px]"
-                                />
+                                // <img
+                                //     src={getCategoryImageUrl()}
+                                //     alt={category.name}
+                                //     className="h-[218px] w-[218px] object-contain sm:h-[260px] sm:w-[260px]"
+                                // />
+                                <Link
+                                    to="/genotek-exclusive"
+                                    className="relative flex h-[220px] w-[220px] items-center justify-center"
+                                >
+                                    {/* Rotating outer ring */}
+                                    <img
+                                        src={centerLogoUrl}
+                                        alt="Genotek Exclusive Ring"
+                                        className="absolute inset-0 h-full w-full animate-[spin_20s_linear_infinite] object-contain"
+                                    />
+
+                                    {/* Fixed center logo */}
+                                    <img
+                                        src={circleImageUrl}
+                                        alt={category.name}
+                                        className="relative z-10 h-[80px] w-[80px] object-contain"
+                                    />
+                                </Link>
                             ) : null}
                             {category?.name && selectedProduct ? (
                                 <nav className="mt-4 flex flex-wrap items-center gap-2 text-[14px] text-[#526b80]" aria-label="Breadcrumb">
@@ -189,7 +210,7 @@ function GenotekExclusive() {
                                                 )}
                                             </div>
 
-                                            <div className="flex min-h-[48px] items-center justify-center px-2 pb-2 text-center font-semibold text-[13px] leading-4 text-[#3c82b0] sm:min-h-[58px] sm:px-4 sm:text-[17px] sm:leading-6">
+                                            <div className="flex min-h-[48px] items-center justify-center px-2 pb-2 text-center font-semibold text-[13px] leading-4 text-[#3c82b0] sm:min-h-[58px] sm:px-4 sm:text-[17px] sm:leading-6">    
                                                 <span>{product.name}</span>
                                             </div>
                                         </article>
