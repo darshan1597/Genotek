@@ -109,7 +109,8 @@ function Industry() {
                     <Sidebar />
                     <div className="flex-1">
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
-                            <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[450px]">
+                            <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[450px]"
+                            style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%)' }}>
                                 <img
                                     src={banner}
                                     alt="The Genotek Story"
@@ -118,7 +119,7 @@ function Industry() {
                         
                                 <div className="absolute bottom-[10px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[60px] md:px-15" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)' }}>
                                 <p className="text-[20px] sm:text-[28px] md:text-[35px]">Industries</p>
-                                <p className="ml-[60px] mt-1 text-[24px] leading-[0.95] sm:text-[42px] md:text-[50px]">We Serve.</p>
+                                <p className="ml-[60px] mt-1 text-[24px] leading-[0.95] sm:text-[42px] md:text-[50px]">We Serve</p>
                             </div>
                             </div>
                         </div>

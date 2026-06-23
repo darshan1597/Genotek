@@ -6,8 +6,16 @@ import WhoWeAreImage from '../assets/aboutStory/who-we-are.jpg'
 import WhyChooseUsImage from '../assets/aboutStory/why-choose-us.jpg'
 import Footer from './components/Footer'
 import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+
+
 
 function AboutStory() {
+    const [loaded, setLoaded] = useState(false);
+
+useEffect(() => {
+  setLoaded(true);
+}, []);
     return (
         <div className="min-h-screen bg-white text-slate-900">
             <div className="h-[2px] w-full bg-[#6a9fba]" />
@@ -19,17 +27,28 @@ function AboutStory() {
 
                     <div className="flex-1">
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
-                            <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[450px]">
+                            <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[450px]"
+                            style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%)' }}>
                                 <img
                                     src={hero}
                                     alt="The Genotek Story"
                                     className="h-full w-full object-cover"
                                 />
 
-                               <div className="absolute bottom-[130px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[110px] md:px-15" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)' }}>
+                               <div
+                                    className={`absolute bottom-[130px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg transition-all duration-1000 sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[110px] md:px-15 ${
+                                    loaded
+                                        ? 'translate-x-0 opacity-100'
+                                        : '-translate-x-40 opacity-0'
+                                    }`}
+                                    style={{
+                                        clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)',
+                                    }}
+                                    >
                                     <p className="text-[20px] sm:text-[28px] md:text-[35px]">Genotek</p>
-                                    <p className="ml-[60px] mt-1 text-[24px] leading-[0.95] sm:text-[42px] md:text-[50px]">Story.</p>
+                                    <p className="ml-[60px] mt-1 text-[24px] leading-[0.95] sm:text-[42px] md:text-[50px]">Story</p>
                                 </div>
+                                {/* <div className="absolute bottom-[130px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[110px] md:px-15" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)' }}> <p className="text-[20px] sm:text-[28px] md:text-[35px]">Genotek</p> <p className="ml-[60px] mt-1 text-[24px] leading-[0.95] sm:text-[42px] md:text-[50px]">Story.</p> </div> */}
                             </div>
                         </div>
 
@@ -40,7 +59,7 @@ function AboutStory() {
                         </div>
 
                         <div className="px-1">
-                            <div className="grid items-start gap-6 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10">
+                            <div className="grid items-start gap-3 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10">
                                 <div 
                                     className="overflow-hidden"
                                     style={{
@@ -76,7 +95,7 @@ function AboutStory() {
 
                                     {/* Tagline */}
                                     <p className="mt-5 text-[21px] italic leading-snug text-black/80 sm:text-[25px] ">
-                                    Big enough to Deliver,{` `}
+                                    Big enough to Deliver.{` `}
                                     <br className="block sm:hidden" />
                                     Small enough to Care.
                                     </p>
@@ -102,7 +121,7 @@ function AboutStory() {
                             </div>
 
                             
-                            <div className="mt-8 grid items-start gap-8 md:mt-10 lg:grid-cols-[1fr_420px] lg:gap-12 xl:gap-16">
+                            <div className="mt-8 grid items-start gap-3 md:mt-10 md:gap-8 lg:grid-cols-[1fr_420px] lg:gap-12 xl:gap-16">
                                 {/* LEFT CONTENT */}
                                 <div className="order-2 max-w-[700px] text-left lg:order-1 lg:pl-10 xl:pl-16">
                                     <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] sm:text-[32px] md:text-[36px]">
@@ -126,7 +145,7 @@ function AboutStory() {
                                     </ul>
 
                                     <p className="mt-5 text-[21px] italic leading-snug text-black/80 sm:text-[25px]">
-                                        Driven by Innovation,{` `}
+                                        Driven by Innovation.{` `}
                                         <br className="block sm:hidden" />
                                          Defined by Quality.
                                     </p>

@@ -17,24 +17,21 @@ function Chromatogrphy() {
                     <Sidebar />
                     <div className="flex-1">
                     <div className="relative flex flex-col gap-[10px] md:flex-row">
-                        <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[520px]">
+                        <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[520px]" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%)' }}>
                             <img
                                 src={hero}
                                 alt="The Genotek Story"
-                                className="h-full w-full object-cover"
+                                className="h-full w-full object-co"
                             />
                     
                             <div
-                                className="absolute bottom-[24px] left-0 z-[4] w-[min(92%,320px)] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[38px] sm:w-[min(88%,420px)] sm:px-8 sm:py-3 md:bottom-[64px] md:w-auto md:px-15"
-                                style={{
-                                    clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)',
-                                }}
+                                className="absolute bottom-[90px] left-0 z-[4] bg-[#2b4f7c] px-3 py-2.5 text-white shadow-lg sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[60px] md:px-15" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)' }}
                             >
                                 <p className="text-[20px] leading-[1.0] font-normal sm:text-[28px] md:text-[35px]">
                                     Chromatography
                                     </p>
                                     <p className="mt-1 ml-[60px] text-[24px] leading-[0.95] font-normal sm:text-[42px] md:text-[50px]">
-                                    Solutions.
+                                    Solutions
                                     </p>
                             </div>
                         </div>

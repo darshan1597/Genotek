@@ -20,7 +20,8 @@ function GenotekInfra() {
 
                     <div className="flex-1">
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
-                            <div className="relative h-[300px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[380px] md:h-[470px]">
+                            <div className="relative h-[300px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[380px] md:h-[470px]"
+                            style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%)' }}>
                                 <img
                                     src={hero}
                                     alt="The Genotek Infrastructure"
@@ -29,7 +30,7 @@ function GenotekInfra() {
 
                                 <div className="absolute bottom-[20px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[60px] md:px-15" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)' }}>
                                     <p className="text-[20px] sm:text-[28px] md:text-[35px]">Genotek</p>
-                                    <p className="ml-[60px] mt-1 text-[24px] leading-[0.95] sm:text-[42px] md:text-[50px]">Infra.</p>
+                                    <p className="ml-[60px] mt-1 text-[24px] leading-[0.95] sm:text-[42px] md:text-[50px]">Infra</p>
                                 </div>
                             </div>
                         </div>
@@ -42,7 +43,7 @@ function GenotekInfra() {
                         </div>
 
                         <div className="px-1">
-                            <div className="grid items-start gap-6 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10">
+                            <div className="grid items-start gap-2 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10">
                                 {/* Mobile Heading */}
                                 <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] lg:hidden">
                                     Advanced Research & Development Centre
@@ -58,7 +59,7 @@ function GenotekInfra() {
                                     <img
                                         src={img1}
                                         alt="img1"
-                                        className="h-[190px] w-full object-cover sm:h-[240px] md:h-[280px] lg:ml-8"
+                                        className="h-[190px] w-full object-cover sm:h-[240px] md:h-[280px] lg:ml-8 mb-2 overflow-hidden"
                                     />
                                 </div>
 
@@ -69,7 +70,7 @@ function GenotekInfra() {
                                     </h2>
 
                                     {/* Paragraph */}
-                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.8] text-black/80 sm:text-[18px] md:text-[19px] ">
+                                    <p className=" lg:mt-5 max-w-[900px] text-[16px] leading-[1.8] text-black/80 sm:text-[18px] md:text-[19px]">
                                         Our Pune-based R&D centre features modern, modular labs equipped
                                         for safe, efficient execution of complex chemistries, enabling fast
                                         and precise research, discovery, and development.
@@ -83,7 +84,7 @@ function GenotekInfra() {
                                 <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc] lg:right-[100px]" />
                             </div>
 
-                        <div className="mt-8 grid items-start gap-6 md:mt-10 md:gap-8 lg:grid-cols-[1fr_420px] lg:gap-10 xl:grid-cols-[1fr_520px]">
+                        <div className="mt-8 grid items-start gap-2 md:mt-10 md:gap-8 lg:grid-cols-[1fr_420px] lg:gap-10 xl:grid-cols-[1fr_520px]">
                             {/* Mobile Heading */}
                             <h2 className="order-1 text-[26px] font-semibold leading-tight text-[#5a92b6] lg:hidden">
                                 Integrated Scale-Up Capabilities <br />(Kilo Labs)
@@ -96,7 +97,7 @@ function GenotekInfra() {
                                     Integrated Scale-Up Capabilities <br />(Kilo Labs)
                                 </h2>
 
-                                <p className="mt-4 text-[16px] leading-[1.7] text-black/80 sm:text-[18px] md:text-[19px] ">
+                                <p className="mt-0 lg:mt-5 max-w-[900px] text-[16px] leading-[1.8] text-black/80 sm:text-[18px] md:text-[19px]">
                                     Our in-house kilo labs bridge research and manufacturing,
                                     supporting seamless scale-up with pilot-scale reactors and systems
                                     for handling complex and hazardous chemistries.
@@ -120,7 +121,7 @@ function GenotekInfra() {
                                 <span className="absolute right-0 top-1/2 h-[10px] w-[10px] -translate-y-1/2 bg-[#6796b2] sm:h-[12px] sm:w-[12px] md:h-[14px] md:w-[14px] lg:right-[88px]" />
                                 <span className="absolute left-[14px] right-[14px] top-1/2 h-px -translate-y-1/2 bg-[#a5becc] lg:right-[100px]" />
                             </div>
-                            <div className="mt-8 grid items-start gap-6 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10">
+                            <div className="mt-8 grid items-start gap-2 md:gap-8 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)] lg:gap-10">
                                 {/* Mobile Heading */}
                                 <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6] lg:hidden">
                                     High-Pressure & Specialized Reaction Infrastructure
@@ -147,7 +148,7 @@ function GenotekInfra() {
                                     </h2>
 
                                     {/* Paragraph */}
-                                    <p className="mt-4 max-w-[900px] text-[16px] leading-[1.8] text-black/80 sm:text-[18px] md:text-[19px] ">
+                                    <p className="mt-0 lg:mt-5 max-w-[900px] text-[16px] leading-[1.8] text-black/80 sm:text-[18px] md:text-[19px]">
                                         Dedicated high-pressure systems enable safe and efficient execution
                                         of demanding reactions, including hydrogenation under controlled
                                         conditions.
@@ -162,7 +163,7 @@ function GenotekInfra() {
                             </div>
 
                             
-                            <div className="mt-8 grid items-start gap-6 md:mt-10 md:gap-8 lg:grid-cols-[1fr_420px] lg:gap-10 xl:grid-cols-[1fr_520px]">
+                            <div className="mt-8 grid items-start gap-2 md:mt-10 md:gap-8 lg:grid-cols-[1fr_420px] lg:gap-10 xl:grid-cols-[1fr_520px]">
                                 {/* Mobile Heading */}
                                 <h2 className="order-1 text-[26px] font-semibold leading-tight text-[#5a92b6] lg:hidden">
                                     Analytical Development Laboratories
@@ -175,7 +176,7 @@ function GenotekInfra() {
                                         Analytical Development Laboratories
                                     </h2>
 
-                                    <p className="mt-4 text-[16px] leading-[1.7] text-black/80 sm:text-[18px] md:text-[19px] ">
+                                    <p className="mt-0 lg:mt-5 max-w-[900px] text-[16px] leading-[1.8] text-black/80 sm:text-[18px] md:text-[19px] ">
                                         Equipped with advanced tools like HPLC, GC, and Prep HPLC, our
                                         analytical labs ensure accurate characterization, method
                                         development, and consistent product quality.

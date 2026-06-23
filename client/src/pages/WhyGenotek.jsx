@@ -15,7 +15,8 @@ function WhyGenotek() {
 
                     <div className="flex-1">
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
-                            <div className="relative h-[280px] w-full overflow-hidden  sm:h-[360px] md:h-[450px]">
+                            <div className="relative h-[280px] w-full overflow-hidden  sm:h-[360px] md:h-[450px]"
+                            style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%)' }}>
                                 <img
                                     src={hero}
                                     alt="The Genotek Story"
@@ -132,9 +133,9 @@ function WhyGenotek() {
                             </ul>
 
                             <p className="mt-6 text-[21px] italic leading-snug text-black/80 sm:text-[25px]">
-                                Always within Reach,{` `}
+                                Always within Reach.{` `}
                                 <br className="block sm:hidden" />
-                                 from Experiment to Outcome.
+                                 From Experiment to Outcome.
                             </p>
                         </section>
                         <Footer insetForSidebar={false} />

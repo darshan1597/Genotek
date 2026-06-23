@@ -33,23 +33,23 @@ function ChiralGc() {
 
                     <div className="flex-1">
                          <nav aria-label="Breadcrumb" className="mb-3 px-1">
-        <div className="flex items-center gap-2 text-[14px] text-gray-500">
-            <Link
-                to="/products/chromatography-solutions"
-                className="hover:text-[#214f86]"
-            >
-                Chromatography Solutions
-            </Link>
+                            <div className="flex items-center gap-2 text-[14px] text-gray-500">
+                                <Link
+                                    to="/products/chromatography-solutionss"
+                                    className="hover:text-[#214f86]"
+                                >
+                                    Chromatography Solutions
+                                </Link>
 
-            <span>&gt;</span>
+                                <span>&gt;</span>
 
-            <span className="font-semibold text-[#214f86]">
-                GC Columns
-            </span>
-        </div>
-    </nav>
+                                <span className="font-semibold text-[#214f86]">
+                                    GC Columns
+                                </span>
+                            </div>
+                        </nav>
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
-                            <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[520px]">
+                            <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[520px]"style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%)' }}>
                                 <img
                                     src={hero}
                                     alt="The Genotek Story"
