@@ -420,6 +420,7 @@ function GenotekExclusiveStrip() {
                             ) : (
                                 <span className="text-[12px] text-[#5790aa]">No image</span>
                             )}
+                            
                         </div>
                         <div className="flex min-h-[36px] items-center justify-center px-2 pb-1 text-center text-[10px] leading-[15px] text-[#3c82b0] sm:min-h-[46px] sm:px-3 sm:pb-2 sm:text-[12px] sm:leading-[18px]">
                             <span className="line-clamp-2">{product.name}</span>
@@ -438,6 +439,7 @@ function GenotekExclusiveStrip() {
             </div>
 
             <div className="absolute inset-y-0 left-0 z-10 flex w-[145px] items-center justify-center bg-white roundedf sm:w-[220px]">
+                
                 {categoryImageUrl ? (
                     <Link
                         to="/genotek-exclusive"
@@ -452,10 +454,12 @@ function GenotekExclusiveStrip() {
                         />
 
                         {/* Static center logo */}
+                        
                         <img
                             src={circleImageUrl}
                             alt={category.name}
-                            className="relative z-10 h-[45px] w-[45px] object-contain sm:h-[65px] sm:w-[65px]"
+                            className="relative z-10 h-[45px] w-[45px] object-cover sm:h-[65px] sm:w-[65px]"
+                            
                         />
                     </Link>
                 ) : (
@@ -541,9 +545,41 @@ function Home() {
             },
         },
     }
-    const bluePath = isMobile
-        ? "M -140 160 L 860 160 C 895 195 920 246 930 306 C 936 379 912 422 880 452 L -115 463 C -150 402 -162 377 -172 319 C -180 254 -170 209 -144 160 Z"
+
+    const [showSubtitle, setShowSubtitle] = useState(false);
+    // const bluePath = isMobile
+    //     ? "M -140 160 L 860 160 C 895 195 920 246 930 306 C 936 379 912 422 880 452 L -115 463 C -150 402 -162 377 -172 319 C -180 254 -170 209 -144 160 Z"
+    //     : "M -560 160 L 1257 160 C 1307 195 1342 246 1357 306 C 1363 379 1337 422 1295 452 L -514 463 C -577 402 -592 377 -610 319 C -621 254 -610 209 -576 160 Z"
+        const bluePath = isMobile
+        ? "M -140 80 L 860 80 C 895 97.5 920 123 930 153 C 936 189.5 912 211 880 226 L -115 231.5 C -150 201 -162 188.5 -172 159.5 C -180 127 -170 104.5 -144 80 ZZ"
         : "M -560 160 L 1257 160 C 1307 195 1342 246 1357 306 C 1363 379 1337 422 1295 452 L -514 463 C -577 402 -592 377 -610 319 C -621 254 -610 209 -576 160 Z"
+        
+        const leftBrace = isMobile
+        ?"M 450 83 C 347 137 379 222.5 473 250 C 486 254.5 476 255.5 469 254 C 361 215 342 139 442 80.5 C 450 77 454 78.5 453 80.5 Z"
+        :"M 450 166 C 347 274 379 445 473 500 C 486 509 476 511 469 508 C 361 430 342 278 442 161 C 450 154 454 157 453 161 Z"
+        const rightBrace = isMobile
+        ?"M -450 83 C -347 137 -379 222.5 -473 250 C -486 254.5 -476 255.5 -469 254 C -361 215 -342 139 -442 80.5 C -450 77 -454 78.5 -453 80.5 Z"
+        :"M -450 166 C -347 274 -379 445 -473 500 C -486 509 -476 511 -469 508 C -361 430 -342 278 -442 161 C -450 154 -454 157 -453 161 Z"
+
+        const whiteLeftBrace = isMobile
+        ?"M 450 83 C 347 137 379 222.5 473 250 C 486 254.5 476 255.5 469 254 C 361 215 342 139 442 80.5 C 450 77 454 78.5 453 80.5 Z"
+        :"M 450 166 C 347 274 379 445 473 500 C 486 509 476 511 469 508 C 361 430 342 278 442 161 C 450 154 454 157 453 161 Z"
+        const whiteRightBrace = isMobile
+        ?"M -450 83 C -347 137 -379 222.5 -473 250 C -486 254.5 -476 255.5 -469 254 C -361 215 -342 139 -442 80.5 C -450 77 -454 78.5 -453 80.5 Z"
+        :"M -450 166 C -347 274 -379 445 -473 500 C -486 509 -476 511 -469 508 C -361 430 -342 278 -442 161 C -450 154 -454 157 -453 161 Z"
+        // const leftBrace = isMobile
+        // ?"M 450 166 C 347 274 379 445 473 500 C 486 509 476 511 469 508 C 361 430 342 278 442 161 C 450 154 454 157 453 161 Z"
+        // :"M 450 166 C 347 274 379 445 473 500 C 486 509 476 511 469 508 C 361 430 342 278 442 161 C 450 154 454 157 453 161 Z"
+        // const rightBrace = isMobile
+        // ?"M -450 166 C -347 274 -379 445 -473 500 C -486 509 -476 511 -469 508 C -361 430 -342 278 -442 161 C -450 154 -454 157 -453 161 Z"
+        // :"M -450 166 C -347 274 -379 445 -473 500 C -486 509 -476 511 -469 508 C -361 430 -342 278 -442 161 C -450 154 -454 157 -453 161 Z"
+
+        // const whiteLeftBrace = isMobile
+        // ?"M 450 166 C 347 274 379 445 473 500 C 486 509 476 511 469 508 C 361 430 342 278 442 161 C 450 154 454 157 453 161 Z"
+        // :"M 450 166 C 347 274 379 445 473 500 C 486 509 476 511 469 508 C 361 430 342 278 442 161 C 450 154 454 157 453 161 Z"
+        // const whiteRightBrace = isMobile
+        // ?"M -450 166 C -347 274 -379 445 -473 500 C -486 509 -476 511 -469 508 C -361 430 -342 278 -442 161 C -450 154 -454 157 -453 161 Z"
+        // :"M -450 166 C -347 274 -379 445 -473 500 C -486 509 -476 511 -469 508 C -361 430 -342 278 -442 161 C -450 154 -454 157 -453 161 Z"
 
     useEffect(() => {
         const handleResize = () => {
@@ -687,7 +723,9 @@ function Home() {
                                                 <svg
                                                     viewBox="0 100 760 450"
                                                     preserveAspectRatio="xMidYMid meet"
-                                                    className="absolute inset-0 h-full w-full overflow-visible drop-shadow-[0_14px_24px_rgba(18,54,91,0.2)]"
+                                                    className={`absolute inset-0 h-full w-full overflow-visible drop-shadow-[0_14px_24px_rgba(18,54,91,0.2)] ${
+                                                        isMobile ? 'top-8' : ''
+                                                    }`}
                                                     aria-hidden="true"
                                                 >
                                                     <motion.path
@@ -702,7 +740,7 @@ function Home() {
                                                         }}
                                                     />
                                                     <motion.path
-                                                        d="M 450 166 C 347 274 379 445 473 500 C 486 509 476 511 469 508 C 361 430 342 278 442 161 C 450 154 454 157 453 161 Z"
+                                                        d={leftBrace}
                                                         fill="none"
                                                         stroke="#2b5b91"
                                                         strokeWidth="20"
@@ -716,7 +754,7 @@ function Home() {
                                                     />
 
                                                     <motion.path
-                                                        d="M 450 166 C 347 274 379 445 473 500 C 486 509 476 511 469 508 C 361 430 342 278 442 161 C 450 154 454 157 453 161 Z"
+                                                        d={whiteLeftBrace}
                                                         fill="white"
                                                         stroke="none"
                                                         variants={firstSlideLeftBraceVariants}
@@ -728,7 +766,7 @@ function Home() {
                                                     />
 
                                                     <motion.path
-                                                        d="M -450 166 C -347 274 -379 445 -473 500 C -486 509 -476 511 -469 508 C -361 430 -342 278 -442 161 C -450 154 -454 157 -453 161 Z"
+                                                        d={rightBrace}
                                                         fill="none"
                                                         stroke="#2b5b91"
                                                         strokeWidth="20"
@@ -742,7 +780,7 @@ function Home() {
                                                     />
 
                                                     <motion.path
-                                                        d="M -450 166 C -347 274 -379 445 -473 500 C -486 509 -476 511 -469 508 C -361 430 -342 278 -442 161 C -450 154 -454 157 -453 161 Z"
+                                                        d={whiteRightBrace}
                                                         fill="white"
                                                         stroke="none"
                                                         variants={firstSlideRightBraceVariants}
@@ -782,12 +820,33 @@ function Home() {
                                                         )}
                                                     </p>
                                                     <p className={`mt-2 w-full px-3 leading-[1.35] sm:px-8 md:px-10 ${['intro', 'outro'].includes(currentSlide.id) ? 'text-[8px] sm:text-[13px] md:text-[15px]' : 'text-[7px] sm:text-[11px] md:text-[16px]'}`}>
+                                                        {/* 3line for mobile hero */}
+                                                    {isMobile ? (
+                                                        <div className="mt-2 flex flex-col items-center text-center">
+                                                            <span className="text-[15px] font-bold tracking-[-0.01em] text-[#2f5688]">
+                                                                Precision Chemistry
+                                                            </span>
+
+                                                            <div className="my-[2px] h-[1.5px] w-[52px] bg-[#2f5688]" />
+
+                                                            <span className="text-[15px] font-bold tracking-[-0.01em] text-[#2f5688]">
+                                                                Process Excellence
+                                                            </span>
+
+                                                            <div className="my-[2px] h-[1.5px] w-[52px] bg-[#2f5688]" />
+
+                                                            <span className="text-[15px] font-bold tracking-[-0.01em] text-[#2f5688]">
+                                                                Scalable Manufacturing
+                                                            </span>
+                                                        </div>
+                                                    ) : (
                                                         <SequentialPhraseText
                                                             key={`subtitle-${currentSlide.id}`}
                                                             text={currentSlide.subtitle}
                                                             delay={specialSubtitleDelay}
                                                             stepDelay={specialSubtitleStepDelay}
                                                         />
+                                                    )}
                                                     </p>
                                                 </motion.div>
                                             </div>
