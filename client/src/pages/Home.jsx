@@ -545,8 +545,45 @@ function Home() {
             },
         },
     }
-
+    const isDesktop = !isMobile
     const [showSubtitle, setShowSubtitle] = useState(false);
+    const [showMobileText, setShowMobileText] = useState(false)
+    useEffect(() => {
+    if (isSpecialSlide && specialPhase !== 'hidden') {
+        setShowSubtitle(false)
+
+        const timer = setTimeout(() => {
+            setShowSubtitle(true)
+        }, specialBraceCloseDelay + 300) // after band animation ends
+
+        return () => clearTimeout(timer)
+    } else {
+        setShowSubtitle(false)
+    }
+}, [activeSlide, specialPhase])
+
+
+useEffect(() => {
+    if (isSpecialSlide && specialPhase !== 'hidden') {
+        setShowMobileText(false)
+
+        const showTimer = setTimeout(() => {
+            setShowMobileText(true)
+        }, specialBraceCloseDelay + 300)
+
+        const hideTimer = setTimeout(() => {
+            setShowMobileText(false)
+        }, specialBraceCloseDelay + 4000) // stays longer
+
+        return () => {
+            clearTimeout(showTimer)
+            clearTimeout(hideTimer)
+        }
+    } else {
+        setShowMobileText(false)
+    }
+}, [activeSlide, specialPhase])
+    
     // const bluePath = isMobile
     //     ? "M -140 160 L 860 160 C 895 195 920 246 930 306 C 936 379 912 422 880 452 L -115 463 C -150 402 -162 377 -172 319 C -180 254 -170 209 -144 160 Z"
     //     : "M -560 160 L 1257 160 C 1307 195 1342 246 1357 306 C 1363 379 1337 422 1295 452 L -514 463 C -577 402 -592 377 -610 319 C -621 254 -610 209 -576 160 Z"
@@ -734,6 +771,7 @@ function Home() {
                                                         variants={firstSlideBlueVariants}
                                                         initial="enter"
                                                         animate={specialPhase === 'closing' ? 'closing' : 'center'}
+                                                        
                                                         style={{
                                                             transformBox: 'view-box',
                                                             transformOrigin: 'center center',
@@ -786,6 +824,7 @@ function Home() {
                                                         variants={firstSlideRightBraceVariants}
                                                         initial="enter"
                                                         animate={specialPhase === 'closing' ? 'hidden' : 'center'}
+                                                        onAnimationComplete={() => setShowMobileText(true)}
                                                         style={{
                                                             transformBox: 'fill-box',
                                                         }}
@@ -819,27 +858,30 @@ function Home() {
                                                             </motion.span>
                                                         )}
                                                     </p>
-                                                    <p className={`mt-2 w-full px-3 leading-[1.35] sm:px-8 md:px-10 ${['intro', 'outro'].includes(currentSlide.id) ? 'text-[8px] sm:text-[13px] md:text-[15px]' : 'text-[7px] sm:text-[11px] md:text-[16px]'}`}>
+                                                    <p className={`mt-5 w-full px-3 leading-[1.35] sm:px-8 md:px-10 ${['intro', 'outro'].includes(currentSlide.id) ? 'text-[8px] sm:text-[13px] md:text-[15px]' : 'text-[7px] sm:text-[11px] md:text-[16px]'}`}>
                                                         {/* 3line for mobile hero */}
-                                                    {isMobile ? (
-                                                        <div className="mt-2 flex flex-col items-center text-center">
-                                                            <span className="text-[15px] font-bold tracking-[-0.01em] text-[#2f5688]">
+                                                    {isMobile && showMobileText && (
+                                                        <div className="flex flex-col items-center justify-center text-center gap-[6px]">
+                                                            
+                                                            <span className="text-[14px] font-bold tracking-[-0.01em] text-[#2f5688]">
                                                                 Precision Chemistry
                                                             </span>
 
-                                                            <div className="my-[2px] h-[1.5px] w-[52px] bg-[#2f5688]" />
+                                                            <div className="h-[1px] w-[48px] bg-[#2f5688] opacity-80" />
 
-                                                            <span className="text-[15px] font-bold tracking-[-0.01em] text-[#2f5688]">
+                                                            <span className="text-[14px] font-bold tracking-[-0.01em] text-[#2f5688]">
                                                                 Process Excellence
                                                             </span>
 
-                                                            <div className="my-[2px] h-[1.5px] w-[52px] bg-[#2f5688]" />
+                                                            <div className="h-[1px] w-[48px] bg-[#2f5688] opacity-80" />
 
-                                                            <span className="text-[15px] font-bold tracking-[-0.01em] text-[#2f5688]">
+                                                            <span className="text-[14px] font-bold tracking-[-0.01em] text-[#2f5688]">
                                                                 Scalable Manufacturing
                                                             </span>
+
                                                         </div>
-                                                    ) : (
+                                                    )}
+                                                    {isDesktop  && (
                                                         <SequentialPhraseText
                                                             key={`subtitle-${currentSlide.id}`}
                                                             text={currentSlide.subtitle}
