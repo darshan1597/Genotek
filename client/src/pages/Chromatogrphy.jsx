@@ -61,8 +61,7 @@ function Chromatogrphy() {
                             </ul>
                         </div>
                         <div className="px-4">
-                            {/* 4 IMAGES */}
-                            <div className="mx-auto grid max-w-[820px] grid-cols-2 gap-1 md:grid-cols-4">
+                            <div className="mx-auto grid grid-cols-2 md:grid-cols-4  md:gap-1">
                                 {[
                                     { id: 1, title: "Chiral GC Columns", img: img1, link: "/products/gc-columns" },
                                     { id: 2, title: "Chiral Hplc Columns", img: img2, link: "/products/hplc-columns" },
@@ -72,12 +71,12 @@ function Chromatogrphy() {
                                     <div key={item.id} className="text-center">
                                         <Link
                                             to={item.link}
-                                            className="flex h-[155px] cursor-pointer items-center justify-center overflow-hidden rounded-lg p-1 sm:p-2"
+                                            className="flex h-[180px] items-center justify-center overflow-hidden rounded-lg p-1"
                                         >
                                             <img
                                                 src={item.img}
                                                 alt={item.title}
-                                                className="h-full w-full object-contain transition duration-300 hover:opacity-80"
+                                                className="h-[175px] w-full object-contain transition duration-300 hover:opacity-80"
                                             />
                                         </Link>
                                     </div>

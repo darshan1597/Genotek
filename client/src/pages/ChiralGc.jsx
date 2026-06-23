@@ -35,7 +35,7 @@ function ChiralGc() {
                          <nav aria-label="Breadcrumb" className="mb-3 px-1">
                             <div className="flex items-center gap-2 text-[14px] text-gray-500">
                                 <Link
-                                    to="/products/chromatography-solutionss"
+                                    to="/products/chromatography-solutions"
                                     className="hover:text-[#214f86]"
                                 >
                                     Chromatography Solutions
@@ -132,7 +132,7 @@ function ChiralGc() {
 
                         <div className="px-4">
                             {/* 2 IMAGES */}
-                            <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-1 md:grid-cols-5">
+                            <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-0.5 md:grid-cols-5">
                                 {[
                                     { id: 1, title: "Compound Libraries", img: img1 },
                                     { id: 2, title: "Process Development", img: img2 },
@@ -143,7 +143,7 @@ function ChiralGc() {
                                             onClick={() =>
                                                 setActive(active === item.id ? null : item.id)
                                             }
-                                             className="flex h-[155px] cursor-pointer items-center justify-center overflow-hidden rounded-lg p-1 sm:p-2"
+                                             className="flex h-[165px] md:h-[185px] cursor-pointer items-center justify-center overflow-hidden rounded-lg p-1 sm:p-2"   
                                         >
                                         <img
                                             src={item.img}

@@ -129,8 +129,7 @@ function HplcColumns() {
                                             onClick={() =>
                                                 setActive(active === item.id ? null : item.id)
                                             }
-                                             className="flex h-[155px] cursor-pointer items-center justify-center overflow-hidden rounded-lg p-1 sm:p-2"
-                                        >
+                                            className="flex h-[165px] md:h-[185px] cursor-pointer items-center justify-center overflow-hidden rounded-lg p-1 sm:p-2"                                        >
                                         <img
                                             src={item.img}
                                             alt={item.title}
