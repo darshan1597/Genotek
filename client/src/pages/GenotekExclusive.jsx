@@ -112,7 +112,7 @@ function GenotekExclusive() {
                                     <img
                                         src={circleImageUrl}
                                         alt={category.name}
-                                        className="relative z-10 h-[80px] w-[80px] object-contain"
+                                        className="relative z-10 h-[90px] w-[90px] object-contain"
                                     />
                                 </Link>
                             ) : null}

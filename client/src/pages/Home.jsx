@@ -458,7 +458,7 @@ function GenotekExclusiveStrip() {
                         <img
                             src={circleImageUrl}
                             alt={category.name}
-                            className="relative z-10 h-[45px] w-[45px] object-cover sm:h-[65px] sm:w-[65px]"
+                            className="relative z-10 h-[50px] w-[50px] object-contain sm:h-[70px] sm:w-[70px]"
                             
                         />
                     </Link>
