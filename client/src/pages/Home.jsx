@@ -347,6 +347,67 @@ function SequentialPhraseText({ text, delay = 0, stepDelay = 520 }) {
     )
 }
 
+function MobileSequentialPhraseText({ text, stepDelay = 520 }) {
+    const parts = text.split('|').map((part) => part.trim())
+    const [visibleCount, setVisibleCount] = useState(0)
+
+    useEffect(() => {
+        const timers = []
+
+        setVisibleCount(0)
+        setVisibleCount(1)
+
+        parts.slice(1).forEach((_, index) => {
+            timers.push(
+                window.setTimeout(() => {
+                    setVisibleCount(index + 2)
+                }, (index + 1) * stepDelay)
+            )
+        })
+
+        return () => {
+            timers.forEach((timer) => window.clearTimeout(timer))
+        }
+    }, [parts.length, stepDelay, text])
+
+    return (
+        <span className="flex flex-col items-center justify-center text-center text-[#2f5688]">
+            {parts.map((part, index) => (
+                <span key={`${part}-${index}`} className="flex flex-col items-center">
+                    <motion.span
+                        className="text-[14px] font-bold leading-[1.15] tracking-[-0.01em]"
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{
+                            opacity: index < visibleCount ? 1 : 0,
+                            y: index < visibleCount ? 0 : 6,
+                        }}
+                        transition={{
+                            duration: 0.6,
+                            ease: [0.22, 1, 0.36, 1],
+                        }}
+                    >
+                        {part}
+                    </motion.span>
+                    {index < parts.length - 1 ? (
+                        <motion.span
+                            className="my-[3px] h-[2px] w-[72px] bg-[#2f5688]"
+                            initial={{ opacity: 0, scaleX: 0 }}
+                            animate={{
+                                opacity: index < visibleCount ? 1 : 0,
+                                scaleX: index < visibleCount ? 1 : 0,
+                            }}
+                            transition={{
+                                duration: 0.45,
+                                ease: [0.22, 1, 0.36, 1],
+                            }}
+                        />
+                    ) : null}
+                </span>
+            ))}
+        </span>
+    )
+}
+
 function GenotekExclusiveStrip() {
     const [category, setCategory] = useState(null)
     const [products, setProducts] = useState([])
@@ -489,10 +550,12 @@ function Home() {
     })
 
     const currentSlide = heroSlides[activeSlide]
+    const slideCount = heroSlides.length
     const isSpecialSlide = currentSlide.variant === 'special'
     const braceDistance = isMobile ? 350 : 830
-    const leftBraceDistance = isMobile ? 500 : braceDistance + 100
-    const rightBraceDistance = isMobile ? 1250 : braceDistance + 830
+    const leftBraceDistance = isMobile ? 525 : braceDistance + 100
+    const rightBraceDistance = isMobile ? 1265 : braceDistance + 830
+    const mobileRightBraceDelay = specialSubtitleDelay / 1000 + specialSubtitleStepDelay / 1000 * 2 + 0.65
     const firstSlideLeftBraceVariants = {
         enter: {
             x: -leftBraceDistance,
@@ -522,18 +585,18 @@ function Home() {
     const firstSlideRightBraceVariants = {
         enter: {
             x: rightBraceDistance,
-            y: isMobile ? 50 : 50,
+            y: isMobile ? 5 : 50,
             opacity: 0,
             clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
         },
         center: {
             x: rightBraceDistance,
-            y: isMobile ? 50 : 50,
+            y: isMobile ? 5 : 50,
             opacity: 1,
             clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
             transition: {
                 duration: specialLeftBraceDuration,
-                delay: specialRightBraceDelay,
+                delay: isMobile ? mobileRightBraceDelay : specialRightBraceDelay,
                 ease: [0.16, 1, 0.3, 1],
             },
         },
@@ -569,11 +632,11 @@ useEffect(() => {
 
         const showTimer = setTimeout(() => {
             setShowMobileText(true)
-        }, specialBraceCloseDelay + 300)
+        }, specialSubtitleDelay)
 
         const hideTimer = setTimeout(() => {
             setShowMobileText(false)
-        }, specialBraceCloseDelay + 4000) // stays longer
+        }, specialBraceCloseDelay)
 
         return () => {
             clearTimeout(showTimer)
@@ -588,21 +651,21 @@ useEffect(() => {
     //     ? "M -140 160 L 860 160 C 895 195 920 246 930 306 C 936 379 912 422 880 452 L -115 463 C -150 402 -162 377 -172 319 C -180 254 -170 209 -144 160 Z"
     //     : "M -560 160 L 1257 160 C 1307 195 1342 246 1357 306 C 1363 379 1337 422 1295 452 L -514 463 C -577 402 -592 377 -610 319 C -621 254 -610 209 -576 160 Z"
         const bluePath = isMobile
-        ? "M -140 80 L 860 80 C 895 97.5 920 123 930 153 C 936 189.5 912 211 880 226 L -115 231.5 C -150 201 -162 188.5 -172 159.5 C -180 127 -170 104.5 -144 80 ZZ"
+        ? "M -140 99 L 860 99 C 887 120 905 153 913 190 C 918 230 902 257 880 280 L -115 287 C -150 249 -162 234 -172 198 C -180 157 -170 130 -144 99 Z"
         : "M -560 160 L 1257 160 C 1307 195 1342 246 1357 306 C 1363 379 1337 422 1295 452 L -514 463 C -577 402 -592 377 -610 319 C -621 254 -610 209 -576 160 Z"
         
         const leftBrace = isMobile
-        ?"M 450 83 C 347 137 379 222.5 473 250 C 486 254.5 476 255.5 469 254 C 361 215 342 139 442 80.5 C 450 77 454 78.5 453 80.5 Z"
+        ?"M 450 134 C 375 193 398 283 476 312 C 490 318 478 319 468 317 C 384 278 370 195 442 130 C 452 125 457 130 453 135 Z"
         :"M 450 166 C 347 274 379 445 473 500 C 486 509 476 511 469 508 C 361 430 342 278 442 161 C 450 154 454 157 453 161 Z"
         const rightBrace = isMobile
-        ?"M -450 83 C -347 137 -379 222.5 -473 250 C -486 254.5 -476 255.5 -469 254 C -361 215 -342 139 -442 80.5 C -450 77 -454 78.5 -453 80.5 Z"
+        ?"M -450 134 C -375 193 -398 283 -476 312 C -490 318 -478 319 -468 317 C -384 278 -370 195 -442 130 C -452 125 -457 130 -453 135 Z"
         :"M -450 166 C -347 274 -379 445 -473 500 C -486 509 -476 511 -469 508 C -361 430 -342 278 -442 161 C -450 154 -454 157 -453 161 Z"
 
         const whiteLeftBrace = isMobile
-        ?"M 450 83 C 347 137 379 222.5 473 250 C 486 254.5 476 255.5 469 254 C 361 215 342 139 442 80.5 C 450 77 454 78.5 453 80.5 Z"
+        ?"M 450 134 C 375 193 398 283 476 312 C 490 318 478 319 468 317 C 384 278 370 195 442 130 C 452 125 457 130 453 135 Z"
         :"M 450 166 C 347 274 379 445 473 500 C 486 509 476 511 469 508 C 361 430 342 278 442 161 C 450 154 454 157 453 161 Z"
         const whiteRightBrace = isMobile
-        ?"M -450 83 C -347 137 -379 222.5 -473 250 C -486 254.5 -476 255.5 -469 254 C -361 215 -342 139 -442 80.5 C -450 77 -454 78.5 -453 80.5 Z"
+        ?"M -450 134 C -375 193 -398 283 -476 312 C -490 318 -478 319 -468 317 C -384 278 -370 195 -442 130 C -452 125 -457 130 -453 135 Z"
         :"M -450 166 C -347 274 -379 445 -473 500 C -486 509 -476 511 -469 508 C -361 430 -342 278 -442 161 C -450 154 -454 157 -453 161 Z"
         // const leftBrace = isMobile
         // ?"M 450 166 C 347 274 379 445 473 500 C 486 509 476 511 469 508 C 361 430 342 278 442 161 C 450 154 454 157 453 161 Z"
@@ -680,8 +743,8 @@ useEffect(() => {
 
         setImagePhase('center')
 
-        if (heroSlides[activeSlide].variant === 'special') {
-            const currentSpecialSlideId = heroSlides[activeSlide].id
+        if (currentSlide.variant === 'special') {
+            const currentSpecialSlideId = currentSlide.id
             const slideAdvanceDelay = currentSpecialSlideId === 'outro' ? outroSlideAdvanceDelay : introSlideAdvanceDelay
 
             setSpecialPhase('opening')
@@ -702,7 +765,7 @@ useEffect(() => {
 
             timers.push(
                 window.setTimeout(() => {
-                    setActiveSlide((current) => (current + 1) % heroSlides.length)
+                    setActiveSlide((current) => (current + 1) % slideCount)
                 }, slideAdvanceDelay)
             )
         } else {
@@ -710,13 +773,13 @@ useEffect(() => {
 
             timers.push(
                 window.setTimeout(() => {
-                    setActiveSlide((current) => (current + 1) % heroSlides.length)
+                    setActiveSlide((current) => (current + 1) % slideCount)
                 }, normalSlideAdvanceDelay)
             )
         }
 
         return () => timers.forEach((timer) => window.clearTimeout(timer))
-    }, [activeSlide, heroSlides])
+    }, [activeSlide, currentSlide.id, currentSlide.variant, slideCount])
 
     return (
         <div className="min-h-screen bg-white text-slate-900">
@@ -781,7 +844,7 @@ useEffect(() => {
                                                         d={leftBrace}
                                                         fill="none"
                                                         stroke="#2b5b91"
-                                                        strokeWidth="20"
+                                                        strokeWidth={isMobile ? 10 : 20}
                                                         strokeLinejoin="round"
                                                         variants={firstSlideLeftBraceVariants}
                                                         initial="enter"
@@ -807,7 +870,7 @@ useEffect(() => {
                                                         d={rightBrace}
                                                         fill="none"
                                                         stroke="#2b5b91"
-                                                        strokeWidth="20"
+                                                        strokeWidth={isMobile ? 10 : 20}
                                                         strokeLinejoin="round"
                                                         variants={firstSlideRightBraceVariants}
                                                         initial="enter"
@@ -824,7 +887,6 @@ useEffect(() => {
                                                         variants={firstSlideRightBraceVariants}
                                                         initial="enter"
                                                         animate={specialPhase === 'closing' ? 'hidden' : 'center'}
-                                                        onAnimationComplete={() => setShowMobileText(true)}
                                                         style={{
                                                             transformBox: 'fill-box',
                                                         }}
@@ -832,12 +894,12 @@ useEffect(() => {
                                                 </svg>
 
                                                 <motion.div
-                                                    className="absolute inset-0 flex flex-col pt-10 px-[18%] text-center text-white lg:pt-8"
+                                                    className="absolute inset-0 flex flex-col px-[18%] pt-[50px] text-center text-white sm:pt-10 lg:pt-8"
                                                     variants={firstSlideTextVariants}
                                                     initial="enter"
                                                     animate={specialPhase === 'closing' ? 'exit' : 'center'}
                                                 >
-                                                    <p className={`font-semibold leading-[1] ${['intro', 'outro'].includes(currentSlide.id) ? 'text-[15px] sm:text-[23px] md:text-[27px]' : 'text-[16px] sm:text-[22px] md:text-[28px]'}`}>
+                                                    <p className={`font-semibold leading-[1] ${['intro', 'outro'].includes(currentSlide.id) ? 'text-[16px] sm:text-[23px] md:text-[27px]' : 'text-[17px] sm:text-[22px] md:text-[28px]'}`}>
                                                         {['intro', 'outro'].includes(currentSlide.id) ? (
                                                             <TypewriterLine
                                                                 key={`title-typewriter-${currentSlide.id}`}
@@ -858,38 +920,25 @@ useEffect(() => {
                                                             </motion.span>
                                                         )}
                                                     </p>
-                                                    <p className={`mt-5 w-full px-3 leading-[1.35] sm:px-8 md:px-10 ${['intro', 'outro'].includes(currentSlide.id) ? 'text-[8px] sm:text-[13px] md:text-[15px]' : 'text-[7px] sm:text-[11px] md:text-[16px]'}`}>
-                                                        {/* 3line for mobile hero */}
-                                                    {isMobile && showMobileText && (
-                                                        <div className="flex flex-col items-center justify-center text-center gap-[6px]">
-                                                            
-                                                            <span className="text-[14px] font-bold tracking-[-0.01em] text-[#2f5688]">
-                                                                Precision Chemistry
-                                                            </span>
-
-                                                            <div className="h-[1px] w-[48px] bg-[#2f5688] opacity-80" />
-
-                                                            <span className="text-[14px] font-bold tracking-[-0.01em] text-[#2f5688]">
-                                                                Process Excellence
-                                                            </span>
-
-                                                            <div className="h-[1px] w-[48px] bg-[#2f5688] opacity-80" />
-
-                                                            <span className="text-[14px] font-bold tracking-[-0.01em] text-[#2f5688]">
-                                                                Scalable Manufacturing
-                                                            </span>
-
-                                                        </div>
-                                                    )}
-                                                    {isDesktop  && (
+                                                    {isDesktop && (
+                                                    <p className={`mt-1 w-full px-3 leading-[1.35] sm:mt-2 sm:px-8 md:mt-2 md:px-10 ${['intro', 'outro'].includes(currentSlide.id) ? 'text-[8px] sm:text-[13px] md:text-[15px]' : 'text-[7px] sm:text-[11px] md:text-[16px]'}`}>
                                                         <SequentialPhraseText
                                                             key={`subtitle-${currentSlide.id}`}
                                                             text={currentSlide.subtitle}
                                                             delay={specialSubtitleDelay}
                                                             stepDelay={specialSubtitleStepDelay}
                                                         />
-                                                    )}
                                                     </p>
+                                                    )}
+                                                    {isMobile && showMobileText ? (
+                                                        <div className="mt-[180px]">
+                                                            <MobileSequentialPhraseText
+                                                                key={`mobile-subtitle-${currentSlide.id}`}
+                                                                text={currentSlide.subtitle}
+                                                                stepDelay={specialSubtitleStepDelay}
+                                                            />
+                                                        </div>
+                                                    ) : null}
                                                 </motion.div>
                                             </div>
                                         </motion.div>

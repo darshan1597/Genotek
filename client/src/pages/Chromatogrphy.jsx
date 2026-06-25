@@ -1,13 +1,33 @@
+import { useEffect, useState } from "react";
 import Navabar from "./components/Navabar";
 import Sidebar from "./components/Sidebar";
-import img1 from "../assets/Chromatography/GC_Columns.png";
-import img2 from "../assets/Chromatography/HPLC_Columns.png";
-import img3 from "../assets/Chromatography/HPLC_Pumps.png";
-import img4 from "../assets/Chromatography/Method_Transfer_& _Equivalency.png";
 import Footer from "./components/Footer";
 import hero from '../assets/Chromatography/Chromatography_Solutions_Banner.png';
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:8000'
+
 function Chromatogrphy() {
+    const [categories, setCategories] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        const fetchCategories = async () => {
+            try {
+                const { data } = await axios.get(`${serverUrl}/api/chromatography-categories`)
+                setCategories(Array.isArray(data) ? data : [])
+            } catch (error) {
+                console.error('Error loading chromatography categories:', error)
+                setCategories([])
+            } finally {
+                setIsLoading(false)
+            }
+        }
+
+        fetchCategories()
+    }, [])
+
     return (
         <div className="min-h-screen bg-white text-slate-900">
             <div className="h-[2px] w-full bg-[#6a9fba]" />
@@ -61,26 +81,31 @@ function Chromatogrphy() {
                             </ul>
                         </div>
                         <div className="px-4">
-                            <div className="mx-auto grid grid-cols-2 md:grid-cols-4  md:gap-1">
-                                {[
-                                    { id: 1, title: "Chiral GC Columns", img: img1, link: "/products/gc-columns" },
-                                    { id: 2, title: "Chiral Hplc Columns", img: img2, link: "/products/hplc-columns" },
-                                    { id: 3, title: "HPLC Pumps", img: img3, link: "/products/hplc-pumps" },
-                                    { id: 4, title: "Method Transfer Equivalency", img: img4, link: "/products/method-transfer-n-equivalency" },
-                                ].map((item) => (
-                                    <div key={item.id} className="text-center">
+                            <div className="mx-auto grid max-w-[820px] grid-cols-2 gap-1 md:grid-cols-4">
+                                {isLoading ? (
+                                    [1, 2, 3, 4].map((item) => (
+                                        <div key={item} className="h-[155px] animate-pulse rounded-lg bg-slate-100" />
+                                    ))
+                                ) : categories.length ? (
+                                    categories.map((category) => (
+                                    <div key={category._id || category.slug} className="text-center">
                                         <Link
-                                            to={item.link}
-                                            className="flex h-[180px] items-center justify-center overflow-hidden rounded-lg p-1"
+                                            to={`/products/${category.slug}`}
+                                            className="flex h-[155px] items-center justify-center overflow-hidden rounded-lg p-1 sm:p-2"
                                         >
                                             <img
-                                                src={item.img}
-                                                alt={item.title}
-                                                className="h-[175px] w-full object-contain transition duration-300 hover:opacity-80"
+                                                src={`${serverUrl}/chromatographyImages/${category.categoryImage?.name}`}
+                                                alt={category.name}
+                                                className="h-full w-full object-contain transition duration-300 hover:opacity-80"
                                             />
                                         </Link>
                                     </div>
-                                ))}
+                                ))
+                                ) : (
+                                    <p className="col-span-full text-center text-[15px] text-black/70">
+                                        No chromatography categories available.
+                                    </p>
+                                )}
                             </div>
                         </div>
                         <Footer insetForSidebar={false} />

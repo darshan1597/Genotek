@@ -14,11 +14,13 @@ import Industry from './pages/Industry'
 import Chemical from './pages/Chemical'
 import Product from './pages/Product'
 import GenotekExclusive from './pages/GenotekExclusive'
+// Static chromatography pages kept for reference while dynamic pages are managed from admin.
 import ChiralGc from './pages/ChiralGc'
 import HplcColumns from './pages/HplcColumns'
 import HplcPumps from './pages/HplcPumps'
 import MethodTransferEq from './pages/MethodTransferEq'
 import Chromatogrphy from './pages/Chromatogrphy'
+import ChromatographyDetail from './pages/ChromatographyDetail'
 
 function ScrollToTop() {
     const { pathname } = useLocation()
@@ -49,11 +51,13 @@ function App() {
             <Route path="/about/infra" element={<GenotekInfra />} />
             <Route path="/products/chemical" element={<Chemical />} />
             <Route path="/products/chemical/:categoryName" element={<Product />} />
-            <Route path="/products/gc-columns" element={<ChiralGc />} />
             <Route path="/products/chromatography-solutions" element={<Chromatogrphy />} />
+            {/* Static chromatography routes kept for reference. */}
+            <Route path="/gc-columns" element={<ChiralGc />} />
             <Route path="/products/hplc-columns" element={<HplcColumns />} />
             <Route path="/products/method-transfer-n-equivalency" element={<MethodTransferEq />} />
             <Route path="/products/hplc-pumps" element={<HplcPumps />} />
+            <Route path="/products/:slug" element={<ChromatographyDetail />} />
             <Route path="/genotek-exclusive" element={<GenotekExclusive />} />
             <Route path="/industry" element={<Industry />} />
             <Route path="/services" element={<Services />} />

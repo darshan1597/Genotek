@@ -9,12 +9,17 @@ const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:8000'
 function Sidebar() {
     const location = useLocation()
     const [chemicalCategories, setChemicalCategories] = useState([])
+    const [chromatographyCategories, setChromatographyCategories] = useState([])
     const isAboutRoute = location.pathname.startsWith('/about')
+    const chromatographyPaths = [
+        '/products/chromatography-solutions',
+        ...chromatographyCategories.map((category) => category.href),
+    ]
     const isProductsRoute =
         location.pathname.startsWith('/products') ||
         location.pathname === '/genotek-exclusive' ||
-        ['/products/gc-columns', '/products/hplc-columns', '/products/hplc-pumps', '/products/method-transfer-n-equivalency'].includes(location.pathname)
-    const isChromatographyRoute = ['/products/gc-columns', '/products/hplc-columns', '/products/hplc-pumps', '/products/method-transfer-n-equivalency'].includes(location.pathname)
+        chromatographyPaths.includes(location.pathname)
+    const isChromatographyRoute = chromatographyPaths.includes(location.pathname)
 
     useEffect(() => {
         const fetchChemicalCategories = async () => {
@@ -40,9 +45,32 @@ function Sidebar() {
         fetchChemicalCategories()
     }, [])
 
+    useEffect(() => {
+        const fetchChromatographyCategories = async () => {
+            try {
+                const { data } = await axios.get(`${serverUrl}/api/chromatography-categories`)
+                const categories = Array.isArray(data) ? data : []
+
+                setChromatographyCategories(
+                    categories.map((category) => ({
+                        href: `/products/${category.slug}`,
+                        label: category.name,
+                    }))
+                )
+            } catch (error) {
+                console.error('Error loading chromatography categories:', error)
+                setChromatographyCategories([])
+            }
+        }
+
+        fetchChromatographyCategories()
+    }, [])
+
     const dynamicProductSubmenuItems = productSubmenuItems.map((item) =>
         item.label === 'Chemicals'
             ? { ...item, children: chemicalCategories }
+            : item.label === 'Chromatography Solutions'
+                ? { ...item, children: chromatographyCategories }
             : item
     )
 

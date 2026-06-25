@@ -97,24 +97,24 @@ function GenotekExclusive() {
                                 //     alt={category.name}
                                 //     className="h-[218px] w-[218px] object-contain sm:h-[260px] sm:w-[260px]"
                                 // />
-                                <Link
-                                    to="/genotek-exclusive"
-                                    className="relative flex h-[220px] w-[220px] items-center justify-center"
-                                >
-                                    {/* Rotating outer ring */}
-                                    <img
-                                        src={centerLogoUrl}
-                                        alt="Genotek Exclusive Ring"
-                                        className="absolute inset-0 h-full w-full animate-[spin_20s_linear_infinite] object-contain"
-                                    />
+                                <>
+                                    <div className="relative flex h-[220px] w-[220px] items-center justify-center">
+                                        {/* Rotating outer ring */}
+                                        <img
+                                            src={centerLogoUrl}
+                                            alt="Genotek Exclusive Ring"
+                                            className="absolute inset-0 h-full w-full animate-[spin_20s_linear_infinite] object-contain"
+                                        />
 
-                                    {/* Fixed center logo */}
-                                    <img
-                                        src={circleImageUrl}
-                                        alt={category.name}
-                                        className="relative z-10 h-[90px] w-[90px] object-contain"
-                                    />
-                                </Link>
+                                        {/* Fixed center logo */}
+                                        <img
+                                            src={circleImageUrl}
+                                            alt={category.name}
+                                            className="relative z-10 h-[105px] w-[105px] object-contain"
+                                        />
+                                    </div>
+                                    
+                                </>
                             ) : null}
                             {category?.name && selectedProduct ? (
                                 <nav className="mt-4 flex flex-wrap items-center gap-2 text-[14px] text-[#526b80]" aria-label="Breadcrumb">

@@ -22,15 +22,30 @@ function Navabar() {
     const [productsOpen, setProductsOpen] = useState(false)
     const [activeProductChild, setActiveProductChild] = useState(null)
     const [chemicalCategories, setChemicalCategories] = useState([])
-    
+    const [chromatographyCategories, setChromatographyCategories] = useState([])
+    const chromatographyPaths = [
+        '/products/chromatography-solutions',
+        ...chromatographyCategories.map((category) => category.href),
+    ]
+    const isAboutRoute = location.pathname.startsWith('/about')
+    const isChemicalRoute = location.pathname.startsWith('/products/chemical') || location.pathname === '/genotek-exclusive'
+    const isChromatographyRoute = chromatographyPaths.includes(location.pathname)
+    const isProductsRoute = isChemicalRoute || isChromatographyRoute
+    const activeProductsChildLabel = isChemicalRoute
+        ? 'Chemicals'
+        : isChromatographyRoute
+            ? 'Chromatography Solutions'
+            : null
 
     
     
     useEffect(() => {
         setMenuOpen(false)
         setSearchOpen(false)
-        setAboutOpen(location.pathname.startsWith('/about'))
-    }, [location.pathname])
+        setAboutOpen(isAboutRoute)
+        setProductsOpen(isProductsRoute)
+        setActiveProductChild(activeProductsChildLabel)
+    }, [activeProductsChildLabel, isAboutRoute, isProductsRoute, location.pathname])
 
     const handleGlobalSearch = async (event) => {
         event.preventDefault()
@@ -97,9 +112,32 @@ useEffect(() => {
     fetchChemicalCategories()
 }, [])
 
+useEffect(() => {
+    const fetchChromatographyCategories = async () => {
+        try {
+            const { data } = await axios.get(`${serverUrl}/api/chromatography-categories`)
+            const categories = Array.isArray(data) ? data : []
+
+            setChromatographyCategories(
+                categories.map((category) => ({
+                    href: `/products/${category.slug}`,
+                    label: category.name,
+                }))
+            )
+        } catch (error) {
+            console.error('Error loading chromatography categories:', error)
+            setChromatographyCategories([])
+        }
+    }
+
+    fetchChromatographyCategories()
+}, [])
+
     const dynamicProductSubmenuItems = productSubmenuItems.map((item) =>
         item.label === 'Chemicals'
             ? { ...item, children: chemicalCategories }
+            : item.label === 'Chromatography Solutions'
+                ? { ...item, children: chromatographyCategories }
             : item
     )
 
@@ -232,7 +270,12 @@ useEffect(() => {
                     <button
                         type="button"
                         aria-label="Open menu"
-                        onClick={() => setMenuOpen(true)}
+                        onClick={() => {
+                            setAboutOpen(isAboutRoute)
+                            setProductsOpen(isProductsRoute)
+                            setActiveProductChild(activeProductsChildLabel)
+                            setMenuOpen(true)
+                        }}
                         className="flex h-10 w-10 items-center justify-center rounded-full border border-[#70A0D2] text-[#0f4b8a] transition-colors duration-200 hover:bg-[#eef5fb] sm:h-11 sm:w-11"
                     >
                         <FiMenu className="text-[24px]" />
@@ -329,7 +372,9 @@ useEffect(() => {
                                             <button
                                                 type="button"
                                                 onClick={() => setAboutOpen((open) => !open)}
-                                                className="flex w-full items-center justify-between px-4 py-4 text-left text-[18px] font-medium text-[#214f86]"
+                                                className={`flex w-full items-center justify-between px-4 py-4 text-left text-[18px] font-medium transition-colors duration-200 ${
+                                                    isAboutRoute ? 'bg-[#e7f1f7] text-[#214f86]' : 'text-[#214f86]'
+                                                }`}
                                             >
                                                 <span>About us</span>
                                                 <FiChevronDown
@@ -345,7 +390,13 @@ useEffect(() => {
                                                         <NavLink
                                                             key={submenuItem.href}
                                                             to={submenuItem.href}
-                                                            className="block px-5 py-3 text-[15px] text-[#48657c]"
+                                                            className={({ isActive }) =>
+                                                                `block px-5 py-3 text-[15px] transition-colors duration-200 ${
+                                                                    isActive
+                                                                        ? 'bg-[#e7f1f7] font-medium text-[#214f86]'
+                                                                        : 'text-[#48657c] hover:bg-[#edf5fa]'
+                                                                }`
+                                                            }
                                                         >
                                                             {submenuItem.label}
                                                         </NavLink>
@@ -361,7 +412,9 @@ useEffect(() => {
                                             <button
                                                 type="button"
                                                 onClick={() => setProductsOpen(!productsOpen)}
-                                                className="flex w-full items-center justify-between px-4 py-4 text-left text-[18px] font-medium text-[#214f86]"
+                                                className={`flex w-full items-center justify-between px-4 py-4 text-left text-[18px] font-medium transition-colors duration-200 ${
+                                                    isProductsRoute ? 'bg-[#e7f1f7] text-[#214f86]' : 'text-[#214f86]'
+                                                }`}
                                             >
                                                 <span>Products</span>
 
@@ -388,7 +441,11 @@ useEffect(() => {
                                                                                     : submenu.label
                                                                             )
                                                                         }
-                                                                        className="flex w-full items-center justify-between px-5 py-3 text-left text-[15px] text-[#48657c]"
+                                                                        className={`flex w-full items-center justify-between px-5 py-3 text-left text-[15px] transition-colors duration-200 ${
+                                                                            activeProductChild === submenu.label
+                                                                                ? 'bg-[#e7f1f7] font-medium text-[#214f86]'
+                                                                                : 'text-[#48657c] hover:bg-[#edf5fa]'
+                                                                        }`}
                                                                     >
                                                                         <span>{submenu.label}</span>
 

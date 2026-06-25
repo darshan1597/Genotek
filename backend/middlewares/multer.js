@@ -147,3 +147,63 @@ export const uploadHeroImages = createUploader("heroImages", 25 * 1024 * 1024);
 export const uploadHeroSidebarImages = createUploader("heroSidebarImages", 15 * 1024 * 1024);
 
 export const uploadTeamImages = createUploader("teamImages");
+
+const chromatographyAssetsUpload = multer({
+    storage: multer.memoryStorage(),
+    limits: { fileSize: 25 * 1024 * 1024 },
+    fileFilter: (req, file, cb) => {
+        const isImage = file.fieldname.includes("Image") && ["image/png", "image/webp", "image/jpg", "image/jpeg"].includes(file.mimetype);
+        const isPdf = file.fieldname.includes("Document") && file.mimetype === "application/pdf";
+
+        if (isImage || isPdf) cb(null, true);
+        else cb(new Error("Only chromatography images and PDF files are allowed"));
+    },
+});
+
+const createPdfFilename = (originalName) => {
+    const base = path.basename(originalName, path.extname(originalName))
+        .replace(/[^a-z0-9_-]/gi, "-")
+        .replace(/-+/g, "-")
+        .replace(/^-|-$/g, "")
+        .toLowerCase();
+
+    return `${base || "document"}-${Date.now()}-${Math.round(Math.random() * 1e9)}.pdf`;
+};
+
+const processChromatographyAssets = async (req, res, next) => {
+    try {
+        const imageUploadPath = path.join(process.cwd(), "public", "chromatographyImages");
+        const pdfUploadPath = path.join(process.cwd(), "public", "chromatographyPdfs");
+
+        for (const file of req.files || []) {
+            if (file.mimetype === "application/pdf") {
+                const filename = createPdfFilename(file.originalname);
+                ensureDir(pdfUploadPath);
+                fs.writeFileSync(path.join(pdfUploadPath, filename), file.buffer);
+                file.filename = filename;
+                continue;
+            }
+
+            const filename = createFilename(file.originalname);
+            ensureDir(imageUploadPath);
+
+            await sharp(file.buffer)
+                .rotate()
+                .trim({ background: "#ffffff", threshold: 12 })
+                .resize({ width: 1600, height: 1600, fit: "inside", withoutEnlargement: true })
+                .webp({ quality: 88 })
+                .toFile(path.join(imageUploadPath, filename));
+
+            file.filename = filename;
+        }
+
+        return next();
+    } catch (error) {
+        return next(error);
+    }
+};
+
+export const uploadChromatographyAssets = [
+    chromatographyAssetsUpload.any(),
+    processChromatographyAssets,
+];

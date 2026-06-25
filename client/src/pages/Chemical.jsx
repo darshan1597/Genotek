@@ -54,12 +54,12 @@ function Chemical() {
                         style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%)' }}>
                             <img
                                 src={hero}
-                                alt="The Genotek Story"
+                                alt="Chemical Image"
                                 className="h-full w-full object-cover"
                             />
                         </div>
                     </div>
-                        <div className="max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.6] text-black/80  sm:text-[18px] md:pb-10 md:text-[20px] md:leading-[1.45]">
+                        <div className="max-w-[1320px] px-1 pt-5 text-[16px] leading-[1.6] text-black/80 sm:text-[18px] md:pb-5 md:text-[20px] md:leading-[1.45]">
                             <p className="mb-4 text-black/80 ">
                                 At{" "}
                                 <span className="font-semibold">
@@ -72,7 +72,7 @@ function Chemical() {
                             </p>
                         </div>
                         <div className="px-4">
-                            <div className="mx-auto grid grid-cols-2 md:grid-cols-4  md:gap-1">
+                            <div className="mx-auto grid max-w-[820px] grid-cols-2 gap-1 md:grid-cols-4">
                                 {isLoadingCategories ? (
                                     [1, 2, 3, 4].map((item) => (
                                         <div key={item} className="h-[155px] animate-pulse rounded-lg bg-slate-100" />
@@ -87,12 +87,12 @@ function Chemical() {
                                                 to={getCategoryPath(category.name)}
                                                 className="text-center"
                                             >
-                                                <div className="flex h-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg p-4 ">
+                                                <div className="flex h-[155px] cursor-pointer items-center justify-center overflow-hidden rounded-lg p-1 sm:p-2">
                                                     {imageUrl ? (
                                                         <img
                                                             src={imageUrl}
                                                             alt={category.name}
-                                                            className="h-[175px] w-full object-contain transition duration-300 hover:opacity-80"
+                                                            className="h-full w-full object-contain transition duration-300 hover:opacity-80"
                                                         />
                                                     ) : (
                                                         <div className="flex h-full w-full items-center justify-center bg-[#f2f6f8] text-sm font-semibold text-[#214f86]">

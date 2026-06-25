@@ -19,6 +19,7 @@ import AddAdmin from './pages/AddAdmin'
 import ViewAdmins from './pages/ViewAdmins'
 import AddAboutTeam from './pages/AddAboutTeam'
 import EditAboutTeam from './pages/EditAboutTeam'
+import ManageChromatography from './pages/ManageChromatography'
 
 export const serverUrl = import.meta.env.VITE_SERVER_URL
 
@@ -66,6 +67,7 @@ function App() {
             <Route path="/admins" element={admin ? <ViewAdmins /> : <Navigate to="/login" replace /> } />
             <Route path="/add-about-team" element={admin ? <AddAboutTeam /> : <Navigate to="/login" replace /> } />
             <Route path="/edit-about-team" element={admin ? <EditAboutTeam /> : <Navigate to="/login" replace /> } />
+            <Route path="/chromatography-pages" element={admin ? <ManageChromatography /> : <Navigate to="/login" replace /> } />
         </Routes>
     )
 }

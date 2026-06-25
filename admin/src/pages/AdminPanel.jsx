@@ -8,6 +8,7 @@ import {
     FiLayers,
     FiList,
     FiPlusCircle,
+    FiSliders,
     FiUserPlus,
     FiUsers,
 } from 'react-icons/fi'
@@ -26,6 +27,13 @@ const adminActions = [
         icon: FiUsers,
         path: '/admins',
         button: 'View'
+    },
+    {
+        title: 'Chromatography Pages',
+        description: 'Create and edit dynamic chromatography category pages.',
+        icon: FiSliders,
+        path: '/chromatography-pages',
+        button: 'Manage'
     },
     {
         title: 'Add Category',
