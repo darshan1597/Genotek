@@ -21,6 +21,7 @@ function Product() {
     const [isLoading, setIsLoading] = useState(true)
     const [previewImage, setPreviewImage] = useState(null)
     const [showMobileSearch, setShowMobileSearch] = useState(false)
+    const [isMobilePortfolioExpanded, setIsMobilePortfolioExpanded] = useState(false)
 
     useEffect(() => {
         const fetchProductPageData = async () => {
@@ -49,6 +50,7 @@ function Product() {
                     const subcategoryFromSearch = searchParams.get('subcategory') || ''
                     setActiveSubcategory(subcategoryFromSearch)
                     setIsSubcategoryPanelOpen(!subcategoryFromSearch)
+                    setIsMobilePortfolioExpanded(false)
                 } else {
                     setSubcategories([])
                     setActiveSubcategory('')
@@ -171,12 +173,12 @@ function Product() {
                                     <div className="mt-5 max-w-[1040px]">
                                         <div
                                             className={`grid grid-cols-1 gap-2.5 overflow-hidden transition-all duration-500 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 ${
-                                                activeSubcategory && !isSubcategoryPanelOpen
-                                                    ? 'max-h-[95px]'
-                                                    : 'max-h-[900px]'
+                                            activeSubcategory && !isSubcategoryPanelOpen
+                                                ? 'max-h-[95px]'
+                                                    : 'max-h-[5000px] md:max-h-[900px]'
                                             }`}
                                         >
-                                            {orderedSubcategories.map((subcategory) => {
+                                            {orderedSubcategories.map((subcategory, index) => {
                                                 const imageUrl = getSubcategoryImageUrl(subcategory)
                                                 const isActive = activeSubcategory === subcategory.name
                                                 const shouldFade = activeSubcategory && !isSubcategoryPanelOpen && !isActive
@@ -190,8 +192,13 @@ function Product() {
                                                             setActiveSubcategory(subcategory.name)
                                                             setSearchTerm('')
                                                             setIsSubcategoryPanelOpen(false)
+                                                            setIsMobilePortfolioExpanded(false)
                                                         }}
-                                                        className={`group relative flex h-[74px] items-center overflow-hidden rounded-[8px] border-2 bg-white px-3 text-left transition duration-300 cursor-pointer ${
+                                                        className={`group relative h-[74px] items-center overflow-hidden rounded-[8px] border-2 bg-white px-3 text-left transition duration-300 cursor-pointer ${
+                                                            !activeSubcategory && index >= 21 && !isMobilePortfolioExpanded
+                                                                ? 'hidden md:flex'
+                                                                : 'flex'
+                                                        } ${
                                                             isActive
                                                                 ? 'border-[#214f86] shadow-[0_8px_20px_rgba(33,79,134,0.18)]'
                                                                 : 'border-[#5790aa] hover:border-[#214f86] hover:shadow-[0_8px_18px_rgba(33,79,134,0.12)]'
@@ -226,6 +233,24 @@ function Product() {
                                             })}
                                         </div>
 
+                                        {!activeSubcategory && subcategories.length > 21 ? (
+                                            <div className="mt-3 flex justify-center md:hidden">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => setIsMobilePortfolioExpanded((expanded) => !expanded)}
+                                                    className="inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-full border border-[#5790aa] bg-white px-4 py-2 text-[13px] font-semibold text-[#214f86] shadow-sm transition hover:bg-[#eef5f9]"
+                                                    aria-expanded={isMobilePortfolioExpanded}
+                                                >
+                                                    {isMobilePortfolioExpanded ? 'Hide Fine Chemicals Portfolio' : 'Expand Fine Chemicals Portfolio'}
+                                                    <FiChevronDown
+                                                        className={`text-[17px] transition-transform duration-300 ${
+                                                            isMobilePortfolioExpanded ? 'rotate-180' : ''
+                                                        }`}
+                                                    />
+                                                </button>
+                                            </div>
+                                        ) : null}
+
                                         {activeSubcategory ? (
                                             <div className="mt-3 flex justify-center">
                                                 <button
@@ -234,7 +259,7 @@ function Product() {
                                                     className="inline-flex h-9 items-center gap-2 rounded-full border border-[#5790aa] bg-white px-4 text-[13px] font-semibold text-[#214f86] shadow-sm transition hover:bg-[#eef5f9] cursor-pointer"
                                                     aria-expanded={isSubcategoryPanelOpen}
                                                 >
-                                                    {isSubcategoryPanelOpen ? 'Hide Fine Chemcials Portfolio' : 'Expand Fine Chemcials Portfolio'}
+                                                    {isSubcategoryPanelOpen ? 'Hide Fine Chemicals Portfolio' : 'Expand Fine Chemicals Portfolio'}
                                                     <FiChevronDown
                                                         className={`text-[17px] transition-transform duration-300 ${
                                                             isSubcategoryPanelOpen ? 'rotate-180' : ''

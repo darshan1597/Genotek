@@ -14,6 +14,7 @@ const pdfDocument = (document, context) => ({
     title: document.title,
     url: `${serverUrl}/chromatographyPdfs/${document.name}`,
     context,
+    fileName: document.name,
 });
 
 function PdfButtons({ documents = [], context, onSelect }) {
@@ -46,7 +47,7 @@ function PdfButtons({ documents = [], context, onSelect }) {
 function ContentSections({ text, points = [], extraSections = [] }) {
     return (
         <>
-            {text ? <p className="mb-4 text-black/80">{text}</p> : null}
+            {text ? <p className="mb-4 whitespace-pre-line text-black/80">{text}</p> : null}
             {points.length ? (
                 <ul className="list-disc space-y-3 pl-6 sm:pl-12">
                     {points.map((point, index) => (
@@ -58,7 +59,7 @@ function ContentSections({ text, points = [], extraSections = [] }) {
             ) : null}
             {extraSections.map((section, index) => (
                 <div key={`${section.text}-${index}`}>
-                    {section.text ? <p className="mb-4 mt-4 text-black/80">{section.text}</p> : null}
+                    {section.text ? <p className="mb-4 mt-4 whitespace-pre-line text-black/80">{section.text}</p> : null}
                     {section.points?.length ? (
                         <ul className="list-disc space-y-3 pl-6 sm:pl-12">
                             {section.points.map((point, pointIndex) => (

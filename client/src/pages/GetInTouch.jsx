@@ -1,9 +1,45 @@
+import { useState } from 'react'
+import axios from 'axios'
 import { FiSend } from 'react-icons/fi'
 import Navabar from './components/Navabar'
 import Sidebar from './components/Sidebar'
 import Footer from './components/Footer'
 
 function GetInTouch() {
+    const [isSubmitting, setIsSubmitting] = useState(false)
+    const [status, setStatus] = useState(null)
+
+    const handleSubmit = async (event) => {
+        event.preventDefault()
+        setIsSubmitting(true)
+        setStatus(null)
+
+        const form = event.currentTarget
+        const formData = new FormData(form)
+
+        try {
+            const { data } = await axios.post(
+                `${import.meta.env.VITE_SERVER_URL || 'http://localhost:8000'}/api/contact`,
+                {
+                    name: formData.get('Name'),
+                    organization: formData.get('Organization'),
+                    email: formData.get('Email'),
+                    subject: formData.get('Subject'),
+                    message: formData.get('Message'),
+                }
+            )
+            setStatus({ type: 'success', message: data.message })
+            form.reset()
+        } catch (error) {
+            setStatus({
+                type: 'error',
+                message: error.response?.data?.message || 'Unable to send your enquiry. Please try again.',
+            })
+        } finally {
+            setIsSubmitting(false)
+        }
+    }
+
     return (
         <div className="min-h-screen bg-white text-slate-900">
             <Navabar />
@@ -28,13 +64,9 @@ function GetInTouch() {
                             </div>
 
                             <form
-                                action="https://formsubmit.co/info@genotekbio.com"
-                                method="POST"
+                                onSubmit={handleSubmit}
                                 className="grid gap-4 rounded-[8px] border border-[#d8e5ec] bg-white p-5 shadow-[0_16px_36px_rgba(33,79,134,0.08)] sm:p-6"
                             >
-                                <input type="hidden" name="_subject" value="New Genotek website enquiry" />
-                                <input type="hidden" name="_template" value="table" />
-                                <input type="hidden" name="_captcha" value="false" />
                                     <div className="grid gap-4 sm:grid-cols-2">
                                         <label className="block">
                                             <span className="mb-1.5 block text-[14px] font-medium text-[#214f86]">Name</span>
@@ -84,12 +116,24 @@ function GetInTouch() {
                                     />
                                 </label>
 
+                                {status ? (
+                                    <p
+                                        role="status"
+                                        className={`text-center text-[14px] font-semibold ${
+                                            status.type === 'success' ? 'text-[#0f6b35]' : 'text-red-600'
+                                        }`}
+                                    >
+                                        {status.message}
+                                    </p>
+                                ) : null}
+
                                 <button
                                     type="submit"
-                                    className="mx-auto mt-1 inline-flex h-[48px] w-fit items-center gap-2 rounded-[6px] bg-[#214f86] px-6 text-[15px] font-semibold text-white transition hover:bg-[#173d69] cursor-pointer"
+                                    disabled={isSubmitting}
+                                    className="mx-auto mt-1 inline-flex h-[48px] w-fit cursor-pointer items-center gap-2 rounded-[6px] bg-[#214f86] px-6 text-[15px] font-semibold text-white transition hover:bg-[#173d69] disabled:cursor-not-allowed disabled:opacity-60"
                                 >
                                     <FiSend className="text-[18px]" />
-                                    Submit
+                                    {isSubmitting ? 'Sending...' : 'Submit'}
                                 </button>
                             </form>
                         </div>

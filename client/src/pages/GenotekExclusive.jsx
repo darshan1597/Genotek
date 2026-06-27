@@ -184,7 +184,7 @@ function GenotekExclusive() {
                                                 ) : null}
                                             </div>
 
-                                            <p className="px-2 py-2 text-center font-bold text-[13px] leading-4 text-[#526b80] sm:px-4 sm:py-3 sm:text-[16px] sm:leading-5">
+                                            <p className="whitespace-pre-line px-2 py-2 text-center font-bold text-[13px] leading-4 text-[#526b80] sm:px-4 sm:py-3 sm:text-[16px] sm:leading-5">
                                                 {product.description || 'Description not available.'}
                                             </p>
 

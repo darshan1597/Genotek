@@ -3,8 +3,10 @@ import axios from 'axios'
 import Navabar from './components/Navabar'
 import { Link } from 'react-router-dom'
 import { serverUrl } from '../App'
+import { useAdminAuth } from './context/AdminAuthContext'
 import {
     FiEdit3,
+    FiFileText,
     FiImage,
     FiBox,
     FiGrid,
@@ -14,6 +16,7 @@ import {
     FiSliders,
     FiUserPlus,
     FiUsers,
+    FiUpload,
 } from 'react-icons/fi'
 
 const adminActions = [
@@ -74,10 +77,24 @@ const adminActions = [
         button: 'Add'
     },
     {
+        title: 'Bulk Upload Products',
+        description: 'Import product names, CAS numbers, and images from a DOCX document.',
+        icon: FiUpload,
+        path: '/bulk-upload-products',
+        button: 'Upload'
+    },
+    {
         title: 'View Products',
         description: 'Browse, verify, and manage products shown on the site.',
         icon: FiBox,
         path: '/products',
+        button: 'View'
+    },
+    {
+        title: 'PDF Download Forms',
+        description: 'Review user details submitted before downloading product documents.',
+        icon: FiFileText,
+        path: '/viewforms',
         button: 'View'
     },
     {
@@ -104,7 +121,11 @@ const adminActions = [
 ]
 
 function AdminPanel() {
+    const { admin } = useAdminAuth()
     const [categoryLimit, setCategoryLimit] = useState(null)
+    const visibleActions = admin?.role === 'superAdmin'
+        ? adminActions
+        : adminActions.filter(({ path }) => !['/add-admin', '/admins'].includes(path))
 
     useEffect(() => {
         axios.get(`${serverUrl}/api/categories/category-limit`, { withCredentials: true })
@@ -132,7 +153,7 @@ function AdminPanel() {
                     </div>
 
                     <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                        {adminActions.map(({ title, description, icon: Icon, path, button }) => {
+                        {visibleActions.map(({ title, description, icon: Icon, path, button }) => {
                             const isAddCategoryDisabled = title === 'Add Category' && categoryLimit?.canAdd === false
 
                             return (

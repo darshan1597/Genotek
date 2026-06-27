@@ -81,14 +81,50 @@ function Industry() {
         setTrackIds(visibleIds);
     };
 
-    const renderIndustryCard = (item, index) => (
+    const selectIndustry = (id, event) => {
+        if (active === id) {
+            setActive(null);
+            return;
+        }
+
+        const carousel = event.currentTarget.closest("[data-industry-track]");
+        const carouselRect = carousel?.getBoundingClientRect();
+        const itemRect = event.currentTarget.getBoundingClientRect();
+        const visibleCount = window.matchMedia("(min-width: 768px)").matches ? 5 : 2;
+        const relativeCenter = carouselRect
+            ? itemRect.left + (itemRect.width / 2) - carouselRect.left
+            : 0;
+        const selectedSlot = carouselRect
+            ? Math.max(0, Math.min(visibleCount - 1, Math.floor((relativeCenter / carouselRect.width) * visibleCount)))
+            : 0;
+        let startId = id;
+
+        for (let index = 0; index < selectedSlot; index += 1) {
+            startId = prevId(startId);
+        }
+
+        const nextVisibleIds = Array.from(
+            { length: 5 },
+            (_, index) => ((startId + index - 1) % industries.length) + 1
+        );
+
+        setVisibleIds(nextVisibleIds);
+        setTrackIds(nextVisibleIds);
+        setTrackOffset("0px");
+        setIsSliding(false);
+        setActive(id);
+    };
+
+    const renderIndustryCard = (item, index, isAutoScrolling = false) => (
         <button
             type="button"
             key={`${item.id}-${index}`}
-            onClick={() =>
-                setActive(active === item.id ? null : item.id)
+            onClick={(event) => selectIndustry(item.id, event)}
+            className={`group flex h-[175px] min-w-0 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-lg p-1 text-center transition focus:outline-none hover:opacity-80 sm:p-2 ${
+                isAutoScrolling
+                    ? "w-[calc((100cqw-0.25rem)/2)] md:w-[calc((100cqw-1rem)/5)]"
+                    : "basis-[calc((100%-var(--industry-gap))/2)] md:basis-[calc((100%-(var(--industry-gap)*4))/5)]"
             }
-            className={`group flex h-[175px] min-w-0 shrink-0 basis-[calc((100%-var(--industry-gap))/2)] cursor-pointer items-center justify-center overflow-hidden rounded-lg p-1 text-center transition focus:outline-none hover:opacity-80 sm:p-2 md:basis-[calc((100%-(var(--industry-gap)*4))/5)]
             ${active === item.id ? "opacity-100" : active ? "opacity-40" : "opacity-100"}`}
         >
             <img
@@ -145,20 +181,44 @@ function Industry() {
                         </div>
                         <div className="px-4 ">
                             {/* INDUSTRY CAROUSEL */}
+                            {active === null ? (
+                                <div className="industry-showcase mx-auto flex max-w-[1080px] items-center justify-center gap-3">
+                                    <span aria-hidden="true" className="h-[155px] w-[28px] shrink-0" />
+                                    <div data-industry-track className="max-w-[1020px] flex-1 overflow-hidden [container-type:inline-size]">
+                                        <div className="exclusive-product-track flex w-max">
+                                            {["duplicate", "primary"].map((group) => (
+                                                <div
+                                                    key={group}
+                                                    className="flex shrink-0 gap-1 pr-1"
+                                                    aria-hidden={group === "duplicate"}
+                                                >
+                                                    {industries.map((item, index) =>
+                                                        renderIndustryCard(item, `${group}-${index}`, true)
+                                                    )}
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                    <span aria-hidden="true" className="h-[155px] w-[28px] shrink-0" />
+                                </div>
+                            ) : (
                             <div className="mx-auto flex max-w-[1080px] items-center justify-center gap-3">
-                                <button
-                                    type="button"
-                                    onClick={slideLeft}
-                                    aria-label="Show previous industries"
-                                    className="flex h-[155px] w-[28px] shrink-0 cursor-pointer items-center justify-center rounded-[10px] border-2 border-[#2f5d8f] bg-white text-[#2f5d8f] transition hover:bg-[#eef7fb] focus:outline-none"
-                                >
-                                    <span
-                                        aria-hidden="true"
-                                        className="h-0 w-0 border-y-[8px] border-r-[11px] border-y-transparent border-r-[#2f5d8f]"
-                                    />
-                                </button>
+                                {active !== null ? (
+                                    <button
+                                        type="button"
+                                        onClick={slideLeft}
+                                        aria-label="Show previous industries"
+                                        className="flex h-[155px] w-[28px] shrink-0 cursor-pointer items-center justify-center rounded-[10px] border-2 border-[#2f5d8f] bg-white text-[#2f5d8f] transition hover:bg-[#eef7fb] focus:outline-none"
+                                    >
+                                        <span
+                                            aria-hidden="true"
+                                            className="h-0 w-0 border-y-[8px] border-r-[11px] border-y-transparent border-r-[#2f5d8f]"
+                                        />
+                                    </button>
+                                ) : null}
 
                                 <div
+                                    data-industry-track
                                     className="max-w-[1020px] flex-1 overflow-hidden [--industry-gap:0.25rem] [--industry-slide-distance:calc(50%_+_(var(--industry-gap)/2))] md:[--industry-slide-distance:calc(20%_+_(var(--industry-gap)*0.8))]"
                                 >
                                     <div
@@ -170,18 +230,21 @@ function Industry() {
                                     </div>
                                 </div>
 
-                                <button
-                                    type="button"
-                                    onClick={slideRight}
-                                    aria-label="Show next industries"
-                                    className="flex h-[155px] w-[28px] shrink-0 cursor-pointer items-center justify-center rounded-[10px] border-2 border-[#2f5d8f] bg-white text-[#2f5d8f] transition hover:bg-[#eef7fb] focus:outline-none"
-                                >
-                                    <span
-                                        aria-hidden="true"
-                                        className="h-0 w-0 border-y-[8px] border-l-[11px] border-y-transparent border-l-[#2f5d8f]"
-                                    />
-                                </button>
+                                {active !== null ? (
+                                    <button
+                                        type="button"
+                                        onClick={slideRight}
+                                        aria-label="Show next industries"
+                                        className="flex h-[155px] w-[28px] shrink-0 cursor-pointer items-center justify-center rounded-[10px] border-2 border-[#2f5d8f] bg-white text-[#2f5d8f] transition hover:bg-[#eef7fb] focus:outline-none"
+                                    >
+                                        <span
+                                            aria-hidden="true"
+                                            className="h-0 w-0 border-y-[8px] border-l-[11px] border-y-transparent border-l-[#2f5d8f]"
+                                        />
+                                    </button>
+                                ) : null}
                             </div>
+                            )}
                             {/* CONTENT */} 
                             <div className=" mt-12 mx-auto text-left">
                                 {/* 1 */}

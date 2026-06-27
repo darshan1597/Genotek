@@ -20,11 +20,13 @@ import ViewAdmins from './pages/ViewAdmins'
 import AddAboutTeam from './pages/AddAboutTeam'
 import EditAboutTeam from './pages/EditAboutTeam'
 import ManageChromatography from './pages/ManageChromatography'
+import BulkUploadProducts from './pages/BulkUploadProducts'
 
 export const serverUrl = import.meta.env.VITE_SERVER_URL
 
 function App() {
     const { admin, loading } = useAdminAuth()
+    const isSuperAdmin = admin?.role === 'superAdmin'
 
     if (loading) {
         return (
@@ -58,13 +60,14 @@ function App() {
             <Route path="/subcategories" element={admin ? <ViewSubcategories /> : <Navigate to="/login" replace /> } />
             <Route path="/edit-subcategory/:id" element={admin ? <EditSubcategory /> : <Navigate to="/login" replace /> } />
             <Route path="/add-product" element={admin ? <AddProduct /> : <Navigate to="/login" replace /> } />
+            <Route path="/bulk-upload-products" element={admin ? <BulkUploadProducts /> : <Navigate to="/login" replace /> } />
             <Route path="/products" element={admin ? <ViewProducts /> : <Navigate to="/login" replace /> } />
             <Route path="/edit-product/:id" element={admin ? <EditProducts /> : <Navigate to="/login" replace /> } />
             <Route path="/profile" element={admin ? <Profile /> : <Navigate to="/login" replace /> } />
             <Route path="/hero-banners" element={admin ? <HeroSection /> : <Navigate to="/login" replace /> } />
             <Route path="/viewforms" element={admin ? <ViewForms /> : <Navigate to="/login" replace /> } />
-            <Route path="/add-admin" element={admin ? <AddAdmin /> : <Navigate to="/login" replace /> } />
-            <Route path="/admins" element={admin ? <ViewAdmins /> : <Navigate to="/login" replace /> } />
+            <Route path="/add-admin" element={isSuperAdmin ? <AddAdmin /> : <Navigate to={admin ? "/admin-panel" : "/login"} replace /> } />
+            <Route path="/admins" element={isSuperAdmin ? <ViewAdmins /> : <Navigate to={admin ? "/admin-panel" : "/login"} replace /> } />
             <Route path="/add-about-team" element={admin ? <AddAboutTeam /> : <Navigate to="/login" replace /> } />
             <Route path="/edit-about-team" element={admin ? <EditAboutTeam /> : <Navigate to="/login" replace /> } />
             <Route path="/chromatography-pages" element={admin ? <ManageChromatography /> : <Navigate to="/login" replace /> } />

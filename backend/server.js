@@ -14,6 +14,7 @@ import heroSlidesRouter from "./routes/heroSlides.routes.js";
 import pdfDownloadFormsRouter from "./routes/pdfDownloadForms.routes.js";
 import teamMembersRouter from "./routes/teamMembers.routes.js";
 import chromatographyCategoryRouter from "./routes/chromatographyCategories.routes.js";
+import contactRouter from "./routes/contact.routes.js";
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -47,6 +48,8 @@ app.use("/api/pdf-download-forms", pdfDownloadFormsRouter)
 app.use("/api/team-members", teamMembersRouter)
 
 app.use("/api/chromatography-categories", chromatographyCategoryRouter)
+
+app.use("/api/contact", contactRouter)
 
 const startServer = async () => {
     app.listen(port, () => {

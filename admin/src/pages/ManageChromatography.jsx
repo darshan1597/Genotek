@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { FiArrowLeft, FiEdit3, FiFileText, FiImage, FiPlus, FiSave, FiTrash2, FiUpload } from 'react-icons/fi'
@@ -163,7 +163,24 @@ function PointsEditor({ label, points, onChange }) {
 }
 
 function ExtraSectionsEditor({ sections, onChange }) {
+    const newestSectionRef = useRef(null)
+    const shouldScrollRef = useRef(false)
     const updateSection = (index, nextSection) => onChange(sections.map((section, sectionIndex) => sectionIndex === index ? nextSection : section))
+
+    useEffect(() => {
+        if (!shouldScrollRef.current || !sections.length) return
+
+        shouldScrollRef.current = false
+        newestSectionRef.current?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'center',
+        })
+    }, [sections.length])
+
+    const addSection = () => {
+        shouldScrollRef.current = true
+        onChange([...sections, emptySection()])
+    }
 
     return (
         <div className="space-y-4">
@@ -171,14 +188,18 @@ function ExtraSectionsEditor({ sections, onChange }) {
                 <h3 className="text-[17px] font-semibold text-[#214f86]">Another paragraph with points?</h3>
                 <button
                     type="button"
-                    onClick={() => onChange([...sections, emptySection()])}
+                    onClick={addSection}
                     className="inline-flex items-center gap-2 bg-[#214f86] px-4 py-2 text-[13px] font-semibold text-white cursor-pointer"
                 >
                     <FiPlus /> Add paragraph
                 </button>
             </div>
             {sections.map((section, index) => (
-                <div key={index} className="space-y-4 border border-[#d7e5ee] bg-[#f8fbfd] p-4">
+                <div
+                    key={index}
+                    ref={index === sections.length - 1 ? newestSectionRef : null}
+                    className="space-y-4 border border-[#d7e5ee] bg-[#f8fbfd] p-4"
+                >
                     <div className="flex items-center justify-between">
                         <p className="font-semibold text-[#214f86]">Extra paragraph {index + 1}</p>
                         <button

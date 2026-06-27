@@ -34,8 +34,19 @@ function GatedPdfModal({ document, onClose }) {
         }
 
         try {
+            await axios.post(`${serverUrl}/api/pdf-download-forms/download`, {
+                productId: document.productId || undefined,
+                documentName: document.title,
+                documentContext: document.context || '',
+                documentFileName: document.fileName || '',
+            }, { withCredentials: true })
             await downloadPdf()
-        } catch {
+        } catch (downloadError) {
+            if (downloadError.response?.status === 401) {
+                window.document.cookie = 'genotekPdfFormSubmitted=; max-age=0; path=/; samesite=lax'
+                setShowForm(true)
+                return
+            }
             setError('Unable to download the PDF. Please try again.')
         }
     }
@@ -51,7 +62,8 @@ function GatedPdfModal({ document, onClose }) {
                 productId: document.productId || undefined,
                 documentName: document.title,
                 documentContext: document.context || '',
-            })
+                documentFileName: document.fileName || '',
+            }, { withCredentials: true })
             window.document.cookie = 'genotekPdfFormSubmitted=true; max-age=31536000; path=/; samesite=lax'
             setShowForm(false)
             await downloadPdf()
@@ -84,7 +96,7 @@ function GatedPdfModal({ document, onClose }) {
                             <h2 className="text-[24px] font-semibold text-[#214f86]">Download PDF</h2>
                             <p className="mt-2 text-[14px] text-[#526b80]">Please share your details to continue.</p>
                             <div className="mt-5 grid gap-4 sm:grid-cols-2">
-                                {[['name', 'Name', 'text'], ['organization', 'Organization', 'text'], ['email', 'Email', 'email'], ['number', 'Number', 'tel']].map(([field, label, type]) => (
+                                {[['name', 'Name', 'text'], ['organization', 'Organization', 'text'], ['email', 'Email', 'email'], ['number', 'Mobile', 'tel']].map(([field, label, type]) => (
                                     <label key={field} className="text-[13px] font-semibold text-[#526b80]">
                                         {label}
                                         <input required type={type} value={form[field]} onChange={(event) => setForm((current) => ({ ...current, [field]: event.target.value }))} className="mt-2 h-11 w-full border border-[#d7e5ee] px-3 text-[14px] outline-none focus:border-[#214f86]" />

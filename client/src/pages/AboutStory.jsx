@@ -36,11 +36,7 @@ useEffect(() => {
                                 />
 
                                <div
-                                    className={`absolute bottom-[130px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg transition-all duration-1000 sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[110px] md:px-15 ${
-                                    loaded
-                                        ? 'translate-x-0 opacity-100'
-                                        : '-translate-x-40 opacity-0'
-                                    }`}
+                                    className={`absolute bottom-[130px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg transition-all duration-1000 sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[110px] md:px-15`}
                                     style={{
                                         clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)',
                                     }}

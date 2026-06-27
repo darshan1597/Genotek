@@ -41,11 +41,11 @@ function Chromatogrphy() {
                             <img
                                 src={hero}
                                 alt="The Genotek Story"
-                                className="h-full w-full object-co"
+                                className="h-full w-full object-cover object-right md:object-fill md:object-center"
                             />
                     
                             <div
-                                className="absolute bottom-[90px] left-0 z-[4] bg-[#2b4f7c] px-3 py-2.5 text-white shadow-lg sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[60px] md:px-15" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)' }}
+                                className="absolute left-0 top-4 z-[4] bg-[#2b4f7c] px-6 py-2.5 text-white shadow-lg sm:px-8 sm:py-3 md:bottom-[60px] md:top-auto md:px-15" style={{ clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)' }}
                             >
                                 <p className="text-[20px] leading-[1.0] font-normal sm:text-[28px] md:text-[35px]">
                                     Chromatography
@@ -58,27 +58,21 @@ function Chromatogrphy() {
                     </div>
                         <div className="max-w-[1320px] px-1 pb-8 pt-5 text-[16px] leading-[1.6] text-black/80  sm:text-[18px] md:pb-10 md:text-[20px] md:leading-[1.45]">
                             <p className="mb-4 text-black/80 ">
-                                Chromatography plays a critical role in modern analytical science, enabling precise separation, identification, and purification of complex chemical mixtures across pharmaceuticals, biotechnology, chemical research, and quality control. Through collaboration with <span className="font-semibold">BISCHOFF Chromatography (Germany)</span>, a comprehensive portfolio of high-performance chromatography solutions is available, combining advanced stationary phase technologies with robust system design to deliver high selectivity, reproducibility, and efficiency. These solutions support applications ranging from impurity profiling and chiral analysis to biomolecule characterization and process-scale purification, ensuring reliable performance across analytical and preparative workflows.
+                                At Genotek Biochem, we believe chromatography is more than an analytical technique-it is a critical scientific tool that drives innovation across pharmaceutical development, biotechnology, chemical research, quality control, and process manufacturing.
                             </p>
-                            <ul className="list-disc space-y-3 pl-6 sm:pl-12">
-                                <li>
-                                    <span className="text-black/80">
-                                        <span className="font-semibold">Chiral Gas Chromatography (GC) Columns</span>: High-efficiency columns including Fast GC technologies for rapid and reliable analysis
-                                    </span>
-                                </li>
+                            <p className="mb-4 text-black/80 ">
+                                Through our strategic collaboration with <span className="font-semibold">BISCHOFF</span> Analysentechnik u. –gerate GmbH, Germany, we bring to the Indian scientific community, a comprehensive portfolio of high-performance chromatographic columns under <span className="font-semibold">ProntoSIL</span> brand, and specialized separation solutions supported by deep application expertise. Combining German engineering excellence with local scientific support, we help laboratories solve complex analytical challenges, accelerate method development, and improve purification efficiency.
+                            </p>
+                            <p className="mb-4 text-black/80 ">
+                                Whether the objective is impurity profiling, chiral resolution, biomolecule characterization, process development, or large-scale purification, Genotek Biochem provides the products, knowledge, and technical support required to achieve reliable and reproducible separations.
+                            </p>
 
-                                <li>
-                                    <span className="text-black/80">
-                                        <span className="font-semibold">Chiral HPLC Columns</span>: Advanced stationary phases for high-resolution analytical and preparative separations
-                                    </span>
-                                </li>
-
-                                <li>
-                                    <span className="text-black/80">
-                                        <span className="font-semibold">HPLC Pumps</span>: Precision flow systems ensuring consistent, reproducible chromatographic performance
-                                    </span>
-                                </li>
-                            </ul>
+                            <p className="font-semibold mb-4 text-[19px] sm:text-[21px] md:text-[23px]">
+                                Scientific Excellence in Chromatographic Separations
+                            </p>
+                            <p className="mb-4 text-black/80 ">
+                                Modern analytical laboratories require chromatographic systems capable of delivering high selectivity, exceptional reproducibility, and robust performance across diverse sample matrices at competitive costs. The BISCHOFF portfolio has been developed to address these challenges through carefully engineered stationary phases, stringent manufacturing controls, and batch-to-batch consistency.
+                            </p>
                         </div>
                         <div className="px-4">
                             <div className="mx-auto grid max-w-[820px] grid-cols-2 gap-1 md:grid-cols-4">

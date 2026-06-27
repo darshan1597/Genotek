@@ -52,8 +52,8 @@ function AboutTeam() {
                                     <article className="mt-8 grid items-start gap-6 md:mt-10 md:gap-8 lg:grid-cols-[minmax(0,1fr)_220px] lg:gap-5 lg:pr-[100px] xl:pr-[150px]">
                                         <div className="w-full text-left lg:ml-10">
                                             {/* Mobile Layout */}
-                                        <div className="flex items-start lg:hidden">
-                                            <div className="min-w-0 pr-3">
+                                        <div className="flex w-full items-start lg:hidden">
+                                            <div className="min-w-0 flex-1 pr-3">
                                                 <h2 className="text-[26px] font-semibold leading-tight text-[#5a92b6]">
                                                     {member.name}
                                                 </h2>
@@ -66,7 +66,7 @@ function AboutTeam() {
                                             <img
                                                 src={`${serverUrl}/teamImages/${member.image.name}`}
                                                 alt={member.name}
-                                                className="ml-8 h-28 w-24 shrink-0 object-cover"
+                                                className="ml-auto h-28 w-24 shrink-0 object-cover"
                                                 style={{
                                                     clipPath: 'polygon(0 0, 100% 0, 100% 75%, 85% 100%, 0 100%)'
                                                 }}

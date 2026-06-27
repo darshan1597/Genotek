@@ -20,11 +20,11 @@ import { Link } from "react-router-dom";
 
 
 const hplcDocuments = [
-    { title: "ProntoSIL Catalogue", url: hplcColumnsPdf1, context: "HPLC Columns" },
-    { title: "ProntoSIL Chiral", url: hplcColumnsPdf2, context: "HPLC Columns" },
-    { title: "ProntoSIL Prep", url: hplcColumnsPdf3, context: "HPLC Columns" },
-    { title: "ProntoSIL SFC", url: hplcColumnsPdf4, context: "HPLC Columns" },
-    { title: "ProntoGEL", url: hplcColumnsPdf5, context: "HPLC Columns" },
+    { title: "ProntoSIL Catalogue", url: hplcColumnsPdf1, context: "HPLC Columns", fileName: "ProntoSIL Catalogue.pdf" },
+    { title: "ProntoSIL Chiral", url: hplcColumnsPdf2, context: "HPLC Columns", fileName: "ProntoSIL Chiral.pdf" },
+    { title: "ProntoSIL Prep", url: hplcColumnsPdf3, context: "HPLC Columns", fileName: "ProntoSIL Prep.pdf" },
+    { title: "ProntoSIL SFC", url: hplcColumnsPdf4, context: "HPLC Columns", fileName: "ProntoSIL SFC.pdf" },
+    { title: "ProntoGEL", url: hplcColumnsPdf5, context: "HPLC Columns", fileName: "ProntoGEL.pdf" },
 ];
 
 function HplcColumns() {

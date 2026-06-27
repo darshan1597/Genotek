@@ -13,8 +13,8 @@ import img2 from "../assets/GcColumns/SuperFast_Gas_Chromatography.png";
 import { Link } from "react-router-dom";
 
 const gcDocuments = [
-    { title: "ProntoSIL GC", url: ProntoSIL_GC, context: "GC Columns" },
-    { title: "ProntoSIL SF-GC", url: ProntoSIL_SF_GC, context: "GC Columns" },
+    { title: "ProntoSIL GC", url: ProntoSIL_GC, context: "GC Columns", fileName: "ProntoSIL_GC.pdf" },
+    { title: "ProntoSIL SF-GC", url: ProntoSIL_SF_GC, context: "GC Columns", fileName: "ProntoSIL_SF_GC.pdf" },
 ];
 
 function ChiralGc() {

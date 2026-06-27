@@ -56,6 +56,10 @@
   animation-play-state: paused;
 }
 
+.industry-showcase:hover .exclusive-product-track {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .exclusive-product-track {
     animation-play-state: paused;

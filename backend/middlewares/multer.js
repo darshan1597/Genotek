@@ -138,6 +138,18 @@ export const uploadProductAssets = [
     processProductAssets,
 ];
 
+const docxUpload = multer({
+    storage: multer.memoryStorage(),
+    limits: { fileSize: 25 * 1024 * 1024 },
+    fileFilter: (req, file, cb) => {
+        const isDocx = path.extname(file.originalname).toLowerCase() === ".docx";
+        if (isDocx) cb(null, true);
+        else cb(new Error("Only .docx files are allowed"));
+    },
+});
+
+export const uploadProductDocx = docxUpload.single("document");
+
 export const uploadCategoryImages = createUploader("categoryImages");
 
 export const uploadSubcategoryImages = createUploader("subcategoryImages");

@@ -10,14 +10,17 @@
     "dev": "nodemon server.js"
   },
   "dependencies": {
+    "@xmldom/xmldom": "^0.9.10",
     "bcryptjs": "^3.0.3",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
+    "jszip": "^3.10.1",
     "mongoose": "^9.6.2",
     "multer": "^2.1.1",
+    "nodemailer": "^9.0.1",
     "nodemon": "^3.1.14",
     "sharp": "^0.34.5"
   }

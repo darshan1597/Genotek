@@ -10,8 +10,8 @@ import pump3351Pdf from "../assets/hpclPumps/Bischoff 3351 HPLC Dosing Pump.pdf"
 import { Link } from "react-router-dom";
 
 const pumpDocuments = [
-    { title: "Bischoff 3350 HPLC Dosing Pump", url: pump3350Pdf, context: "HPLC Pumps" },
-    { title: "Bischoff 3351 HPLC Dosing Pump", url: pump3351Pdf, context: "HPLC Pumps" },
+    { title: "Bischoff 3350 HPLC Dosing Pump", url: pump3350Pdf, context: "HPLC Pumps", fileName: "Bischoff 3350 HPLC Dosing Pump.pdf" },
+    { title: "Bischoff 3351 HPLC Dosing Pump", url: pump3351Pdf, context: "HPLC Pumps", fileName: "Bischoff 3351 HPLC Dosing Pump.pdf" },
 ];
 
 function HplcPumps() {

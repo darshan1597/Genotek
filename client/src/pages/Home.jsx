@@ -467,7 +467,7 @@ function GenotekExclusiveStrip() {
                         <div className="truncate bg-[#5790aa] px-2 py-2 text-center text-[11px] font-bold text-white sm:px-3 sm:text-[13px]">
                             CAS No: {product.cas}
                         </div>
-                        <p className="line-clamp-2 min-h-[40px] px-2 py-1 text-center text-[8px] font-semibold leading-[12px] text-[#526b80] sm:min-h-[48px] sm:px-3 sm:py-2 sm:text-[12px] sm:leading-4">
+                        <p className="line-clamp-2 min-h-[40px] whitespace-pre-line px-2 py-1 text-center text-[8px] font-semibold leading-[12px] text-[#526b80] sm:min-h-[48px] sm:px-3 sm:py-2 sm:text-[12px] sm:leading-4">
                         {product.description || 'Description not available.'}
 
                         </p>

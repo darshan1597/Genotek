@@ -54,9 +54,9 @@ function App() {
             <Route path="/products/chromatography-solutions" element={<Chromatogrphy />} />
             {/* Static chromatography routes kept for reference. */}
             <Route path="/gc-columns" element={<ChiralGc />} />
-            <Route path="/products/hplc-columns" element={<HplcColumns />} />
-            <Route path="/products/method-transfer-n-equivalency" element={<MethodTransferEq />} />
-            <Route path="/products/hplc-pumps" element={<HplcPumps />} />
+            <Route path="/hplc-columns" element={<HplcColumns />} />
+            <Route path="/method-transfer-n-equivalency" element={<MethodTransferEq />} />
+            <Route path="/hplc-pumps" element={<HplcPumps />} />
             <Route path="/products/:slug" element={<ChromatographyDetail />} />
             <Route path="/genotek-exclusive" element={<GenotekExclusive />} />
             <Route path="/industry" element={<Industry />} />
