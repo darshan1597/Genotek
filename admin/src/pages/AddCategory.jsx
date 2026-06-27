@@ -16,6 +16,7 @@ function AddCategory() {
     const [imagePreview, setImagePreview] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [toast, setToast] = useState(null);
+    const [categoryLimit, setCategoryLimit] = useState(null)
 
     useEffect(() => {
         if (!categoryImage) {
@@ -29,8 +30,18 @@ function AddCategory() {
         return () => URL.revokeObjectURL(previewUrl)
     }, [categoryImage])
 
+    useEffect(() => {
+        axios.get(`${serverUrl}/api/categories/category-limit`, { withCredentials: true })
+            .then(({ data }) => setCategoryLimit(data))
+            .catch((error) => console.error('Unable to load category count:', error))
+    }, [])
+
     const handleSubmit = async (e) => {
         e.preventDefault()
+        if (categoryLimit?.canAdd === false) {
+            setToast({ message: `Maximum of ${categoryLimit.limit} product categories reached`, type: "error" })
+            return
+        }
         setIsSubmitting(true)
         const categoryName = category.trim()
         const categoryDescription = description.trim()
@@ -75,6 +86,12 @@ function AddCategory() {
             setHasSubcategories(false)
             setIsStandalone(false)
             setCategoryImage(null)
+            setCategoryLimit((current) => current ? {
+                ...current,
+                count: current.count + 1,
+                remaining: Math.max(current.remaining - 1, 0),
+                canAdd: current.count + 1 < current.limit,
+            } : current)
 
             if (categoryImageInputRef.current) {
                 categoryImageInputRef.current.value = ''
@@ -151,6 +168,11 @@ function AddCategory() {
                         >
                             <div className="mb-7">
                                 <h2 className="text-[24px] font-semibold text-[#214f86]">Category Details</h2>
+                                {categoryLimit ? (
+                                    <p className="mt-2 text-[14px] font-semibold text-[#526b80]">
+                                        Product categories: {categoryLimit.count} / {categoryLimit.limit}
+                                    </p>
+                                ) : null}
                             </div>
 
                             <label className="mb-5 block">
@@ -255,11 +277,11 @@ function AddCategory() {
                             <div className="flex flex-col gap-3 sm:flex-row">
                                 <button
                                     type="submit"
-                                    disabled={isSubmitting}
+                                    disabled={isSubmitting || categoryLimit?.canAdd === false}
                                     className="inline-flex h-12 items-center justify-center gap-2 bg-[#214f86] px-5 text-[15px] font-semibold text-white transition-colors duration-200 hover:bg-[#173d68] disabled:cursor-not-allowed disabled:bg-[#8aa7be] cursor-pointer"
                                 >
                                     <FiCheckCircle className="text-[18px]" />
-                                    {isSubmitting ? 'Adding...' : 'Add Category'}
+                                    {isSubmitting ? 'Adding...' : categoryLimit?.canAdd === false ? 'Category limit reached' : 'Add Category'}
                                 </button>
                                 <button
                                     type="button"

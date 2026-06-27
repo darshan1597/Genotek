@@ -252,14 +252,19 @@ function DocumentsEditor({ documents, onChange, title }) {
 
 function ManageChromatography() {
     const [categories, setCategories] = useState([])
+    const [categoryLimit, setCategoryLimit] = useState(null)
     const [form, setForm] = useState(initialForm)
     const [editingId, setEditingId] = useState('')
     const [isSubmitting, setIsSubmitting] = useState(false)
     const [toast, setToast] = useState(null)
 
     const loadCategories = async () => {
-        const { data } = await axios.get(`${serverUrl}/api/chromatography-categories`)
-        setCategories(Array.isArray(data) ? data : [])
+        const [{ data: categoriesData }, { data: limitData }] = await Promise.all([
+            axios.get(`${serverUrl}/api/chromatography-categories`),
+            axios.get(`${serverUrl}/api/categories/category-limit`, { withCredentials: true }),
+        ])
+        setCategories(Array.isArray(categoriesData) ? categoriesData : [])
+        setCategoryLimit(limitData)
     }
 
     useEffect(() => {
@@ -273,6 +278,10 @@ function ManageChromatography() {
 
     const submitForm = async (event) => {
         event.preventDefault()
+        if (!editingId && categoryLimit?.canAdd === false) {
+            setToast({ message: `Maximum of ${categoryLimit.limit} product categories reached`, type: 'error' })
+            return
+        }
         setIsSubmitting(true)
 
         try {
@@ -341,6 +350,11 @@ function ManageChromatography() {
                             <h1 className="text-[32px] font-semibold leading-tight text-[#214f86] sm:text-[42px]">
                                 Manage Dynamic Pages
                             </h1>
+                            {categoryLimit ? (
+                                <p className="mt-3 text-[14px] font-semibold text-[#526b80]">
+                                    Product categories: {categoryLimit.count} / {categoryLimit.limit}
+                                </p>
+                            ) : null}
                         </div>
                         <Link to="/admin-panel" className="inline-flex h-11 items-center justify-center gap-2 border border-[#d7e5ee] bg-white px-4 text-[14px] font-semibold text-[#214f86] hover:bg-[#eef5f9]">
                             <FiArrowLeft /> Dashboard
@@ -491,10 +505,10 @@ function ManageChromatography() {
                             <div className="flex flex-wrap gap-3 border-t border-[#d8e6ef] pt-5">
                                 <button
                                     type="submit"
-                                    disabled={isSubmitting}
+                                    disabled={isSubmitting || (!editingId && categoryLimit?.canAdd === false)}
                                     className="inline-flex h-11 items-center justify-center gap-2 bg-[#214f86] px-5 text-[14px] font-semibold text-white disabled:opacity-60 cursor-pointer"
                                 >
-                                    <FiSave /> {isSubmitting ? 'Saving...' : editingId ? 'Update page' : 'Create page'}
+                                    <FiSave /> {isSubmitting ? 'Saving...' : editingId ? 'Update page' : categoryLimit?.canAdd === false ? 'Category limit reached' : 'Create page'}
                                 </button>
                                 <button
                                     type="button"

@@ -1,5 +1,8 @@
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 import Navabar from './components/Navabar'
 import { Link } from 'react-router-dom'
+import { serverUrl } from '../App'
 import {
     FiEdit3,
     FiImage,
@@ -101,6 +104,14 @@ const adminActions = [
 ]
 
 function AdminPanel() {
+    const [categoryLimit, setCategoryLimit] = useState(null)
+
+    useEffect(() => {
+        axios.get(`${serverUrl}/api/categories/category-limit`, { withCredentials: true })
+            .then(({ data }) => setCategoryLimit(data))
+            .catch((error) => console.error('Unable to load category count:', error))
+    }, [])
+
     return (
         <div className="min-h-screen bg-[#f8fbfd]">
             <Navabar />
@@ -113,13 +124,21 @@ function AdminPanel() {
                         <h1 className="text-[32px] font-semibold leading-tight text-[#214f86] sm:text-[42px]">
                             Manage Genotek content
                         </h1>
+                        {categoryLimit ? (
+                            <p className="mt-3 text-[14px] font-semibold text-[#526b80]">
+                                Product categories: {categoryLimit.count} / {categoryLimit.limit}
+                            </p>
+                        ) : null}
                     </div>
 
                     <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                        {adminActions.map(({ title, description, icon: Icon, path, button }) => (
+                        {adminActions.map(({ title, description, icon: Icon, path, button }) => {
+                            const isAddCategoryDisabled = title === 'Add Category' && categoryLimit?.canAdd === false
+
+                            return (
                             <article
                                 key={title}
-                                className="group border border-[#d7e5ee] bg-white p-6 shadow-[0_12px_28px_rgba(33,79,134,0.08)] transition-all duration-200 hover:-translate-y-1 hover:border-[#6d9eb7] hover:shadow-[0_18px_45px_rgba(33,79,134,0.13)]"
+                                className={`group border border-[#d7e5ee] bg-white p-6 shadow-[0_12px_28px_rgba(33,79,134,0.08)] transition-all duration-200 ${isAddCategoryDisabled ? 'opacity-65' : 'hover:-translate-y-1 hover:border-[#6d9eb7] hover:shadow-[0_18px_45px_rgba(33,79,134,0.13)]'}`}
                             >
                                 <div className="mb-6 flex h-12 w-12 items-center justify-center bg-[#214f86] text-white transition-colors duration-200 group-hover:bg-[#173d68]">
                                     <Icon className="text-[22px]" />
@@ -128,14 +147,21 @@ function AdminPanel() {
                                 <p className="mt-3 min-h-[72px] text-[15px] leading-6 text-[#526b80]">
                                     {description}
                                 </p>
-                                <Link
-                                    to={path}
-                                    className="mt-5 inline-flex h-11 items-center justify-center bg-[#214f86] px-5 text-[14px] font-semibold text-white transition-colors duration-200 hover:bg-[#173d68] cursor-pointer"
-                                >
-                                    {button}
-                                </Link>
+                                {isAddCategoryDisabled ? (
+                                    <span className="mt-5 inline-flex h-11 items-center justify-center bg-[#8aa7be] px-5 text-[14px] font-semibold text-white">
+                                        Limit reached
+                                    </span>
+                                ) : (
+                                    <Link
+                                        to={path}
+                                        className="mt-5 inline-flex h-11 items-center justify-center bg-[#214f86] px-5 text-[14px] font-semibold text-white transition-colors duration-200 hover:bg-[#173d68] cursor-pointer"
+                                    >
+                                        {button}
+                                    </Link>
+                                )}
                             </article>
-                        ))}
+                            )
+                        })}
                     </div>
                 </section>
             </main>

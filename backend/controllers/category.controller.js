@@ -3,6 +3,15 @@ import Product from "../models/product.model.js";
 import Subcategory from "../models/subcategory.model.js";
 import fs from "fs";
 import path from "path";
+import { getCategoryLimitStatus } from "../utils/categoryLimit.js";
+
+export const fetchCategoryLimitStatus = async (req, res) => {
+    try {
+        return res.status(200).json(await getCategoryLimitStatus());
+    } catch (error) {
+        return res.status(500).json({ message: `Error fetching category limit ${error}` });
+    }
+};
 
 export const addCategory = async (req, res) => {
     try {
@@ -10,6 +19,15 @@ export const addCategory = async (req, res) => {
         const hasSubcategories = req.body.hasSubcategories === true || req.body.hasSubcategories === "true";
         const isStandalone = req.body.isStandalone === true || req.body.isStandalone === "true";
         const uploadedImage = req.file;
+        const limitStatus = await getCategoryLimitStatus();
+
+        if (!limitStatus.canAdd) {
+            if (uploadedImage?.path && fs.existsSync(uploadedImage.path)) fs.unlinkSync(uploadedImage.path);
+            return res.status(409).json({
+                message: `Maximum of ${limitStatus.limit} product categories reached`,
+                ...limitStatus,
+            });
+        }
 
         if (!name) {
             return res.status(400).json({ message: "Category name is required" });

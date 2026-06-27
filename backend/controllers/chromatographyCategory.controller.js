@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import ChromatographyCategory from "../models/chromatographyCategory.model.js";
+import { getCategoryLimitStatus } from "../utils/categoryLimit.js";
 
 const imageFolder = "chromatographyImages";
 const pdfFolder = "chromatographyPdfs";
@@ -175,6 +176,17 @@ export const fetchChromatographyCategoryBySlug = async (req, res) => {
 
 export const addChromatographyCategory = async (req, res) => {
     try {
+        const limitStatus = await getCategoryLimitStatus();
+        if (!limitStatus.canAdd) {
+            (req.files || []).forEach((file) => {
+                if (file.path && fs.existsSync(file.path)) fs.unlinkSync(file.path);
+            });
+            return res.status(409).json({
+                message: `Maximum of ${limitStatus.limit} product categories reached`,
+                ...limitStatus,
+            });
+        }
+
         const payload = parsePayload(req);
         if (!payload) return res.status(400).json({ message: "Invalid category payload" });
 
