@@ -75,17 +75,17 @@ function Chromatogrphy() {
                             </p>
                         </div>
                         <div className="px-4">
-                            <div className="mx-auto grid max-w-[820px] grid-cols-2 gap-1 md:grid-cols-4">
+                            <div className="mx-auto grid max-w-[943px] grid-cols-2 gap-1 md:grid-cols-4">
                                 {isLoading ? (
                                     [1, 2, 3, 4].map((item) => (
-                                        <div key={item} className="h-[155px] animate-pulse rounded-lg bg-slate-100" />
+                                        <div key={item} className="h-[178.25px] animate-pulse rounded-lg bg-slate-100" />
                                     ))
                                 ) : categories.length ? (
                                     categories.map((category) => (
                                     <div key={category._id || category.slug} className="text-center">
                                         <Link
                                             to={`/products/${category.slug}`}
-                                            className="flex h-[155px] items-center justify-center overflow-hidden rounded-lg p-1 sm:p-2"
+                                            className="flex h-[178.25px] items-center justify-center overflow-hidden rounded-lg p-1 sm:p-2"
                                         >
                                             <img
                                                 src={`${serverUrl}/chromatographyImages/${category.categoryImage?.name}`}

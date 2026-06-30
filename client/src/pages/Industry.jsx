@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Navabar from "./components/Navabar";
 import Sidebar from "./components/Sidebar";
 import img1 from "../assets/industry/industry1.png";
@@ -20,16 +20,51 @@ const industries = [
 ];
 
 function Industry() {
+    const autoTrackRef = useRef(null);
+    const nudgeFrameRef = useRef(null);
     const [active, setActive] = useState(null);
     const [visibleIds, setVisibleIds] = useState([1, 2, 3, 4, 5]);
     const [trackIds, setTrackIds] = useState([1, 2, 3, 4, 5]);
     const [trackOffset, setTrackOffset] = useState("0px");
     const [isSliding, setIsSliding] = useState(false);
 
+    useEffect(() => () => {
+        if (nudgeFrameRef.current) cancelAnimationFrame(nudgeFrameRef.current);
+    }, []);
+
     const getIndustry = (id) => industries.find((item) => item.id === id);
     const nextId = (id) => (id % industries.length) + 1;
     const prevId = (id) => ((id + industries.length - 2) % industries.length) + 1;
     const slideDistance = "calc(-1 * var(--industry-slide-distance))";
+
+    const nudgeAutoTrack = (direction) => {
+        const animation = autoTrackRef.current?.getAnimations()?.[0];
+        if (!animation) return;
+
+        const duration = Number(animation.effect?.getComputedTiming()?.duration);
+        const currentTime = Number(animation.currentTime || 0);
+        if (!duration) return;
+
+        if (nudgeFrameRef.current) cancelAnimationFrame(nudgeFrameRef.current);
+
+        const movement = direction * duration / industries.length;
+        const transitionDuration = 450;
+        const startedAt = performance.now();
+
+        const moveFrame = (now) => {
+            const progress = Math.min((now - startedAt) / transitionDuration, 1);
+            const easedProgress = 1 - Math.pow(1 - progress, 3);
+            animation.currentTime = (currentTime + (movement * easedProgress) + duration) % duration;
+
+            if (progress < 1) {
+                nudgeFrameRef.current = requestAnimationFrame(moveFrame);
+            } else {
+                nudgeFrameRef.current = null;
+            }
+        };
+
+        nudgeFrameRef.current = requestAnimationFrame(moveFrame);
+    };
 
     const slideRight = () => {
         if (isSliding) return;
@@ -183,9 +218,19 @@ function Industry() {
                             {/* INDUSTRY CAROUSEL */}
                             {active === null ? (
                                 <div className="industry-showcase mx-auto flex max-w-[1080px] items-center justify-center gap-3">
-                                    <span aria-hidden="true" className="h-[155px] w-[28px] shrink-0" />
+                                    <button
+                                        type="button"
+                                        onClick={() => nudgeAutoTrack(-1)}
+                                        aria-label="Show previous industries"
+                                        className="flex h-[155px] w-[28px] shrink-0 cursor-pointer items-center justify-center rounded-[10px] border-2 border-[#2f5d8f] bg-white text-[#2f5d8f] transition hover:bg-[#eef7fb] focus:outline-none"
+                                    >
+                                        <span
+                                            aria-hidden="true"
+                                            className="h-0 w-0 border-y-[8px] border-r-[11px] border-y-transparent border-r-[#2f5d8f]"
+                                        />
+                                    </button>
                                     <div data-industry-track className="max-w-[1020px] flex-1 overflow-hidden [container-type:inline-size]">
-                                        <div className="exclusive-product-track flex w-max">
+                                        <div ref={autoTrackRef} className="exclusive-product-track flex w-max">
                                             {["duplicate", "primary"].map((group) => (
                                                 <div
                                                     key={group}
@@ -199,7 +244,17 @@ function Industry() {
                                             ))}
                                         </div>
                                     </div>
-                                    <span aria-hidden="true" className="h-[155px] w-[28px] shrink-0" />
+                                    <button
+                                        type="button"
+                                        onClick={() => nudgeAutoTrack(1)}
+                                        aria-label="Show next industries"
+                                        className="flex h-[155px] w-[28px] shrink-0 cursor-pointer items-center justify-center rounded-[10px] border-2 border-[#2f5d8f] bg-white text-[#2f5d8f] transition hover:bg-[#eef7fb] focus:outline-none"
+                                    >
+                                        <span
+                                            aria-hidden="true"
+                                            className="h-0 w-0 border-y-[8px] border-l-[11px] border-y-transparent border-l-[#2f5d8f]"
+                                        />
+                                    </button>
                                 </div>
                             ) : (
                             <div className="mx-auto flex max-w-[1080px] items-center justify-center gap-3">

@@ -1,10 +1,23 @@
 import { Link, NavLink } from 'react-router-dom'
 import logo from '../../assets/logo.jpeg'
-import { navItems } from './navConfig'
 import { FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { FaLinkedin } from "react-icons/fa";
+
+const quickLinkColumns = [
+    [
+        { label: 'Home', href: '/' },
+        { label: 'Chemicals', href: '/products/chemical' },
+        { label: 'Chromatography Solutions', href: '/products/chromatography-solutions' },
+        { label: 'Genotek Exclusives', href: '/genotek-exclusive' },
+    ],
+    [
+        { label: 'Services', href: '/services' },
+        { label: 'Industry', href: '/industry' },
+        { label: 'Get in Touch', href: '/contact' },
+    ],
+]
 
 function Footer({ insetForSidebar = true }) {
     const layoutClass = insetForSidebar
@@ -47,7 +60,7 @@ function Footer({ insetForSidebar = true }) {
 
     return (
         <footer className={`clear-both mt-10 w-full border-t border-[#d6e4ed] bg-white text-[#42556c] ${layoutClass}`}>
-            <div className="grid gap-8 px-4 py-8 md:px-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(240px,0.55fr)] lg:px-6 xl:px-10">
+            <div className="grid gap-8 px-4 py-8 md:px-8 lg:grid-cols-[minmax(0,1fr)_max-content] lg:gap-10 lg:px-6 xl:px-10">
                 <div className="min-w-0">
                     <Link to="/" className="inline-flex">
                         <img
@@ -64,7 +77,7 @@ function Footer({ insetForSidebar = true }) {
                         {locations.map((location) => (
                             <div
                                 key={location.title}
-                                className="grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(260px,360px)] md:items-start md:gap-5"
+                                className="grid gap-3 md:grid-cols-[minmax(0,1fr)_minmax(280px,340px)] md:items-start md:gap-6"
                             >
                                 <div>
                                     <p className="flex font-bold text-[#175C84]">
@@ -84,7 +97,7 @@ function Footer({ insetForSidebar = true }) {
                                     )}
                                 </div>
 
-                                <div className="overflow-hidden rounded-[8px] border border-[#bdd4e2]">
+                                <div className="w-full overflow-hidden rounded-[8px] border border-[#bdd4e2] md:justify-self-end">
                                     <iframe
                                         title={location.mapTitle}
                                         src={location.mapSrc}
@@ -98,29 +111,29 @@ function Footer({ insetForSidebar = true }) {
                     </div>
                 </div>
 
-                <div className="min-w-0">
+                <div className="min-w-0 lg:justify-self-end lg:pr-2">
                     <h2 className="text-[16px] font-semibold text-[#214f86] lg:mt-16">Quick Links</h2>
-                    <div className="mt-4 flex flex-col sm:flex-row sm:items-start">
-                        <div className="grid grid-cols-2 gap-x-6 gap-y-2 text-[15px] sm:min-w-[210px]">
-                            {navItems.filter((item) => item.label !== 'About us').map((item) => (
-                                item.href ? (
+                    <div className="mt-4 flex flex-col items-start gap-5">
+                        <div className="grid grid-cols-[max-content_max-content] gap-x-6 text-[15px]">
+                            {quickLinkColumns.map((column, columnIndex) => (
+                                <div key={columnIndex} className="flex flex-col gap-2">
+                                    {column.map((item) => (
                                     <NavLink
                                         key={item.label}
                                         to={item.href}
-                                        className="transition-colors duration-200 hover:text-[#214f86]"
+                                        className="whitespace-nowrap transition-colors duration-200 hover:text-[#214f86]"
                                     >
                                         {item.label}
                                     </NavLink>
-                                ) : (
-                                    <span key={item.label}>{item.label}</span>
-                                )
+                                    ))}
+                                </div>
                             ))}
                         </div>
                         <a
                             href="https://www.linkedin.com/company/genotek-biochem/"
                             target="_blank"
                             rel="noreferrer"
-                            className="flex items-center gap-2 text-[16px] font-semibold text-[#214f86] transition-colors duration-200 hover:text-[#6a9ab1]"
+                            className="flex shrink-0 items-center gap-2 whitespace-nowrap text-[16px] font-semibold text-[#214f86] transition-colors duration-200 hover:text-[#6a9ab1]"
                         >
                             <FaLinkedin className="text-[26px] text-[#6a9ab1]" />
                             <span>Follow us</span>

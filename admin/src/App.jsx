@@ -1,5 +1,5 @@
-import React from 'react'
-import { Navigate, Route, Routes } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import Login from './pages/Login'
 import AdminPanel from './pages/AdminPanel'
 import { useAdminAuth } from './pages/context/AdminAuthContext'
@@ -23,6 +23,16 @@ import ManageChromatography from './pages/ManageChromatography'
 import BulkUploadProducts from './pages/BulkUploadProducts'
 
 export const serverUrl = import.meta.env.VITE_SERVER_URL
+
+function ScrollToTop() {
+    const { pathname } = useLocation()
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [pathname])
+
+    return null
+}
 
 function App() {
     const { admin, loading } = useAdminAuth()
@@ -49,6 +59,8 @@ function App() {
     }
 
     return (
+        <>
+        <ScrollToTop />
         <Routes>
             <Route path="/login" element={!admin ? <Login /> : <Navigate to="/" replace />} />
             <Route path="/" element={admin ? <AdminPanel /> : <Navigate to="/login" replace /> } />
@@ -72,6 +84,7 @@ function App() {
             <Route path="/edit-about-team" element={admin ? <EditAboutTeam /> : <Navigate to="/login" replace /> } />
             <Route path="/chromatography-pages" element={admin ? <ManageChromatography /> : <Navigate to="/login" replace /> } />
         </Routes>
+        </>
     )
 }
 

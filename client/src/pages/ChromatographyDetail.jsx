@@ -75,6 +75,54 @@ function ContentSections({ text, points = [], extraSections = [] }) {
     );
 }
 
+function SubcategoryButton({ subcategory, index, active, onToggle }) {
+    return (
+        <div className="text-center">
+            <button
+                type="button"
+                onClick={() => onToggle(index)}
+                className="flex h-[165px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg p-1 sm:p-2 md:h-[185px]"
+            >
+                <img
+                    src={imageUrl("chromatographyImages", subcategory.image)}
+                    alt={subcategory.heading}
+                    className={`h-full w-full object-contain transition duration-300 hover:opacity-80 ${
+                        active === index
+                            ? "scale-[1.04] opacity-100"
+                            : active !== null
+                                ? "scale-100 opacity-40 hover:opacity-75"
+                                : "scale-100 opacity-100"
+                    }`}
+                />
+            </button>
+        </div>
+    );
+}
+
+function SubcategoryDetail({ subcategory, onSelectPdf, className = "" }) {
+    if (!subcategory) return null;
+
+    return (
+        <div className={className}>
+            <h2 className="text-[28px] font-semibold text-[#5a92b6]">
+                {subcategory.heading}
+            </h2>
+            <div className="mt-3 text-[18px] text-[#42556c]">
+                <ContentSections
+                    text={subcategory.text}
+                    points={subcategory.points}
+                    extraSections={subcategory.extraSections}
+                />
+            </div>
+            <PdfButtons
+                documents={subcategory.documents}
+                context={subcategory.heading}
+                onSelect={onSelectPdf}
+            />
+        </div>
+    );
+}
+
 function ChromatographyDetail() {
     const { slug } = useParams();
     const [category, setCategory] = useState(null);
@@ -167,45 +215,59 @@ function ChromatographyDetail() {
 
                                 {category.hasSubcategories ? (
                                     <div className="px-4">
-                                        <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-1 md:grid-cols-5">
+                                        <div className="mx-auto max-w-[1100px] md:hidden">
+                                            {Array.from({ length: Math.ceil(category.subcategories.length / 2) }, (_, rowIndex) => {
+                                                const rowStart = rowIndex * 2;
+                                                const rowSubcategories = category.subcategories.slice(rowStart, rowStart + 2);
+                                                const activeIsInRow = active !== null && active >= rowStart && active < rowStart + 2;
+
+                                                return (
+                                                    <div key={rowStart}>
+                                                        <div className="grid grid-cols-2 gap-1">
+                                                            {rowSubcategories.map((subcategory, itemIndex) => {
+                                                                const index = rowStart + itemIndex;
+                                                                return (
+                                                                    <SubcategoryButton
+                                                                        key={subcategory._id || subcategory.heading}
+                                                                        subcategory={subcategory}
+                                                                        index={index}
+                                                                        active={active}
+                                                                        onToggle={(selectedIndex) => setActive(active === selectedIndex ? null : selectedIndex)}
+                                                                    />
+                                                                );
+                                                            })}
+                                                        </div>
+                                                        {activeIsInRow ? (
+                                                            <SubcategoryDetail
+                                                                subcategory={category.subcategories[active]}
+                                                                onSelectPdf={setSelectedPdf}
+                                                                className="mb-8 mt-6 text-left"
+                                                            />
+                                                        ) : null}
+                                                    </div>
+                                                );
+                                            })}
+                                        </div>
+
+                                        <div className="mx-auto hidden max-w-[1100px] grid-cols-5 gap-1 md:grid">
                                             {category.subcategories.map((subcategory, index) => (
-                                                <div key={subcategory._id || subcategory.heading} className="text-center">
-                                                    <button
-                                                        type="button"
-                                                        onClick={() => setActive(active === index ? null : index)}
-                                                        className="flex h-[165px] w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg p-1 sm:p-2 md:h-[185px]"
-                                                    >
-                                                        <img
-                                                            src={imageUrl("chromatographyImages", subcategory.image)}
-                                                            alt={subcategory.heading}
-                                                            className={`h-full w-full object-contain transition duration-300 hover:opacity-80 ${
-                                                                active === index ? "scale-[1.04] opacity-100" : active !== null ? "scale-100 opacity-40 hover:opacity-75" : "scale-100 opacity-100"
-                                                            }`}
-                                                        />
-                                                    </button>
-                                                </div>
+                                                <SubcategoryButton
+                                                    key={subcategory._id || subcategory.heading}
+                                                    subcategory={subcategory}
+                                                    index={index}
+                                                    active={active}
+                                                    onToggle={(selectedIndex) => setActive(active === selectedIndex ? null : selectedIndex)}
+                                                />
                                             ))}
                                         </div>
 
-                                        <div className="mx-auto mt-12 text-left">
+                                        <div className="mx-auto mt-12 hidden text-left md:block">
                                             {active !== null && category.subcategories[active] ? (
-                                                <div className="ml-0 md:ml-10">
-                                                    <h2 className="text-[28px] font-semibold text-[#5a92b6]">
-                                                        {category.subcategories[active].heading}
-                                                    </h2>
-                                                    <div className="mt-3 text-[18px] text-[#42556c]">
-                                                        <ContentSections
-                                                            text={category.subcategories[active].text}
-                                                            points={category.subcategories[active].points}
-                                                            extraSections={category.subcategories[active].extraSections}
-                                                        />
-                                                    </div>
-                                                    <PdfButtons
-                                                        documents={category.subcategories[active].documents}
-                                                        context={category.subcategories[active].heading}
-                                                        onSelect={setSelectedPdf}
-                                                    />
-                                                </div>
+                                                <SubcategoryDetail
+                                                    subcategory={category.subcategories[active]}
+                                                    onSelectPdf={setSelectedPdf}
+                                                    className="ml-10"
+                                                />
                                             ) : null}
                                         </div>
                                     </div>

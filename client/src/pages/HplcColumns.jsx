@@ -114,7 +114,7 @@ function HplcColumns() {
                         
                         <div className="px-4">
                             {/* 5 IMAGES */}
-                            <div className="mx-auto grid max-w-[1100px] grid-cols-2 gap-1 md:grid-cols-5">
+                            <div className="mx-auto flex max-w-[1100px] flex-wrap gap-1 md:grid md:grid-cols-5">
                                 {[
                                     { id: 1, title: "Analytical HPLC & UHPLC Solutions", img: img1 },
                                     { id: 2, title: "Chiral Chromatography Solutions", img: img2 },
@@ -124,7 +124,11 @@ function HplcColumns() {
 
                                     
                                 ].map((item) => (
-                                    <div key={item.id} className="text-center">
+                                    <div
+                                        key={item.id}
+                                        className="basis-[calc(50%-0.125rem)] text-center [order:var(--mobile-order)] md:order-none md:basis-auto"
+                                        style={{ '--mobile-order': item.id * 2 }}
+                                    >
                                         <div
                                             onClick={() =>
                                                 setActive(active === item.id ? null : item.id)
@@ -139,9 +143,11 @@ function HplcColumns() {
                                         </div>
                                     </div>
                                 ))}
-                            </div>
                             {/* CONTENT */} 
-                            <div className=" mt-12 mx-auto text-left">
+                            <div
+                                className="mx-auto mb-8 mt-6 basis-full text-left [order:var(--mobile-order)] md:order-none md:col-span-5 md:mb-0 md:mt-12"
+                                style={{ '--mobile-order': active ? Math.ceil(active / 2) * 4 + 1 : 999 }}
+                            >
                                 {/* 1 */}
                                 {active === 1 && (
                                     <div className="ml-0 md:ml-10">
@@ -338,6 +344,7 @@ function HplcColumns() {
                                     </div>
                                 )}
                                 
+                            </div>
                             </div>
                         </div>
 

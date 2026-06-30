@@ -41,12 +41,12 @@
 }
 
 .exclusive-product-track {
-  animation: exclusiveProductsLeftToRight 40s linear infinite;
+  animation: exclusiveProductsLeftToRight 100s linear infinite;
   will-change: transform;
 }
 
 .exclusive-logo-spin {
-  animation: exclusiveLogoClockwise 40s linear infinite;
+  animation: exclusiveLogoClockwise 100s linear infinite;
   transform-origin: center;
   will-change: transform;
 }

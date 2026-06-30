@@ -5,9 +5,12 @@ import { FiChevronDown } from 'react-icons/fi'
 import { aboutSubmenuItems, navItems, productSubmenuItems } from './navConfig'
 
 const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:8000'
+let sidebarMenusSuppressed = false
+let sidebarSuppressionPoint = null
 
 function Sidebar() {
     const location = useLocation()
+    const [menusSuppressed, setMenusSuppressed] = useState(sidebarMenusSuppressed)
     const [chemicalCategories, setChemicalCategories] = useState([])
     const [chromatographyCategories, setChromatographyCategories] = useState([])
     const isAboutRoute = location.pathname.startsWith('/about')
@@ -74,8 +77,36 @@ function Sidebar() {
             : item
     )
 
+    const closeSidebarMenus = (event) => {
+        sidebarMenusSuppressed = true
+        sidebarSuppressionPoint = {
+            x: event.clientX,
+            y: event.clientY,
+        }
+        setMenusSuppressed(true)
+        document.activeElement?.blur()
+    }
+
+    const resetSidebarMenus = () => {
+        sidebarMenusSuppressed = false
+        sidebarSuppressionPoint = null
+        setMenusSuppressed(false)
+    }
+
+    const handleSidebarPointerMove = (event) => {
+        if (!menusSuppressed) return
+
+        const point = sidebarSuppressionPoint
+        if (!point || Math.hypot(event.clientX - point.x, event.clientY - point.y) > 12) {
+            resetSidebarMenus()
+        }
+    }
+
     return (
-        <aside className="relative z-[80] hidden shrink-0 self-start min-[1117px]:sticky min-[1117px]:top-[18px] min-[1117px]:ml-6 min-[1117px]:block min-[1117px]:h-[calc(100vh-65px)] min-[1117px]:w-[250px] min-[1117px]:overflow-visible min-[1117px]:pr-[12px] xl:ml-7">
+        <aside
+            onPointerMove={handleSidebarPointerMove}
+            className="relative z-[80] hidden shrink-0 self-start min-[1117px]:sticky min-[1117px]:top-[18px] min-[1117px]:ml-6 min-[1117px]:block min-[1117px]:h-[calc(100vh-65px)] min-[1117px]:w-[250px] min-[1117px]:overflow-visible min-[1117px]:pr-[12px] xl:ml-7"
+        >
             <nav className="flex flex-col gap-[9px] min-[1117px]:h-full min-[1117px]:overflow-visible">
                 {navItems.map((item) => (
                     <div key={item.label} className="group relative z-[80]">
@@ -122,6 +153,7 @@ function Sidebar() {
                         ) : (
                             <NavLink
                                 to={item.href}
+                                onClick={closeSidebarMenus}
                                 className={({ isActive }) =>
                                 `relative flex h-[58px] w-full cursor-pointer items-center text-right text-[20px] font-normal text-white transition-colors duration-300 ${
                                     isActive ? 'bg-[#2B5B91]' : 'bg-[#548BA6] hover:bg-[#5d90ae]'
@@ -138,13 +170,17 @@ function Sidebar() {
                         )}
 
                         {item.label === 'About us' && (
-                            <div className="invisible absolute left-full top-0 z-[1000] ml-[12px] w-max min-w-[230px] translate-x-[-8px] opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-x-0 group-focus-within:opacity-100">
+                            <div
+                                style={menusSuppressed ? { visibility: 'hidden', opacity: 0, pointerEvents: 'none' } : undefined}
+                                className="invisible absolute left-full top-0 z-[1000] ml-[12px] w-max min-w-[230px] translate-x-[-8px] opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-x-0 group-focus-within:opacity-100"
+                            >
                                 <div className="relative z-[1000] border-l-[5px] border-white bg-white px-[10px] py-[10px] shadow-[0_16px_32px_rgba(33,79,134,0.22)]">
                                     <div className="flex flex-col gap-[8px]">
                                         {aboutSubmenuItems.map((submenuItem) => (
                                             <NavLink
                                                 key={submenuItem.href}
                                                 to={submenuItem.href}
+                                                onClick={closeSidebarMenus}
                                                 className={({ isActive }) =>
                                                     `group/submenu relative z-[1000] block overflow-hidden py-3 pl-4 pr-1 text-[15px] font-medium transition-colors duration-200 ${
                                                         isActive
@@ -168,7 +204,10 @@ function Sidebar() {
                         )}
 
                         {item.label === 'Products' && (
-                            <div className="invisible absolute left-full top-0 z-[1000] ml-[12px] w-[285px] translate-x-[-8px] opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-x-0 group-focus-within:opacity-100">
+                            <div
+                                style={menusSuppressed ? { visibility: 'hidden', opacity: 0, pointerEvents: 'none' } : undefined}
+                                className="invisible absolute left-full top-0 z-[1000] ml-[12px] w-[285px] translate-x-[-8px] opacity-0 transition-all duration-200 group-hover:visible group-hover:translate-x-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-x-0 group-focus-within:opacity-100"
+                            >
                                 <div className="relative z-[1000] border-l-[5px] border-white bg-white px-[10px] py-[10px] shadow-[0_16px_32px_rgba(33,79,134,0.22)]">
                                     <div className="flex flex-col gap-[8px]">
 
@@ -179,6 +218,7 @@ function Sidebar() {
                                             >
                                                 <NavLink
                                                     to={submenuItem.href}
+                                                    onClick={closeSidebarMenus}
                                                     className={({ isActive }) => {
                                                         const isSubmenuActive =
                                                             isActive ||
@@ -212,13 +252,17 @@ function Sidebar() {
                                             </NavLink>
 
                                         {submenuItem.children?.length > 0 && (
-                                            <div className="invisible absolute left-full top-0 z-[1000] ml-[12px] w-max min-w-[230px] translate-x-[-8px] opacity-0 transition-all duration-200 group-hover/chemical:visible group-hover/chemical:translate-x-0 group-hover/chemical:opacity-100 group-focus-within/chemical:visible group-focus-within/chemical:translate-x-0 group-focus-within/chemical:opacity-100">
+                                            <div
+                                                style={menusSuppressed ? { visibility: 'hidden', opacity: 0, pointerEvents: 'none' } : undefined}
+                                                className="invisible absolute left-full top-0 z-[1000] ml-[12px] w-max min-w-[230px] translate-x-[-8px] opacity-0 transition-all duration-200 group-hover/chemical:visible group-hover/chemical:translate-x-0 group-hover/chemical:opacity-100 group-focus-within/chemical:visible group-focus-within/chemical:translate-x-0 group-focus-within/chemical:opacity-100"
+                                            >
                                                 <div className="relative z-[1000] border-l-[5px] border-white bg-white px-[10px] py-[10px] shadow-[0_16px_32px_rgba(33,79,134,0.22)]">
                                                     <div className="flex flex-col gap-[8px]">
                                                         {submenuItem.children.map((child) => (
                                                             <NavLink
                                                                 key={child.href}
                                                                 to={child.href}
+                                                                onClick={closeSidebarMenus}
                                                         className={({ isActive }) =>
                                                         `group/submenu relative z-[1000] block overflow-hidden py-3 pl-4 pr-2 text-[15px] font-medium transition-colors duration-200 ${
                                                         isActive

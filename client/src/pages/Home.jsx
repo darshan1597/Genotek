@@ -553,19 +553,21 @@ function Home() {
     const slideCount = heroSlides.length
     const isSpecialSlide = currentSlide.variant === 'special'
     const braceDistance = isMobile ? 350 : 830
-    const leftBraceDistance = isMobile ? 525 : braceDistance + 100
-    const rightBraceDistance = isMobile ? 1265 : braceDistance + 830
+    const leftBraceDistance = isMobile ? 535 : braceDistance + 100
+    const rightBraceDistance = isMobile ? 1285 : braceDistance + 830
     const mobileRightBraceDelay = specialSubtitleDelay / 1000 + specialSubtitleStepDelay / 1000 * 2 + 0.65
     const firstSlideLeftBraceVariants = {
         enter: {
             x: -leftBraceDistance,
-            y: isMobile ? -70 : -100,
+            y: isMobile ? -90 : -100,
+            rotate: isMobile ? 25 : 0,
             opacity: 0,
             clipPath: 'inset(100% 0 0 0)',
         },
         center: {
             x: -leftBraceDistance,
-            y: isMobile ? -70 : -100,
+            y: isMobile ? -90 : -100,
+            rotate: isMobile ? 25 : 0,
             opacity: 1,
             clipPath: 'inset(0% 0 0 0)',
             transition: {
@@ -585,13 +587,15 @@ function Home() {
     const firstSlideRightBraceVariants = {
         enter: {
             x: rightBraceDistance,
-            y: isMobile ? 5 : 50,
+            y: isMobile ? 15 : 50,
+            rotate: isMobile ? 15 : 0,
             opacity: 0,
             clipPath: 'polygon(0 0, 100% 0, 100% 0, 0 0)',
         },
         center: {
             x: rightBraceDistance,
-            y: isMobile ? 5 : 50,
+            y: isMobile ? 15 : 50,
+            rotate: isMobile ? 15 : 0,
             opacity: 1,
             clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
             transition: {
@@ -655,17 +659,17 @@ useEffect(() => {
         : "M -560 160 L 1257 160 C 1307 195 1342 246 1357 306 C 1363 379 1337 422 1295 452 L -514 463 C -577 402 -592 377 -610 319 C -621 254 -610 209 -576 160 Z"
         
         const leftBrace = isMobile
-        ?"M 450 134 C 375 193 398 283 476 312 C 490 318 478 319 468 317 C 384 278 370 195 442 130 C 452 125 457 130 453 135 Z"
+        ?"M 446 150 C 385 198 404 272 468 296 C 479 301 469 302 461 300 C 392 268 381 200 440 147 C 448 143 452 147 449 151 Z"
         :"M 450 166 C 347 274 379 445 473 500 C 486 509 476 511 469 508 C 361 430 342 278 442 161 C 450 154 454 157 453 161 Z"
         const rightBrace = isMobile
-        ?"M -450 134 C -375 193 -398 283 -476 312 C -490 318 -478 319 -468 317 C -384 278 -370 195 -442 130 C -452 125 -457 130 -453 135 Z"
+        ?"M -446 150 C -385 198 -404 272 -468 296 C -479 301 -469 302 -461 300 C -392 268 -381 200 -440 147 C -448 143 -452 147 -449 151 Z"
         :"M -450 166 C -347 274 -379 445 -473 500 C -486 509 -476 511 -469 508 C -361 430 -342 278 -442 161 C -450 154 -454 157 -453 161 Z"
 
         const whiteLeftBrace = isMobile
-        ?"M 450 134 C 375 193 398 283 476 312 C 490 318 478 319 468 317 C 384 278 370 195 442 130 C 452 125 457 130 453 135 Z"
+        ?"M 446 150 C 385 198 404 272 468 296 C 479 301 469 302 461 300 C 392 268 381 200 440 147 C 448 143 452 147 449 151 Z"
         :"M 450 166 C 347 274 379 445 473 500 C 486 509 476 511 469 508 C 361 430 342 278 442 161 C 450 154 454 157 453 161 Z"
         const whiteRightBrace = isMobile
-        ?"M -450 134 C -375 193 -398 283 -476 312 C -490 318 -478 319 -468 317 C -384 278 -370 195 -442 130 C -452 125 -457 130 -453 135 Z"
+        ?"M -446 150 C -385 198 -404 272 -468 296 C -479 301 -469 302 -461 300 C -392 268 -381 200 -440 147 C -448 143 -452 147 -449 151 Z"
         :"M -450 166 C -347 274 -379 445 -473 500 C -486 509 -476 511 -469 508 C -361 430 -342 278 -442 161 C -450 154 -454 157 -453 161 Z"
         // const leftBrace = isMobile
         // ?"M 450 166 C 347 274 379 445 473 500 C 486 509 476 511 469 508 C 361 430 342 278 442 161 C 450 154 454 157 453 161 Z"

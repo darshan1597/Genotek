@@ -344,7 +344,7 @@ function Product() {
                                                                         <img
                                                                             src={imageUrl}
                                                                             alt={product.name}
-                                                                            className="block h-full w-[calc(100%-1.5rem)] object-fill"
+                                                                            className="block h-full w-[calc(100%-1.5rem)] object-contain md:object-fill"
                                                                         />
                                                                         <span className="pointer-events-none absolute bottom-1 right-2 flex h-7 w-7 items-center justify-center rounded-full bg-[#244f80] text-white opacity-0 shadow-md transition group-hover:opacity-100">
                                                                             <FiMaximize2 className="text-[15px]" />
