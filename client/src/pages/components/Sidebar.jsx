@@ -105,7 +105,7 @@ function Sidebar() {
     return (
         <aside
             onPointerMove={handleSidebarPointerMove}
-            className="relative z-[80] hidden shrink-0 self-start min-[1117px]:sticky min-[1117px]:top-[18px] min-[1117px]:ml-6 min-[1117px]:block min-[1117px]:h-[calc(100vh-65px)] min-[1117px]:w-[250px] min-[1117px]:overflow-visible min-[1117px]:pr-[12px] xl:ml-7"
+            className="relative z-[80] hidden shrink-0 self-start min-[1117px]:sticky min-[1117px]:top-[18px] min-[1117px]:ml-6 min-[1117px]:block min-[1117px]:h-[calc(100vh-65px)] min-[1117px]:w-[250px] min-[1117px]:overflow-visible min-[1117px]:pr-[6px] xl:ml-7"
         >
             <nav className="flex flex-col gap-[9px] min-[1117px]:h-full min-[1117px]:overflow-visible">
                 {navItems.map((item) => (

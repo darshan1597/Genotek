@@ -28,7 +28,7 @@ useEffect(() => {
                     <div className="flex-1">
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
                             <div className="relative h-[280px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[360px] md:h-[450px]"
-                            style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%)' }}>
+                            >
                                 <img
                                     src={hero}
                                     alt="The Genotek Story"
@@ -36,7 +36,7 @@ useEffect(() => {
                                 />
 
                                <div
-                                    className={`absolute bottom-[130px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg transition-all duration-1000 sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[110px] md:px-15`}
+                                    className={`absolute bottom-[120px] left-0 z-[4] bg-[#2b4f7c] px-5 py-2.5 text-white shadow-lg sm:bottom-[135px] sm:px-8 sm:py-3 md:bottom-[100px] md:px-15`}
                                     style={{
                                         clipPath: 'polygon(0 0, 100% 0, 100% 55%, 90% 100%, 0 100%)',
                                     }}

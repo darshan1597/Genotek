@@ -935,7 +935,7 @@ useEffect(() => {
                                                     </p>
                                                     )}
                                                     {isMobile && showMobileText ? (
-                                                        <div className="mt-[180px]">
+                                                        <div className="mt-[185px]">
                                                             <MobileSequentialPhraseText
                                                                 key={`mobile-subtitle-${currentSlide.id}`}
                                                                 text={currentSlide.subtitle}

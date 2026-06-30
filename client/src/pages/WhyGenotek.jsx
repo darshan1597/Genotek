@@ -16,7 +16,7 @@ function WhyGenotek() {
                     <div className="flex-1">
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
                             <div className="relative h-[280px] w-full overflow-hidden  sm:h-[360px] md:h-[450px]"
-                            style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%)' }}>
+                            >
                                 <img
                                     src={hero}
                                     alt="The Genotek Story"

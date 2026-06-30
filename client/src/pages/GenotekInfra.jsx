@@ -21,7 +21,7 @@ function GenotekInfra() {
                     <div className="flex-1">
                         <div className="relative flex flex-col gap-[10px] md:flex-row">
                             <div className="relative h-[300px] w-full overflow-hidden bg-[#e8e3d9] sm:h-[380px] md:h-[470px]"
-                            style={{ clipPath: 'polygon(0 0, 100% 0, 100% 80%, 92% 100%, 0 100%)' }}>
+                            >
                                 <img
                                     src={hero}
                                     alt="The Genotek Infrastructure"
