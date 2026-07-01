@@ -147,7 +147,7 @@ function GenotekExclusive() {
                                 ))}
                             </div>
                         ) : products.length ? (
-                            <div className="mt-4 grid grid-cols-2 gap-2 md:grid-cols-4">
+                            <div className="mt-4 grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-4">
                                 {orderedProducts.map((product) => {
                                     const imageUrl = getProductImageUrl(product)
                                     const isSelected = product._id === selectedProductId
