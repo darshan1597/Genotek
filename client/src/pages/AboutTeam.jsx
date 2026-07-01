@@ -22,7 +22,15 @@ function AboutTeam() {
 
     useEffect(() => {
         axios.get(`${serverUrl}/api/team-members`)
-            .then(({ data }) => setMembers(Array.isArray(data) ? data : []))
+            .then(({ data }) => {
+                const sortedMembers = Array.isArray(data)
+                    ? [...data].sort((first, second) =>
+                        (first.displayOrder ?? 9999) - (second.displayOrder ?? 9999)
+                        || new Date(first.createdAt) - new Date(second.createdAt)
+                    )
+                    : []
+                setMembers(sortedMembers)
+            })
             .catch((error) => {
                 console.error('Error loading team members:', error)
                 setMembers([])

@@ -39,7 +39,7 @@ function EditAboutTeam() {
         event.preventDefault();
         try {
             const data = new FormData();
-            ["name", "role", "about"].forEach((key) =>
+            ["name", "role", "displayOrder", "about"].forEach((key) =>
                 data.append(key, editing[key]),
             );
             data.append("bulletPoints", JSON.stringify(editing.bulletPoints));
@@ -126,6 +126,9 @@ function EditAboutTeam() {
                                             {member.name}
                                         </h2>
                                         <p className="text-[#526b80]">{member.role}</p>
+                                        <p className="mt-1 text-[13px] font-semibold text-[#6a9ab1]">
+                                            Order: {member.displayOrder}
+                                        </p>
                                         <p className="mt-2 line-clamp-2 text-[14px] text-[#526b80]">
                                             {member.about}
                                         </p>
@@ -175,11 +178,16 @@ function EditAboutTeam() {
                             {[
                                 ["name", "Name"],
                                 ["role", "Role"],
+                                ["displayOrder", "Order Number"],
                             ].map(([key, label]) => (
                                 <label key={key}>
                                 {label}
                                 <input
                                     required
+                                    type={key === "displayOrder" ? "number" : "text"}
+                                    min={key === "displayOrder" ? "1" : undefined}
+                                    max={key === "displayOrder" ? members.length : undefined}
+                                    step={key === "displayOrder" ? "1" : undefined}
                                     value={editing[key]}
                                     onChange={(e) =>
                                         setEditing((current) => ({

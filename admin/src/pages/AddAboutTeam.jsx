@@ -15,7 +15,7 @@ import { serverUrl } from "../App";
 
 function AddAboutTeam() {
     const imageInputRef = useRef(null);
-    const [form, setForm] = useState({ name: "", role: "", about: "" });
+    const [form, setForm] = useState({ name: "", role: "", displayOrder: "", about: "" });
     const [bulletPoints, setBulletPoints] = useState([""]);
     const [image, setImage] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -38,7 +38,7 @@ function AddAboutTeam() {
                 withCredentials: true,
             });
             setToast({ type: "success", message: response.data.message });
-            setForm({ name: "", role: "", about: "" });
+            setForm({ name: "", role: "", displayOrder: "", about: "" });
             setBulletPoints([""]);
             setImage(null);
             if (imageInputRef.current) imageInputRef.current.value = "";
@@ -81,6 +81,7 @@ function AddAboutTeam() {
                             {[
                                 ["name", "Name"],
                                 ["role", "Role"],
+                                ["displayOrder", "Order Number"],
                             ].map(([key, label]) => (
                                 <label key={key} className="mb-5 block">
                                     <span className="mb-2 block font-semibold text-[#214f86]">
@@ -88,6 +89,9 @@ function AddAboutTeam() {
                                     </span>
                                     <input
                                         required
+                                        type={key === "displayOrder" ? "number" : "text"}
+                                        min={key === "displayOrder" ? "1" : undefined}
+                                        step={key === "displayOrder" ? "1" : undefined}
                                         value={form[key]}
                                         onChange={(e) =>
                                             setForm((current) => ({

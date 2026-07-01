@@ -55,8 +55,12 @@ function Navabar() {
 
         try {
             setSearchError('')
-            const { data } = await axios.get(`${serverUrl}/api/products/fetch-products`)
-            const products = Array.isArray(data) ? data : []
+            const [productsResponse, categoriesResponse] = await Promise.all([
+                axios.get(`${serverUrl}/api/products/fetch-products`),
+                axios.get(`${serverUrl}/api/categories/fetch-category`),
+            ])
+            const products = Array.isArray(productsResponse.data) ? productsResponse.data : []
+            const categories = Array.isArray(categoriesResponse.data) ? categoriesResponse.data : []
             const normalizedQuery = query.toLowerCase()
 
             const matchedProduct = products.find((product) => product.cas?.toLowerCase() === normalizedQuery)
@@ -67,6 +71,16 @@ function Navabar() {
 
             if (!matchedProduct?.category) {
                 setSearchError('No matching product found')
+                return
+            }
+
+            const matchedCategory = categories.find(
+                (category) => category.name === matchedProduct.category
+            )
+
+            if (matchedCategory?.isStandalone) {
+                setSearchOpen(false)
+                navigate(`/genotek-exclusive?product=${encodeURIComponent(matchedProduct._id || '')}`)
                 return
             }
 

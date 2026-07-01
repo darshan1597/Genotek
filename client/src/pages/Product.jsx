@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useParams, useSearchParams, NavLink} from 'react-router-dom'
 import axios from 'axios'
 import { FiChevronDown, FiMaximize2, FiSearch, FiX } from 'react-icons/fi'
@@ -22,6 +22,8 @@ function Product() {
     const [previewImage, setPreviewImage] = useState(null)
     const [showMobileSearch, setShowMobileSearch] = useState(false)
     const [isMobilePortfolioExpanded, setIsMobilePortfolioExpanded] = useState(false)
+    const selectedSubcategoryRef = useRef(null)
+    const shouldScrollToProductsRef = useRef(false)
 
     useEffect(() => {
         const fetchProductPageData = async () => {
@@ -89,6 +91,22 @@ function Product() {
             [product.name, product.cas].filter(Boolean).some((value) => value.toLowerCase().includes(query))
         )
     }, [scopedProducts, searchTerm])
+
+    useEffect(() => {
+        if (!shouldScrollToProductsRef.current || !activeSubcategory) return
+
+        shouldScrollToProductsRef.current = false
+        const frame = window.requestAnimationFrame(() => {
+            if (window.matchMedia('(max-width: 767px)').matches) {
+                selectedSubcategoryRef.current?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                })
+            }
+        })
+
+        return () => window.cancelAnimationFrame(frame)
+    }, [activeSubcategory])
 
     const getProductImageUrl = (product) => {
         if (!product?.image?.name) return ''
@@ -187,14 +205,16 @@ function Product() {
                                                 return (
                                                     <button
                                                         key={subcategory._id || subcategory.name}
+                                                        ref={isActive ? selectedSubcategoryRef : null}
                                                         type="button"
                                                         onClick={() => {
+                                                            shouldScrollToProductsRef.current = true
                                                             setActiveSubcategory(subcategory.name)
                                                             setSearchTerm('')
                                                             setIsSubcategoryPanelOpen(false)
                                                             setIsMobilePortfolioExpanded(false)
                                                         }}
-                                                        className={`group relative h-[74px] items-center overflow-hidden rounded-[8px] border-2 bg-white px-3 text-left transition duration-300 cursor-pointer ${
+                                                        className={`group relative h-[74px] scroll-mt-4 items-center overflow-hidden rounded-[8px] border-2 bg-white px-3 text-left transition duration-300 cursor-pointer ${
                                                             !activeSubcategory && index >= 21 && !isMobilePortfolioExpanded
                                                                 ? 'hidden md:flex'
                                                                 : 'flex'
